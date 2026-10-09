@@ -78,7 +78,7 @@
         <!-- 2. Quiz & Interactive Analysis Screen (Single Slide View) -->
         <div id="quiz-screen" class="hidden space-y-4 mt-2">
             
-            <!-- Analysis Mode Indicator Banner -->
+            <!-- Analysis Mode Banner -->
             <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
                 <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
@@ -200,7 +200,7 @@
                 </button>
 
                 <div class="flex gap-2">
-                    <button type="button" onclick="location.reload()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
                         <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
                     </button>
                     <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
@@ -225,6 +225,13 @@
             "सुपौल", "वैशाली", "पश्चिम चंपारण"
         ];
 
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+
         function handleStateChange() {
             const stateSelect = document.getElementById('std-state').value;
             const districtSelect = document.getElementById('std-district');
@@ -245,16 +252,23 @@
             }
         }
 
+        // Automatic persistent state recovery on page load
         window.onload = function() {
             handleStateChange();
+            checkSavedResult();
         };
 
-        let currentQ = 0;
-        let userAnswers = {};
-        let studentInfo = {};
-        let timerInterval;
-        let timeLeft = 3600;
-        let isSubmitted = false;
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test2_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
 
         function startQuiz(e) {
             e.preventDefault();
@@ -450,24 +464,45 @@
                 }
             });
 
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            let scoreData = {
+                score: score,
+                totalQs: quizData2.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            // Permanently Save in LocalStorage
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: scoreData
+            };
+            localStorage.setItem('test2_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(scoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
-            let totalQs = quizData2.length;
-            document.getElementById('res-score').innerText = `${score} / ${totalQs}`;
-            document.getElementById('stat-correct').innerText = correctCount;
-            document.getElementById('stat-wrong').innerText = wrongCount;
-            document.getElementById('stat-unattempted').innerText = unattemptedCount;
-            
-            let randomRank = Math.floor(Math.random() * 50) + 5;
-            document.getElementById('res-rank').innerText = `#${randomRank} / 1,500`;
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 15,50000000`;
 
-            document.getElementById('info-name').innerText = studentInfo.name;
-            document.getElementById('info-state').innerText = studentInfo.state;
-            document.getElementById('info-district').innerText = studentInfo.district;
-            document.getElementById('info-city').innerText = studentInfo.city;
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
 
-            let percentage = (score / totalQs) * 100;
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
             let cutoffBox = document.getElementById('cutoff-box');
             if (percentage >= 70) {
                 cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
@@ -491,6 +526,12 @@
         function showScoreSummary() {
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        // Reset Test Data on Re-attempt
+        function resetTest() {
+            localStorage.removeItem('test2_saved_result');
+            location.reload();
         }
     </script>
 </body>
