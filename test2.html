@@ -511,6 +511,20 @@
                 cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
                 cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। फिर से प्रयास करें।";
             }
+             // Dynamic WhatsApp Message Setup
+            let shareMessage = `🎯 *Iconic GS Tricks - Mock Test Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${studentInfo.name || 'छात्र'}\n` +
+                               `📚 *टेस्ट:* Ancient History Special Test\n` +
+                               `📊 *प्राप्तांक:* ${scoreData.score} / ${scoreData.totalQs}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${scoreData.rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/`;
+
+            let waBtn = document.getElementById('share-wa-btn');
+            if (waBtn) {
+                waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            }
+
         }
 
         function startDetailedAnalysis() {
