@@ -33,25 +33,10 @@
             </div>
         </div>
 
-        <!-- Telegram Link Banner -->
-        <a href="https://t.me/@IconicGSTricks" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-sm transition active:scale-95">
+        <!-- Correct Telegram Link Banner -->
+        <a href="https://t.me/IconicGSTrick" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-sm transition active:scale-95">
             <i class="fa-brands fa-telegram text-base"></i> फ्री पीडीएफ और क्विज़ अपडेट्स के लिए Telegram जॉइन करें
         </a>
-
-        <!-- Last Score Summary Card -->
-        <div id="recent-score-card" class="hidden bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl text-xs space-y-2">
-            <div class="flex justify-between items-center font-bold text-emerald-900 border-b border-emerald-200 pb-1.5">
-                <span class="flex items-center gap-1.5"><i class="fa-solid fa-trophy text-amber-500"></i> आपका पिछला टेस्ट स्कोर:</span>
-                <span id="recent-test-name" class="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full">Test</span>
-            </div>
-            <div class="flex justify-between items-center text-slate-700">
-                <span>प्राप्तांक: <strong id="recent-score-val" class="text-emerald-700">0 / 100</strong></span>
-                <span>रैंक: <strong id="recent-rank-val" class="text-indigo-700">#--</strong></span>
-                <a id="share-wa-btn" href="#" target="_blank" class="bg-emerald-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1">
-                    <i class="fa-brands fa-whatsapp"></i> शेयर करें
-                </a>
-            </div>
-        </div>
 
         <!-- Instant Search Box -->
         <div class="relative">
@@ -59,7 +44,7 @@
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
         </div>
 
-        <!-- ALL 14 SUBJECT ACCORDIONS (Default Collapsed) -->
+        <!-- ALL 14 SUBJECT ACCORDIONS -->
         <div class="space-y-3 pt-1">
 
             <!-- 1. इतिहास (History) -->
@@ -399,22 +384,6 @@
             content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
         }
-
-        window.onload = function() {
-            let res2 = localStorage.getItem('test2_saved_result');
-            let res1 = localStorage.getItem('test1_saved_result');
-            let targetRes = res2 || res1;
-
-            if (targetRes) {
-                let parsed = JSON.parse(targetRes);
-                document.getElementById('recent-score-card').classList.remove('hidden');
-                document.getElementById('recent-score-val').innerText = `${parsed.scoreData.score} / ${parsed.scoreData.totalQs}`;
-                document.getElementById('recent-rank-val').innerText = `#${parsed.scoreData.rank}`;
-                
-                let shareText = `मैंने Iconic GS Tricks पर टेस्ट दिया और मेरा स्कोर ${parsed.scoreData.score}/${parsed.scoreData.totalQs} आया (रैंक #${parsed.scoreData.rank})! आप भी टेस्ट दें: https://akanand854318-ux.github.io/`;
-                document.getElementById('share-wa-btn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-            }
-        };
 
         function filterSubjects() {
             let query = document.getElementById('search-input').value.toLowerCase();
