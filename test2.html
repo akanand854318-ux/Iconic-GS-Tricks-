@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -75,10 +75,8 @@
             </form>
         </div>
 
-        <!-- 2. Quiz & Interactive Analysis Screen (Single Slide View) -->
+        <!-- 2. Quiz Screen -->
         <div id="quiz-screen" class="hidden space-y-4 mt-2">
-            
-            <!-- Analysis Mode Banner -->
             <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
                 <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
@@ -86,18 +84,14 @@
                 </button>
             </div>
 
-            <!-- Progress & Timer Bar -->
             <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
                 <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
-                
                 <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
                     <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
                 </button>
-
                 <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
             </div>
 
-            <!-- Question Navigation Grid -->
             <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                 <div class="flex justify-between items-center border-b pb-2">
                     <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
@@ -105,23 +99,12 @@
                     </h4>
                     <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
                 </div>
-                
-                <div class="flex items-center gap-3 text-[10px] text-slate-600 font-semibold pt-1">
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> सही / हल किया</div>
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> गलत</div>
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 inline-block"></span> छूट गया</div>
-                </div>
-
                 <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
             </div>
 
-            <!-- Question Card -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
-                
                 <div id="options-container" class="space-y-2.5"></div>
-
-                <!-- Detailed Explanation Box -->
                 <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
                     <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
                         <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
@@ -130,7 +113,6 @@
                 </div>
             </div>
 
-            <!-- Navigation Controls -->
             <div class="flex justify-between items-center gap-3">
                 <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
                     <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
@@ -193,8 +175,12 @@
                 <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
             </div>
 
-            <!-- Action Buttons -->
+            <!-- Action Buttons with WhatsApp Share -->
             <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
                 <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
                     <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
                 </button>
@@ -231,6 +217,7 @@
         let timerInterval;
         let timeLeft = 3600;
         let isSubmitted = false;
+        let currentScoreData = {};
 
         function handleStateChange() {
             const stateSelect = document.getElementById('std-state').value;
@@ -252,7 +239,6 @@
             }
         }
 
-        // Automatic persistent state recovery on page load
         window.onload = function() {
             handleStateChange();
             checkSavedResult();
@@ -265,6 +251,7 @@
                 isSubmitted = true;
                 userAnswers = parsedData.userAnswers || {};
                 studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
 
                 displayResultScreen(parsedData.scoreData);
             }
@@ -465,7 +452,7 @@
             });
 
             let randomRank = Math.floor(Math.random() * 50) + 5;
-            let scoreData = {
+            currentScoreData = {
                 score: score,
                 totalQs: quizData2.length,
                 correct: correctCount,
@@ -474,16 +461,15 @@
                 rank: randomRank
             };
 
-            // Permanently Save in LocalStorage
             let testSaveObject = {
                 isSubmitted: true,
                 userAnswers: userAnswers,
                 studentInfo: studentInfo,
-                scoreData: scoreData
+                scoreData: currentScoreData
             };
             localStorage.setItem('test2_saved_result', JSON.stringify(testSaveObject));
 
-            displayResultScreen(scoreData);
+            displayResultScreen(currentScoreData);
         }
 
         function displayResultScreen(scoreData) {
@@ -495,7 +481,7 @@
             document.getElementById('stat-correct').innerText = scoreData.correct;
             document.getElementById('stat-wrong').innerText = scoreData.wrong;
             document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
-            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,5000`;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
 
             document.getElementById('info-name').innerText = studentInfo.name || '--';
             document.getElementById('info-state').innerText = studentInfo.state || '--';
@@ -511,20 +497,25 @@
                 cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
                 cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। फिर से प्रयास करें।";
             }
-             // Dynamic WhatsApp Message Setup
+        }
+
+        // Dedicated Function to Share Score on WhatsApp
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
             let shareMessage = `🎯 *Iconic GS Tricks - Mock Test Result*\n\n` +
-                               `👤 *परीक्षार्थी:* ${studentInfo.name || 'छात्र'}\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
                                `📚 *टेस्ट:* Ancient History Special Test\n` +
-                               `📊 *प्राप्तांक:* ${scoreData.score} / ${scoreData.totalQs}\n` +
-                               `🏆 *ऑल इंडिया रैंक:* #${scoreData.rank}\n\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
                                `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
                                `https://akanand854318-ux.github.io/`;
 
-            let waBtn = document.getElementById('share-wa-btn');
-            if (waBtn) {
-                waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
-            }
-
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
         }
 
         function startDetailedAnalysis() {
@@ -542,7 +533,6 @@
             document.getElementById('result-screen').classList.remove('hidden');
         }
 
-        // Reset Test Data on Re-attempt
         function resetTest() {
             localStorage.removeItem('test2_saved_result');
             location.reload();
@@ -550,3 +540,4 @@
     </script>
 </body>
 </html>
+       
