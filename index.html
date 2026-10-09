@@ -3,62 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iconic GS Tricks - All Daily Tests</title>
+    <title>Iconic GS Tricks - Online Test Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen p-4">
-    <div class="max-w-2xl mx-auto my-6">
-        
-        <!-- Header Section -->
-        <div class="bg-gradient-to-r from-indigo-900 to-indigo-700 text-white rounded-2xl p-6 text-center shadow-lg mb-6">
-            <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Iconic GS Tricks</h1>
-            <p class="text-indigo-200 text-xs md:text-sm mt-2">SSC / BPSC / Railway Daily Online Test Portal</p>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <div class="max-w-xl mx-auto p-4 space-y-4">
+
+        <!-- Header Banner -->
+        <div class="bg-indigo-900 text-white p-5 rounded-2xl shadow-lg text-center space-y-1">
+            <h1 class="text-2xl font-bold">Iconic GS Tricks</h1>
+            <p class="text-xs text-indigo-200">SSC / BPSC / Railway Daily Online Test Portal</p>
         </div>
 
-        <!-- Section Title -->
-        <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <i class="fa-solid fa-list-check text-indigo-600"></i> सभी मॉक टेस्ट (All Online Tests)
-            </h2>
-            <span class="text-xs bg-indigo-100 text-indigo-800 px-2.5 py-1 rounded-full font-semibold">Live Portal</span>
-        </div>
-
-        <!-- Test Card 1 -->
-<div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition mb-4">
-    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-        <div>
-            <div class="flex items-center gap-2 mb-1">
-                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded">Test #1</span>
-                <span class="text-xs text-slate-500"><i class="fa-regular fa-clock"></i> 100 प्रश्न</span>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base">आधुनिक भारतीय इतिहास- full मॉक टेस्ट 1</h3>
-            <p class="text-xs text-slate-500 mt-0.5">100 Marks | 60 Mins | SSC CGL, BPSC Railway और all exam विशेष</p>
-        </div>
-        <a href="test1.html" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-sm rounded-lg transition shadow-sm">
-            <i class="fa-solid fa-play text-xs"></i> Start Test
+        <!-- Community Link Banner -->
+        <a href="https://t.me/" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-sm transition">
+            <i class="fa-brands fa-telegram text-base"></i> फ्री पीडीएफ और क्विज़ अपडेट्स के लिए Telegram जॉइन करें
         </a>
-    </div>
-</div>
 
-<!-- Test Card 2 -->
-<div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
-    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-        <div>
-            <div class="flex items-center gap-2 mb-1">
-                <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded">Test #2</span>
-                <span class="text-xs text-slate-500"><i class="fa-regular fa-clock"></i> 100 प्रश्न</span>
+        <!-- Last Score Summary Card -->
+        <div id="recent-score-card" class="hidden bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl text-xs space-y-1">
+            <div class="flex justify-between items-center font-bold text-emerald-900">
+                <span><i class="fa-solid fa-clock-rotate-left text-emerald-600 mr-1"></i> आपका पिछला टेस्ट स्कोर:</span>
+                <span id="recent-test-name" class="text-[10px] bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full">Test #2</span>
             </div>
-            <h3 class="font-bold text-slate-900 text-base">प्राचीन भारतीय इतिहास- full मॉक टेस्ट 2</h3>
-            <p class="text-xs text-slate-500 mt-0.5">100 Marks | 60 Mins | SSC CGL, BPSC Railway और all exam विशेष</p>
+            <div class="flex justify-between items-center text-slate-700 pt-1">
+                <span>प्राप्तांक: <strong id="recent-score-val" class="text-emerald-700">0 / 100</strong></span>
+                <span>रैंक: <strong id="recent-rank-val" class="text-indigo-700">#--</strong></span>
+            </div>
         </div>
-        <a href="test1.html" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-sm rounded-lg transition shadow-sm" style="background-color: unset;"></a>
-        <a href="test2.html" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-sm rounded-lg transition shadow-sm">
-            <i class="fa-solid fa-play text-xs"></i> Start Test
-        </a>
-    </div>
-</div>
 
+        <!-- Instant Search Box -->
+        <div class="relative">
+            <input type="text" id="search-input" onkeyup="filterTests()" placeholder="किसी भी विषय या टेस्ट का नाम खोजें..." class="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white shadow-sm">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+        </div>
+
+        <!-- Quick Subject Jump Tabs -->
+        <div class="flex gap-2 overflow-x-auto no-scrollbar py-1 text-xs font-semibold">
+            <a href="#history" class="bg-indigo-600 text-white px-3 py-1.5 rounded-full whitespace-nowrap shadow-sm">इतिहास</a>
+            <a href="#geography" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">भूगोल</a>
+            <a href="#polity" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">राजव्यवस्था</a>
+            <a href="#economics" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">अर्थशास्त्र</a>
+            <a href="#physics" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">फिजिक्स</a>
+            <a href="#chemistry" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">केमिस्ट्री</a>
+            <a href="#biology" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">बायोलॉजी</a>
+            <a href="#scitech" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">साइंस-टेक</a>
+            <a href="#computer" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">कंप्यूटर</a>
+            <a href="#intorg" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">संगठन</a>
+            <a href="#environment" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">पर्यावरण</a>
+            <a href="#agriculture" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">कृषि</a>
+            <a href="#sports" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">खेल-कूद</a>
+            <a href="#staticgk" class="bg-white text-slate-700 border border-slate-200 px-3 py-1.5 rounded-full whitespace-nowrap">विविध</a>
+        </div>
+
+        <!-- 1. इतिहास (History) -->
+        <div id="history" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-book-bookmark text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">इतिहास (History)</h2>
+            </div>
+
+            <!-- Test Card 1 -->
+            <div class="test-card bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded">Test #1</span>
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-clock"></i> 100 प्रश्न</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">आधुनिक भारतीय इतिहास- full मॉक टेस्ट 1</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">100 Marks | 60 Mins | SSC CGL, BPSC Railway और all exam विशेष</p>
+                    </div>
+                    <a href="test1.html" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-sm rounded-lg transition shadow-sm">
+                        <i class="fa-solid fa-play text-xs"></i> Start Test
+                    </a>
+                </div>
+            </div>
+
+            <!-- Test Card 2 -->
+            <div class="test-card bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded">Test #2</span>
+                            <span class="text-xs text-slate-500"><i class="fa-regular fa-clock"></i> 100 प्रश्न</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">प्राचीन भारतीय इतिहास- full मॉक टेस्ट 2</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">100 Marks | 60 Mins | SSC CGL, BPSC Railway और all exam विशेष</p>
+                    </div>
+                    <a href="test2.html" class="inline-flex justify-center items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-sm rounded-lg transition shadow-sm">
+                        <i class="fa-solid fa-play text-xs"></i> Start Test
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. भूगोल (Geography) -->
+        <div id="geography" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-earth-americas text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">भूगोल (Geography)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> भूगोल के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 3. भारतीय राजव्यवस्था (Polity) -->
+        <div id="polity" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-scale-balanced text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">भारतीय राजव्यवस्था (Polity)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> राजव्यवस्था के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 4. अर्थशास्त्र (Economics) -->
+        <div id="economics" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-chart-line text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">अर्थशास्त्र (Economics)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> अर्थशास्त्र के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 5. भौतिक विज्ञान (Physics) -->
+        <div id="physics" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-atom text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">भौतिक विज्ञान (Physics)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> भौतिक विज्ञान के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 6. रसायन विज्ञान (Chemistry) -->
+        <div id="chemistry" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-flask text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">रसायन विज्ञान (Chemistry)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> रसायन विज्ञान के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 7. जीव विज्ञान (Biology) -->
+        <div id="biology" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-dna text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">जीव विज्ञान (Biology)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> जीव विज्ञान के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 8. विज्ञान एवं प्रौद्योगिकी (Science & Tech) -->
+        <div id="scitech" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-microchip text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">विज्ञान एवं प्रौद्योगिकी (Science & Tech)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> साइंस एंड टेक के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 9. कंप्यूटर (Computer) -->
+        <div id="computer" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-laptop-code text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">कंप्यूटर (Computer)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> कंप्यूटर विज्ञान के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 10. अंतरराष्ट्रीय संगठन (International Orgs) -->
+        <div id="intorg" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-globe text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">अंतरराष्ट्रीय संगठन (International Orgs)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> अंतरराष्ट्रीय संगठन के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 11. पर्यावरण एवं पारिस्थितिकी (Environment) -->
+        <div id="environment" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-leaf text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">पर्यावरण एवं पारिस्थितिकी (Environment)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> पर्यावरण के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 12. कृषि एवं पशुपालन (Agriculture) -->
+        <div id="agriculture" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-wheat-awn text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">कृषि एवं पशुपालन (Agriculture)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> कृषि एवं पशुपालन के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 13. खेल-कूद (Sports) -->
+        <div id="sports" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-trophy text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">खेल-कूद (Sports)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> खेल-कूद के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
+        </div>
+
+        <!-- 14. विविध (Static GK) -->
+        <div id="staticgk" class="subject-section space-y-3 pt-2">
+            <div class="flex items-center gap-2 border-b-2 border-indigo-600 pb-2">
+                <i class="fa-solid fa-layer-group text-indigo-600 text-lg"></i>
+                <h2 class="text-base font-bold text-slate-900">विविध (Static GK / Miscellany)</h2>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-slate-200 text-center py-5">
+                <p class="text-xs text-slate-500"><i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> विविध/स्टैटिक जीके के मॉक टेस्ट जल्द ही उपलब्ध होंगे।</p>
+            </div>
         </div>
 
         <!-- Footer -->
@@ -67,5 +253,36 @@
         </div>
 
     </div>
+
+    <script>
+        // Check Last Submitted Score from LocalStorage
+        window.onload = function() {
+            let res2 = localStorage.getItem('test2_saved_result');
+            let res1 = localStorage.getItem('test1_saved_result');
+            let targetRes = res2 || res1;
+
+            if (targetRes) {
+                let parsed = JSON.parse(targetRes);
+                document.getElementById('recent-score-card').classList.remove('hidden');
+                document.getElementById('recent-score-val').innerText = `${parsed.scoreData.score} / ${parsed.scoreData.totalQs}`;
+                document.getElementById('recent-rank-val').innerText = `#${parsed.scoreData.rank}`;
+            }
+        };
+
+        // Instant Filter Search Logic
+        function filterTests() {
+            let query = document.getElementById('search-input').value.toLowerCase();
+            let sections = document.querySelectorAll('.subject-section');
+
+            sections.forEach(sec => {
+                let text = sec.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    sec.style.display = "block";
+                } else {
+                    sec.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
