@@ -219,6 +219,15 @@
         let isSubmitted = false;
         let currentScoreData = {};
 
+        function getQuestions() {
+            if (typeof quizData1 !== 'undefined' && quizData1.length > 0) {
+                return quizData1;
+            } else if (typeof quizData !== 'undefined' && quizData.length > 0) {
+                return quizData;
+            }
+            return [];
+        }
+
         function handleStateChange() {
             const stateSelect = document.getElementById('std-state').value;
             const districtSelect = document.getElementById('std-district');
@@ -259,9 +268,9 @@
 
         function startQuiz(e) {
             e.preventDefault();
-            let activeQuestions = (typeof quizData1 !== 'undefined') ? quizData1 : ((typeof quizData !== 'undefined') ? quizData : []);
+            let questions = getQuestions();
             
-            if (activeQuestions.length === 0) {
+            if (questions.length === 0) {
                 alert("questions1.js फ़ाइल लोड नहीं हो सकी। कृपया जाँच करें।");
                 return;
             }
@@ -278,10 +287,6 @@
 
             startTimer();
             loadQuestion();
-        }
-
-        function getQuestions() {
-            return (typeof quizData1 !== 'undefined') ? quizData1 : ((typeof quizData !== 'undefined') ? quizData : []);
         }
 
         function startTimer() {
@@ -390,7 +395,7 @@
             
             let expBox = document.getElementById('explanation-box');
             if (hasAnswered || isSubmitted) {
-                let expMsg = q.explanation ? q.explanation : (q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`);
+                let expMsg = q.exp ? q.exp : (q.explanation ? q.explanation : `सही उत्तर: '${q.options[q.ans]}'`);
                 document.getElementById('explanation-text').innerHTML = expMsg;
                 expBox.classList.remove('hidden');
             } else {
@@ -509,7 +514,6 @@
             }
         }
 
-        // Dedicated Function to Share Score on WhatsApp
         function shareOnWhatsApp() {
             let name = studentInfo.name || 'छात्र';
             let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
