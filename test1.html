@@ -18,7 +18,7 @@
         <div class="max-w-xl mx-auto flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
-                <p class="text-xs text-amber-300">Modern History Special Test (100 Questions)</p>
+                <p class="text-xs text-amber-300">आधुनिक भारतीय इतिहास - full मॉक टेस्ट 1</p>
             </div>
             <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
                 <i class="fa-solid fa-house mr-1"></i> होमपेज
@@ -77,19 +77,21 @@
 
         <!-- 2. Quiz Screen -->
         <div id="quiz-screen" class="hidden space-y-4 mt-2">
-            <!-- Progress & Timer Bar -->
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
             <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
                 <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
-                
-                <!-- Direct Navigation Toggle Button -->
                 <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
                     <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
                 </button>
-
                 <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
             </div>
 
-            <!-- Direct Question Navigation Grid (Question Palette) -->
             <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
                 <div class="flex justify-between items-center border-b pb-2">
                     <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
@@ -97,23 +99,12 @@
                     </h4>
                     <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
                 </div>
-                
-                <div class="flex items-center gap-3 text-[10px] text-slate-600 font-semibold pt-1">
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> हल किया</div>
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 inline-block"></span> छूट गया</div>
-                    <div class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-indigo-600 inline-block"></span> वर्तमान</div>
-                </div>
-
                 <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
             </div>
 
-            <!-- Question Card -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
-                
                 <div id="options-container" class="space-y-2.5"></div>
-
-                <!-- Instant Detailed Explanation Box -->
                 <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
                     <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
                         <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
@@ -122,7 +113,6 @@
                 </div>
             </div>
 
-            <!-- Navigation Controls -->
             <div class="flex justify-between items-center gap-3">
                 <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
                     <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
@@ -132,21 +122,21 @@
                 </button>
             </div>
 
-            <!-- Submit Button (Hidden by default, shown ONLY on last question) -->
             <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
                 <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
             </button>
         </div>
 
-        <!-- 3. Result Screen -->
+        <!-- 3. Result Scorecard Screen -->
         <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
                 <i class="fa-solid fa-trophy"></i>
             </div>
             <div>
                 <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
-                <p class="text-xs text-slate-500 mt-1">Modern History Special Test</p>
+                <p class="text-xs text-slate-500 mt-1">आधुनिक भारतीय इतिहास- full मॉक टेस्ट 1</p>
             </div>
+            
             <div class="grid grid-cols-2 gap-3">
                 <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
                     <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
@@ -157,9 +147,26 @@
                     <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
                 </div>
             </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
             <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
                 कट-ऑफ (Cut-off): 70% (70 Marks)
             </div>
+
             <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
                 <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
                 <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
@@ -167,19 +174,31 @@
                 <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
                 <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
             </div>
-            <div class="flex gap-2">
-                <button type="button" onclick="location.reload()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
-                    <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
                 </button>
-                <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
-                    <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
-                </a>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Questions File -->
+    <!-- Questions Data File for Test 1 -->
     <script src="questions1.js"></script>
 
     <script>
@@ -191,6 +210,14 @@
             "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
             "सुपौल", "वैशाली", "पश्चिम चंपारण"
         ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
 
         function handleStateChange() {
             const stateSelect = document.getElementById('std-state').value;
@@ -214,17 +241,27 @@
 
         window.onload = function() {
             handleStateChange();
+            checkSavedResult();
         };
 
-        let currentQ = 0;
-        let userAnswers = {};
-        let studentInfo = {};
-        let timerInterval;
-        let timeLeft = 3600;
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test1_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
 
         function startQuiz(e) {
             e.preventDefault();
-            if (typeof quizData === 'undefined' || quizData.length === 0) {
+            let activeQuestions = (typeof quizData1 !== 'undefined') ? quizData1 : ((typeof quizData !== 'undefined') ? quizData : []);
+            
+            if (activeQuestions.length === 0) {
                 alert("questions1.js फ़ाइल लोड नहीं हो सकी। कृपया जाँच करें।");
                 return;
             }
@@ -243,8 +280,13 @@
             loadQuestion();
         }
 
+        function getQuestions() {
+            return (typeof quizData1 !== 'undefined') ? quizData1 : ((typeof quizData !== 'undefined') ? quizData : []);
+        }
+
         function startTimer() {
             timerInterval = setInterval(() => {
+                if(isSubmitted) return;
                 timeLeft--;
                 let m = Math.floor(timeLeft / 60);
                 let s = timeLeft % 60;
@@ -266,20 +308,31 @@
 
         function renderPalette() {
             const grid = document.getElementById('palette-grid');
+            let questions = getQuestions();
             let html = '';
-            quizData.forEach((_, idx) => {
+            questions.forEach((q, idx) => {
                 let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
                 
-                if (userAnswers[idx] !== undefined) {
-                    statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
                 }
                 
                 if (idx === currentQ) {
-                    statusClass = 'bg-indigo-600 text-white font-bold border-indigo-700 ring-2 ring-indigo-300';
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
                 }
 
                 html += `
-                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs font-semibold ${statusClass}">
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
                         ${idx + 1}
                     </button>
                 `;
@@ -294,8 +347,9 @@
         }
 
         function loadQuestion() {
-            let q = quizData[currentQ];
-            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${quizData.length}`;
+            let questions = getQuestions();
+            let q = questions[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${questions.length}`;
             document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
 
             let optHTML = '';
@@ -305,7 +359,15 @@
                 let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
                 let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
 
-                if (hasAnswered) {
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
                     if (idx === q.ans) {
                         bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
                         iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
@@ -316,7 +378,7 @@
                 }
 
                 optHTML += `
-                    <button type="button" onclick="selectOption(${idx})" ${hasAnswered ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
                         <span>${opt}</span>
                         ${iconHTML}
                     </button>
@@ -326,23 +388,26 @@
             document.getElementById('options-container').innerHTML = optHTML;
             document.getElementById('prev-btn').disabled = (currentQ === 0);
             
-            // Explanation Logic
             let expBox = document.getElementById('explanation-box');
-            if (hasAnswered) {
-                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.explanation ? q.explanation : (q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`);
                 document.getElementById('explanation-text').innerHTML = expMsg;
                 expBox.classList.remove('hidden');
             } else {
                 expBox.classList.add('hidden');
             }
 
-            // Submit Button Display Logic: Strict Show only on Question 100
             let nextBtn = document.getElementById('next-btn');
             let submitBtn = document.getElementById('submit-btn');
 
-            if (currentQ === quizData.length - 1) {
-                nextBtn.classList.add('hidden');
-                submitBtn.classList.remove('hidden');
+            if (!isSubmitted) {
+                if (currentQ === questions.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
             } else {
                 nextBtn.classList.remove('hidden');
                 submitBtn.classList.add('hidden');
@@ -354,12 +419,14 @@
         }
 
         function selectOption(optIndex) {
+            if(isSubmitted) return;
             userAnswers[currentQ] = optIndex;
             loadQuestion();
         }
 
         function nextQuestion() {
-            if (currentQ < quizData.length - 1) {
+            let questions = getQuestions();
+            if (currentQ < questions.length - 1) {
                 currentQ++;
                 loadQuestion();
             }
@@ -374,26 +441,64 @@
 
         function submitQuiz() {
             clearInterval(timerInterval);
+            isSubmitted = true;
+            let questions = getQuestions();
+            
             let score = 0;
-            quizData.forEach((q, idx) => {
-                if (userAnswers[idx] === q.ans) score++;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+
+            questions.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
             });
 
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: questions.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test1_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
-            let totalQs = quizData.length;
-            document.getElementById('res-score').innerText = `${score} / ${totalQs}`;
-            
-            let randomRank = Math.floor(Math.random() * 50) + 5;
-            document.getElementById('res-rank').innerText = `#${randomRank} / 1,500`;
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
 
-            document.getElementById('info-name').innerText = studentInfo.name;
-            document.getElementById('info-state').innerText = studentInfo.state;
-            document.getElementById('info-district').innerText = studentInfo.district;
-            document.getElementById('info-city').innerText = studentInfo.city;
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
 
-            let percentage = (score / totalQs) * 100;
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
             let cutoffBox = document.getElementById('cutoff-box');
             if (percentage >= 70) {
                 cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
@@ -402,6 +507,45 @@
                 cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
                 cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। फिर से प्रयास करें।";
             }
+        }
+
+        // Dedicated Function to Share Score on WhatsApp
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Mock Test Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *टेस्ट:* आधुनिक भारतीय इतिहास- full मॉक टेस्ट 1\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test1_saved_result');
+            location.reload();
         }
     </script>
 </body>
