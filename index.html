@@ -6,10 +6,6 @@
     <title>Iconic GS Tricks - Online Test Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
 </head>
 <body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
 
@@ -23,8 +19,8 @@
             <!-- Quick Portal Stats -->
             <div class="grid grid-cols-3 gap-2 pt-2 border-t border-indigo-700/50 text-[11px]">
                 <div>
-                    <p class="text-indigo-300">कुल टेस्ट</p>
-                    <p class="font-bold text-white text-sm">14+ Subjects</p>
+                    <p class="text-indigo-300">कुल विषय</p>
+                    <p class="font-bold text-white text-sm">14 Subjects</p>
                 </div>
                 <div>
                     <p class="text-indigo-300">प्रश्न बैंक</p>
@@ -37,8 +33,8 @@
             </div>
         </div>
 
-        <!-- Community Link Banner -->
-        <a href="https://t.me/IconicGSTricks" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-sm transition active:scale-95">
+        <!-- Telegram Link Banner -->
+        <a href="https://t.me/@IconicGSTricks" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-xl flex items-center justify-center gap-2 text-xs shadow-sm transition active:scale-95">
             <i class="fa-brands fa-telegram text-base"></i> फ्री पीडीएफ और क्विज़ अपडेट्स के लिए Telegram जॉइन करें
         </a>
 
@@ -63,7 +59,7 @@
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
         </div>
 
-        <!-- SUBJECT WISE ACCORDIONS -->
+        <!-- ALL 14 SUBJECT ACCORDIONS (Default Collapsed) -->
         <div class="space-y-3 pt-1">
 
             <!-- 1. इतिहास (History) -->
@@ -118,7 +114,7 @@
             <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <button type="button" onclick="toggleSubject('geography-content', 'geography-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center font-bold text-sm">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
                             <i class="fa-solid fa-earth-americas"></i>
                         </div>
                         <div>
@@ -139,7 +135,7 @@
             <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <button type="button" onclick="toggleSubject('polity-content', 'polity-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center font-bold text-sm">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
                             <i class="fa-solid fa-scale-balanced"></i>
                         </div>
                         <div>
@@ -156,9 +152,237 @@
                 </div>
             </div>
 
-            <!-- Remaining Subjects Placeholders -->
-            <!-- 4. Economics, 5. Physics, 6. Chemistry, 7. Biology, 8. SciTech, 9. Computer, 10. IntOrg, 11. Environment, 12. Agri, 13. Sports, 14. Static GK -->
-            
+            <!-- 4. अर्थशास्त्र (Economics) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('economics-content', 'economics-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">अर्थशास्त्र (Economics)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="economics-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="economics-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> अर्थशास्त्र के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. भौतिक विज्ञान (Physics) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('physics-content', 'physics-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">भौतिक विज्ञान (Physics)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="physics-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="physics-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> भौतिक विज्ञान के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. रसायन विज्ञान (Chemistry) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('chemistry-content', 'chemistry-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">रसायन विज्ञान (Chemistry)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="chemistry-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="chemistry-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> रसायन विज्ञान के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. जीव विज्ञान (Biology) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('biology-content', 'biology-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">जीव विज्ञान (Biology)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="biology-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="biology-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> जीव विज्ञान के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. विज्ञान एवं प्रौद्योगिकी (Science & Tech) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('scitech-content', 'scitech-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">विज्ञान एवं प्रौद्योगिकी (Science & Tech)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="scitech-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="scitech-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> साइंस एंड टेक के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. कंप्यूटर (Computer) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('computer-content', 'computer-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">कंप्यूटर (Computer)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="computer-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="computer-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> कंप्यूटर के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. अंतरराष्ट्रीय संगठन (International Orgs) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('intorg-content', 'intorg-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">अंतरराष्ट्रीय संगठन (International Orgs)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="intorg-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="intorg-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> अंतरराष्ट्रीय संगठन के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. पर्यावरण एवं पारिस्थितिकी (Environment) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('env-content', 'env-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">पर्यावरण एवं पारिस्थितिकी (Environment)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="env-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="env-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> पर्यावरण के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. कृषि एवं पशुपालन (Agriculture) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('agri-content', 'agri-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">कृषि एवं पशुपालन (Agriculture)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="agri-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="agri-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> कृषि एवं पशुपालन के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. खेल-कूद (Sports) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('sports-content', 'sports-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">खेल-कूद (Sports)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="sports-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="sports-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> खेल-कूद के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. विविध (Static GK) -->
+            <div class="subject-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <button type="button" onclick="toggleSubject('static-content', 'static-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center font-bold text-sm">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-sm text-slate-900">विविध (Static GK / Miscellany)</h2>
+                            <p class="text-[11px] text-slate-500">जल्द आ रहा है</p>
+                        </div>
+                    </div>
+                    <i id="static-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+                </button>
+                <div id="static-content" class="hidden p-4 pt-1 space-y-3 border-t border-slate-100 bg-slate-50">
+                    <div class="text-center py-4 text-xs text-slate-500">
+                        <i class="fa-solid fa-hourglass-start text-amber-500 mr-1"></i> विविध/स्टैटिक जीके के मॉक टेस्ट जल्द ही जोड़े जाएंगे।
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Footer -->
