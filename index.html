@@ -95,53 +95,44 @@
                 </div>
             </div>
             
-           <!-- भूगोल (Geography) Section -->
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-4">
-    <!-- Accordion Header -->
-    <button type="button" onclick="toggleAccordion('geo-dropdown', 'geo-icon')" class="w-full p-4 flex justify-between items-center bg-white hover:bg-slate-50 transition">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-lg">
-                <i class="fa-solid fa-earth-americas"></i>
-            </div>
-            <div class="text-left">
-                <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
-                    भूगोल (Geography)
-                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">LIVE</span>
-                </h3>
-                <p class="text-xs text-slate-500">2 टेस्ट उपलब्ध (200 Qs)</p>
-            </div>
-        </div>
-        <i id="geo-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
-    </button>
+           <script>
+    // विषयों के ड्रॉपडाउन को खोलने और बंद करने के लिए फ़ंक्शन
+    function toggleSubject(contentId, iconId) {
+        const content = document.getElementById(contentId);
+        const icon = document.getElementById(iconId);
+        content.classList.toggle('hidden');
+        icon.classList.toggle('rotate-180');
+    }
 
-    <!-- Accordion Content / Dropdown (hidden जोड़ा गया है ताकि शुरुआत में बंद रहे) -->
-    <div id="geo-dropdown" class="hidden p-4 pt-0 space-y-3 border-t border-slate-100">
+    // भूगोल (Geography) सेक्शन के लिए विशेष फ़ंक्शन
+    function toggleAccordion(dropdownId, iconId) {
+        const dropdown = document.getElementById(dropdownId);
+        const icon = document.getElementById(iconId);
         
-        <!-- Test #1 Card -->
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3 mt-3">
-            <div class="flex justify-between items-center">
-                <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Test #1</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-sm">विश्व भूगोल (World Geography) स्पेशल टेस्ट 1</h4>
-            <p class="text-xs text-slate-500">100 Marks | 60 Mins | SSC, BPSC, Railway, UPSC</p>
-            <a href="testj1.html" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition active:scale-95 shadow-sm">
-                <i class="fa-solid fa-play text-[10px]"></i> Start Test 1
-            </a>
-        </div>
+        if (dropdown.classList.contains('hidden')) {
+            dropdown.classList.remove('hidden');
+            if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+            dropdown.classList.add('hidden');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+    }
 
-        <!-- Test #2 Card -->
-        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-            <div class="flex justify-between items-center">
-                <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Test #2</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-sm">विश्व भूगोल: ब्रह्मांड, आकाशगंगा, तारा एवं सौरमंडल</h4>
-            <p class="text-xs text-slate-500">100 Marks | 60 Mins | UPSC, BPSC, SSC और रेलवे स्पेशल</p>
-            <a href="testj2.html" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition active:scale-95 shadow-sm">
-                <i class="fa-solid fa-play text-[10px]"></i> Start Test 2
-            </a>
-        </div>
-    </div>
-</div>
+    // सर्च बॉक्स फ़िल्टर फ़ंक्शन
+    function filterSubjects() {
+        let query = document.getElementById('search-input').value.toLowerCase();
+        let items = document.querySelectorAll('.subject-item');
+
+        items.forEach(item => {
+            let text = item.innerText.toLowerCase();
+            if (text.includes(query)) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    }
+</script>
 
     </div>
 </div>
