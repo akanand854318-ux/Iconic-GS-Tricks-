@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Geography - Mock Test 2 (ब्रह्मांड एवं सौरमंडल) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">विश्व भूगोल - मॉक टेस्ट 2 (ब्रह्मांड एवं सौरमंडल)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Test 2)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, SSC, BPSC Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">World Geography - Test 2</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // विश्व भूगोल - परिचय, ब्रह्मांड, आकाशगंगा, तारा और सौरमंडल के 100 महत्वपूर्ण प्रश्न (UPSC, BPSC, SSC Level)
+        const quizDataGeography100 = [
+            {
+                q: "आधुनिक भूगोल का जनक (Father of Modern Geography) किसे कहा जाता है?",
+                options: ["अलेक्जेंडर वॉन हंबोल्ट", "कार्ल रिटर", "पॉलीडोस", "हिकॅटियस"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आधुनिक भूगोल का संस्थापक या जनक <b>अलेक्जेंडर वॉन हंबोल्ट</b> (Alexander von Humboldt) को माना जाता है, जबकि हिकॅटियस को 'प्राचीन भूगोल का जनक' कहा जाता है।"
+            },
+            {
+                q: "'भू-केंद्रित सिद्धांत' (Geocentric Theory) का प्रतिपादन सबसे पहले किसने किया था?",
+                options: ["टॉमी (Ptolemy)", "कोपरनिकस", "केप्लर", "गैलीलियो"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मिस्र के खगोलशास्त्री क्लाॅडियस <b>टॉमी</b> ने 140 ईस्वी में यह सिद्धांत दिया था कि ब्रह्मांड के केंद्र में पृथ्वी है और सूर्य तथा अन्य ग्रह इसकी परिक्रमा करते हैं।"
+            },
+            {
+                q: "किसने सबसे पहले यह सिद्ध किया कि सूर्य सौरमंडल के केंद्र में है, पृथ्वी नहीं?",
+                options: ["निकोलस कोपरनिकस", "टॉमी", "ब्रूनो", "बे Bessel"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पोलैंड के खगोलशास्त्री <b>निकोलस कोपरनिकस</b> ने 1543 में 'सूर्य-केंद्रीय सिद्धांत' (Heliocentric Theory) प्रतिपादित किया।"
+            },
+            {
+                q: "ब्रह्मांड की उत्पत्ति से संबंधित 'साम्यावस्था सिद्धांत' (Steady State Theory) किसने प्रतिपादित किया था?",
+                options: ["थॉमस गोल्ड और हरमन बांडी", "जॉर्ज लेमेयेर", "एडविन हबल", "फ्रेड हॉयल"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• साम्यावस्था सिद्धांत (Steady State Theory) के अनुसार ब्रह्मांड हमेशा से ऐसा ही रहा है और इसका विस्तार होने पर भी घनत्व समान रहता है। इसे थॉमस गोल्ड, हरमन बांडी और फ्रेड हॉयल ने दिया था।"
+            },
+            {
+                q: "ब्रह्मांड में सर्वाधिक मात्रा में पाया जाने वाला दूसरा तत्व कौन सा है?",
+                options: ["हाइड्रोजन", "हीलियम", "ऑक्सीजन", "कार्बन"],
+                ans: 1,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रह्मांड में सबसे अधिक मात्रा में हाइड्रोजन (~74%) और दूसरे स्थान पर <b>हीलियम</b> (~24%) पाया जाता है।"
+            },
+            {
+                q: "खागोलीय पिंडों की दूरी मापने की इकाई 'पारसेक' (Parsec) कितने प्रकाश वर्ष के बराबर होती है?",
+                options: ["3.26 प्रकाश वर्ष", "9.46 प्रकाश वर्ष", "1.5 प्रकाश वर्ष", "10 प्रकाश वर्ष"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1 पारसेक (Parsec = Parallactic Second) लगभग <b>3.26 प्रकाश वर्ष</b> के बराबर होता है। यह खगोलीय दूरी की सबसे बड़ी इकाई है।"
+            },
+            {
+                q: "हमारी आकाशगंगा 'मंदाकिनी' के सबसे समीप कौन सी मंदाकिनी है?",
+                options: ["एंड्रोमेडा (Devyani)", "लार्ज मैगेलैनिक क्लाउड", "सोम्ब्रेरो गैलेक्सी", "कारव्हील गैलेक्सी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी की आकाशगंगा 'मंदाकिनी' (Milky Way) के सबसे पास की बड़ी सर्पिलाकार आकाशगंगा <b>एंड्रोमेडा</b> है।"
+            },
+            {
+                q: "'पल्सर' (Pulsar) क्या होते हैं?",
+                options: ["तेजी से घूमने वाले न्यूट्रॉन तारे", "गैसों के बादल", "नए जन्मे तारे", "क्षुद्र ग्रह"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पल्सर अत्यधिक चुम्बकीय और तेजी से घूर्णन करने वाले न्यूट्रॉन तारे होते हैं जो रेडियो तरंगें उत्सर्जित करते हैं।"
+            },
+            {
+                q: "सुपरनोवा विस्फोट के पश्चात यदि तारे का अवशेष 3 चंद्रशेखर सीमा से अधिक भारी हो, तो वह क्या बनता है?",
+                options: ["ब्लैक होल", "श्वेत वामन", "न्यूट्रॉन तारा", "पल्सर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रशेखर सीमा (1.44 सौर द्रव्यमान) से बहुत अधिक भारी तारे सुपरनोवा के बाद अंततः **ब्लैक होल** (कृष्ण विवर) में बदल जाते हैं।"
+            },
+            {
+                q: "तारे के निर्माण की शुरुआत में गैसों के विशाल कुण्ड को क्या कहा जाता है?",
+                options: ["निहारिका (Nebula)", "सुपरनोवा", "प्रोटॉस्टार", "कोरोनल मास"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतरिक्ष में हाइड्रोजन गैस और धूलकणों के ठंडे व घने बादलों को **निहारिका (Nebula)** कहते हैं, जहाँ से तारों का जन्म होता है।"
+            },
+            {
+                q: "सूर्य के प्रकाश का पृथ्वी तक पहुँचने में लगने वाला सटीक समय कितना है?",
+                options: ["8 मिनट 16.6 सेकंड", "7 मिनट 30 सेकंड", "9 मिनट 10 सेकंड", "6 मिनट 45 सेकंड"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य की किरणें पृथ्वी तक औसतन 500 सेकंड यानी लगभग <b>8 मिनट 16 से 20 सेकंड</b> में पहुँचती हैं।"
+            },
+            {
+                q: "सूर्य के धरातल का तापमान लगभग कितना होता है?",
+                options: ["6000°C", "15 लाख °C", "3000°C", "12,000°C"],
+                ans: 0,
+                exp: "<b>विस्तृत सतह:</b><br>• सूर्य की बाहरी सतह (Photosphere) का तापमान लगभग 6000°C होता है, जबकि इसके केंद्र का तापमान लगभग 1.5 करोड़ °C होता है।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह को 'सौंदर्य का देवता' (God of Beauty) कहा जाता है?",
+                options: ["शुक्र (Venus)", "बुध", "मंगल", "बृहस्पति"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रोमन पौराणिक कथाओं में सौंदर्य और प्रेम की देवी 'वीनस' (शुक्र) के नाम पर इस चमकीले ग्रह को सौंदर्य का देवता कहा जाता है।"
+            },
+            {
+                q: "सौरमंडल का सबसे कम घनत्व वाला ग्रह कौन सा है?",
+                options: ["शनि (Saturn)", "बृहस्पति", "अरुण", "नेपच्यून"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **शनि** का घनत्व (0.687 g/cm³) पानी के घनत्व (1 g/cm³) से भी कम है।"
+            },
+            {
+                q: "किस ग्रह के उपग्रह का नाम 'टाइटन' है?",
+                options: ["शनि", "बृहस्पति", "अरुण", "मंगल"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **टाइटन** शनि ग्रह का सबसे बड़ा और सौरमंडल का दूसरा सबसे बड़ा उपग्रह है, जिसका अपना घना वायुमंडल है।"
+            },
+            {
+                q: "अरुण (Uranus) ग्रह की खोज किसने की थी?",
+                options: ["विलियम हर्शेल", "गैलीलियो", "कैसीनी", "हाइगेन्स"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अरुण ग्रह की खोज 1781 में खगोलशास्त्री **विलियम हर्शेल** ने दूरबीन के माध्यम से की थी।"
+            },
+            {
+                q: "नेपच्यून (वरुण) ग्रह की खोज का श्रेय किसे जाता है?",
+                options: ["जॉन गाले (Johann Galle)", "विलियम हर्शेल", "टॉमी", "पियरे लाप्लास"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नेपच्यून ग्रह को गणितीय अनुमान के आधार पर 1846 में **जॉन गाले** ने खोजा था।"
+            },
+            {
+                q: "अंतरिक्ष में कुल कितने 'तारामंडल' (Constellations) प्रमाणित हैं?",
+                options: ["88", "12", "64", "108"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतर्राष्ट्रीय खगोलीय संघ (IAU) के अनुसार संपूर्ण आकाश मंडल में कुल **88 तारामंडल** हैं।"
+            },
+            {
+                q: "सूर्य के चारों ओर चक्कर लगाने वाले धूमकेतु (Comets) किस पथ पर गति करते हैं?",
+                options: ["अत्यधिक दीर्घवृत्ताीय (Highly Elliptical)", "वृत्ताकार", "सरल रेखा", "परवलयाकार"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धूमकेतु बहुत ही लंबी और चपटी (अत्यधिक दीर्घवृत्ताीय) कक्षाओं में सूर्य की परिक्रमा करते हैं।"
+            },
+            {
+                q: "कुइपर बेल्ट (Kuiper Belt) कहाँ स्थित है?",
+                options: ["नेपच्यून की कक्षा के बाहर सौरमंडल के छोर पर", "मंगल और बृहस्पति के बीच", "पृथ्वी और चंद्रमा के बीच", "सूर्य के कोरोना के पास"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुइपर बेल्ट नेपच्यून ग्रह की कक्षा से आगे सौरमंडल के बाहरी हिस्से में स्थित बर्फीले पिंडों का क्षेत्र है, जहाँ प्लूटो भी स्थित है।"
+            },
+            {
+                q: "ओर्ट क्लाउड (Oort Cloud) का संबंध किससे है?",
+                options: ["धूमकेतुओं के उद्गम स्थल से", "क्षुद्रग्रहों से", "ब्लैक होल से", "नक्षत्रों से"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओर्ट क्लाउड सौरमंडल के सबसे बाहरी आवरण में स्थित बर्फीले पिंडों का खगोलीय क्षेत्र है, जो दीर्घकालिक धूमकेतुओं का उद्गम स्थल माना जाता है।"
+            },
+            {
+                q: "चंद्रमा का द्रव्यमान पृथ्वी के द्रव्यमान का लगभग कितना भाग है?",
+                options: ["लगभग 1/81 वाँ भाग", "लगभग 1/10 वाँ भाग", "लगभग 1/4 वाँ भाग", "लगभग 1/2 वाँ भाग"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रमा का द्रव्यमान पृथ्वी के द्रव्यमान का लगभग **1/81** (यानी 1.2%) है।"
+            },
+            {
+                q: "पृथ्वी से चंद्रमा का कितना प्रतिशत भाग अधिकतम देखा जा सकता है?",
+                options: ["59%", "50%", "41%", "100%"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• परिभ्रमण और परिक्रमण काल समान होने के कारण पृथ्वी से चंद्रमा का कुल 59% भाग (विभिन्न कोणों से) देखा जा सकता है।"
+            },
+            {
+                q: "जब चंद्रमा पृथ्वी से सबसे दूर होता है, तो उस स्थिति को क्या कहते हैं?",
+                options: ["अपभू (Apogee)", "उपभू (Perigee)", "अपसौर", "उपसौर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रमा की पृथ्वी से अधिकतम दूरी को **अपभू (Apogee)** तथा न्यूनतम दूरी को **उपभू (Perigee)** कहते हैं।"
+            },
+            {
+                q: "पृथ्वी सूर्य से सबसे अधिक दूर (अपसौर / Aphelion) किस तिथि को होती है?",
+                options: ["4 जुलाई", "3 जनवरी", "21 जून", "22 दिसंबर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रत्येक वर्ष 4 जुलाई को पृथ्वी सूर्य से सबसे अधिक दूरी (लगभग 152 मिलियन किमी) पर होती है, जिसे अपसौर कहते हैं।"
+            },
+            {
+                q: "पृथ्वी सूर्य के सबसे निकट (उपसौर / Perihelion) किस तिथि को होती है?",
+                options: ["3 जनवरी", "4 जुलाई", "21 मार्च", "23 सितंबर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रत्येक वर्ष 3 जनवरी को पृथ्वी सूर्य के सबसे निकट (लगभग 147 मिलियन किमी) होती है, जिसे उपसौर कहते हैं।"
+            },
+            {
+                q: "अयनांत (Solstice) की स्थिति वर्ष में कितनी बार आती है?",
+                options: ["दो बार", "चार बार", "एक बार", "तीन बार"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वर्ष में दो बार अयनांत होते हैं—21 जून (कर्क संक्रांति) और 22 दिसंबर (मकर संक्रांति)।"
+            },
+            {
+                q: "भू-मध्य रेखा पर सूर्य की किरणें वर्ष में कितनी बार लंबवत चमकती हैं?",
+                options: ["दो बार", "एक बार", "चार बार", "कभी नहीं"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुव के दौरान 21 मार्च और 23 सितंबर को सूर्य की किरणें भूमध्य रेखा पर सीधी (लंबवत) चमकती हैं।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय तिथि रेखा (International Date Line) किस रेखा को कहा जाता है?",
+                    options: ["180° देशांतर रेखा", "0° ग्रीनविच रेखा", "90° पूर्वी देशांतर", "भूमध्य रेखा"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 180° याम्योत्तर (Meridian) को अंतर्राष्ट्रीय तिथि रेखा माना जाता है, जहाँ से तिथियों का निर्धारण होता है।"
+            },
+            {
+                q: "ग्रीनविच माध्य समय (GMT) और भारतीय मानक समय (IST) में कितने समय का अंतर है?",
+                options: ["5 घंटे 30 मिनट आगे", "5 घंटे 30 मिनट पीछे", "4 घंटे आगे", "6 घंटे आगे"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का मानक समय (82.5° पूर्वी देशांतर) ग्रीनविच समय से **5 घंटे 30 मिनट आगे** है।"
+            },
+            {
+                q: "पृथ्वी पर कुल कितने देशांतर रेखाएँ खींची जा सकती हैं?",
+                options: ["360", "180", "90", "अनंत"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्लोब पर उत्तर से दक्षिण खींची जाने वाली काल्पनिक रेखाएँ देशांतर कहलाती हैं, जिनकी कुल संख्या 360 होती है।"
+            },
+            {
+                q: "विषुवत रेखा (Equator) पर दो देशांतर रेखाओं के बीच की अधिकतम दूरी लगभग कितनी होती है?",
+                options: ["111.3 किमी", "100 किमी", "120 किमी", "69 किमी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दो देशांतरों के बीच की दूरी भूमध्य रेखा पर सर्वाधिक (लगभग 111.3 किमी) होती है, जो ध्रुवों की ओर घटकर शून्य हो जाती है।"
+            },
+            {
+                q: "कर्क रेखा (Tropic of Cancer) भारत के कितने राज्यों से होकर गुजरती है?",
+                options: ["8", "7", "6", "9"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कर्क रेखा (23.5° उत्तरी अक्षांश) भारत के 8 राज्यों (गुजरात, राजस्थान, मध्य प्रदेश, छत्तीसगढ़, झारखंड, पश्चिम बंगाल, त्रिपुरा, मिजोरम) से गुजरती है।"
+            },
+            {
+                q: "कौन सी नदी मकर रेखा (Tropic of Capricorn) को दो बार पार करती है?",
+                options: ["लिम्पोपो नदी", "कोंगो नदी", "नाइजर नदी", "ऑरेंज नदी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अफ्रीका की **लिम्पोपो नदी** मकर रेखा को दो बार काटती है (जबकि कोंगो/जैर नदी विषुवत रेखा को और माही नदी कर्क रेखा को दो बार काटती है)।"
+            },
+            {
+                q: "सौरमंडल का सबसे चमकीला तारा (Sirius) पृथ्वी से लगभग कितनी दूरी पर है?",
+                options: ["लगभग 8.6 प्रकाश वर्ष", "4.2 प्रकाश वर्ष", "2.5 लाख प्रकाश वर्ष", "100 प्रकाश वर्ष"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिरियस (डॉग स्टार) रात्रि आकाश का सबसे चमकीला तारा है जो हमसे लगभग 8.6 प्रकाश वर्ष दूर है।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह को 'गैसीय दानव' (Gas Giant) में नहीं गिना जाता?",
+                options: ["पृथ्वी", "बृहस्पति", "शनि", "अरुण"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बृहस्पति, शनि, अरुण और वरुण को जोवियन या गैसीय दानव ग्रह कहते हैं। पृथ्वी एक 'पार्थिव' (आंतरिक) चट्टानी ग्रह है।"
+            },
+            {
+                q: "शुक्र ग्रह पर सूर्य किस दिशा में उगता है?",
+                options: ["पश्चिम में", "पूर्व में", "उत्तर में", "दक्षिण में"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शुक्र और अरुण ग्रह पूर्व से पश्चिम (Retrograde) घूमते हैं, इसलिए वहाँ सूर्य पश्चिम में उगता है और पूर्व में अस्त होता है।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह का चुम्बकीय क्षेत्र पृथ्वी के चुम्बकीय क्षेत्र से सबसे अधिक शक्तिशाली है?",
+                options: ["बृहस्पति (Jupiter)", "शनि", "मंगल", "शुक्र"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बृहस्पति का चुम्बकीय क्षेत्र सौरमंडल में ग्रहों में सबसे शक्तिशाली है।"
+            },
+            {
+                q: "मंगल ग्रह पर खोजा गया सबसे बड़ा ज्वालामुखी 'ओलंपस मोन्स' पृथ्वी के सबसे ऊंचे पर्वत माउंट एवरेस्ट से कितना बड़ा है?",
+                options: ["लगभग तीन गुना ऊँचा", "बराबर", "आधा", "दस गुना"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओलंपस मोन्स की ऊँचाई लगभग 25 किलोमीटर है, जो माउंट एवरेस्ट (8.848 किमी) से लगभग तीन गुना अधिक है।"
+            },
+            {
+                q: "शनि ग्रह के चारों ओर स्पष्ट वलयों (Rings) की संख्या मुख्य रूप से कितनी मानी जाती है?",
+                options: ["7 मुख्य वलय", "3 वलय", "12 वलय", "कोई वलय नहीं"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शनि ग्रह के चारों ओर बर्फ और चट्टानों के कणों से बने मुख्य रूप से **7 प्रमुख वलय** हैं।"
+            },
+            {
+                q: "खगोलीय इकाई (Astronomical Unit - AU) किसकी माप है?",
+                options: ["सूर्य और पृथ्वी के बीच की औसत दूरी", "तारे का आकार", "प्रकाश की गति", "ब्रह्मांड का विस्तार"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1 खगोलीय इकाई (AU) पृथ्वी और सूर्य के बीच की औसत दूरी (~149.6 मिलियन किमी) होती है।"
+            },
+            {
+                q: "ब्रह्मांड के अध्ययन को क्या कहा जाता है?",
+                options: ["कॉस्मोलॉजी", "एस्ट्रोनॉमी", "पेट्रोलॉजी", "सिस्मोलॉजी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रह्मांड की उत्पत्ति और विकास के वैज्ञानिक अध्ययन को **कॉस्मोलॉजी (Cosmology)** कहते हैं।"
+            },
+            {
+                q: "तारे का रंग उसके किस गुण को दर्शाता है?",
+                options: ["पृष्ठ तापमान (Surface Temperature)", "आयु", "द्रव्यमान", "दूरी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीले तारे सबसे गर्म और लाल तारे अपेक्षाकृत ठंडे होते हैं, अतः रंग तापमान का द्योतक है।"
+            },
+            {
+                q: "सूर्य की ऊर्जा का मुख्य आधार कौन सी प्रक्रिया है?",
+                options: ["नाभिकीय संलयन (Nuclear Fusion)", "नाभिकीय विखंडन", "रासायनिक दहन", "गुरुत्वाकर्षण संकुचन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य के कोर में उच्च ताप और दाब के कारण हाइड्रोजन नाभिक मिलकर हीलियम बनाते हैं, जिसे नाभिकीय संलयन कहते हैं।"
+            },
+            {
+                q: "ध्रुव तारा (Pole Star) हमेशा किस खगोलीय धุล के ऊपर स्थित होता है?",
+                options: ["उत्तरी खगोलीय ध्रुव", "दक्षिणी खगोलीय ध्रुव", "भूमध्य रेखा", "कर्क रेखा"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्रुव तारा पृथ्वी के उत्तरी घूर्णन अक्ष के ठीक ऊपर स्थित है, जिससे यह हमेशा उत्तर दिशा बताता है।"
+            },
+            {
+                q: "आकाशगंगा (Milky Way) का सबसे चमकीला और नया तारा समूह क्षेत्र क्या कहलाता है?",
+                options: ["ओरियन नेबुला (Orion Nebula)", "ब्लैक होल", "सप्तर्षि", "अल्फा सेंटॉरी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओरियन नेबुला हमारी आकाशगंगा की एक विशाल स्टार-नर्सरी है जहाँ नए और चमकीले तारे बनते हैं।"
+            },
+            {
+                q: "सौरमंडल के बाहर हमारे सबसे निकट का ज्ञात तारा कौन सा है?",
+                options: ["प्रॉक्सिमा सेंटॉरी", "सिरियस", "बर्नार्ड स्टार", "वेगा"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य के बाद पृथ्वी/सौरमंडल के सबसे निकट का तारा प्रॉक्सिमा सेंटॉरी है (~4.24 प्रकाश वर्ष दूर)।"
+            },
+            {
+                q: "चंद्रमा की सतह पर धूल और पत्थरों के मैदान को क्या कहा जाता है?",
+                options: ["मारिया (Maria)", "क्रेटर", "रेगोलीथ", "शांत सागर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रमा के काले, सपाट और नीले बेसिन जैसे मैदानी भागों को **मारिया** कहा जाता है।"
+            },
+            {
+                q: "सौरमंडल में क्षुद्रग्रह बेल्ट (Asteroid Belt) किन ग्रहों के बीच स्थित है?",
+                options: ["मंगल और बृहस्पति", "पृथ्वी और मंगल", "बृहस्पति और शनि", "शुक्र और पृथ्वी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मंगल और बृहस्पति ग्रहों की कक्षाओं के बीच हजारों छोटे चट्टानी पिंड सूर्य की परिक्रमा करते हैं जिसे क्षुद्रग्रह पेटी कहते हैं।"
+            },
+            {
+                q: "किस ग्रह को 'बर्फ़ीला दानव' (Ice Giant) कहा जाता है?",
+                options: ["यूरेनस और नेपच्यून", "शनि और बृहस्पति", "बुध और शुक्र", "मंगल और पृथ्वी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अरुण (Uranus) और वरुण (Neptune) के आंतरिक भाग में पानी, मीथेन और अमोनिया की बर्फ की अधिकता के कारण इन्हें आइस जाइंट कहते हैं।"
+            },
+            {
+                q: "प्लेटो को किस वर्ष अंतर्राष्ट्रीय खगोलीय संघ (IAU) द्वारा बौना ग्रह घोषित किया गया?",
+                options: ["2006", "2008", "2004", "2010"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अगस्त 2006 में प्राग सम्मेलन के दौरान प्लूटो की ग्रह की श्रेणी समाप्त कर इसे बौना ग्रह (Dwarf Planet) घोषित किया गया।"
+            },
+            {
+                q: "सौरमंडल का सबसे बड़ा उपग्रह 'गैनीमेड' किस ग्रह की परिक्रमा करता है?",
+                options: ["बृहस्पति", "शनि", "अरुण", "नेपच्यून"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गैनीमेड बृहस्पति का सबसे बड़ा उपग्रह है, जो आकार में बुध ग्रह से भी बड़ा है।"
+            },
+            {
+                q: "सौरमंडल का सबसे छोटा उपग्रह कौन सा है?",
+                options: ["डीमोस (Deimos)", "फोबोस", "लूनर", "टाइटन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मंगल ग्रह का उपग्रह डीमोस सौरमंडल का सबसे छोटा उपग्रह है।"
+            },
+            {
+                q: "अंतरिक्ष में जाने वाली प्रथम महिला कौन थीं?",
+                options: ["वलेंटीना तेरेश्कोवा", "सलीना राइड", "कल्पना चावला", "सुनीता विलियम्स"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सोवियत संघ की **वलेंटीना तेरेश्कोवा** 1963 में वोस्टोक-6 से अंतरिक्ष में जाने वाली पहली महिला थीं।"
+            },
+            {
+                q: "भारत के पहले अंतरिक्ष यात्री राकेश शर्मा ने अंतरिक्ष में किस वर्ष यात्रा की थी?",
+                options: ["1984", "1975", "1991", "2001"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विंग कमांडर राकेश शर्मा 3 अप्रैल 1984 को सोवियत संघ के सोयुज टी-11 अंतरिक्ष यान से अंतरिक्ष में गए थे।"
+            },
+            {
+                q: "चंद्रमा पर उतरने वाला पहला मानवयुक्त अंतरिक्ष मिशन कौन सा था?",
+                options: ["अपोलो-11", "अपोलो-13", "लूना-9", "वॉयजर-1"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नासा का **अपोलो-11** मिशन 20 जुलाई 1969 को चंद्रमा पर उतरा था।"
+            },
+            {
+                q: "सूर्य के वायुमंडल की सबसे बाहरी परत को क्या कहते हैं?",
+                options: ["कोरोना (Corona) / किरीट", "वर्णमंडल", "प्रकाशमंडल", "कोर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य के वायुमंडल का सबसे बाहरी आवरण **कोरोना** कहलाता है, जो केवल सूर्य ग्रहण के समय दिखाई देता है।"
+            },
+            {
+                q: "सौर कलंक (Sunspots) का तापमान सूर्य की सतह के औसत तापमान से कितना होता है?",
+                options: ["कम होता है (~1500°C कम)", "अधिक होता है", "बराबर होता है", "शून्य होता है"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य के धब्बों (Sunspots) में तीव्र चुंबकीय क्षेत्र के कारण तापमान आसपास के क्षेत्र से लगभग 1500 डिग्री सेल्सियस कम होता है।"
+            },
+            {
+                q: "पृथ्वी के वायुमंडल में प्रवेश करने पर उल्कापिंड (Meteors) किस परत में घर्षण के कारण चमक उठते हैं?",
+                options: ["मध्यमंडल (Mesosphere)", "क्षोभमंडल", "समतापमंडल", "आयनमंडल"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उल्कापिंड मध्यमंडल में प्रवेश करते ही वायु के साथ घर्षण से जल उठते हैं, जिन्हें 'टूटता तारा' कहते हैं।"
+            },
+            {
+                q: "हब्बल अंतरिक्ष दूरबीन (Hubble Space Telescope) को अंतरिक्ष में किस वर्ष स्थापित किया गया था?",
+                options: ["1990", "1985", "1995", "2000"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नासा और ईसा द्वारा संयुक्त रूप से हब्बल टेलीस्कोप को 24 अप्रैल 1990 को अंतरिक्ष में स्थापित किया गया था।"
+            },
+            {
+                q: "जेम्स वेब स्पेस टेलीस्कोप (James Webb Space Telescope) मुख्य रूप से किस स्पेक्ट्रम में ब्रह्मांड का अध्ययन करता है?",
+                options: ["अवरक्त (Infrared)", "पराबैंगनी", "दृश्य प्रकाश", "एक्स-रे"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जेम्स वेब टेलीस्कोप मुख्य रूप से इंफ्रारेड (अवरक्त) तरंगों में ब्रह्मांड की प्राचीनतम आकाशगंगाओं को देखता है।"
+            },
+            {
+                q: "आकाशगंगाओं के समूह (Galaxy Cluster) को क्या कहा जाता है?",
+                options: ["सुपरक्लस्टर (Supercluster)", "कांस्टेलेशन", "सोलर सिस्टम", "नेबुला"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कई आकाशगंगाओं के गुरुत्वाकर्षण से बंधे बड़े समूहों को क्लस्टर और उनके भी बड़े समूहों को सुपरक्लस्टर कहते हैं।"
+            },
+            {
+                q: "ब्रह्मांड के विस्तार की गति में त्वरण (Acceleration) का कारण क्या माना जाता है?",
+                options: ["डार्क एनर्जी (Dark Energy)", "डार्क मैटर", "गुरुत्वाकर्षण बल", "नाभिकीय ऊर्जा"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आधुनिक खगोल भौतिकी के अनुसार ब्रह्मांड के त्वरित विस्तार के लिए अज्ञात 'डार्क एनर्जी' जिम्मेदार है।"
+            },
+            {
+                q: "अल्फा सेंटॉरी प्रणाली में कुल कितने तारे शामिल हैं?",
+                options: ["तीन तारे (Triple Star System)", "दो तारे", "एक तारा", "चार तारे"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अल्फा सेंटॉरी एक त्रि-तारा प्रणाली है जिसमें अल्फा सेंटॉरी ए, बी और प्रॉक्सीमा सेंटॉरी शामिल हैं।"
+            },
+            {
+                q: "किस ग्रह को अपनी धुरी पर एक चक्कर पूरा करने में सबसे कम समय (सबसे छोटा दिन) लगता है?",
+                options: ["बृहस्पति", "शनि", "बुध", "पृथ्वी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बृहस्पति अपनी धुरी पर मात्र लगभग 9 घंटे 55 मिनट में एक चक्कर पूरा कर लेता है, जिससे वहाँ का दिन सबसे छोटा होता है।"
+            },
+            {
+                q: "शुक्र ग्रह पर भारी मात्रा में कौन सी गैस पाई जाती है जो तीव्र ग्रीनhouse प्रभाव पैदा करती है?",
+                options: ["कार्बन डाइऑक्साइड (96-97%)", "मीथेन", "ऑक्सीजन", "नाइट्रोजन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शुक्र के वायुमंडल में 96% से अधिक $CO_2$ होने के कारण यह सौरमंडल का सबसे गर्म ग्रह है।"
+            },
+            {
+                q: "पृथ्वी के निकटतम कौन सा ग्रह स्थित है?",
+                options: ["शुक्र", "मंगल", "बुध", "बृहस्पति"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के सबसे पास का ग्रह शुक्र है, जो पृथ्वी से सबसे कम दूरी पर आता है।"
+            },
+            {
+                q: "भारतीय अंतरिक्ष अनुसंधान संगठन (ISRO) की स्थापना किस वर्ष हुई थी?",
+                options: ["15 अगस्त 1969", "15 अगस्त 1947", "1 जनवरी 1950", "26 जनवरी 1950"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इसरो की स्थापना 15 अगस्त 1969 को डॉ. विक्रम साराभाई के प्रयासों से हुई थी।"
+            },
+            {
+                q: "भारत के पहले उपग्रह 'आर्यभट्ट' का प्रक्षेपण किस रॉकेट से किया गया था?",
+                options: ["कॉस्मोस-3एम (सोवियत संघ)", "एसएलवी-3", "पीएसएलवी-सी1", "जीएसएलवी-एमके3"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का पहला उपग्रह आर्यभट्ट 19 अप्रैल 1975 को सोवियत संघ के कॉस्मोस रॉकेट से अंतरिक्ष में छोड़ा गया था।"
+            },
+            {
+                q: "भारत के मून मिशन 'चंद्रयान-1' को किस वर्ष लॉन्च किया गया था?",
+                options: ["2008", "2019", "2023", "2013"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रयान-1 को 22 अक्टूबर 2008 को सतीश धवन अंतरिक्ष केंद्र (श्रीहरिकोटा) से पीएसएलवी-सी11 द्वारा लॉन्च किया गया था।"
+            },
+            {
+                q: "चंद्रमा की कक्षा में पानी (जल के अणु) की खोज सबसे पहले किस भारतीय मिशन ने की थी?",
+                options: ["चंद्रयान-1", "चंद्रयान-2", "चांदनी", "मंगलयान"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रयान-1 पर लगे NASA के M3 पेलोड ने चंद्रमा पर पहली बार पानी के अणुओं की मौजूदगी की पुष्टि की थी।"
+            },
+            {
+                q: "भारत के मंगलयान (Mars Orbiter Mission) को किस वर्ष सफलतापूर्वक मंगल की कक्षा में स्थापित किया गया था?",
+                options: ["2014", "2013", "2015", "2016"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मंगलयान 5 नवंबर 2013 को लॉन्च हुआ था और 24 सितंबर 2014 को अपने पहले प्रयास में मंगल की कक्षा में पहुँच गया था।"
+            },
+            {
+                q: "सूर्य का अध्ययन करने वाला भारत का पहला अंतरिक्ष मिशन कौन सा है?",
+                options: ["आदित्य-L1", "सूर्ययान-1", "आदित्य-2", "इंटीग्रल"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आदित्य-L1 को सितंबर 2023 में Lagrange Point 1 (L1) पर स्थापित किया गया है, जो सूर्य का अध्ययन कर रहा है।"
+            },
+            {
+                q: "अंतरिक्ष में सबसे अधिक समय तक रहने का रिकॉर्ड किस अंतरिक्ष यात्री के नाम है?",
+                options: ["गेन्नेडी पदाल्का / वलेरी पोल्याकोव", "सुनीता विलियम्स", "स्कॉट केली", "पेगी व्हिटसन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रूसी अंतरिक्ष यात्री वलेरी पोल्याकोव ने अंतरिक्ष में एकल उड़ान में सबसे अधिक 437 दिन बिताए थे, जबकि कुल समय में गेन्नेडी पदाल्का आगे हैं।"
+            },
+            {
+                q: "पृथ्वी पर ऋतु परिवर्तन (Seasons) का मुख्य कारण क्या है?",
+                options: ["पृथ्वी का अपनी कक्षा के तल से 66.5° झुका होना (अक्षीय झुकाव)", "पृथ्वी की घूर्णन गति", "सूर्य का घूमना", "दूरी में बदलाव"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के अपने अक्ष पर झुके होने और सूर्य के चारों ओर परिक्रमा करने के कारण वर्ष भर ऋतुओं में परिवर्तन होता है।"
+            },
+            {
+                q: "दिन और रात छोटे-बड़े किस कारण से होते हैं?",
+                options: ["पृथ्वी का परिक्रमण और अक्षीय झुकाव", "केवल घूर्णन", "चंद्रमा का गुरुत्वाकर्षण", "वायुमंडलीय अपवर्तन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के झुकाव और सूर्य के सापेक्ष उसकी स्थिति के कारण अलग-अलग अक्षांशों पर दिन-रात की अवधि छोटी-बड़ी होती है।"
+            },
+            {
+                q: "पृथ्वी के घूर्णन की गति सबसे अधिक कहाँ होती है?",
+                options: ["विषुवत रेखा (Equator) पर", "ध्रुवों पर", "कर्क रेखा पर", "मकर रेखा पर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर पृथ्वी की परिधि सबसे बड़ी होने के कारण घूर्णन रेखीय गति सर्वाधिक (~1670 किमी/घंटा) होती है।"
+            },
+            {
+                q: "कोरिऑलिस बल (Coriolis Force) का मुख्य कारण क्या है?",
+                options: ["पृथ्वी का घूर्णन (Rotation)", "पृथ्वी का परिक्रमण", "गुरुत्वाकर्षण बल", "हवा का दबाव"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के अपने अक्ष पर घूमने (घूर्णन) के कारण उत्पन्न आभาสी बल को कोरिऑलिस बल कहते हैं जो हवाओं और महासागरीय धाराओं को विक्षेपित करता है।"
+            },
+            {
+                q: "ब्लैक होल की उपस्थिति का पता सबसे पहले किस तरंगों के अध्ययन से चला?",
+                options: ["एक्स-रे और गुरुत्वाकर्षण तरंगें", "रेडियो तरंगें", "दृश्य प्रकाश", "पराबैंगनी किरणें"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्लैक होल स्वयं प्रकाश नहीं छोड़ता, लेकिन इसके पास की डिस्क से निकलने वाली एक्स-रे और हाल ही में 'गुरुत्वाकर्षण तरंगों' (Gravitational Waves) से इसका पता चला।"
+            },
+            {
+                q: "ब्रह्मांड के अंत में बड़े संकुचन के बाद संभावित महाविनाश की परिकल्पना को क्या कहा जाता है?",
+                options: ["बिग क्रंच (Big Crunch)", "बिग रिप", "बिग फ्रीज", "ब्लैक क्रंच"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यदि ब्रह्मांड का विस्तार रुक जाए और गुरुत्वाकर्षण के कारण यह पुनः एक बिंदु पर सिमट जाए, तो उस परिकल्पना को **बिग क्रंच** कहते हैं।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह को 'प्रभात तारा' कहा जाता है?",
+                options: ["शुक्र", "बुध", "मंगल", "शनि"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शुक्र ग्रह भोर में पूर्व दिशा में सबसे चमकीले तारे के रूप में दिखाई देता है, इसलिए इसे प्रभात तारा कहते हैं।"
+            },
+            {
+                q: "पृथ्वी की भूमध्यरेखीय व्यास (Equatorial Diameter) लगभग कितना है?",
+                options: ["12,756 किमी", "12,714 किमी", "11,000 किमी", "13,000 किमी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी का भूमध्यरेखीय व्यास लगभग 12,756 किमी है, जबकि ध्रुवीय व्यास लगभग 12,714 किमी है (पृथ्वी नारंगी जैसी चपटी है)।"
+            },
+            {
+                q: "अंतरिक्ष यात्री को अंतरिक्ष यान के अंदर वस्तुएं किस स्थिति में प्रतीत होती हैं?",
+                options: ["भारहीनता (Weightlessness)", "अत्यधिक भारी", "चुम्बकीय आकर्षण", "स्थिर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कक्षा में परिक्रमा करते समय अंतरिक्ष यान और यात्री दोनों मुक्त पतन (Free Fall) की स्थिति में होते हैं, जिससे भारहीनता महसूस होती है।"
+            },
+            {
+                q: "किस खगोलीय घटना के दौरान 'डायमंड रिंग' (Diamond Ring) का नजारा दिखाई देता है?",
+                options: ["पूर्ण सूर्य ग्रहण", "चंद्र ग्रहण", "सुपर मून", "चंद्र आच्छादन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्ण सूर्य ग्रहण के ठीक पहले या बाद में जब सूर्य का बहुत थोड़ा सा हिस्सा मुकुट की तरह चमकता है, उसे डायमंड रिंग कहते हैं।"
+            },
+            {
+                q: "चंद्र ग्रहण सदैव किस रात्रि को होता है?",
+                options: ["पूर्णिमा (Full Moon)", "अमावस्या", "प्रथम चतुर्थक", "अष्टमी"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्र ग्रहण हमेशा पूर्णिमा के दिन ही घटित होता है, जब पृथ्वी सूर्य और चंद्रमा के बीच आती है।"
+            },
+            {
+                q: "सूर्य ग्रहण सदैव किस तिथि को होता है?",
+                options: ["अमावस्या (New Moon)", "पूर्णिमा", "किसी भी दिन", "संक्रांति के अगले दिन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य ग्रहण हमेशा अमावस्या के दिन होता है जब चंद्रमा सूर्य और पृथ्वी के बीच से गुजरता है।"
+            },
+            {
+                q: "सौरमंडल के सबसे ठंडे ग्रह के रूप में किसे जाना जाता है?",
+                options: ["नेपच्यून (वरुण)", "यूरेनस (अरुण)", "शनि", "प्लेटो"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नेपच्यून सूर्य से सबसे अधिक दूरी पर स्थित होने के कारण सौरमंडल का सबसे ठंडा ग्रह है (औसत तापमान -214°C)।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह का अपना कोई वायुमंडल नहीं है?",
+                options: ["बुध (Mercury)", "शुक्र", "मंगल", "बृहस्पति"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुध का गुरुत्वाकर्षण बल कम होने और सूर्य के अत्यधिक निकट होने के कारण इसके पास कोई स्थायी वायुमंडल नहीं है।"
+            },
+            {
+                q: "अंतरिक्ष में 'ब्लैक होल' नाम सबसे पहले किस अमेरिकी भौतिकशास्त्री ने लोकप्रिय किया था?",
+                options: ["जॉन व्हीलर (John Wheeler)", "अल्बर्ट आइंस्टीन", "स्टीफन हॉकिंग", "एस. चंद्रशेखर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1967 में भौतिकविद् जॉन व्हीलर ने 'ब्लैक होल' शब्द को वैज्ञानिक समुदाय में लोकप्रिय बनाया था।"
+            },
+            {
+                q: "तारा जब अपने अंतिम चरण में 'लाल दानव' (Red Giant) बनता है, तब उसका आकार कैसा हो जाता है?",
+                options: ["अत्यंत विशाल और लाल", "छोटा और नीला", "सिकुड़कर बिंदु समान", "गायब हो जाता है"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब तारे के कोर का हाइड्रोजन ईंधन समाप्त होता है तो इसका बाहरी आवरण फैल जाता है और यह लाल दानव बन जाता है।"
+            },
+            {
+                q: "हबल के नियम (Hubble's Law) के अनुसार आकाशगंगाओं के बीच की दूरी और उनके दूर जाने की गति में क्या संबंध है?",
+                options: ["दूरी बढ़ने पर दूर जाने की गति बढ़ती है (V = H0 * d)", "गति घटती है", "कोई संबंध नहीं", "गति स्थिर रहती है"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हबल के नियम के अनुसार जो आकाशगंगा जितनी दूर है, वह उतनी ही अधिक तेजी से हमसे दूर जा रही है, जो ब्रह्मांड के विस्तार को दर्शाता है।"
+            },
+            {
+                q: "ब्रह्मांड का लगभग कितना प्रतिशत भाग 'डार्क मैटर' और 'डार्क एनर्जी' से मिलकर बना है?",
+                options: ["लगभग 95% से अधिक", "50%", "10%", "75%"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सामान्य दृश्य पदार्थ ब्रह्मांड का केवल ~5% है, जबकि लगभग 27% डार्क मैटर और 68% डार्क एनर्जी शामिल है।"
+            },
+            {
+                q: "सौरमंडल के किस ग्रह के पास सबसे जटिल और चमकीले वलय सिस्टम हैं?",
+                options: ["शनि", "बृहस्पति", "अरुण", "नेपच्यून"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शनि ग्रह के वलय सबसे स्पष्ट, सुंदर और विशाल हैं जो बर्फ और पत्थरों के टुकड़ों से बने हैं।"
+            },
+            {
+                q: "किस ग्रह को उसकी उच्च एल्बेडो (परावर्तन क्षमता) के कारण 'भोर का तारा' या सबसे चमकीला ग्रह कहा जाता है?",
+                options: ["शुक्र", "बुध", "मंगल", "नेपच्यून"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शुक्र ग्रह बादलों की मोटी परत के कारण सूर्य के प्रकाश का सबसे अधिक परावर्तन करता है, जिससे यह सबसे चमकीला दिखता है।"
+            },
+            {
+                q: "पृथ्वी पर दिन और रात की अवधि कहाँ बराबर होती है?",
+                options: ["विषुवत रेखा (Equator) पर", "उत्तरी ध्रुव पर", "दक्षिणी ध्रुव पर", "कर्क रेखा पर"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर वर्ष भर दिन और रात लगभग 12-12 घंटे के बराबर होते हैं।"
+            },
+            {
+                q: "अंतरिक्ष अनुसंधान के क्षेत्र में 'पायनियर' और 'वॉयजर' क्या हैं?",
+                options: ["गहरे अंतरिक्ष अन्वेषण यान (Deep Space Probes)", "कृत्रिम उपग्रह", "अंतरिक्ष दूरबीन", "रॉकेट इंजन"],
+                ans: 0,
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वॉयजर-1 और 2 तथा पायनियर अंतरिक्ष यान बाह्य सौरमंडल और अंतरतारकीय अंतरिक्ष (Interstellar Space) का अध्ययन करने वाले ऐतिहासिक प्रोब हैं।"
+            }
+        ];
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach(dist => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataGeography100;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testj2_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testj2_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने टेस्ट 2 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - World Geography Test 2 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* ब्रह्मांड एवं सौरमंडल (Special Test)\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testj2.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testj2_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
