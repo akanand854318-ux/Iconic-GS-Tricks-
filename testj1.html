@@ -18,7 +18,7 @@
         <div class="max-w-xl mx-auto flex justify-between items-center">
             <div>
                 <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
-                <p class="text-xs text-amber-300">विश्व भूगोल (World Geography) - मॉक टेस्ट</p>
+                <p class="text-xs text-amber-300">विश्व भूगोल (World Geography) - मॉक टेस्ट 1</p>
             </div>
             <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
                 <i class="fa-solid fa-house mr-1"></i> होमपेज
@@ -199,7 +199,7 @@
     </div>
 
     <!-- Questions Data File (Questionsj1.js) -->
-    <script src="Questionsj1.js"></script>
+    <script src="Questionsj1.js?v=1.1"></script>
 
     <script>
         const biharDistricts = [
@@ -245,8 +245,9 @@
         };
 
         function getActiveQuizData() {
-            if (typeof quizDataGeography100 !== 'undefined') return quizDataGeography100;
-            if (typeof quizDataGeography !== 'undefined') return quizDataGeography;
+            if (typeof quizDataGeography100 !== 'undefined' && quizDataGeography100.length > 0) return quizDataGeography100;
+            if (typeof quizDataGeography !== 'undefined' && quizDataGeography.length > 0) return quizDataGeography;
+            if (typeof quizData !== 'undefined' && quizData.length > 0) return quizData;
             return [];
         }
 
