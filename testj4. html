@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Geography - Mock Test 4 (भू-आकृति विज्ञान, भू-आकृतियाँ एवं आंतरिक संरचना) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">विश्व भूगोल - मॉक टेस्ट 4 (भू-आकृति विज्ञान एवं धरातलीय आकृतियाँ)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Test 4)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">World Geography - Test 4 (भू-आकृति विज्ञान एवं पृथ्वी की संरचना)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भू-आकृति विज्ञान: आंतरिक संरचना, चट्टानें, अंतर्जात/बहिर्जात बल, भूकंप, ज्वालामुखी, पर्वत, पठार व मरुस्थल (100 अति-महत्वपूर्ण प्रश्न)
+        const rawQuizDataGeography4 = [
+            {
+                q: "एडवर्ड स्वेस (Edward Suess) के अनुसार पृथ्वी की आंतरिक भूपर्पटी (Crust) की ऊपरी परत मुख्यतः किससे बनी है?",
+                options: ["सीयाल (SIAL - सिलिका एवं एल्युमीनियम)", "सीमा (SIMA)", "निफे (NIFE)", "बेसाल्ट"],
+                correctText: "सीयाल (SIAL - सिलिका एवं एल्युमीनियम)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्वेस ने पृथ्वी की आंतरिक संरचना को तीन परतों में बाँटा: सीयाल (SIAL - Silicon & Aluminium), सीमा (SIMA - Silicon & Magnesium) और निफे (NIFE - Nickel & Ferrum)।"
+            },
+            {
+                q: "पृथ्वी के क्रोड (Core) में मुख्यतः किन तत्वों की प्रधानता होती है?",
+                options: ["सिलिका और मैग्नीशियम", "सिलिका और एल्युमीनियम", "निकेल और लोहा (Ferrum)", "लोहा और कॉपर"],
+                correctText: "निकेल और लोहा (Ferrum)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी का क्रोड (Core) सबसे आंतरिक भाग है जिसे 'निफे' (NIFE) कहा जाता है। इसमें मुख्य रूप से निकेल (Ni) और लोहा (Fe) पाया जाता है।"
+            },
+            {
+                q: "भूपर्पटी (Crust) और मेंटल (Mantle) को अलग करने वाली असंबद्धता (Discontinuity) को क्या कहते हैं?",
+                options: ["मोहो असंबद्धता (Moho Discontinuity)", "गुटेनबर्ग असंबद्धता", "कॉनराड असंबद्धता", "लेहमैन असंबद्धता"],
+                correctText: "मोहो असंबद्धता (Moho Discontinuity)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्रस्ट और मेंटल की सीमा पर स्थित असंबद्धता को **मोहोरोविसिक (Moho) असंबद्धता** कहा जाता है।"
+            },
+            {
+                q: "निचले मेंटल और ऊपरी क्रोड (Core) के बीच की असंबद्धता को क्या कहा जाता है?",
+                options: ["गुटेनबर्ग असंबद्धता", "मोहो असंबद्धता", "रेपेटी असंबद्धता", "कॉनराड असंबद्धता"],
+                correctText: "गुटेनबर्ग असंबद्धता",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मेंटल और कोर के सीमा क्षेत्र (लगभग 2900 किमी की गहराई) को **विशर्ट-गुटेनबर्ग असंबद्धता** कहते हैं।"
+            },
+            {
+                q: "पृथ्वी के कुल आयतन (Volume) का सर्वाधिक प्रतिशत भाग किस परत में व्याप्त है?",
+                options: ["क्रस्ट (Crust)", "मेंटल (Mantle)", "क्रोड (Core)", "लिथोस्फीयर"],
+                correctText: "मेंटल (Mantle)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के कुल आयतन का लगभग **83%** और द्रव्यमान का लगभग 68% भाग मेंटल (Mantle) में पाया जाता है।"
+            },
+            {
+                q: "दुर्बलता मंडल (Asthenosphere) पृथ्वी की किस परत का ऊपरी भाग है?",
+                options: ["ऊपरी मेंटल (Upper Mantle)", "निचली भूपर्पटी", "बाहरी क्रोड", "आंतरिक क्रोड"],
+                correctText: "ऊपरी मेंटल (Upper Mantle)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूपर्पटी के नीचे ऊपरी मेंटल का 100 से 200 किमी गहरा भाग 'एस्थेनोस्फीयर' कहलाता है, जहाँ मैग्मा पाया जाता है।"
+            },
+            {
+                q: "प्राथमिक या प्राथमिक चट्टानें (Primary Rocks) किसे कहा जाता है?",
+                options: ["अवसादी चट्टानें", "आग्नेय चट्टानें (Igneous Rocks)", "रूपांतरित चट्टानें", "कायांतरित चट्टानें"],
+                correctText: "आग्नेय चट्टानें (Igneous Rocks)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मैग्मा या लावा के जमने से सबसे पहले निर्मित होने के कारण **आग्नेय चट्टानों** को प्राथमिक चट्टानें कहते हैं।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी चट्टान में जीवाश्म (Fossils) पाए जाते हैं?",
+                options: ["आग्नेय चट्टान", "अवसादी चट्टान (Sedimentary Rocks)", "बेसाल्ट", "ग्रैनाइट"],
+                correctText: "अवसादी चट्टान (Sedimentary Rocks)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• परतों और जलीय/जैविक निक्षेपण से बनने के कारण केवल **अवसादी चट्टानों** में ही पेड़-पौधों एवं जीवों के अवशेष (जीवाश्म) पाए जाते हैं।"
+            },
+            {
+                q: "ग्रैनाइट (Granite) किस प्रकार की चट्टान का उदाहरण है?",
+                options: ["अंतरवेधी आग्नेय चट्टान (Intrusive Igneous)", "बहिर्वेधी आग्नेय चट्टान", "अवसादी चट्टान", "रूपांतरित चट्टान"],
+                correctText: "अंतरवेधी आग्नेय चट्टान (Intrusive Igneous)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रैनाइट भूगर्भ के अंदर मैग्मा के धीरे-धीरे ठंडे होने से बनती है, अतः यह एक पातालिये/अंतरवेधी आग्नेय चट्टान है।"
+            },
+            {
+                q: "बेसाल्ट (Basalt) चट्टान के क्षरण एवं अपक्षय से किस प्रकार की मृदा का निर्माण होता है?",
+                options: ["लाटेराइट मिट्टी", "काली मिट्टी (Regur Soil)", "जलोढ़ मिट्टी", "लाल मिट्टी"],
+                correctText: "काली मिट्टी (Regur Soil)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बेसाल्टिक लावा चट्टानों के विखंडन से काली (रेगुर) मिट्टी बनती है, जो कपास की खेती के लिए उपयुक्त है।"
+            },
+            {
+                q: "चूना पत्थर (Limestone) के कायांतरण/रूपांतरण से कौन सी चट्टान बनती है?",
+                options: ["संगमरमर (Marble)", "क्वार्टजाइट", "स्लेट", "नाइस"],
+                correctText: "संगमरमर (Marble)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अवसादी चट्टान चूना पत्थर (Limestone) अत्यधिक ताप व दाब के कारण **संगमरमर** में रूपांतरित हो जाता है।"
+            },
+            {
+                q: "बलुआ पत्थर (Sandstone) के रूपांतरण से बनने वाली चट्टान कौन सी है?",
+                options: ["क्वार्टजाइट (Quartzite)", "संगमरमर", "शिस्ट", "नाइस"],
+                correctText: "क्वार्टजाइट (Quartzite)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बलुआ पत्थर ताप एवं दाब के प्रभाव से **क्वार्टजाइट** में परिवर्तित हो जाता है।"
+            },
+            {
+                q: "ग्रैनाइट चट्टान के कायांतरण से कौन सी चट्टान बनती है?",
+                options: ["नाइस (Gneiss)", "सर्पेन्टाइन", "स्लेट", "फाइलाइट"],
+                correctText: "नाइस (Gneiss)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आग्नेय चट्टान ग्रैनाइट के कायांतरित होने से **नाइस (Gneiss)** का निर्माण होता है।"
+            },
+            {
+                q: "शैल (Shale) का रूपांतरित रूप क्या है?",
+                options: ["स्लेट (Slate)", "संगमरमर", "गैब्रो", "क्वार्टजाइट"],
+                correctText: "स्लेट (Slate)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अवसादी शैल (Shale) के रूपांतरण से पहले **स्लेट** बनती है, जो पुन: अत्यधिक कायांतरण पर फाइलाइट और शिस्ट बनती है।"
+            },
+            {
+                q: "कोयला और खनिज तेल किस प्रकार की चट्टानों में पाए जाते हैं?",
+                options: ["आग्नेय चट्टान", "अवसादी/परतदार चट्टान (Sedimentary Rocks)", "कायांतरित चट्टान", "क्रिस्टलीय चट्टान"],
+                correctText: "अवसादी/परतदार चट्टान (Sedimentary Rocks)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• खनिज तेल, प्राकृतिक गैस और कोयला मुख्य रूप से **अवसादी (परतदार) चट्टानों** में ही जमा होते हैं।"
+            },
+            {
+                q: "अंतर्जात बल (Endogenic Forces) के कारण धरातल पर कौन सी घटना घटित होती है?",
+                options: ["अपरदन", "भूकंप एवं ज्वालामुखी", "अपक्षय", "पवन निक्षेपण"],
+                correctText: "भूकंप एवं ज्वालामुखी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के आंतरिक भाग से उत्पन्न होने वाले बलों को अंतर्जात बल कहते हैं, जिनसे भूकंप, ज्वालामुखी, वलन और भ्रंशन होता है।"
+            },
+            {
+                q: "बहिर्जात बल (Exogenic Forces) का मुख्य कार्य क्या होता है?",
+                options: ["पर्वत निर्माण", "धरातलीय विषमताओं को समतल करना (Gradation)", "ज्वालामुखी उद्गार", "भ्रंश घाटी निर्माण"],
+                correctText: "धरातलीय विषमताओं को समतल करना (Gradation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बहिर्जात बल (नदी, पवन, हिमनद आदि) अपक्षय और अपरदन द्वारा धरातल को समतल (समतलस्थापन) करने का कार्य करते हैं।"
+            },
+            {
+                q: "आकस्मिक अंतर्जात बल (Sudden Endogenic Force) का उदाहरण कौन सा है?",
+                options: ["पर्वत निर्माणकारी बल", "महाद्वीपीय निर्माणकारी बल", "ज्वालामुखी और भूकंप", "विषुवत वलन"],
+                correctText: "ज्वालामुखी और भूकंप",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भू-पटल पर त्वरित और विनाशकारी परिवर्तन लाने वाले बल (जैसे भूकंप और ज्वालामुखी) आकस्मिक बल कहलाते हैं।"
+            },
+            {
+                q: "दो समानांतर भ्रंशों के बीच का भूभाग जब नीचे धंस जाता है, तो किस घाटी का निर्माण होता है?",
+                options: ["भ्रंश घाटी (Rift Valley)", "रैम्प घाटी", "वी-आकार की घाटी", "लटकती घाटी"],
+                correctText: "भ्रंश घाटी (Rift Valley)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब तनावमूलक बल से दो भ्रंश रेखाओं के बीच का मध्यवर्ती भाग नीचे धंस जाता है, तो उसे **भ्रंश घाटी (Graben / Rift Valley)** कहते हैं।"
+            },
+            {
+                q: "विश्व की सबसे प्रसिद्ध 'महान भ्रंश घाटी' (Great Rift Valley) किस महाद्वीप में स्थित है?",
+                options: ["एशिया", "अफ्रीका", "उत्तरी अमेरिका", "यूरोप"],
+                correctText: "अफ्रीका",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अफ्रीका की 'ग्रेट रिफ्ट वैली' सीरिया से लेकर मोजांबिक तक लगभग 6,000 किमी लंबाई में फैली विश्व की सबसे बड़ी भ्रंश घाटी है।"
+            },
+            {
+                q: "जब दो भ्रंशों के बीच का भाग स्थिर रहे और दोनों किनारे नीचे धंस जाएँ, तो कौन सा पर्वत बनता है?",
+                options: ["ब्लॉक/भ्रंशोत्थ पर्वत (Block Mountain)", "मोड़दार/वलित पर्वत", "अवशिष्ट पर्वत", "संचयित पर्वत"],
+                correctText: "ब्लॉक/भ्रंशोत्थ पर्वत (Block Mountain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बीच का भाग उठा हुआ रहने तथा आसपास की भूमि धंस जाने से **ब्लॉक पर्वत (भ्रंशोत्थ पर्वत)** का निर्माण होता है।"
+            },
+            {
+                q: "जर्मनी का 'ब्लैक फॉरेस्ट' (Black Forest) पर्वत किस प्रकार के पर्वत का उत्कृष्ट उदाहरण है?",
+                options: ["वलित पर्वत", "ब्लॉक पर्वत (Block Mountain)", "ज्वालामुखी पर्वत", "अवशिष्ट पर्वत"],
+                correctText: "ब्लॉक पर्वत (Block Mountain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जर्मनी का ब्लैक फॉरेस्ट और वॉसजेस पर्वत भ्रंशन द्वारा निर्मित ब्लॉक पर्वत के प्रमुख उदाहरण हैं।"
+            },
+            {
+                q: "भारत की कौन सी नदियाँ भ्रंश घाटी (Rift Valley) से होकर बहती हैं?",
+                options: ["नर्मदा और तापी", "गंगा और यमुना", "गोदावरी और कृष्णा", "कावेरी और पेरियार"],
+                correctText: "नर्मदा और तापी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में नर्मदा, तापी और दामोदर नियाँ भ्रंश घाटी से होकर प्रवाहित होती हैं।"
+            },
+            {
+                q: "रैम्प घाटी (Ramp Valley) का निर्माण किस बल के प्रभाव से होता है?",
+                options: ["संपीड़नात्मक बल (Compressional Force)", "तनावमूलक बल", "अपरूपण बल", "गुरुत्वाकर्षण बल"],
+                correctText: "संपीड़नात्मक बल (Compressional Force)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संपीड़न बल के कारण जब पार्श्व के दोनों भूखंड ऊपर उठ जाते हैं और मध्य भाग स्थिर रहता है, तो **रैम्प घाटी** बनती है (जैसे असम में ब्रह्मपुत्र घाटी)।"
+            },
+            {
+                q: "हॉर्स्ट पर्वत (Horst Mountain) का निर्माण किस प्रक्रिया द्वारा होता है?",
+                options: ["भ्रंशन और मध्य भाग का ऊपर उठना", "वलन", "अपरदन", "ज्वालामुखी जमाव"],
+                correctText: "भ्रंशन और मध्य भाग का ऊपर उठना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब भ्रंश रेखाओं के सहारे बीच का भूखंड ऊपर उठ जाता है, तो उसे **हॉर्स्ट (Horst) पर्वत** कहते हैं।"
+            },
+            {
+                q: "वलन (Folding) की प्रक्रिया में चट्टानों के ऊपर उठे हुए भाग को क्या कहा जाता है?",
+                options: ["अभिनति (Syncline)", "अपनति (Anticline)", "भ्रंश रेखा", "नतिलम्ब"],
+                correctText: "अपनति (Anticline)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चट्टानों के मुड़ने पर ऊपर उठे भाग को **अपनति (Anticline)** तथा नीचे मुड़े भाग को **अभिनति (Syncline)** कहते हैं।"
+            },
+            {
+                q: "हिमालय, आल्प्स, और रॉकी पर्वत किस श्रेणी के पर्वत हैं?",
+                options: ["नवीन वलित पर्वत (Young Fold Mountains)", "अवशिष्ट पर्वत", "ब्लॉक पर्वत", "संचित पर्वत"],
+                correctText: "नवीन वलित पर्वत (Young Fold Mountains)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संपीड़न बल द्वारा बने मोड़दार वलित पर्वत हैं। हिमालय, आल्प्स, एंडीज और रॉकी नवीन वलित पर्वत हैं।"
+            },
+            {
+                q: "विश्व की सबसे प्राचीन वलित पर्वत श्रृंखला कौन सी मानी जाती है?",
+                options: ["अरावली (Aravalli)", "हिमालय", "यूरल", "अपलेशियन"],
+                correctText: "अरावली (Aravalli)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत की **अरावली पर्वतमाला** विश्व की सबसे प्राचीन मोड़दार पर्वत श्रृंखलाओं में से एक है, जो अब अवशिष्ट पर्वत बन चुकी है।"
+            },
+            {
+                q: "भूकंप का अध्ययन करने वाले विज्ञान को क्या कहा जाता है?",
+                options: ["सिस्मोलॉजी (Seismology)", "पैट्रोलॉजी", "पेडोलॉजी", "मेटियोरोलॉजी"],
+                correctText: "सिस्मोलॉजी (Seismology)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूकंपीय तरंगों और भूकंपीय परिघटनाओं के अध्ययन को **सिस्मोलॉजी (Seismology)** कहते हैं।"
+            },
+            {
+                q: "भूकंपीय तरंगों की तीव्रता मापने के लिए किस पैमाने (Scale) का सर्वाधिक प्रयोग किया जाता है?",
+                options: ["रिएक्टर स्केल (Richter Scale)", "मरकेली स्केल", "मोह पैमाने", "केल्विन स्केल"],
+                correctText: "रिएक्टर स्केल (Richter Scale)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चार्ल्स रिएक्टर द्वारा 1935 में विकसित **रिएक्टर स्केल** भूकंप की ऊर्जा और तीव्रता मापने का एक गणितीय/लॉगरिदमिक पैमाना है।"
+            },
+            {
+                q: "पृथ्वी के भीतर वह स्थान जहाँ से भूकंपीय ऊर्जा तरंगों का उद्गम होता है, क्या कहलाता है?",
+                options: ["भूकंप केंद्र / अवकेंद्र (Focus / Hypocenter)", "अधिकेंद्र (Epicenter)", "सिस्मोग्राम", "फॉल्ट लाइन"],
+                correctText: "भूकंप केंद्र / अवकेंद्र (Focus / Hypocenter)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जहाँ से भूकंपीय तरंगें उत्पन्न होती हैं उसे **भूकंप केंद्र (Focus / Hypocenter)** तथा इसके ठीक ऊपर धरातल पर स्थित बिंदु को **अधिकेंद्र (Epicenter)** कहते हैं।"
+            },
+            {
+                q: "अधिकेंद्र (Epicenter) भूकंप केंद्र (Focus) से कितने डिग्री के कोण पर स्थित होता है?",
+                options: ["90° (ऊर्ध्वाधर)", "180°", "45°", "0°"],
+                correctText: "90° (ऊर्ध्वाधर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूकंप केंद्र के ठीक ऊपर 90° के कोण (ऊर्ध्वाधर) पर स्थित धरातलीय बिंदु को अधिकेंद्र (Epicenter) कहते हैं, जहाँ तरंगें सबसे पहले पहुँचती हैं।"
+            },
+            {
+                q: "कौन सी भूकंपीय तरंगें ध्वनि तरंगों (Sound Waves) की भांति अनुदैर्ध्य (Longitudinal) होती हैं?",
+                options: ["प्राथमिक तरंगें (P-Waves)", "द्वितीयक तरंगें (S-Waves)", "धरातलीय तरंगें (L-Waves)", "रेले तरंगें"],
+                correctText: "प्राथमिक तरंगें (P-Waves)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• P-तरंगें अनुदैर्ध्य तरंगें होती हैं जो ठोस, द्रव और गैस तीनों माध्यमों में गति कर सकती हैं और इनकी गति सबसे तीव्र होती है।"
+            },
+            {
+                q: "कौन सी भूकंपीय तरंगें केवल ठोस (Solid) माध्यम में ही गमन कर सकती हैं, द्रव में लुप्त हो जाती हैं?",
+                options: ["S-तरंगें (Secondary Waves)", "P-तरंगें", "L-तरंगें", "रेले तरंगें"],
+                correctText: "S-तरंगें (Secondary Waves)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• द्वितीयक (S) तरंगें अनुप्रस्थ तरंगें हैं जो प्रकाश तरंगों की भांति चलती हैं और केवल ठोस पदार्थों में ही संचरित हो सकती हैं।"
+            },
+            {
+                q: "धरातल पर सर्वाधिक विनाशकारी (Destructive) मानी जाने वाली भूकंपीय तरंगें कौन सी हैं?",
+                options: ["L-तरंगें (Love / Surface Waves)", "P-तरंगें", "S-तरंगें", "अप्रत्यक्ष तरंगें"],
+                correctText: "L-तरंगें (Love / Surface Waves)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लव (L) तरंगें धरातल के ऊपर चलती हैं। इनकी गति कम होती है, लेकिन इनकी समय-अवधि लंबी होने के कारण ये सर्वाधिक विनाशकारी होती हैं।"
+            },
+            {
+                q: "भूकंपीय तरंगों का 'छाया क्षेत्र' (Shadow Zone) P एवं S तरंगों के लिए किन कोणीय दूरियों के मध्य बनता है?",
+                options: ["105° से 145° के बीच", "90° से 120°", "120° से 180°", "0° से 45°"],
+                correctText: "105° से 145° के बीच",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अधिकेंद्र से 105° से 145° के मध्य का क्षेत्र P और S दोनों तरंगों के लिए छाया क्षेत्र (Shadow Zone) कहलाता है जहाँ तरंगें अभिलेखित नहीं होतीं।"
+            },
+            {
+                q: "प्रशांत महासागरीय तटीय पेटी को भूकंप एवं ज्वालामुखी की अत्यधिक आवृत्ति के कारण क्या कहा जाता है?",
+                options: ["अग्नि वलय (Ring of Fire)", "मिड-वर्ल्ड पेटी", "सुनामी क्षेत्र", "पैंथालासा रिम"],
+                correctText: "अग्नि वलय (Ring of Fire)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विश्व के लगभग 68% भूकंप प्रशांत महासागर के परि-प्रशांत पेटी में आते हैं, जिसे **'रिंग ऑफ फायर'** कहा जाता है।"
+            },
+            {
+                q: "समुद्र के भीतर भूकंपीय हलचलों से उत्पन्न होने वाली विशाल महासागरीय लहरों को क्या कहते हैं?",
+                options: ["सुनामी (Tsunami)", "ज्वारभाटा", "सर्ज लहरें", "भ्रंश तरंगे"],
+                correctText: "सुनामी (Tsunami)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जापानी भाषा का शब्द 'सुनामी' (Tsunami) समुद्री तल पर भूकंप या ज्वालामुखी से उत्पन्न विशाल तरंगों को दर्शाता है।"
+            },
+            {
+                q: "ज्वालामुखी से बाहर निकले पिघले हुए चट्टानी पदार्थ को धरातल पर आने के बाद क्या कहा जाता है?",
+                options: ["लावा (Lava)", "मैग्मा", "लैपिली", "टफ"],
+                correctText: "लावा (Lava)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब तक पिघला पदार्थ भूगर्भ में रहता है उसे **मैग्मा** कहते हैं, और धरातल पर प्रकट होने के बाद इसे **लावा** कहा जाता है।"
+            },
+            {
+                q: "ज्वालामुखी के कीपाकार (Funnel-shaped) छिद्र या मुख को क्या कहा जाता है?",
+                options: ["क्रेटर (Crater)", "काल्डेरा", "सिंडर", "गीजर"],
+                correctText: "क्रेटर (Crater)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ज्वालामुखी के मुख को **क्रेटर (Crater)** कहते हैं। क्रेटर का अति-विस्तृत व धंसा हुआ विशाल रूप **काल्डेरा (Caldera)** कहलाता है।"
+            },
+            {
+                q: "इटली का 'स्ट्रॉम्बोली' (Stromboli) ज्वालामुखी किस सागर में स्थित है जिसे 'भूमध्य सागर का प्रकाश स्तंभ' कहते हैं?",
+                options: ["भूमध्य सागर (Mediterranean Sea)", "लाल सागर", "काला सागर", "कैस्पियन सागर"],
+                correctText: "भूमध्य सागर (Mediterranean Sea)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लिपारी द्वीप (भूमध्य सागर) पर स्थित स्ट्रॉम्बोली से निरंतर गैस व लावा निकलता रहता है, इसलिए इसे **'भू-मध्य सागर का प्रकाश स्तंभ'** कहते हैं।"
+            },
+            {
+                q: "इटली का 'विसुवियस' (Vesuvius) किस प्रकार के ज्वालामुखी का उदाहरण है?",
+                options: ["प्रसुप्त / सुप्त ज्वालामुखी (Dormant)", "सक्रिय ज्वालामुखी", "शांत/मृत ज्वालामुखी", "दरारी उद्भेदन"],
+                correctText: "प्रसुप्त / सुप्त ज्वालामुखी (Dormant)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विसुवियस एक प्रसुप्त (Dormant) ज्वालामुखी है जो वर्षों शांत रहने के बाद अचानक भयानक रूप से विस्फोटित होता है।"
+            },
+            {
+                q: "म्यांमार का 'पोपा' (Popa) और तंजानिया का 'किलिमंजारो' किस श्रेणी के ज्वालामुखी हैं?",
+                options: ["मृत / शांत ज्वालामुखी (Extinct)", "सक्रिय ज्वालामुखी", "प्रसुप्त ज्वालामुखी", "शील्ड ज्वालामुखी"],
+                correctText: "मृत / शांत ज्वालामुखी (Extinct)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• म्यांमार का पोपा, किलिमंजारो (तंजानिया) और कोह-सुल्तान (इरान) शांत/मृत (Extinct) ज्वालामुखी हैं जिनमें ऐतिहासिक काल से उद्गार नहीं हुआ है।"
+            },
+            {
+                q: "विश्व का सबसे ऊँचा सक्रिय ज्वालामुखी कौन सा है?",
+                options: ["ओजोस डेल सालाडो (Ojos del Salado)", "कोटोपैक्सी", "मौना लोआ", "माउंट एटना"],
+                correctText: "ओजोस डेल सालाडो (Ojos del Salado)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एंडीज पर्वतमाला (अर्जेंटीना-चिली सीमा) पर स्थित **ओजोस डेल सालाडो** (6,893 मी) विश्व का सबसे ऊँचा सक्रिय ज्वालामुखी है।"
+            },
+            {
+                q: "इक्वाडोर में स्थित 'कोटोपैक्सी' (Cotopaxi) किस प्रकार का पर्वत है?",
+                options: ["विश्व का सबसे ऊँचा शंक्वाकार सक्रिय ज्वालामुखी पर्वत", "ब्लॉक पर्वत", "अवशिष्ट पर्वत", "वलित पर्वत"],
+                correctText: "विश्व का सबसे ऊँचा शंक्वाकार सक्रिय ज्वालामुखी पर्वत",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इक्वाडोर में स्थित कोटोपैक्सी ज्वालामुखी विश्व के सबसे ऊँचे सक्रिय ज्वालामुखियों में गिना जाता है।"
+            },
+            {
+                q: "हवाई द्वीप का 'मौना लोआ' (Mauna Loa) आयतन एवं क्षेत्रफल की दृष्टि से किस प्रकार का ज्वालामुखी है?",
+                options: ["सक्रिय शील्ड ज्वालामुखी (Shield Volcano)", "मृत ज्वालामुखी", "मिश्रित शंकु", "सिंडर शंकु"],
+                correctText: "सक्रिय शील्ड ज्वालामुखी (Shield Volcano)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अमेरिका के हवाई द्वीप पर स्थित मौना लोआ एक विशाल **शील्ड ज्वालामुखी** का उदाहरण है जो क्षारीय कम-गाढ़े लावा के बहने से बना है।"
+            },
+            {
+                q: "भारत का एकमात्र सक्रिय ज्वालामुखी 'बैरेन द्वीप' (Barren Island) कहाँ स्थित है?",
+                options: ["अंडमान एवं निकोबार द्वीप समूह", "लक्षद्वीप", "न्यू मूर द्वीप", "रामेश्वरम"],
+                correctText: "अंडमान एवं निकोबार द्वीप समूह",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्य अंडमान के पूर्व में स्थित **बैरेन द्वीप** भारत और दक्षिण एशिया का एकमात्र सक्रिय ज्वालामुखी है।"
+            },
+            {
+                q: "भारत में स्थित 'नारकोंडम' (Narcondam) द्वीप किस प्रकार का ज्वालामुखी है?",
+                options: ["प्रसुप्त/सुप्त ज्वालामुखी (Dormant)", "सक्रिय ज्वालामुखी", "मृत ज्वालामुखी", "दरारी लावा पठार"],
+                correctText: "प्रसुप्त/सुप्त ज्वालामुखी (Dormant)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंडमान सागर में स्थित नारकोंडम द्वीप एक प्रसुप्त/सुप्त (Dormant) ज्वालामुखी का उदाहरण है।"
+            },
+            {
+                q: "दक्कन का पठार (Deccan Plateau) का निर्माण किस प्रकार के ज्वालामुखी उद्भेदन से हुआ है?",
+                options: ["दरारी उद्भेदन (Fissure Eruption)", "केन्द्रीय विस्फोटक उद्भेदन", "सिंडर शंकु", "काल्डेरा"],
+                correctText: "दरारी उद्भेदन (Fissure Eruption)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्रिटेशियस काल में दरारी उद्भेदन से निकले बेसाल्टिक लावा के जमने से भारत के दक्कन ट्रैप/पठार का निर्माण हुआ।"
+            },
+            {
+                q: "अलास्का (USA) की 'कटमई' घाटी को अत्यधिक धुआँरों के कारण क्या कहा जाता है?",
+                options: ["दसों हजार धुआँरों की घाटी (Valley of Ten Thousand Smokes)", "अग्नि घाटी", "डेथ वैली", "येलोस्टोन पार्क"],
+                correctText: "दसों हजार धुआँरों की घाटी (Valley of Ten Thousand Smokes)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अलास्का के कटमई क्षेत्र से लगातार जलवाष्प और गैसों के निकलने के कारण इसे **'10,000 धुआँरों की घाटी'** कहा जाता है।"
+            },
+            {
+                q: "अमेरिका के 'येलोस्टोन नेशनल पार्क' में स्थित 'ओल्ड फेथफुल' (Old Faithful) किसका प्रसिद्ध उदाहरण है?",
+                options: ["गीज़र / गर्म जल का झरना (Geyser)", "धुऑंरा", "सक्रिय ज्वालामुखी", "काल्डेरा झील"],
+                correctText: "गीज़र / गर्म जल का झरना (Geyser)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **ओल्ड फेथफुल गीज़र** समय-समय पर निश्चित अंतराल से गर्म जल और वाष्प का फुहारा छोड़ता है।"
+            },
+            {
+                q: "चट्टानों का अपने ही स्थान पर टूटना-फूटना अथवा भौतिक/रासायनिक विघटन क्या कहलाता है?",
+                options: ["अपक्षय (Weathering)", "अपरदन (Erosion)", "अनाच्छादन", "परिवहन"],
+                correctText: "अपक्षय (Weathering)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चट्टानों का अपने स्थान पर ही टूटकर विखंडित होना **अपक्षय (Weathering)** कहलाता है जो एक स्थैतिक (Static) प्रक्रिया है।"
+            },
+            {
+                q: "अपक्षय (Weathering) और अपरदन (Erosion) की संयुक्त प्रक्रिया को सामूहिक रूप से क्या कहते हैं?",
+                options: ["अनाच्छादन (Denudation)", "निक्षेपण", "समतलस्थापन", "कायांतरण"],
+                correctText: "अनाच्छादन (Denudation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनाच्छादन (Denudation) = अपक्षय (स्थैतिक प्रक्रिया) + अपरदन (गतिशाति प्रक्रिया)।"
+            },
+            {
+                q: "बहते जल (नदी) द्वारा निर्मित 'वी-आकार की घाटी' (V-shaped Valley) कालान्तर में गहरी होकर क्या बनती है?",
+                options: ["गार्ज एवं कैनियन (Gorge & Canyon)", "यू-आकार की घाटी", "रैम्प घाटी", "लटकती घाटी"],
+                correctText: "गार्ज एवं कैनियन (Gorge & Canyon)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब नदी की अधोवर्ती कटाई से वी-आकार की घाटी अत्यधिक गहरी व संकीर्ण हो जाती है तो उसे गार्ज या कैनियन (जैसे ग्रैंड कैनियन) कहते हैं।"
+            },
+            {
+                q: "हिमनद (Glacier) के अपरदन द्वारा निर्मित घाटी का आकार कैसा होता है?",
+                options: ["यू-आकार की घाटी (U-shaped Valley)", "वी-आकार की घाटी", "भ्रंश घाटी", "रैम्प घाटी"],
+                correctText: "यू-आकार की घाटी (U-shaped Valley)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पर्वतीय क्षेत्रों में हिमनद (ग्लेशियर) की घर्षण क्रिया से **'U' आकार की घाटी** का निर्माण होता है।"
+            },
+            {
+                q: "पवन के अपरदन कार्य द्वारा निर्मित 'छत्रक शिला' (Mushroom Rock) मुख्य रूप से कहाँ पाए जाते हैं?",
+                options: ["मरुस्थलीय क्षेत्रों में", "तटीय क्षेत्रों में", "नदी घाटी में", "ध्रुवीय क्षेत्रों में"],
+                correctText: "मरुस्थलीय क्षेत्रों में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मरुस्थल में पवन जब धरातल से थोड़ी ऊँचाई पर चट्टानों के निचले भाग को अधिक काट देती है, तो मशरूम जैसी आकृति (गारा/छत्रक शिला) बनती है।"
+            },
+            {
+                q: "अपरदन के किस कारक द्वारा 'यूरगैन' (Zeugen) और 'यारडांग' (Yardang) स्थलाकृतियाँ बनती हैं?",
+                options: ["पवन (Wind)", "बहता जल", "हिमनद", "भूमिगत जल"],
+                correctText: "पवन (Wind)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मरुस्थल में पवन के अपघर्षण (Abrasion) द्वारा ज़्यूगेन, यारडांग, इनसेलबर्ग और छत्रक शिला का निर्माण होता है।"
+            },
+            {
+                q: "भूमिगत जल (Underground Water) द्वारा घुलन क्रिया से निर्मित स्थलाकृतियों को क्या कहा जाता है?",
+                options: ["कास्ट स्थलाकृति (Karst Topography)", "मरुस्थलीय आकृति", "तटीय आकृति", "ग्लेशियर आकृति"],
+                correctText: "कास्ट स्थलाकृति (Karst Topography)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चूना पत्थर वाले क्षेत्रों में भूमिगत जल के रासायनिक विलयन से बनी आकृतियों को **कास्ट (Karst) स्थलाकृति** कहते हैं।"
+            },
+            {
+                q: "कास्ट गुफाओं की छत से नीचे की ओर लटकने वाली चूने की स्तंभ आकृतियों को क्या कहते हैं?",
+                options: ["स्टैलेक्टाइट (Stalactite)", "स्टैलैग्माइट", "लैपीज", "सिंक होल"],
+                correctText: "स्टैलेक्टाइट (Stalactite)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुफा की छत से नीचे की ओर टपकने वाले चूने के जमाव को **स्टैलेक्टाइट** तथा फर्श से ऊपर की ओर उठने वाले जमाव को **स्टैलैग्माइट** कहते हैं।"
+            },
+            {
+                q: "विश्व की सबसे लंबी पर्वत श्रृंखला (Mountain Range) कौन सी है?",
+                options: ["एंडीज पर्वतमाला (Andes)", "रॉकी पर्वतमाला", "हिमालय", "ग्रेट डिवाइडिंग रेंज"],
+                correctText: "एंडीज पर्वतमाला (Andes)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण अमेरिका में स्थित **एंडीज पर्वतमाला** लगभग 7,000 किमी लंबी विश्व की सबसे लंबी पर्वत श्रृंखला है।"
+            },
+            {
+                q: "विश्व की सबसे ऊँची पर्वत चोटी 'माउंट एवरेस्ट' किस पर्वत श्रेणी में स्थित है?",
+                options: ["हिमालय (Himalayas)", "कराकोरम", "हिंदुकुश", "कुनलुन"],
+                correctText: "हिमालय (Himalayas)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• माउंट एवरेस्ट (8,848.86 मी) नेपाल-तिब्बत सीमा पर महान हिमालय श्रेणी में स्थित है।"
+            },
+            {
+                q: "उत्तरी अमेरिका की सर्वोच्च पर्वत चोटी कौन सी है?",
+                options: ["माउंट मैकिन्ले / डेनाली (Denali)", "माउंट एल्ब्रस", "माउंट एकांकागुआ", "माउंट किलिमंजारो"],
+                correctText: "माउंट मैकिन्ले / डेनाली (Denali)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अलास्का श्रेणी में स्थित **माउंट डेनाली (माउंट मैकिन्ले - 6,190 मी)** उत्तरी अमेरिका का सर्वोच्च शिखर है।"
+            },
+            {
+                q: "दक्षिण अमेरिका महाद्वीप का सर्वोच्च पर्वत शिखर कौन सा है?",
+                options: ["माउंट एकांकागुआ (Aconcagua)", "कोटोपैक्सी", "ओजोस डेल सालाडो", "माउंट चिम्बाराजो"],
+                correctText: "माउंट एकांकागुआ (Aconcagua)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एंडीज पर्वतमाला पर स्थित **माउंट एकांकागुआ (6,961 मी)** दक्षिण अमेरिका और एशिया के बाहर विश्व का सबसे ऊँचा शिखर है।"
+            },
+            {
+                q: "यूरोप महाद्वीप की सबसे ऊँची पर्वत चोटी कौन सी है?",
+                options: ["माउंट एल्ब्रस (Mount Elbrus)", "माउंट ब्लैंक", "माउंट मैटरहॉर्न", "आल्प्स"],
+                correctText: "माउंट एल्ब्रस (Mount Elbrus)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• काकेशस पर्वत श्रेणी में रूस में स्थित **माउंट एल्ब्रस (5,642 मी)** यूरोप का उच्चतम बिंदु है।"
+            },
+            {
+                q: "अफ़्रीका महाद्वीप का सबसे ऊँचा पर्वत शिखर किलिमंजारो किस देश में स्थित है?",
+                options: ["तंजानिया", "केन्या", "दक्षिण अफ्रीका", "इथियोपिया"],
+                correctText: "तंजानिया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तंजानिया में स्थित **माउंट किलिमंजारो (5,895 मी)** अफ्रीका का सर्वोच्च शिखर है जो एक शांत ज्वालामुखी पर्वत है।"
+            },
+            {
+                q: "ऑस्ट्रेलिया महाद्वीप की सबसे ऊँची पर्वत चोटी कौन सी है?",
+                options: ["माउंट कोसियसको (Mount Kosciuszko)", "माउंट कुक", "ग्रेट डिवाइडिंग रेंज", "माउंट ब्रूस"],
+                correctText: "माउंट कोसियसको (Mount Kosciuszko)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया की ग्रेट डिवाइडिंग रेंज में स्थित **माउंट कोसियसको (2,228 मी)** इस महाद्वीप का सर्वोच्च शिखर है।"
+            },
+            {
+                q: "अंटार्कटिका महाद्वीप की सबसे ऊँची चोटी कौन सी है?",
+                options: ["विन्सन मैसिफ (Vinson Massif)", "माउंट एरबस", "माउंट सिडले", "माउंट टाइरी"],
+                correctText: "विन्सन मैसिफ (Vinson Massif)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एलिसवर्थ पर्वतमाला में स्थित **विन्सन मैसिफ (4,892 मी)** अंटार्कटिका महाद्वीप का उच्चतम बिंदु है।"
+            },
+            {
+                q: "फ्रांस और स्पेन के बीच प्राकृतिक सीमा बनाने वाला पर्वत कौन सा है?",
+                options: ["पिरेनीज पर्वत (Pyrenees)", "आल्प्स", "जुरा पर्वत", "वॉसजेस"],
+                correctText: "पिरेनीज पर्वत (Pyrenees)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **पिरेनीज पर्वतमाला** फ्रांस और स्पेन देश के मध्य प्राकृतिक अंतर्राष्ट्रीय सीमा का निर्धारण करती है।"
+            },
+            {
+                q: "स्विट्जरलैंड और फ्रांस के मध्य सीमा रेखा बनाने वाला पर्वत कौन सा है?",
+                options: ["जुरा पर्वत (Jura Mountain)", "वॉसजेस", "ब्लैक फॉरेस्ट", "आल्प्स"],
+                correctText: "जुरा पर्वत (Jura Mountain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जुरा पर्वत फ्रांस और स्विट्जरलैंड की सीमा पर स्थित है।"
+            },
+            {
+                q: "एशिया और यूरोप को अलग करने वाली प्राकृतिक पर्वत श्रृंखला कौन सी है?",
+                options: ["यूरल पर्वत (Ural Mountains)", "हिमालय", "काकेशस", "अल्ताई"],
+                correctText: "यूरल पर्वत (Ural Mountains)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रूस में उत्तर से दक्षिण फैला **यूरल पर्वत** तथा काकेशस पर्वत एशिया और यूरोप महाद्वीपों के बीच सीमा बनाते हैं।"
+            },
+            {
+                q: "विश्व का सबसे विस्तृत और ऊँचा पठार 'तिब्बत का पठार' समुद्र तल से औसतन कितना ऊँचा है?",
+                options: ["लगभग 4,500 से 5,000 मीटर", "2,000 मीटर", "7,000 मीटर", "3,000 मीटर"],
+                correctText: "लगभग 4,500 से 5,000 मीटर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तिब्बत का पठार लगभग 25 लाख वर्ग किमी में फैला विश्व का सबसे बड़ा और ऊँचा (औसतन 5 किमी) पठार है।"
+            },
+            {
+                q: "किस पठार को अत्यधिक ऊँचाई और विस्तार के कारण 'दुनिया की छत' (Roof of the World) कहा जाता है?",
+                options: ["पामीर का पठार (Pamir Plateau)", "दक्कन का पठार", "अनाटोलिया का पठार", "कोलोराडो पठार"],
+                correctText: "पामीर का पठार (Pamir Plateau)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्य एशिया में स्थित **पामीर की गाँठ (पामीर पठार)** को सांस्कृतिक रूप से 'संसार की छत' कहा जाता है।"
+            },
+            {
+                q: "दो या दो से अधिक पर्वत श्रेणियों के बीच घिरे पठार को क्या कहा जाता है?",
+                options: ["अंतरपर्वतीय पठार (Intermontane Plateau)", "पर्वतपदीय पठार", "महाद्वीपीय पठार", "गुंबदाकार पठार"],
+                correctText: "अंतरपर्वतीय पठार (Intermontane Plateau)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चारों ओर से पर्वत श्रृंखलाओं द्वारा घिरे पठार **अंतरपर्वतीय पठार** कहलाते हैं (जैसे तिब्बत का पठार, बोलिविया का पठार)।"
+            },
+            {
+                q: "पर्वत के आधार/पैरों पर स्थित पठार को क्या कहते हैं?",
+                options: ["पर्वतपदीय पठार (Piedmont Plateau)", "अंतरपर्वतीय पठार", "तटीय पठार", "लावा पठार"],
+                correctText: "पर्वतपदीय पठार (Piedmont Plateau)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पर्वतमाला के ठीक नीचे एक तरफ पर्वत और दूसरी तरफ मैदान/समुद्र से घिरे पठार **पर्वतपदीय पठार** कहलाते हैं (जैसे पैटागोनिया का पठार)।"
+            },
+            {
+                q: "अमेरिका का 'कोलोराडो पठार' किस प्रसिद्ध नदी के अपरदन द्वारा निर्मित कैनियन के लिए जाना जाता है?",
+                options: ["कोलोराडो नदी (Colorado River)", "मिसिसिपी", "अमेजन", "हडसन"],
+                correctText: "कोलोराडो नदी (Colorado River)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कोलोराडो नदी ने कोलोराडो पठार को काटकर प्रसिद्ध **'ग्रैंड कैनियन' (Grand Canyon)** का निर्माण किया है।"
+            },
+            {
+                q: "तुर्की (Türkiye) का 'अनाटोलिया का पठार' किन दो पर्वत श्रेणियों के बीच स्थित है?",
+                options: ["पोंटिक और टॉरस श्रेणी", "अलबुर्ज और ज़ाग्रोस", "हिमालय और कुनलुन", "रॉकी और सेरा नेवादा"],
+                correctText: "पोंटिक और टॉरस श्रेणी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तुर्की का अनाटोलिया पठार उत्तर में पोंटिक पर्वत और दक्षिण में टॉरस पर्वत के मध्य स्थित अंतरपर्वतीय पठार है।"
+            },
+            {
+                q: "ईरान का पठार किन दो पर्वत श्रृंखलाओं के बीच स्थित है?",
+                options: ["अलबुर्ज और ज़ाग्रोस पर्वत", "हिंदुकुश और सुलेमान", "पोंटिक और टॉरस", "काकेशस और यूरल"],
+                correctText: "अलबुर्ज और ज़ाग्रोस पर्वत",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ईरान का पठार उत्तर में अलबुर्ज पर्वत श्रेणी और दक्षिण-पश्चिम में ज़ाग्रोस श्रेणी के मध्य विस्तृत है।"
+            },
+            {
+                q: "कनाडा के उत्तर-पूर्वी भाग में स्थित विशाल प्राचीन चट्टानी पठार को क्या कहा जाता है?",
+                options: ["कनाडियन शील्ड (Canadian Shield)", "लॉरेंशिया पठार", "अपालिशियन पठार", "कोलंबिया पठार"],
+                correctText: "कनाडियन शील्ड (Canadian Shield)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कैनेडियन शील्ड/लॉरेंशियन पठार विश्व के प्राचीनतम प्री-कम्ब्रियन भूखंडों में से एक है जो खनिजों से समृद्ध है।"
+            },
+            {
+                q: "ब्राजील का पठार (Brazilian Highlands) किस खनिज के विशाल भंडार के लिए प्रसिद्ध है?",
+                options: ["लौह अयस्क (Iron Ore)", "सोना", "पेट्रोलियम", "कोयला"],
+                correctText: "लौह अयस्क (Iron Ore)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्राजील का पठारी भाग (विशेषकर इटानिरा क्षेत्र) उच्च गुणवत्ता वाले लौह अयस्क और मैग्नीज के लिए प्रसिद्ध है।"
+            },
+            {
+                q: "स्पेन के मध्य में स्थित प्रसिद्ध पठार कौन सा है?",
+                options: ["मेसेटा का पठार (Meseta Central)", "अनाटोलिया पठार", "बोहेमिया पठार", "बवेरिया पठार"],
+                correctText: "मेसेटा का पठार (Meseta Central)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्पेन की राजधानी मैड्रिड **मेसेटा के पठार** पर ही स्थित है।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा (क्षेत्रफल की दृष्टि से) गर्म मरुस्थल कौन सा है?",
+                options: ["सहारा मरुस्थल (Sahara Desert)", "गोबी मरुस्थल", "थार मरुस्थल", "अटाकामा मरुस्थल"],
+                correctText: "सहारा मरुस्थल (Sahara Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तरी अफ्रीका में लगभग 92 लाख वर्ग किमी में फैला **सहारा मरुस्थल** विश्व का सबसे बड़ा गर्म मरुस्थल है।"
+            },
+            {
+                q: "विश्व का सबसे शुष्क (Driest) मरुस्थल कौन सा माना जाता है?",
+                options: ["अटाकामा मरुस्थल (Atacama Desert)", "सहारा मरुस्थल", "कालाहारी", "नामीब"],
+                correctText: "अटाकामा मरुस्थल (Atacama Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण अमेरिका (उत्तरी चिली) में स्थित **अटाकामा मरुस्थल** विश्व का सबसे शुष्क क्षेत्र है (पेरू ठंडी धारा के प्रभाव से)।"
+            },
+            {
+                q: "चीन और मंगोलिया की सीमा पर स्थित 'गोबी मरुस्थल' (Gobi Desert) किस प्रकार का मरुस्थल है?",
+                options: ["शीतोष्ण/ठंडा मरुस्थल (Cold Desert)", "उष्ण कटिबंधीय गर्म मरुस्थल", "तटीय मरुस्थल", "उप-उष्ण मरुस्थल"],
+                correctText: "शीतोष्ण/ठंडा मरुस्थल (Cold Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गोबी मरुस्थल मध्य एशिया का एक विशाल **ठंडा (शीतोष्ण) मरुस्थल** है जहाँ शीतकाल में बर्फबारी होती है।"
+            },
+            {
+                q: "बोत्सवाना, नामीबिया और दक्षिण अफ्रीका में फैला 'कालाहारी मरुस्थल' किस पक्षी के लिए प्रसिद्ध है?",
+                options: ["शुतुरमुर्ग (Ostrich) और बुशमैन जनजाति", "पेंग्विन", "कीवी", "एमू"],
+                correctText: "शुतुरमुर्ग (Ostrich) और बुशमैन जनजाति",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अफ्रीका के कालाहारी मरुस्थल में 'बुशमैन' जनजाति निवास करती है तथा यह शुतुरमुर्ग के लिए जाना जाता है।"
+            },
+            {
+                q: "दक्षिण अमेरिका के अर्जेंटीना में स्थित 'पैटागोनिया का मरुस्थल' किस श्रेणी में आता है?",
+                options: ["शीतोष्ण/ठंडा मरुस्थल (Cold Desert)", "गर्म मरुस्थल", "विषुवतीय मरुस्थल", "सवाना"],
+                correctText: "शीतोष्ण/ठंडा मरुस्थल (Cold Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पैटागोनिया मरुस्थल एंडीज पर्वत के वृष्टि-छाया क्षेत्र (Rain Shadow Zone) में स्थित एक ठंडा मरुस्थल है।"
+            },
+            {
+                q: "ग्रेट विक्टोरिया, ग्रेट सैंडी, और गिब्सन मरुस्थल किस देश/महाद्वीप में स्थित हैं?",
+                options: ["ऑस्ट्रेलिया", "दक्षिण अफ्रीका", "उत्तरी अमेरिका", "सऊदी अरब"],
+                correctText: "ऑस्ट्रेलिया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया के पश्चिमी भाग में ग्रेट विक्टोरिया, सैंडी, तनामी और गिब्सन जैसे विशाल मरुस्थल हैं, जिससे इसे 'प्यासी भूमि का देश' कहते हैं।"
+            },
+            {
+                q: "सऊदी अरब में स्थित रेत का विशाल निरंतर मरुस्थलीय क्षेत्र किस नाम से जाना जाता है?",
+                options: ["रुब अल-खाली (Rub' al Khali)", "दश्त-ए-लुत", "दश्त-ए-कबीर", "नेगेव मरुस्थल"],
+                correctText: "रुब अल-खाली (Rub' al Khali)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **रुब अल-खाली** अरब प्रायद्वीप के दक्षिणी भाग में स्थित विश्व का सबसे बड़ा निरंतर रेतीला मरुस्थल (Erg) है।"
+            },
+            {
+                q: "ईरान में स्थित 'दश्त-ए-लुत' और 'दश्त-ए-कबीर' किस प्रकार के क्षेत्र हैं?",
+                options: ["उष्णकटिबंधीय मरुस्थल", "सवाना घास मैदान", "दलदली वन", "शीतोष्ण वन"],
+                correctText: "उष्णकटिबंधीय मरुस्थल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दश्त-ए-लुत और दश्त-ए-कबीर ईरान के प्रमुख चट्टानी एवं लवणीय गर्म मरुस्थल हैं।"
+            },
+            {
+                q: "भारत और पाकिस्तान की सीमा पर फैला मरुस्थल कौन सा है जो विश्व में सर्वाधिक जनसंख्या घनत्व वाला मरुस्थल है?",
+                options: ["थार मरुस्थल (Thar Desert)", "चोलिस्तान", "गोबी", "ताकला मकान"],
+                correctText: "थार मरुस्थल (Thar Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **थार का मरुस्थल** (महान भारतीय मरुस्थल) विश्व के सभी मरुस्थलों में सबसे अधिक जनघनत्व (लगभग 83 व्यक्ति/किमी²) वाला मरुस्थल है।"
+            },
+            {
+                q: "चीन के शिनजियांग प्रांत में स्थित 'तकला मकान' (Taklamakan) मरुस्थल किस पर्वत श्रेणी के पास है?",
+                options: ["कुनलुन पर्वत और तियानशान", "हिमालय", "अल्ताई", "यूरल"],
+                correctText: "कुनलुन पर्वत और तियानशान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **तकला मकान** मरुस्थल मध्य एशिया (चीन) में तारिम बेसिन में कुनलुन और तियानशान पर्वतों के बीच स्थित शीतोष्ण मरुस्थल है।"
+            },
+            {
+                q: "अधिकांश गर्म मरुस्थल महाद्वीपों के किस भाग में 20° से 30° अक्षांशों के मध्य पाए जाते हैं?",
+                options: ["पश्चिमी भाग में (Western Margins)", "पूर्वी भाग में", "उत्तरी भाग में", "मध्य भाग में"],
+                correctText: "पश्चिमी भाग में (Western Margins)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• व्यापारिक हवाओं के शुष्क होने और ठंडी महासागरीय धाराओं के प्रभाव से अधिकांश मरुस्थल महाद्वीपों के पश्चिमी तटों पर पाए जाते हैं।"
+            },
+            {
+                q: "कैलिफोर्निया (USA) की 'डेथ वैली' (Death Valley / मृत घाटी) अत्यधिक तापमान के लिए जानी जाती है, यह किस मरुस्थल में स्थित है?",
+                options: ["मोहावे मरुस्थल (Mojave Desert)", "सोपोरान मरुस्थल", "चिहुआहुआ", "ग्रेट बेसिन"],
+                correctText: "मोहावे मरुस्थल (Mojave Desert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कैलिफोर्निया में स्थित **डेथ वैली** मोहावे मरुस्थल का भाग है जो समुद्र तल से 86 मीटर नीचे स्थित अत्यधिक गर्म द्रोणी है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सा एक अवशिष्ट पर्वत (Residual Mountain) का उदाहरण है?",
+                options: ["अरावली और पारसनाथ", "हिमालय", "रॉकी", "एंडीज"],
+                correctText: "अरावली और पारसनाथ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अपरदन के कारकों द्वारा घिस जाने के बाद बचे हुए पुराने पर्वत अवशिष्ट पर्वत कहलाते हैं (जैसे अरावली, नीलगिरी, राजमहल, पारसनाथ)।"
+            },
+            {
+                q: "पेनिप्लेन (Peneplain / समप्राय मैदान) का निर्माण अपरदन चक्र के अंतिम चरण में किसके द्वारा होता है?",
+                options: ["नदी / बहता जल (Fluvial)", "पवन", "हिमनद", "समुद्री लहरें"],
+                correctText: "नदी / बहता जल (Fluvial)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विलियम मौरिस डेविस के अनुसार नदी अपरदन के अंतिम चक्र में संपूर्ण क्षेत्र समतल होकर **पेनिप्लेन (Peneplain)** में बदल जाता है।"
+            },
+            {
+                q: "मरुस्थल में पवन अपरदन के अंतिम चरण में बने समतल मैदान को क्या कहते हैं?",
+                options: ["पेडीप्लेन (Pediplain)", "पेनिप्लेन", "बजाडा", "प्लाया"],
+                correctText: "पेडीप्लेन (Pediplain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मरुस्थलीय क्षेत्रों में पवन तथा क्षणिक जलधाराओं के अपरदन व समतलीकरण से **पेडीप्लेन (Pediplain)** बनता है।"
+            },
+            {
+                q: "मरुस्थलीय क्षेत्रों में पर्वतीय पाद पर बनी अस्थाई खारे पानी की झील को क्या कहा जाता है?",
+                options: ["प्लाया (Playa)", "बजाडा", "बोल्सन", "धाया"],
+                correctText: "प्लाया (Playa)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मरुस्थल में बोल्सन बेसिन के केंद्र में वर्षा जल एकत्र होने से बनी उथली खारे पानी की झील को **प्लाया** कहते हैं।"
+            },
+            {
+                q: "नदी जहाँ समुद्र में गिरती है, यदि वहाँ ज्वारभाटा तीव्र न हो, तो कौन सी स्थलाकृति बनती है?",
+                options: ["डेल्टा (Delta)", "ज्वारनदमुख (Estuary)", "कैनियन", "जलोढ़ पंख"],
+                correctText: "डेल्टा (Delta)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नदी के मुहाने पर अवसादों के निक्षेपण से त्रिभुजाकार डेल्टा बनता है। शांत समुद्र व मन्द ढाल डेल्टा निर्माण के लिए आवश्यक है।"
+            },
+            {
+                q: "भारत की नर्मदा और तापी नदियाँ समुद्र में मुहाने पर डेल्टा न बनाकर क्या बनाती हैं?",
+                options: ["ज्वारनदमुख (Estuary)", "डेल्टा", "अंध घाटी", "गार्ज"],
+                correctText: "ज्वारनदमुख (Estuary)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कठोर चट्टानी भ्रंश घाटी से बहने के कारण नर्मदा व तापी अवसाद कम लाती हैं और तीव्र गति से सीधे समुद्र में गिरकर **ज्वारनदमुख (Estuary)** बनाती हैं।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा नदी द्वीप 'माजुली' (Majuli) किस नदी में स्थित है?",
+                options: ["ब्रह्मपुत्र नदी (असम)", "गंगा नदी", "अमेजन नदी", "मिसिसिपी नदी"],
+                correctText: "ब्रह्मपुत्र नदी (असम)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• असम में ब्रह्मपुत्र नदी के मध्य स्थित **माजुली** विश्व का सबसे बड़ा ताजे पानी का नदी द्वीपीय जिला है।"
+            },
+            {
+                q: "पवन द्वारा उड़ाकर लाई गई सूक्ष्म धूल के दूर निक्षेपण से बने विस्तृत मैदान को क्या कहते हैं?",
+                options: ["लोएस का मैदान (Loess Plain)", "पेडीप्लेन", "सैंड ड्यून्स", "प्लाया"],
+                correctText: "लोएस का मैदान (Loess Plain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पवन द्वारा दूर तक बहाकर लाए गए बारीक धूल कणों के जमने से बने उपजाऊ मैदान को **लोएस** कहते हैं (जैसे उत्तरी चीन का लोएस मैदान)।"
+            },
+            {
+                q: "चूना पत्थर क्षेत्र में जब डोलाइन या धँसाव छिद्र का आकार अत्यधिक बड़ा हो जाता है, तो उसे क्या कहते हैं?",
+                options: ["युवाला या पोल्ये (Uvala / Polje)", "सिंक होल", "अंध घाटी", "कास्ट खिड़की"],
+                correctText: "युवाला या पोल्ये (Uvala / Polje)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• घुलन क्रिया से बने छोटे छिद्र सिंक होल, बड़े छिद्र डोलाइन और अत्यधिक बड़े विस्तृत गर्त को **युवाला (Uvala)** या **पोल्ये (Polje)** कहते हैं।"
+            }
+        ];
+
+        let quizDataGeography4 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataGeography4 = rawQuizDataGeography4.map(item => {
+                let options = [...item.options];
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(item.correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach(dist => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataGeography4;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testj4_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testj4_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने टेस्ट 4 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - World Geography Test 4 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* भू-आकृति विज्ञान, पर्वत, पठार, मरुस्थल एवं आंतरिक संरचना\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testj4.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testj4_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
