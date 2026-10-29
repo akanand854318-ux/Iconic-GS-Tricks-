@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanography & Precipitation - Mock Test 6 (समुद्र विज्ञान एवं वर्षन) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">समुद्र विज्ञान एवं वर्षन - मॉक टेस्ट 6 (Oceanography & Precipitation)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Test 6)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Oceanography & Precipitation - Test 6 (समुद्र विज्ञान एवं वर्षन)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // समुद्र विज्ञान एवं वर्षन: मन्नतट, ढाल, नितल मैदान, गर्त, तापमान, लवणता, ज्वार-भाटा, धाराएँ एवं प्रमुख द्वीप (100 अति-महत्वपूर्ण प्रश्न)
+        const rawQuizDataOceanography6 = [
+            {
+                q: "वर्षन (Precipitation) के अंतर्गत निम्नलिखित में से किसे शामिल नहीं किया जाता है?",
+                options: ["कोहरा (Fog)", "वर्षा (Rainfall)", "हिमपात (Snowfall)", "ओलावृष्टि (Hail)"],
+                correctText: "कोहरा (Fog)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कोहरा धरातल के पास संघनन का रूप है, जबकि वर्षा, हिमपात और ओलावृष्टि वायुमंडल से नीचे गिरने वाले वर्षन के प्रकार हैं।"
+            },
+            {
+                q: "विश्व में सर्वाधिक औसत वार्षिक वर्षा कहाँ दर्ज की जाती है?",
+                options: ["मावसिराम / चेरापूंजी (भारत)", "अमेजन बेसिन", "विषुवत रेखीय क्षेत्र", "कॉन्गो बेसिन"],
+                correctText: "मावसिराम / चेरापूंजी (भारत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत के मेघालय राज्य में स्थित मावसिराम (और चेरापूंजी) में विश्व की सर्वाधिक औसत वार्षिक वर्षा होती है।"
+            },
+            {
+                q: "महाद्वीपीय मन्नतट (Continental Shelf) की औसत गहराई सामान्यतः कितनी होती है?",
+                options: ["20 से 200 मीटर (या 100 फैदम तक)", "1000 से 2000 मीटर", "4000 से 6000 मीटर", "10 मीटर"],
+                correctText: "20 से 200 मीटर (या 100 फैदम तक)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाद्वीपीय शेल्फ (मन्नतट) महाद्वीपों का डूबा हुआ उथला सीमांत भाग है जिसकी औसत गहराई 20 से 200 मीटर होती है।"
+            },
+            {
+                q: "विश्व के प्रमुख मतस्य क्षेत्र (Fishing Grounds) महासागर के किस भाग में सर्वाधिक विकसित होते हैं?",
+                options: ["महाद्वीपीय मन्नतट (Continental Shelf)", "महासागरीय गर्त", "नितल मैदान", "महाद्वीपीय उभार"],
+                correctText: "महाद्वीपीय मन्नतट (Continental Shelf)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मन्नतट उथले होते हैं जहाँ सूर्य का प्रकाश पहुँचता है और प्लवक (Plankton) प्रचुरता से मिलते हैं, अतः यह मत्स्य पालन के लिए सर्वोत्तम हैं।"
+            },
+            {
+                q: "महाद्वीपीय ढाल (Continental Slope) की सीमा कहाँ से कहाँ तक मानी जाती है?",
+                options: ["मन्नतट के बाहरी किनारे से गहरे महासागरीय बेसिन तक", "तट रेखा से 10 किमी अंदर", "समुद्र तल से 5000 मीटर नीचे", "गर्त के तली तक"],
+                correctText: "मन्नतट के बाहरी किनारे से गहरे महासागरीय बेसिन तक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाद्वीपीय ढाल मन्नतट के अंत (शेल्फ ब्रेक) से शुरू होकर गहरे महासागरीय नितल तक तीव्र ढलान बनाती है।"
+            },
+            {
+                q: "महासागरीय नितल के सबसे विस्तृत भाग (कुल क्षेत्रफल का लगभग 75-80%) को क्या कहते हैं?",
+                options: ["गहरे महासागरीय मैदान / नितल मैदान (Abyssal Plains)", "महाद्वीपीय मन्नतट", "महासागरीय कगार", "महासागरीय गर्त"],
+                correctText: "गहरे महासागरीय मैदान / नितल मैदान (Abyssal Plains)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय नितल मैदान (Abyssal Plains) महासागरों के सबसे समतल और गहरे विस्तृत भाग हैं जो 3000 से 6000 मीटर की गहराई पर होते हैं।"
+            },
+            {
+                q: "महासागरीय गर्त (Oceanic Trenches) महासागर के किस भू-आकृतिक हिस्से में पाए जाते हैं?",
+                options: ["विविध क्षेत्रों में, विशेषकर प्लेट किनारों (Plate Boundaries) के पास", "केवल मन्नतट पर", "नितल मैदानों के बीचों-बीच", "तट रेखा के पास"],
+                correctText: "विविध क्षेत्रों में, विशेषकर प्लेट किनारों (Plate Boundaries) के पास",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय गर्त अत्यंत गहरे और संकीर्ण खड्ड होते हैं जो सामान्यतः विनाशी प्लेट किनारों के सहारे महासागरीय मर्चेंट में मिलते हैं।"
+            },
+            {
+                q: "विश्व का सबसे गहरा महासागरीय गर्त 'मरियाना गर्त' (Mariana Trench) किस महासागर में स्थित है?",
+                options: ["प्रशांत महासागर (Pacific Ocean)", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "प्रशांत महासागर (Pacific Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पश्चिमी प्रशांत महासागर में मियाना गर्त (चैलेंजर डीप) विश्व का सबसे गहरा बिंदु है जिसकी गहराई लगभग 11,033 मीटर है।"
+            },
+            {
+                q: "संड्रा गर्त (Sunda Trench / जावा गर्त) किस महासागर का प्रमुख गर्त है?",
+                options: ["हिंद महासागर (Indian Ocean)", "प्रशांत महासागर", "अटलांटिक महासागर", "दक्षिणी महासागर"],
+                correctText: "हिंद महासागर (Indian Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुंडा गर्त (पूर्व नाम जावा गर्त) हिंद महासागर का सबसे गहरा गर्त है।"
+            },
+            {
+                q: "अटलांटिक महासागर का सबसे गहरा गर्त निम्नलिखित में से कौन सा है?",
+                options: ["प्यूर्टो रिको गर्त (Puerto Rico Trench)", "मरियाना गर्त", "सुंडा गर्त", "मिएंड्रो गर्त"],
+                correctText: "प्यूर्टो रिको गर्त (Puerto Rico Trench)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अटलांटिक महासागर में प्यूर्टो रिको गर्त (मिलवाकी गर्त) सबसे गहरा स्थान है।"
+            },
+            {
+                q: "महासागरीय जल का अधिकतम तापमान सामान्यतः किस क्षेत्र में दर्ज किया जाता है?",
+                options: ["भूमध्य रेखा के पास नहीं बल्कि उप-उष्णकटिबंधीय कम गहरे समुद्रों व बन्द सागरों में", "ध्रुवीय महासागरों में", "अटलांटिक के मध्य में", "गहरे गर्त में"],
+                correctText: "भूमध्य रेखा के पास नहीं बल्कि उप-उष्णकटिबंधीय कम गहरे समुद्रों व बन्द सागरों में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर्वाधिक तापमान भूमध्य रेखा पर न होकर लाल सागर या फारस की खाड़ी जैसे बन्द उष्णकटिबंधीय सागरों में मिलता है।"
+            },
+            {
+                q: "महासागरीय जल के तापमान की लंबवत वितरण (Vertical Distribution) में थर्मोक्लाइन (Thermocline) क्या दर्शाता है?",
+                options: ["वह परत जहाँ तापमान में तेजी से गिरावट आती है", "जल का सबसे गर्म भाग", "बर्फ जमने की सीमा", "सबसे निचला स्थिर तापमान"],
+                correctText: "वह परत जहाँ तापमान में तेजी से गिरावट आती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• थर्मोक्लाइन (Thermocline) महासागरीय जल की वह सीमा है जिसमें गहराई के साथ तापमान में अत्यधिक तीव्र गिरावट आती है।"
+            },
+            {
+                q: "महासागरीय जल की लवणता (Salinity) को सामान्यतः किस इकाई में व्यक्त किया जाता है?",
+                options: ["प्रति हज़ार (‰ - Parts Per Thousand)", "प्रतिशत (%)", "ग्राम प्रति लीटर", "मिलीग्राम"],
+                correctText: "प्रति हज़ार (‰ - Parts Per Thousand)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय लवणता को 'प्रति हज़ार' (‰) में मापा जाता है। इसका अर्थ 1000 ग्राम समुद्री जल में घुले हुए लवणों की मात्रा (ग्राम में) है।"
+            },
+            {
+                q: "समुद्री जल में उपस्थित लवणों में सर्वाधिक मात्रा किस लवण की होती है?",
+                options: ["सोडियम क्लोराइड (NaCl - Sodium Chloride)", "मैग्नीशियम क्लोराइड", "कैल्शियम सल्फेट", "पोटेशियम सल्फेट"],
+                correctText: "सोडियम क्लोराइड (NaCl - Sodium Chloride)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्री लवणों में लगभग 77.8% अकेला सोडियम क्लोराइड (साधारण नमक) होता है।"
+            },
+            {
+                q: "खुले महासागरों की औसत लवणता (Average Salinity) लगभग कितनी होती है?",
+                options: ["35‰ (35 प्रति हज़ार)", "20‰", "45‰", "10‰"],
+                correctText: "35‰ (35 प्रति हज़ार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विश्व के खुले महासागरों की औसत लवणता 33‰ से 37‰ के बीच होती है, और वैश्विक औसत लगभग 35‰ है।"
+            },
+            {
+                q: "विश्व में सर्वाधिक लवणता वाली झील 'वान झील' (Lake Van) किस देश में स्थित है?",
+                options: ["तुर्की (Turkey - 330‰ लवणता)", "जॉर्डन", "संयुक्त राज्य अमेरिका", "रूस"],
+                correctText: "तुर्की (Turkey - 330‰ लवणता)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तुर्की की वान झील की लवणता लगभग 330‰ है, जो विश्व में सर्वाधिक है (दूसरे स्थान पर मृत सागर है)।"
+            },
+            {
+                q: "मृत सागर (Dead Sea) किन देशों की सीमा पर स्थित है?",
+                options: ["इजराइल और जॉर्डन", "तुर्की और सीरिया", "مصر और सूडान", "अमेरिका और मैक्सिको"],
+                correctText: "इजराइल और जॉर्डन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मृत सागर इजराइल और जॉर्डन के बीच स्थित है जिसकी लवणता लगभग 238‰ है, जिसमें अत्यधिक प्लवनशीलता के कारण इंसान डूबता नहीं है।"
+            },
+            {
+                q: "ज्वार-भाटा (Tides) उत्पन्न होने का प्रमुख खगोलीय कारण क्या है?",
+                options: ["सूर्य और चंद्रमा का गुरुत्वाकर्षण बल (Gravitational Pull)", "पृथ्वी का घूर्णन और अपकेंद्रीय बल", "महासागरीय धाराओं का घर्षण", "वायुमंडलीय दाब परिवर्तन"],
+                correctText: "सूर्य और चंद्रमा का गुरुत्वाकर्षण बल (Gravitational Pull)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय जल का ऊपर उठना (ज्वार) और नीचे गिरना (भाटा) मुख्य रूप से चंद्रमा और सूर्य के गुरुत्वाकर्षण खिंचाव के कारण होता है।"
+            },
+            {
+                q: "दीर्घ ज्वार (Spring Tide) कब उत्पन्न होता है?",
+                options: ["जब सूर्य, पृथ्वी और चंद्रमा एक सीध में होते हैं (पूर्णिमा और अमावस्या को)", "जब चंद्रमा समकोण (Quarter) पर होता है", "केवल विषुवत रेखा पर", "सर्दियों के महीनों में"],
+                correctText: "जब सूर्य, पृथ्वी और चंद्रमा एक सीध में होते हैं (पूर्णिमा और अमावस्या को)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्णिमा और अमावस्या के दिन जब तीनों खगोलीय पिंड सिजगी (Syzygy - युति-वियुति) की स्थिति में होते हैं, तो सबसे ऊँचे 'दीर्घ ज्वार' आते हैं।"
+            },
+            {
+                q: "लघु ज्वार (Neap Tide) की स्थिति कब बनती है?",
+                options: ["जब सूर्य और चंद्रमा पृथ्वी के केंद्र पर समकोण (Right Angle) बनाते हैं", "अमावस्या के दिन", "पूर्णिमा के दिन", "चंद्रग्रहण के समय"],
+                correctText: "जब सूर्य और चंद्रमा पृथ्वी के केंद्र पर समकोण (Right Angle) बनाते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महीने के प्रथम और तृतीय चतुर्थांश में जब सूर्य और चंद्रमा का गुरुत्वाकर्षण एक-दूसरे के विपरीत प्रभाव डालता है, तब 'लघु ज्वार' आते हैं।"
+            },
+            {
+                q: "दैनिक ज्वार (Diurnal Tide) की आवृत्ति पृथ्वी पर कैसी होती है?",
+                options: ["दिन में एक बार ज्वार और एक बार भाटा आना", "दिन में दो बार ज्वार आना", "महीने में एक बार", "केवल 12 घंटे में"],
+                correctText: "दिन में एक बार ज्वार और एक बार भाटा आना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दैनिक ज्वार में 24 घंटे 52 मिनट की अवधि में एक बार उच्च ज्वार और एक बार निम्न ज्वार आता है।"
+            },
+            {
+                q: "अर्ध-दैनिक ज्वार (Semi-Diurnal Tide) सामान्यतः कितनी बार आता है?",
+                options: ["प्रत्येक 24 घंटे में दो बार उच्च ज्वार और दो बार भाटा", "दिन में एक बार", "सप्ताह में एक बार", "वर्ष में दो बार"],
+                correctText: "प्रत्येक 24 घंटे में दो बार उच्च ज्वार और दो बार भाटा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विश्व के अधिकांश भागों में अर्ध-दैनिक ज्वार आते हैं जिसमें प्रत्येक 12 घंटे 26 मिनट पर ज्वार आता है।"
+            },
+            {
+                q: "अपसौर (Aphelion) की स्थिति में पृथ्वी सूर्य से अधिकतम दूरी पर होती है, यह घटना कब होती है?",
+                options: ["4 जुलाई को", "3 जनवरी को", "21 जून को", "22 दिसंबर को"],
+                correctText: "4 जुलाई को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 4 जुलाई को पृथ्वी सूर्य से सबसे दूर (अपसौर - 152 मिलियन किमी) होती है, जिससे उस समय ज्वार का प्रभाव थोड़ा कम होता है।"
+            },
+            {
+                q: "उपसौर (Perihelion) की स्थिति जब पृथ्वी सूर्य के सबसे निकट होती है, कब होती है?",
+                options: ["3 जनवरी को", "4 जुलाई को", "21 मार्च को", "23 सितंबर को"],
+                correctText: "3 जनवरी को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 3 जनवरी को पृथ्वी सूर्य के सबसे पास (उपसौर - 147 मिलियन किमी) होती है।"
+            },
+            {
+                q: "भू-समीपस्थ ज्वार (Perigean Tide) कब आता है जब चंद्रमा पृथ्वी के सबसे निकट होता है?",
+                options: ["जब चंद्रमा अपनी कक्षा में पृथ्वी के निकटतम (Perigee) होता है", "जब चंद्रमा दूर होता है", "पूर्णिमा पर", "अमावस्या पर"],
+                correctText: "जब चंद्रमा अपनी कक्षा में पृथ्वी के निकटतम (Perigee) होता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब चंद्रमा पृथ्वी के सबसे पास (Perigee) होता है, तो सामान्य से 20% अधिक ऊँचा ज्वार (पेरिजीयन ज्वार) आता है।"
+            },
+            {
+                q: "महासागरीय धाराएँ (Ocean Currents) मुख्य रूप से किसके द्वारा प्रभावित होती हैं?",
+                options: ["प्रचलित पवनें, पृथ्वी का घूर्णन (कोरिऑलिस बल), और घनत्व में भिन्नता", "केवल चंद्रमा का गुरुत्वाकर्षण", "तटीय चट्टानों का आकार", "भूकंपीय लहरें"],
+                correctText: "प्रचलित पवनें, पृथ्वी का घूर्णन (कोरिऑलिस बल), और घनत्व में भिन्नता",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय जल का एक निश्चित दिशा में सतत प्रवाह महासागरीय धाराएँ कहलाती हैं, जो पवन, कोरिऑलिस बल और तापमान-लवणता घनत्व से संचालित होती हैं।"
+            },
+            {
+                q: "गल्फ स्ट्रीम (Gulf Stream) किस प्रकार की महासागरीय धारा है?",
+                options: ["गर्म जलधारा (Warm Current) - अटलांटिक महासागर", "ठंडी जलधारा", "प्रशांत महासागर की धारा", "हिंद महासागर की धारा"],
+                correctText: "गर्म जलधारा (Warm Current) - अटलांटिक महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मैक्सिको की खाड़ी से उत्तर की ओर चलने वाली **गल्फ स्ट्रीम** एक शक्तिशाली गर्म जलधारा है जो यूरोप की जलवायु को गर्म रखती है।"
+            },
+            {
+                q: "लैब्राडोर धारा (Labrador Current) किस महासागर की ठंडी जलधारा है?",
+                options: ["उत्तरी अटलांटिक महासागर (ठंडी धारा)", "प्रशांत महासागर", "हिंद महासागर", "दक्षिणी महासागर"],
+                correctText: "उत्तरी अटलांटिक महासागर (ठंडी धारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आर्कटिक महासागर से दक्षिण की ओर बहने वाली **लैब्राडोर धारा** एक ठंडी जलधारा है जो गल्फ स्ट्रीम से मिलकर न्यूफाउंडलैंड के पास घना कोहरा व मत्स्य क्षेत्र (ग्रैंड बैंक) बनाती है।"
+            },
+            {
+                q: "पेरू या हम्बोल्ट धारा (Peru / Humboldt Current) किस महासागर की प्रसिद्ध ठंडी जलधारा है?",
+                options: ["दक्षिण प्रशांत महासागर (ठंडी जलधारा)", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "दक्षिण प्रशांत महासागर (ठंडी जलधारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण अमेरिका के पश्चिमी तट के सहारे बहने वाली **हम्बोल्ट (पेरू) धारा** एक प्रमुख ठंडी जलधारा है।"
+            },
+            {
+                q: "कुनकुश या क्यूरोशियो (Kuroshio Current) धारा किस महासागर में बहने वाली गर्म जलधारा है?",
+                options: ["उत्तरी प्रशांत महासागर", "अटलांटिक महासागर", "हिंद महासागर", "अंटार्कटिका"],
+                correctText: "उत्तरी प्रशांत महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्यूरोशियो (जापान की गर्म धारा) उत्तरी प्रशांत महासागर में बहती है, जिसे 'जापान की काली धारा' भी कहते हैं।"
+            },
+            {
+                q: "अगुलहास धारा (Agulhas Current) किस महासागर में प्रवाहित होने वाली गर्म जलधारा है?",
+                options: ["हिंद महासागर (Indian Ocean)", "प्रशांत महासागर", "अटलांटिक महासागर", "आर्कटिक महासागर"],
+                correctText: "हिंद महासागर (Indian Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• **अगुलहास धारा** और मोजाम्बिक धारा हिंद महासागर की प्रमुख गर्म जलधाराएँ हैं जो अफ्रीका के पूर्वी तट के पास बहती हैं।"
+            },
+            {
+                q: "बेंगुएला धारा (Benguela Current) किस महाद्वीप के पश्चिमी तट के पास बहने वाली ठंडी धारा है?",
+                options: ["अफ़्रीका (दक्षिण-पश्चिम तट)", "दक्षिण अमेरिका", "ऑस्ट्रेलिया", "उत्तरी अमेरिका"],
+                correctText: "अफ़्रीका (दक्षिण-पश्चिम तट)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण-पश्चिम अफ्रीका के तट पर बहने वाली **बेंगुएला धारा** एक ठंडी जलधारा है जिसके कारण वहाँ नामीब मरुस्थल का निर्माण हुआ है।"
+            },
+            {
+                q: "कैलिफोर्निया धारा (California Current) किस महासागर की ठंडी जलधारा है?",
+                options: ["उत्तरी प्रशांत महासागर", "उत्तरी अटलांटिक", "दक्षिण प्रशांत", "हिंद महासागर"],
+                correctText: "उत्तरी प्रशांत महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तरी अमेरिका के पश्चिमी तट पर बहने वाली कैलिफोर्निया धारा एक ठंडी जलधारा है।"
+            },
+            {
+                q: "नार्वे की धारा (Norwegian Current) किस प्रकार की धारा है?",
+                options: ["गर्म जलधारा (जो यूरोपीय तटों को बर्फमुक्त रखती है)", "ठंडी धारा", "स्थानीय पवन धारा", "ज्वारीय धारा"],
+                correctText: "गर्म जलधारा (जो यूरोपीय तटों को बर्फमुक्त रखती है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर अटलांटिक प्रवाह का विस्तार होने के कारण नार्वे की धारा एक गर्म जलधारा है जो उच्च अक्षांशों पर भी बंदरगाहों को जमने नहीं देती।"
+            },
+            {
+                q: "फॉकलैंड धारा (Falkland Current) किस महासागर में बहने वाली ठंडी जलधारा है?",
+                options: ["दक्षिण अटलांटिक महासागर", "प्रशांत महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "दक्षिण अटलांटिक महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अर्जेंटीना के पूर्वी तट के सहारे बहने वाली फोकलैंड धारा एक ठंडी जलधारा है।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा द्वीप (Largest Island) निम्नलिखित में से कौन सा है?",
+                options: ["ग्रीनलैंड (Greenland)", "न्यू गिनी", "बोर्नियो", "मेडागास्कर"],
+                correctText: "ग्रीनलैंड (Greenland)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आर्कटिक महासागर में स्थित **ग्रीनलैंड** (राजनीतिक रूप से डेनमार्क के अधीन) विश्व का सबसे बड़ा द्वीप है।"
+            },
+            {
+                q: "क्षेत्रफल की दृष्टि से विश्व का दूसरा सबसे बड़ा द्वीप कौन सा है?",
+                options: ["न्यू गिनी (New Guinea)", "बोर्नियो", "सुमात्रा", "बaffin Island"],
+                correctText: "न्यू गिनी (New Guinea)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओशिनिया क्षेत्र (प्रशांत महासागर) में स्थित **न्यू गिनी** ग्रीलैंड के बाद विश्व का दूसरा सबसे बड़ा द्वीप है।"
+            },
+            {
+                q: "बोर्नियो द्वीप (Borneo) किस महासागर / क्षेत्र में स्थित है और यह कितने देशों में विभाजित है?",
+                options: ["दक्षिण-पूर्व एशिया (इंडोनेशिया, मलेशिया, ब्रुनेई)", "प्रशांत महासागर (केवल इंडोनेशिया)", "हिंद महासागर (भारत)", "कैरिबियन सागर"],
+                correctText: "दक्षिण-पूर्व एशिया (इंडोनेशिया, मलेशिया, ब्रुनेई)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बोर्नियो विश्व का तीसरा सबसे बड़ा द्वीप है जो तीन देशों (इंडोनेशिया, मलेशिया और ब्रुनेई) के बीच बंटा हुआ है।"
+            },
+            {
+                q: "हिंद महासागर का सबसे बड़ा द्वीप (Largest Island in Indian Ocean) कौन सा है?",
+                options: ["मेडागास्कर (Madagascar)", "श्रीलंका", "सुमात्रा", "जावा"],
+                correctText: "मेडागास्कर (Madagascar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अफ्रीका के पूर्वी तट के पास हिंद महासागर में स्थित **मेडागास्कर** इस महासागर का सबसे बड़ा द्वीप है।"
+            },
+            {
+                q: "इंडोनेशिया का सबसे अधिक जनसंख्या वाला द्वीप कौन सा है जिस पर देश की राजधानी जकार्ता स्थित है?",
+                options: ["जावा द्वीप (Java Island)", "सुमात्रा", "बाली", "सुलावेसी"],
+                correctText: "जावा द्वीप (Java Island)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जावा द्वीप इंडोनेशिया का आर्थिक व राजनीतिक केंद्र है और विश्व में सबसे अधिक आबादी वाला द्वीप है।"
+            },
+            {
+                q: "जापान देश का मुख्य और सबसे बड़ा द्वीप कौन सा है?",
+                options: ["होनशू द्वीप (Honshu Island)", "होक्काइडो", "क्यूशू", "शिकोकू"],
+                correctText: "होनशू द्वीप (Honshu Island)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जापान के चार मुख्य द्वीपों (होक्काइडो, होनशू, शिकोकू, क्यूशू) में **होनशू** सबसे बड़ा द्वीप है जिस पर टोक्यो और ओसाका स्थित हैं।"
+            },
+            {
+                q: "भूमध्य सागर में स्थित सिसिली (Sicily) और सार्डिनिया (Sardinia) द्वीप किस देश के अधिकार क्षेत्र में आते हैं?",
+                options: ["इटली (Italy)", "स्पेन", "ग्रीस", "फ्रांस"],
+                correctText: "इटली (Italy)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिसिली और सार्डिनिया भूमध्य सागर के सबसे बड़े द्वीप हैं जो इटली के अंतर्गत आते हैं।"
+            },
+            {
+                q: "डेनमार्क के अधिकार क्षेत्र में आने वाला 'फेरो द्वीप' या ग्रीलैंड के पास स्थित कौन सा द्वीप अटलांटिक महासागर में रणनीतिक महत्व रखता है?",
+                options: ["आइसलैंड (Iceland एक स्वतंत्र देश है, ग्रीनलैंड स्वायत्त है)", "फैकलैंड", "बर्मिंघम", "तस्मानिया"],
+                correctText: "आइसलैंड (Iceland एक स्वतंत्र देश है, ग्रीनलैंड स्वायत्त है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रीनलैंड डेनमार्क का स्वायत्त क्षेत्र है, जबकि आइसलैंड एक स्वतंत्र यूरोपीय द्वीप राष्ट्र है।"
+            },
+            {
+                q: "कनाडा के उत्तर में आर्कटिक महासागर में स्थित 'बफिन द्वीप' (Baffin Island) किस खनिज या विशेषता के लिए जाना जाता है?",
+                options: ["क्षेत्रफल में विशाल और अत्यधिक ठंडी आर्कटिक भूमि", "कोयला भंडार", "उष्णकटिबंधीय वन", "ज्वालामुखी"],
+                correctText: "क्षेत्रफल में विशाल और अत्यधिक ठंडी आर्कटिक द्वीप",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बफिन द्वीप कनाडाई आर्कटिक द्वीप समूह का सबसे बड़ा और विश्व का पाँचवाँ सबसे बड़ा द्वीप है।"
+            },
+            {
+                q: "भूमध्य रेखीय क्षेत्रों में किस प्रकार की वर्षा प्रतिदिन दोपहर के बाद होती है?",
+                options: ["संवहनीय वर्षा (Convectional Rainfall)", "पर्वतीय वर्षा", "चक्रवाती वर्षा", "मानसूनी वर्षा"],
+                correctText: "संवहनीय वर्षा (Convectional Rainfall)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा के पास अत्यधिक तापमान के कारण रोजाना दोपहर में संवहनीय धाराएँ उठती हैं और मूसलाधार '4 बजे की वर्षा' (4 o'clock rain) होती है।"
+            },
+            {
+                q: "अटलांटिक महासागर में स्थित 'सारगैसो सागर' (Sargasso Sea) की मुख्य विशेषता क्या है?",
+                options: ["शांत जल और चारों तरफ तैरती हुई सारगासम घास (बिना तट का सागर)", "अत्यधिक भयंकर चक्रवात", "सर्वाधिक लवणता", "अत्यधिक ठण्डा जल"],
+                correctText: "शांत जल और चारों तरफ तैरती हुई सारगासम घास (बिना तट का सागर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तरी अटलांटिक ग्यायर के मध्य शांत क्षेत्र में स्थित सारगैसो सागर को 'तटहीन सागर' कहा जाता है जहाँ भूरी सारगासम घास तैरती है।"
+            },
+            {
+                q: "महासागरीय मन्नतट की औसत चौड़ाई सामान्यतः कितनी होती है?",
+                options: ["लगभग 70 से 80 किलोमीटर (तट के ढाल पर निर्भर)", "5 किलोमीटर", "500 किलोमीटर", "1000 किलोमीटर"],
+                correctText: "लगभग 70 से 80 किलोमीटर (तट के ढाल पर निर्भर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाद्वीपीय मन्नतट की चौड़ाई अलग-अलग जगह अलग होती है, किंतु औसत चौड़ाई लगभग 70 से 80 किमी होती है।"
+            },
+            {
+                q: "महासागरीय गर्तों की गहराई सामान्यतः कितनी होती है?",
+                options: ["3,000 से 5,000 मीटर से अधिक (गहरे खड्ड)", "200 मीटर", "1000 मीटर", "50 मीटर"],
+                correctText: "3,000 से 5,000 मीटर से अधिक (गहरे खड्ड)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गर्त महासागर के सबसे गहरे भाग होते हैं जिनकी गहराई सामान्यतः 6000 मीटर से भी अधिक हो सकती है।"
+            },
+            {
+                q: "समुद्र विज्ञान में 'फैदम' (Fathom) का उपयोग क्या मापने के लिए किया जाता है?",
+                options: ["समुद्र की गहराई (Depth of Ocean)", "जल की लवणता", "धारा की गति", "वायुदाब"],
+                correctText: "समुद्र की गहराई (Depth of Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्र की गहराई मापने की मानक इकाई 'फैदम' है (1 फैदम = 6 फीट)।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी महासागरीय धारा दक्षिणी अटलांटिक महासागर की गर्म जलधारा है?",
+                options: ["ब्राजील धारा (Brazil Current)", "बेंगुएला धारा", "फॉकलैंड धारा", "पश्चिमी ऑस्ट्रेलियन धारा"],
+                correctText: "ब्राजील धारा (Brazil Current)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण अमेरिका के पूर्वी तट पर बहने वाली **ब्राजील धारा** एक गर्म जलधारा है।"
+            },
+            {
+                q: "ऑस्ट्रेलिया के पूर्वी तट के सहारे बहने वाली गर्म जलधारा का क्या नाम है?",
+                options: ["पूर्वी ऑस्ट्रेलियाई धारा (East Australian Current)", "पश्चिमी ऑस्ट्रेलियाई धारा", "पेरू धारा", "अटलांटिक धारा"],
+                correctText: "पूर्वी ऑस्ट्रेलियाई धारा (East Australian Current)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया के पूर्व में प्रशांत महासागर में **पूर्वी ऑस्ट्रेलियाई धारा** बहती है जो एक गर्म जलधारा है।"
+            },
+            {
+                q: "भारतीय महासागर में मानसून के अनुसार अपनी दिशा बदलने वाली धाराओं की मुख्य विशेषता कहाँ देखी जाती है?",
+                options: ["उत्तरी हिंद महासागर (Arabian Sea & Bay of Bengal)", "अंटार्कटिक महासागर", "प्रशांत महासागर", "दक्षिण अटलांटिक"],
+                correctText: "उत्तरी हिंद महासागर (Arabian Sea & Bay of Bengal)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मानसूनी हवाओं के प्रभाव से उत्तरी हिंद महासागर की धाराएँ वर्ष में दो बार अपनी दिशा बदलती हैं।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा प्रायद्वीप (Largest Peninsula) कौन सा है?",
+                options: ["अरब प्रायद्वीप (Arabian Peninsula)", "भारतीय प्रायद्वीप", "स्कैंडिनेवियाई प्रायद्वीप", "लैब्राडोर प्रायद्वीप"],
+                correctText: "अरब प्रायद्वीप (Arabian Peninsula)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण-पश्चिम एशिया में स्थित **अरब प्रायद्वीप** लगभग 32 लाख वर्ग किमी क्षेत्रफल के साथ विश्व का सबसे बड़ा प्रायद्वीप है।"
+            },
+            {
+                q: "यूरोप का 'स्कैंडिनेवियाई प्रायद्वीप' किन देशों से मिलकर बनता है?",
+                options: ["नार्वे, स्वीडन और फिनलैंड (मुख्यतः नॉर्वे व स्वीडन)", "स्पेन और पुर्तगाल", "इталия", "यूनान"],
+                correctText: "नार्वे, स्वीडन और फिनलैंड (मुख्यतः नॉर्वे व स्वीडन)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर यूरोप में स्थित स्कैंडिनेवियाई प्रायद्वीप में नॉर्वे, स्वीडन और फिनलैंड के कुछ भाग शामिल हैं।"
+            },
+            {
+                q: "भूमध्य सागर की कुंजी (Key to the Mediterranean) किस जलसंधि को कहा जाता है?",
+                options: ["जिब्राल्टर जलसंधि (Strait of Gibraltar)", "सुंडा जलसंधि", "मलाका जलसंधि", "बेरिंग जलसंधि"],
+                correctText: "जिब्राल्टर जलसंधि (Strait of Gibraltar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अटलांटिक महासागर को भूमध्य सागर से जोड़ने वाली **जिब्राल्टर जलसंधि** को 'भूमध्य सागर की कुंजी' कहा जाता है।"
+            },
+            {
+                q: "एशिया को उत्तरी अमेरिका महाद्वीप से अलग करने वाली जलडमरूमध्य कौन सी है?",
+                options: ["बेरिंग जलसंधि (Bering Strait)", "मलय जलसंधि", "डेविस जलसंधि", "फ्लोरिडा जलसंधि"],
+                correctText: "बेरिंग जलसंधि (Bering Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एशिया (साइबेरिया) और उत्तरी अमेरिका (अलास्का) के बीच **बेरिंग जलसंधि** स्थित है जो प्रशांत महासागर को आर्कटिक महासागर से जोड़ती है।"
+            },
+            {
+                q: "विश्व की सबसे चौड़ी जलसंधि कौन सी है?",
+                options: ["डेविस जलसंधि (Davis Strait - ग्रीनलैंड व कनाडा के बीच)", "मलाका जलसंधि", "कुक जलसंधि", "बास जलसंधि"],
+                correctText: "डेविस जलसंधि (Davis Strait - ग्रीनलैंड व कनाडा के बीच)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बैफिन खाड़ी और अटलांटिक महासागर को जोड़ने वाली **डेविस जलसंधि** विश्व की सबसे चौड़ी जलसंधि है।"
+            },
+            {
+                q: "विश्व की सबसे लंबी जलसंधि (Lengthwise) कौन सी है?",
+                options: ["मलक्का जलसंधि (Strait of Malacca)", "सुइज़ नहर", "मैसेल जलसंधि", "डोवर जलसंधि"],
+                correctText: "मलक्का जलसंधि (Strait of Malacca)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुमात्रा (इंडोनेशिया) और मलय प्रायद्वीप के बीच स्थित **मलक्का जलसंधि** विश्व की सबसे लंबी जलसंधि है जो हिंद महासागर को प्रशांत महासागर (दक्षिण चीन सागर) से जोड़ती है।"
+            },
+            {
+                q: "इंगलिश चैनल (English Channel) और उत्तरी सागर को जोड़ने वाली संकीर्ण जलसंधि कौन सी है?",
+                options: ["डोवर जलसंधि (Strait of Dover)", "जिब्राल्टर", "बास्फोरस", "हरमुज"],
+                correctText: "डोवर जलसंधि (Strait of Dover)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रिटेन और फ्रांस के बीच इंगलिश चैनल के सबसे संकरे भाग में **डोवर जलसंधि** स्थित है।"
+            },
+            {
+                q: "फारस की खाड़ी (Persian Gulf) और ओमान की खाड़ी को आपस में कौन सी जलसंधि जोड़ती है?",
+                options: ["हरमुज जलसंधि (Strait of Hormuz)", "बाब-अल-मंदेब", "मलक्का", "सुंडा"],
+                correctText: "हरमुज जलसंधि (Strait of Hormuz)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रणनीतिक रूप से अत्यंत महत्वपूर्ण **हरमुज जलसंधि** फारस की खाड़ी को ओमान की खाड़ी व अरब सागर से जोड़ती है।"
+            },
+            {
+                q: "लाल सागर और अदन की खाड़ी को जोड़ने वाली जलसंधि का क्या नाम है?",
+                options: ["बाब-अल-मंदेब जलसंधि (Bab-el-Mandeb)", "हरमुज", "जिब्राल्टर", "टोरेस"],
+                correctText: "बाब-अल-मंदेब जलसंधि (Bab-el-Mandeb)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'आंसुओं का द्वार' कही जाने वाली **बाब-अल-मंदेब जलसंधि** लाल सागर को अरब सागर (अदन की खाड़ी) से जोड़ती है।"
+            },
+            {
+                q: "इटली के मुख्य भूभाग और सिसिली द्वीप के बीच कौन सी जलसंधि स्थित है?",
+                options: ["मेसिटा / मे Messina जलसंधि", "ओत्रान्टो जलसंधि", "बोनिफेशियो", "बॉस्फोरस"],
+                correctText: "मेसिटा / मे Messina जलसंधि",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इटली और सिसिली द्वीप के मध्य **मेस्सिना (Messina) जलसंधि** स्थित है।"
+            },
+            {
+                q: "काला सागर (Black Sea) और मरमरा सागर को जोड़ने वाली जलसंधि कौन सी है?",
+                options: ["बॉस्फोरस जलसंधि (Bosporus Strait)", "डारडनेलीज जलसंधि", "केरच जलसंधि", "टरकी जलसंधि"],
+                correctText: "बॉस्फोरस जलसंधि (Bosporus Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तुर्की में स्थित **बॉस्फोरस जलसंधि** विश्व की सबसे संकीर्ण जलसंधियों में से एक है जो काला सागर को मरमरा सागर से जोड़ती है।"
+            },
+            {
+                q: "उत्तरी अमेरिका में स्थित 'हडसन की खाड़ी' को अटलांटिक महासागर से कौन सी जलसंधि जोड़ती है?",
+                options: ["हडसन जलसंधि (Hudson Strait)", "डेविस जलसंधि", "फ्लोरिडा जलसंधि", "बेरिंग जलसंधि"],
+                correctText: "हडसन जलसंधि (Hudson Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कनाडा के उत्तर में हडसन की खाड़ी और लैब्राडोर सागर के बीच **हडसन जलसंधि** स्थित है।"
+            },
+            {
+                q: "क्यूबा और संयुक्त राज्य अमेरिका (फ्लोरिडा प्रायद्वीप) के बीच कौन सी जलसंधि है?",
+                options: ["फ्लोरिडा जलसंधि (Florida Strait)", "युकाटन जलसंधि", "मूक जलसंधि", "कुक जलसंधि"],
+                correctText: "फ्लोरिडा जलसंधि (Florida Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फ्लोरिडा प्रायद्वीप और क्यूबा के मध्य **फ्लोरिडा जलसंधि** मैक्सिको की खाड़ी को अटलांटिक महासागर से जोड़ती है।"
+            },
+            {
+                q: "मेक्सिको की खाड़ी और कैरिबियन सागर को जोड़ने वाली जलसंधि का नाम क्या है?",
+                options: ["युकाटन जलसंधि (Yucatan Strait)", "फ्लोरिडा जलसंधि", "विंडवर्ड पैसेज", "मोना पैसेज"],
+                correctText: "युकाटन जलसंधि (Yucatan Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मैक्सिको और क्यूबा के बीच **युकाटन जलसंधि** मेक्सिको की खाड़ी को कैरिबियन सागर से जोड़تی है।"
+            },
+            {
+                q: "न्यूजीलैंड के उत्तरी और दक्षिणी द्वीपों को अलग करने वाली जलसंधि कौन सी है?",
+                options: ["कुक जलसंधि (Cook Strait)", "टोरेस जलसंधि", "बास जलसंधि", "फावोव जलसंधि"],
+                correctText: "कुक जलसंधि (Cook Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• न्यूजीलैंड के उत्तरी और दक्षिणी द्वीप के बीच **कुक जलसंधि** प्रशांत महासागर के तस्मान सागर को जोड़ती है।"
+            },
+            {
+                q: "ऑस्ट्रेलिया और तस्मानिया द्वीप को अलग करने वाली जलसंधि का नाम क्या है?",
+                options: ["बास जलसंधि (Bass Strait)", "टोरेस जलसंधि", "कुक जलसंधि", "बंक्स जलसंधि"],
+                correctText: "बास जलसंधि (Bass Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया मुख्य भूमि और तस्मानिया के मध्य **बास जलसंधि** स्थित है।"
+            },
+            {
+                q: "ऑस्ट्रेलिया और पापुआ न्यू गिनी को अलग करने वाली जलसंधि कौन सी है?",
+                options: ["टोरेस जलसंधि (Torres Strait)", "बास जलसंधि", "कुक जलसंधि", "सोंडा जलसंधि"],
+                correctText: "टोरेस जलसंधि (Torres Strait)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया के केप यार्क प्रायद्वीप और न्यू गिनी के बीच **टोरेस जलसंधि** स्थित है।"
+            },
+            {
+                q: "भूमध्य रेखा के दोनों ओर 10° उत्तर से 10° दक्षिण अक्षांशों के बीच किस प्रकार की जलवायु पाई जाती है जिसमें वर्ष भर वर्षा होती है?",
+                options: ["विषुवतीय जलवायु (Equatorial Climate)", "मानसूनी जलवायु", "सवाना जलवायु", "भूमध्यसागरीय जलवायु"],
+                correctText: "विषुवतीय जलवायु (Equatorial Climate)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुवत रेखीय प्रदेशों में वर्ष भर उच्च तापमान और संवहनीय बादलों के कारण प्रतिदिन वर्षा होती है।"
+            },
+            {
+                q: "भूमध्यसागरीय क्षेत्रों (Mediterranean Region) में मुख्य रूप से वर्षा किस ऋतु में होती है?",
+                options: ["शीतकाल में (Winter Rainfall)", "ग्रीष्मकाल में", "वर्ष भर समान रूप से", "कभी वर्षा नहीं होती"],
+                correctText: "शीतकाल में (Winter Rainfall)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्यसागरीय जलवायु की मुख्य विशेषता सर्दियों में पछुआ पवनों के खिसकने से होने वाली वर्षा है (सर्दियों में वर्षा, गर्मियों में शुष्क)।"
+            },
+            {
+                q: "विश्व में वर्षा का स्थानिक वितरण सबसे अधिक किससे प्रभावित होता है?",
+                options: ["पर्वतों की स्थिति (पर्वतीय वर्षा) और समुद्र से दूरी", "केवल अक्षांश", "केवल मिट्टी का प्रकार", "चुंबकीय क्षेत्र"],
+                correctText: "पर्वतों की स्थिति (पर्वतीय वर्षा) और समुद्र से दूरी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पवनों की दिशा, पर्वतमालाओं का अवरोध (वृष्टि छाया क्षेत्र) और समुद्र तट से दूरी वर्षा के वितरण को तय करते हैं।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा महासागर कौन सा है?",
+                options: ["प्रशांत महासागर (Pacific Ocean)", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "प्रशांत महासागर (Pacific Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रशांत महासागर पृथ्वी का सबसे बड़ा और सबसे गहरा महासागर है, जिसका क्षेत्रफल सभी महाद्वीपों के कुल क्षेत्रफल से भी अधिक है।"
+            },
+            {
+                q: "एस-आकार (S-Shape) की महासागरीय द्रोणी किस महासागर की विशेषता है?",
+                options: ["अटलांटिक महासागर (Atlantic Ocean)", "प्रशांत महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "अटलांटिक महासागर (Atlantic Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अटलांटिक महासागर मध्य में स्थित कछारों और तट रेखाओं के कारण अंग्रेजी के अक्षर **'S'** जैसा प्रतीत होता है।"
+            },
+            {
+                q: "किस महासागर को 'छपा हुआ' या 'पेलैजिक' महासागर न कहकर 'अर्ध-महासागर' या 'हिंद महासागर' की तरह विशिष्ट आकार वाला कहा जाता है?",
+                options: ["आर्कटिक महासागर (उत्तर ध्रुवीय महासागर)", "अटलांटिक", "प्रशांत", "दक्षिणी महासागर"],
+                correctText: "आर्कटिक महासागर (उत्तर ध्रुवीय महासागर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तरी ध्रुव के चारों ओर फैला आर्कटिक महासागर सबसे छोटा और अधिकांश समय बर्फ से ढका रहने वाला महासागर है।"
+            },
+            {
+                q: "अंटार्कटिका महाद्वीप के चारों ओर विस्तृत महासागर को किस नाम से जाना जाता है?",
+                options: ["दक्षिणी महासागर / अंटार्कटिक महासागर (Southern Ocean)", "हिंद महासागर", "प्रशांत महासागर", "कैरिबियन सागर"],
+                correctText: "दक्षिणी महासागर / अंटार्कटिक महासागर (Southern Ocean)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 60° दक्षिण अक्षांश के दक्षिण में अंटार्कटिका के चारों ओर के महासागरीय जल को **दक्षिणी महासागर** कहा जाता है।"
+            },
+            {
+                q: "महासागरीय जल के तापमान में क्षैतिज वितरण (Horizontal Distribution) को प्रभावित करने वाला मुख्य कारक कौन सा है?",
+                options: ["अक्षांश (Latitude)", "समुद्र की गहराई", "लवणता", "ज्वार-भाटा"],
+                correctText: "अक्षांश (Latitude)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा से ध्रुवों की ओर जाने पर सूर्य की किरणें तिरछी होती जाती हैं, जिससे महासागरीय जल का तापमान अक्षांश के अनुसार घटता जाता है।"
+            },
+            {
+                q: "समुद्री जल का हिमानांक (Freezing Point) शुद्ध जल की तुलना में कैसा होता है?",
+                options: ["कम होता है (लवणता के कारण शुद्ध जल 0°C पर जमता है जबकि खारा जल लगभग -1.9°C पर)", "अधिक होता है", "बिल्कुल समान होता है", "शून्य होता है"],
+                correctText: "कम होता है (लवणता के कारण शुद्ध जल 0°C पर जमता है जबकि शुद्ध जल की तुलना में नीचे गिरता है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्री जल में लवण घुले होने के कारण उसका हिमांक बिंदु शुद्ध पानी (0°C) से कम यानी लगभग -1.9°C होता है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी ठंडी जलधारा प्रशांत महासागर की नहीं है?",
+                options: ["केनारी धारा (Canary Current - अटलांटिक महासागर)", "हम्बोल्ट धारा", "कैलिफोर्निया धारा", "ओयाशियो धारा"],
+                correctText: "केनारी धारा (Canary Current - अटलांटिक महासागर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• केनारी धारा उत्तरी अटलांटिक महासागर में अफ्रीका के उत्तर-पश्चिमी तट के पास बहने वाली एक ठंडी जलधारा है।"
+            },
+            {
+                q: "अटलांटिक महासागर में प्रवाहित होने वाली 'फाकलैंड धारा' का स्वभाव कैसा है?",
+                options: ["ठंडी जलधारा (Cold Current)", "गर्म जलधारा", "मौसमी धारा", "अस्थाई धारा"],
+                correctText: "ठंडी जलधारा (Cold Current)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फोकलैंड धारा दक्षिण अमेरिका के पूर्वी तट के साथ बहने वाली एक ठंडी जलधारा है।"
+            },
+            {
+                q: "महासागरीय धाराओं के अध्ययन में 'ग्यायर' (Gyre) किसे कहा जाता है?",
+                options: ["महासागरीय धाराओं का विशाल वृत्ताकार संचलन (Circular current system)", "समुद्री गर्त", "ज्वारीय तरंग", "महाद्वीपीय शेल्फ"],
+                correctText: "महासागरीय धाराओं का विशाल वृत्ताकार संचलन (Circular current system)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरों में कोरिऑलिस बल के प्रभाव से धाराओं का विशाल चक्र या घेरा **ग्यायर (Gyre)** कहलाता है।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा द्वीप समूह देश (Archipelago) कौन सा है?",
+                options: ["इंडोनेशिया (Indonesia)", "फिलिपींस", "जापान", "न्यूजीलैंड"],
+                correctText: "इंडोनेशिया (Indonesia)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 17,000 से अधिक द्वीपों से मिलकर बना **इंडोनेशिया** विश्व का सबसे बड़ा द्वीपसमूह देश है।"
+            },
+            {
+                q: "कैरेबियन सागर में स्थित 'क्यूबा' द्वीप को किस उपनाम से पुकारा जाता है?",
+                options: ["चीनी का कटोरा (Sugar Bowl of the World)", "मोती द्वीप", "मसाला द्वीप", "अग्नि द्वीप"],
+                correctText: "चीनी का कटोरा (Sugar Bowl of the World)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्यूबा द्वीप में गन्ने का बंपर उत्पादन होने के कारण इसे 'विश्व का चीनी का कटोरा' कहा जाता है।"
+            },
+            {
+                q: "भूमध्य सागर में स्थित 'सार्डिनिया' द्वीप के पास कौन सी प्रसिद्ध ठंडी हवा बहती है जो नौकायन को प्रभावित करती है?",
+                options: ["मिस्ट्रल (Mistral)", "सिराको", "फॉन", "लू"],
+                correctText: "मिस्ट्रल (Mistral)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अल्पाइन क्षेत्र से भूमध्य सागर की ओर उतरने वाली ठंडी स्थानीय हवा **मिस्ट्रल** कहलाती है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सा द्वीप हिंद महासागर में स्थित नहीं है?",
+                options: ["हवाई द्वीप (Hawaii - प्रशांत महासागर)", "मालदीव", "मॉरीशस", "अंडमान-निकोबार"],
+                correctText: "हवाई द्वीप (Hawaii - प्रशांत महासागर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हवाई द्वीपसमूह मध्य प्रशांत महासागर में स्थित अमेरिका का राज्य है, जबकि बाकी तीनों हिंद महासागर में हैं।"
+            },
+            {
+                q: "अटलांटिक महासागर में स्थित 'बरमूडा त्रिकोण' (Bermuda Triangle) किन तीन बिंदुओं के बीच स्थित है?",
+                options: ["फ्लोरिडा, बरमूडा और प्यूर्टो रिको", "न्यूयार्क, लंदन, और लिस्बन", "आइसलैंड, ग्रीनलैंड और कनाडा", "क्यूबा, हैती और जमैका"],
+                correctText: "फ्लोरिडा, बरमूडा और प्यूर्टो रिको",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर अटलांटिक महासागर का बरमूडा त्रिकोण फ्लोरिडा, बरमूडा और प्यूर्टो रिको के बीच का रहस्यमयी क्षेत्र माना जाता है।"
+            },
+            {
+                q: "समुद्री जल में लवणता की मात्रा भूमध्य रेखा से ध्रुवों की ओर जाने पर सामान्यतः कैसी होती है?",
+                options: ["घटती जाती है (Decreases towards poles)", "बढ़ती जाती है", "स्थिर रहती है", "पहले बढ़ती है फिर घटती है"],
+                correctText: "घटती जाती है (Decreases towards poles)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उच्च वाष्पीकरण और कम वर्षा वाले उपोष्णकटिबंधीय क्षेत्रों में लवणता अधिक होती है, जबकि ध्रुवों की ओर बर्फ पिघलने से लवणता कम होती जाती है।"
+            },
+            {
+                q: "पृथ्वी पर कुल जल का कितना प्रतिशत भाग महासागरों में खारे पानी के रूप में मौजूद है?",
+                options: ["लगभग 97.5%", "2.5%", "50%", "80%"],
+                correctText: "लगभग 97.5%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के जलमंडल का लगभग 97.5% भाग महासागरों में खारे पानी के रूप में है, और मात्र 2.5% ही मीठा (अलवण) जल है।"
+            },
+            {
+                q: "मीठे पानी (Freshwater) की कुल मात्रा का अधिकांश हिस्सा (लगभग 68.7%) किस रूप में संचित है?",
+                options: ["हिमानी और बर्फ की चादरें (Glaciers & Ice Caps)", "नदियाँ और झीलें", "भूमिगत जल", "वायुमंडलीय जलवाष्प"],
+                correctText: "हिमानी और बर्फ की चादरें (Glaciers & Ice Caps)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के अलवण जल का लगभग 68.7% भाग ध्रुवीय क्षेत्रों और ग्लेशियरों में बर्फ के रूप में जमा हुआ है।"
+            },
+            {
+                q: "महासागरीय जल में गतिकी (Circulation) के लिए उत्तरदायी 'थर्मोहलाइन सर्कुलेशन' (Thermokhaline Circulation) किससे संबंधित है?",
+                options: ["तापमान और लवणता के अंतर से उत्पन्न घनत्व धाराएँ (Deep Ocean Conveyor Belt)", "हवा की गति", "चंद्रमा का आकर्षण", "केवल सूर्य की किरणें"],
+                correctText: "तापमान और लवणता के अंतर से उत्पन्न घनत्व धाराएँ (Deep Ocean Conveyor Belt)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• थर्मोहलाइन सर्कुलेशन गहरे महासागरों में पानी के तापमान (Thermo) और लवणता (Haline) के कारण घनत्व में अंतर से चलने वाली वैश्विक कन्वेयर बेल्ट है।"
+            },
+            {
+                q: "विश्व की सबसे बड़ी प्रवाल भित्ति (Great Barrier Reef) किस देश के तट के पास स्थित है?",
+                options: ["ऑस्ट्रेलिया (क्वींसलैंड तट)", "इंडोनेशिया", "फिलिपींस", "मेडागास्कर"],
+                correctText: "ऑस्ट्रेलिया (क्वींसलैंड तट)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रेलिया के उत्तर-पूर्वी तट पर स्थित **ग्रेट बैरियर रीफ** दुनिया की सबसे बड़ी मूंगा (कोरल) चट्टान है जो अंतरिक्ष से भी दिखाई देती है।"
+            },
+            {
+                q: "लक्षद्वीप (Lakshadweep) द्वीप समूह किस प्रकार के द्वीपों का उदाहरण है?",
+                options: ["प्रवाल द्वीप / अटोल (Coral / Atoll Islands)", "ज्वालामुखी द्वीप", "विवर्तनीय द्वीप", "डेल्टाई द्वीप"],
+                correctText: "प्रवाल द्वीप / अटोल (Coral / Atoll Islands)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का लक्षद्वीप समूह प्रवाल भित्तियों (Corals) के निक्षेपण से बने एटोल द्वीप हैं।"
+            },
+            {
+                q: "समुद्र विज्ञान में 'महाद्वीपीय मन्नतट' (Continental Shelf) का आर्थिक महत्व क्यों सर्वाधिक है?",
+                options: ["यहाँ पेट्रोलियम, प्राकृतिक गैस और प्रचुर मत्स्य संसाधन पाए जाते हैं", "यहाँ गहराई बहुत अधिक होती है", "यह पर्यटन के लिए है", "यहाँ कोई जीव नहीं रहता"],
+                correctText: "यहाँ पेट्रोलियम, प्राकृतिक गैस और प्रचुर मत्स्य संसाधन पाए जाते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाद्वीपीय मन्नतट उथले होने के कारण खनिज तेल, प्राकृतिक गैस और मछली उत्पादन के सबसे बड़े भंडार हैं (जैसे बॉम्बे हाई)।"
+            }
+        ];
+
+        let quizDataOceanography6 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataOceanography6 = rawQuizDataOceanography6.map(item => {
+                let options = [...item.options];
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(item.correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataOceanography6;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testj6_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testj6_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने टेस्ट 6 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Oceanography Test 6 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* समुद्र विज्ञान, वर्षन, ज्वार-भाटा एवं धाराएँ\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testj6.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testj6_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
