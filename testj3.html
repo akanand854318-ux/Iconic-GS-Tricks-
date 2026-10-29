@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Geography - Mock Test 3 (अक्षांश, देशांतर एवं पृथ्वी की गतियाँ) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">विश्व भूगोल - मॉक टेस्ट 3 (अक्षांश, देशांतर व पृथ्वी की गतियाँ)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Test 3)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">World Geography - Test 3 (अक्षांश, देशांतर एवं पृथ्वी की गतियाँ)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // विश्व भूगोल - महाद्वीपीय विस्थापन, प्लेट विवर्तनिकी, अक्षांश-देशांतर और पृथ्वी की गतियाँ (100 महत्वपूर्ण प्रश्न - Corrected Answers)
+        const rawQuizDataGeography3 = [
+            {
+                q: "महाद्वीपीय विस्थापन सिद्धांत (Continental Drift Theory) का प्रतिपादन किसने किया था?",
+                options: ["अल्फ्रेड वेगनर", "हैरी हेस", "आर्थर होम्स", "वै L. Pichon"],
+                correctText: "अल्फ्रेड वेगनर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अल्फ्रेड वेगनर (Alfred Wegener) ने 1912 में महाद्वीपीय विस्थापन सिद्धांत प्रस्तुत किया था जिसके अनुसार पहले सभी महाद्वीप आपस में जुड़े हुए थे जिसे 'पेंजिया' कहा गया।"
+            },
+            {
+                q: "पेंजिया के चारों ओर स्थित विशाल महासागर को क्या नाम दिया गया था?",
+                options: ["टेथिस सागर", "पैंथालासा", "पेंटागोनिया", "बॉस सागर"],
+                correctText: "पैंथालासा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वेगनर के अनुसार पेंजिया महाद्वीप के चारों तरफ एक विशाल महाजलराशि थी जिसे **पैंथालासा (Panthalassa)** कहा गया।"
+            },
+            {
+                q: "पेंजिया का विभाजन किन दो बड़े भागों में हुआ था?",
+                options: ["लॉरेसिया और टेथिस", "उत्तरी और दक्षिणी अमेरिका", "अंगारालैंड और गोंडवानालैंड", "प्रशांत और अटलांटिक"],
+                correctText: "अंगारालैंड और गोंडवानालैंड",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पेंजिया का उत्तर भाग **अंगारालैंड (लॉरेसिया)** और दक्षिण भाग **गोंडवानालैंड** कहलाया, जिनके बीच में 'टेथिस सागर' का विकास हुआ।"
+            },
+            {
+                q: "प्लेट विवर्तनिकी सिद्धांत (Plate Tectonics Theory) का प्रतिपादन किसने किया था?",
+                options: ["अल्फ्रेड वेगनर", "डब्ल्यू. जे. मॉर्गन", "आर्थर होम्स", "दयो मैकेंजी"],
+                correctText: "डब्ल्यू. जे. मॉर्गन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्लेट विवर्तनिकी सिद्धांत को 1967 में **डब्ल्यू. जे. मॉर्गन** ने प्रतिपादित किया था, जबकि 'प्लेट' शब्द का प्रयोग सबसे पहले टूटू जोन्स विल्सन ने किया था।"
+            },
+            {
+                q: "समुद्र तल प्रसार सिद्धांत (Sea Floor Spreading Theory) किसने दिया था?",
+                options: ["बेनीऑफ़", "अल्फ्रेड वेगनर", "हैरी हेस", "अल्फ्रेड लोथार"],
+                correctText: "हैरी हेस",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हैरी हेस (Harry Hess) ने 1960 में समुद्र तल प्रसार सिद्धांत दिया, जिससे प्लेट विवर्तनिकी को मजबूती मिली।"
+            },
+            {
+                q: "ग्लोब पर कुल अक्षांश रेखाओं (Latitudes) की कुल संख्या कितनी है?",
+                options: ["179", "180", "360", "181"],
+                correctText: "181",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा सहित कुल अक्षांश रेखाओं की संख्या 181 है (यदि ध्रुवों के बिंदुओं को रेखा माना जाए)। अक्षांशों की कुल रेखाओं की संख्या 179 मानी जाती है।"
+            },
+            {
+                q: "दो क्रमिक अक्षांशों के बीच की औसत दूरी लगभग कितनी होती है?",
+                options: ["100 किलोमीटर", "111 किलोमीटर", "121 किलोमीटर", "90 किलोमीटर"],
+                correctText: "111 किलोमीटर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी की वक्रता के कारण दो क्रमिक अक्षांश रेखाओं के बीच की दूरी लगभग 111 किमी होती है।"
+            },
+            {
+                q: "भूमध्य रेखा (Equator) से उत्तर या दक्षिण की ओर जाने पर अक्षांश रेखाओं के आकार पर क्या प्रभाव पड़ता है?",
+                options: ["बढ़ते जाते हैं", "समान रहते हैं", "घटते जाते हैं", "शून्य हो जाते हैं"],
+                correctText: "घटते जाते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा सबसे बड़ा वृत्त (Great Circle) है। ध्रुवों की तरफ बढ़ने पर अक्षांश वृत्तों का आकार छोटा होता जाता है।"
+            },
+            {
+                q: "कर्क रेखा (Tropic of Cancer) का मान कितना है?",
+                options: ["23.5° दक्षिणी अक्षांश", "23.5° उत्तरी अक्षांश", "66.5° उत्तरी अक्षांश", "0° अक्षांश"],
+                correctText: "23.5° उत्तरी अक्षांश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 23.5° उत्तर अक्षांश को कर्क रेखा तथा 23.5° दक्षिण अक्षांश को मकर रेखा कहते हैं।"
+            },
+            {
+                q: "आर्कटिक वृत्त (Arctic Circle) किस अक्षांश पर स्थित है?",
+                options: ["66.5° दक्षिणी अक्षांश", "90° उत्तरी अक्षांश", "66.5° उत्तरी अक्षांश", "23.5° उत्तरी अक्षांश"],
+                correctText: "66.5° उत्तरी अक्षांश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 66.5° उत्तरी अक्षांश को आर्कटिक वृत्त और 66.5° दक्षिणी अक्षांश को अंटार्कटिक वृत्त कहते हैं।"
+            },
+            {
+                q: "ग्लोब पर खींची जाने वाली काल्पनिक उत्तर-दक्षिण रेखाओं को क्या कहते हैं?",
+                options: ["अक्षांश रेखाएँ", "देशांतर रेखाएँ", "समदाब रेखाएँ", "समोच्च रेखाएँ"],
+                correctText: "देशांतर रेखाएँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर से दक्षिण ध्रुवों को मिलाने वाली काल्पनिक अर्ध-वृत्ताकार रेखाओं को **देशांतर (Longitudes)** कहते हैं।"
+            },
+            {
+                q: "कुल देशांतर रेखाओं की संख्या कितनी होती है?",
+                options: ["180", "181", "360", "90"],
+                correctText: "360",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी गोल होने के कारण कुल 360 देशांतर रेखाएँ खींची जाती हैं (प्रत्येक 1 डिग्री पर एक देशांतर)।"
+            },
+            {
+                q: "प्रधान मध्याह्न रेखा (Prime Meridian / 0° Longitude) कहाँ से गुजरती है?",
+                options: ["पेरिस (फ्रांस)", "ग्रीनविच (लंदन, यूके)", "वाशिंगटन (यूएसए)", "टोक्यो (जापान)"],
+                correctText: "ग्रीनविच (लंदन, यूके)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 0° देशांतर रेखा को ग्रीनविच रेखा कहते हैं क्योंकि यह लंदन के पास ग्रीनविच वेधशाला से गुजरती है।"
+            },
+            {
+                q: "विषुवत रेखा पर दो देशांतरों के बीच की दूरी कितनी होती है?",
+                options: ["111 किमी", "69 किमी", "111.3 किमी", "120 किमी"],
+                correctText: "111.3 किमी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर दो देशांतरों के बीच अधिकतम दूरी 111.3 किमी होती है, जो ध्रुवों पर शून्य हो जाती है।"
+            },
+            {
+                q: "पृथ्वी को 1 डिग्री देशांतर घूमने में कितना समय लगता है?",
+                options: ["4 सेकंड", "4 मिनट", "1 घंटा", "15 मिनट"],
+                correctText: "4 मिनट",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी 24 घंटे में 360° घूमती है, अतः 1° घूमने में 24×60 / 360 = **4 मिनट** लगते हैं।"
+            },
+            {
+                q: "पृथ्वी पश्चिम से किस दिशा की ओर घूमती है?",
+                options: ["उत्तर की ओर", "दक्षिण की ओर", "पूर्व की ओर", "पश्चिम की ओर ही"],
+                correctText: "पूर्व की ओर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी अपने अक्ष पर पश्चिम से पूर्व की ओर घूर्णन करती है, जिससे सूर्योदय पूर्व में होता है।"
+            },
+            {
+                q: "यदि ग्रीनविच में दोपहर के 12 बजे हैं, तो 15° पूर्वी देशांतर पर समय क्या होगा?",
+                options: ["सुबह के 11 बजे", "दोपहर के 1 बजे", "दोपहर के 2 बजे", "शाम के 4 बजे"],
+                correctText: "दोपहर के 1 बजे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्व की ओर जाने पर समय जुड़ता है। 15° × 4 मिनट = 60 मिनट (1 घंटा) आगे होगा, यानी दोपहर 1 बजेंगे।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय तिथि रेखा (International Date Line) किसे कहा जाता है?",
+                options: ["0° देशांतर", "90° पूर्वी देशांतर", "180° देशांतर", "भूमध्य रेखा"],
+                correctText: "180° देशांतर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 180° याम्योत्तर को अंतर्राष्ट्रीय तिथि रेखा माना जाता है जहाँ तिथि बदलती है।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय तिथि रेखा को किस महासागर से होकर मोड़ा गया है ताकि स्थल भागों पर तिथि का भ्रम न हो?",
+                options: ["अटलांटिक महासागर", "प्रशांत महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "प्रशांत महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बेरिंग जलडमरूमध्य के पास अंतर्राष्ट्रीय तिथि रेखा को प्रशांत महासागर में पूर्व/पश्चिम की ओर मोड़ा गया है।"
+            },
+            {
+                q: "भारत का मानक समय (IST) ग्रीनविच समय से कितना आगे है?",
+                options: ["5 घंटे", "5 घंटे 30 मिनट", "4 घंटे 30 मिनट", "6 घंटे"],
+                correctText: "5 घंटे 30 मिनट",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का मानक समय 82.5° पूर्वी देशांतर (प्रयागराज के नैनी से) है जो GMT से 5.5 घंटे आगे है।"
+            },
+            {
+                q: "उष्ण कटिबंध (Torrid Zone) क्षेत्र किन अक्षांशों के बीच पाया जाता है?",
+                options: ["आर्कटिक वृत्त और उत्तरी ध्रुव", "कर्क रेखा और मकर रेखा के बीच", "विषुवत रेखा और आर्कटिक वृत्त", "कोई नहीं"],
+                correctText: "कर्क रेखा और मकर रेखा के बीच",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कर्क रेखा (23.5° N) और मकर रेखा (23.5° S) के बीच सूर्य की किरणें साल भर लंबवत चमकती हैं, जिसे उष्ण कटिबंध कहते हैं।"
+            },
+            {
+                q: "शीतोष्ण कटिबंध (Temperate Zone) की स्थिति कहाँ होती है?",
+                options: ["ध्रुवों के पास", "कर्क/मकर रेखा और आर्कटिक/अंटार्कटिक वृत्त के बीच", "भूमध्य रेखा पर", "केवल दक्षिणी गोलार्ध में"],
+                correctText: "कर्क/मकर रेखा और आर्कटिक/अंटार्कटिक वृत्त के बीच",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उष्ण कटिबंध और ध्रुवीय क्षेत्रों के बीच मध्यम तापमान वाले क्षेत्र को शीतोष्ण कटिबंध कहते हैं।"
+            },
+            {
+                q: "शीत कटिबंध (Frigid Zone) कहाँ पाया जाता है?",
+                options: ["विषुवत रेखा पर", "ध्रुवीय क्षेत्रों के पास (आर्कटिक/अंटार्कटिक वृत्त से ध्रुवों तक)", "रेगिस्तानों में", "महासागरों के मध्य"],
+                correctText: "ध्रुवीय क्षेत्रों के पास (आर्कटिक/अंटार्कटिक वृत्त से ध्रुवों तक)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यहाँ सूर्य की किरणें हमेशा तिरछी होती हैं जिससे अत्यधिक ठंड रहती है।"
+            },
+            {
+                q: "पृथ्वी की अपनी धुरी पर घूमने की गति को क्या कहते हैं?",
+                options: ["परिक्रमण (Revolution)", "घूर्णन (Rotation) या परिभ्रमण", "उत्परिवर्तन", "अपसौर"],
+                correctText: "घूर्णन (Rotation) या परिभ्रमण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी का अपने अक्ष पर 24 घंटे में एक चक्कर पूरा करना घूर्णन कहलाता है जिससे दिन-रात होते हैं।"
+            },
+            {
+                q: "सूर्य के चारों ओर पृथ्वी की वार्षिक गति को क्या कहते हैं?",
+                options: ["घूर्णन", "परिक्रमण (Revolution)", "अक्षीय झुकाव", "विषुव"],
+                correctText: "परिक्रमण (Revolution)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य की परिक्रमा करने की प्रक्रिया को परिक्रमण कहते हैं, जिससे ऋतु परिवर्तन होता है।"
+            },
+            {
+                q: "पृथ्वी अपने अक्ष पर कितने डिग्री झुकी हुई है?",
+                options: ["66.5 डिग्री", "23.5 डिग्री", "0 डिग्री", "90 डिग्री"],
+                correctText: "23.5 डिग्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी अपने कक्षीय तल के साथ 66.5° का कोण बनाती है और अपने ऊर्ध्वाधर अक्ष से **23.5°** झुकी हुई है।"
+            },
+            {
+                q: "ऋतु परिवर्तन (Change of Seasons) का मुख्य कारण क्या है?",
+                options: ["केवल घूर्णन", "पृथ्वी का परिक्रमण और उसका अक्षीय झुकाव", "चंद्रमा का गुरुत्वाकर्षण", "सूर्य की धब्बीय गतिविधियाँ"],
+                correctText: "पृथ्वी का परिक्रमण और उसका अक्षीय झुकाव",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के सूर्य के चक्कर लगाने और अपने अक्ष पर झुके होने के कारण अलग-अलग समय पर सूर्य का प्रकाश बदलता है।"
+            },
+            {
+                q: "ग्रीष्म अयनांत (Summer Solstice) उत्तरी गोलार्ध में किस दिन होता है?",
+                options: ["22 दिसंबर", "21 जून", "21 मार्च", "23 सितंबर"],
+                correctText: "21 जून",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 21 जून को सूर्य कर्क रेखा पर सीधा चमकता है, जिससे उत्तरी गोलार्ध में सबसे बड़ा दिन होता है।"
+            },
+            {
+                q: "शीत अयनांत (Winter Solstice) उत्तरी गोलार्ध में कब होता है?",
+                options: ["21 जून", "22 दिसंबर", "21 मार्च", "23 सितंबर"],
+                correctText: "22 दिसंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 22 दिसंबर को सूर्य मकर रेखा पर लंबवत होता है, जिससे उत्तरी गोलार्ध में सबसे लंबी रात और सबसे छोटा दिन होता है।"
+            },
+            {
+                q: "विषुव (Equinox) की स्थिति वर्ष में कितनी बार आती है?",
+                options: ["एक बार", "दो बार", "चार बार", "कभी नहीं"],
+                correctText: "दो बार",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वर्ष में दो बार (21 मार्च और 23 सितंबर) सूर्य भूमध्य रेखा पर सीधा चमकता है जिससे पूरी पृथ्वी पर दिन और रात बराबर होते हैं।"
+            },
+            {
+                q: "शरद विषुव (Autumnal Equinox) किस तिथि को होता है?",
+                options: ["21 मार्च", "21 जून", "23 सितंबर", "22 दिसंबर"],
+                correctText: "23 सितंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 21 मार्च को वसंत विषुव और 23 सितंबर को शरद विषुव होता है।"
+            },
+            {
+                q: "महाद्वीपीय विस्थापन सिद्धांत के समर्थन में अल्फ्रेड वेगनर ने कौन सा मुख्य प्रमाण दिया था?",
+                options: ["भूकंपीय तरंगें", "जिग-सॉ फिट (Jigsaw Fit) और जीवाश्मों का वितरण", "ज्वारभाटा की ऊँचाई", "महासागरीय लवणता"],
+                correctText: "जिग-सॉ फिट (Jigsaw Fit) और जीवाश्मों का वितरण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वेगनर ने अटलांटिक महासागर के दोनों तटों (दक्षिण अमेरिका और अफ्रीका) के आपस में जिग-सॉ पजल की तरह फिट होने का साक्ष्य दिया था।"
+            },
+            {
+                q: "प्लेट विवर्तनिकी सिद्धांत के अनुसार पृथ्वी का स्थलमंडल (Lithosphere) कितने मुख्य भागों में विभाजित है?",
+                options: ["3 मुख्य प्लेटें", "7 मुख्य प्लेटें", "12 मुख्य प्लेटें", "20 मुख्य प्लेटें"],
+                correctText: "7 मुख्य प्लेटें",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी की पपड़ी 7 प्रमुख (Major) और कई छोटी विवर्तनिक प्लेटों में बंटी हुई है जो एस्थेस्फेयर पर तैरती हैं।"
+            },
+            {
+                q: "इनमें से कौन सी एक मुख्य विवर्तनिक प्लेट नहीं है?",
+                options: ["प्रशांत प्लेट", "यूरोपीय प्लेट", "कोकोस प्लेट", "इंडो-ऑस्ट्रेलियन प्लेट"],
+                correctText: "कोकोस प्लेट",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कोकोस प्लेट एक छोटी प्लेट (Minor Plate) है, जबकि प्रशांत, यूरेशियन, अफ्रीकी आदि मुख्य प्लेटें हैं।"
+            },
+            {
+                q: "अग्नि वलय (Ring of Fire) किस महासागर में स्थित है?",
+                options: ["अटलांटिक महासागर", "प्रशांत महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctText: "प्रशांत महासागर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रशांत महासागर की प्लेट सीमाओं पर भारी ज्वालामुखी और भूकंप आने के कारण इसे 'रिंग ऑफ फायर' कहते हैं।"
+            },
+            {
+                q: "हिमालय पर्वत का निर्माण किस सिद्धांत या प्रक्रिया का परिणाम है?",
+                options: ["अपसारी सीमा", "अभिसारी प्लेट सीमा (Convergent Boundary - यूरेशियन और भारतीय प्लेट की टक्कर)", "रूपांतरण भ्रंश", "ज्वालामुखी उद्गार"],
+                correctText: "अभिसारी प्लेट सीमा (Convergent Boundary - यूरेशियन और भारतीय प्लेट की टक्कर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारतीय प्लेट और यूरेशियन प्लेट के आपस में टकराने (अभिसरण) से टेथिस सागर के तल पर तहदार पर्वत (हिमालय) का निर्माण हुआ।"
+            },
+            {
+                q: "सैन एंड्रियस फॉल्ट (San Andreas Fault) किस प्रकार के प्लेट किनारे का उदाहरण है?",
+                options: ["अभिसारी सीमा", "अपसारी सीमा", "रूपांतरण भ्रंश सीमा (Transform Fault)", "सबडक्शन जोन"],
+                correctText: "रूपांतरण भ्रंश सीमा (Transform Fault)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कैलिफोर्निया का सैन एंड्रियस फॉल्ट एक ट्रांसफॉर्म फॉल्ट है जहाँ प्लेटें एक दूसरे के बगल से फिसलती हैं।"
+            },
+            {
+                q: "अटलांटिक महासागर के मध्य में स्थित कछार (Mid-Atlantic Ridge) किसका परिणाम है?",
+                options: ["अभिसारी सीमा", "अपसारी प्लेट सीमा (Divergent Boundary)", "भ्रंशन", "अग्नि उद्गार"],
+                correctText: "अपसारी प्लेट सीमा (Divergent Boundary)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अटलांटिक कछार के पास प्लेटें एक-दूसरे से दूर जा रही हैं (अपसरण) जिससे नया मैग्मा बाहर आकर कछार बनाता है।"
+            },
+            {
+                q: "भू-मध्य रेखा (Equator) पर एक डिग्री देशांतर की दूरी लगभग कितनी होती है?",
+                options: ["111 किमी", "111.3 किमी", "100 किमी", "150 किमी"],
+                correctText: "111.3 किमी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर देशांतरों के बीच की दूरी सबसे अधिक 111.3 किमी होती है।"
+            },
+            {
+                q: "ध्रुवों की ओर बढ़ने पर देशांतर रेखाओं के बीच की दूरी पर क्या प्रभाव पड़ता है?",
+                options: ["बढ़ती जाती है", "कम होती जाती है और ध्रुवों पर शून्य हो जाती है", "समान रहती है", "अनंत हो जाती है"],
+                correctText: "कम होती जाती है और ध्रुवों पर शून्य हो जाती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चूंकि सभी देशांतर रेखाएँ उत्तरी और दक्षिणी ध्रुव पर जाकर मिलती हैं, इसलिए ध्रुवों पर इनके बीच की दूरी शून्य हो जाती है।"
+            },
+            {
+                q: "मकर रेखा (Tropic of Capricorn) का अक्षांशीय मान क्या है?",
+                options: ["23.5° उत्तर", "23.5° दक्षिण", "66.5° दक्षिण", "0°"],
+                correctText: "23.5° दक्षिण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिणी गोलार्ध में 23.5° अक्षांश रेखा को मकर रेखा कहा जाता है।"
+            },
+            {
+                q: "अंटार्कटिक वृत्त किस अक्षांश पर स्थित है?",
+                options: ["66.5° उत्तरी अक्षांश", "66.5° दक्षिणी अक्षांश", "90° दक्षिण", "23.5° दक्षिण"],
+                correctText: "66.5° दक्षिणी अक्षांश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 66.5° दक्षिण अक्षांश को अंटार्कटिक वृत्त कहते हैं।"
+            },
+            {
+                q: "किस रेखा को 'ग्रेट सर्किल' (महावृत्त) कहा जाता है?",
+                options: ["कर्क रेखा", "विषुवत रेखा (Equator)", "मकर रेखा", "प्राइम मेरिडियन"],
+                correctText: "विषुवत रेखा (Equator)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पृथ्वी को दो बराबर गोलार्धों में बांटती है और यह सबसे बड़ा वृत्त बनाती है, इसलिए इसे महावृत्त कहते हैं।"
+            },
+            {
+                q: "पृथ्वी पर कुल कितने ताप कटिबंध (Heat Zones) प्रमुख रूप से पाए जाते हैं?",
+                options: ["दो", "तीन", "चार", "पाँच"],
+                correctText: "तीन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मुख्य रूप से तीन ताप कटिबंध हैं: उष्ण कटिबंध, शीतोष्ण कटिबंध और शीत कटिबंध।"
+            },
+            {
+                q: "स्थानीय समय (Local Time) का निर्धारण किससे किया जाता है?",
+                options: ["ग्रीनविच समय", "सूर्य की आकाश में स्थिति (मध्याह्न)", "घड़ी की सुई", "ध्रुव तारा"],
+                correctText: "सूर्य की आकाश में स्थिति (मध्याह्न)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब सूर्य आकाश में सबसे ऊंचे बिंदु (मध्याह्न) पर होता है, तो उस स्थान पर दोपहर के 12 बजे माने जाते हैं, इसे स्थानीय समय कहते हैं।"
+            },
+            {
+                q: "मानक समय (Standard Time) क्यों निर्धारित किया जाता है?",
+                options: ["केवल रेलवे के लिए", "पूरे देश में एक समान समय बनाए रखने के लिए", "खगोलीय गणना के लिए", "मौसम जानने के लिए"],
+                correctText: "पूरे देश में एक समान समय बनाए रखने के लिए",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एक ही देश में देशांतर बदलने के साथ स्थानीय समय बदल जाता है, अतः भ्रम से बचने के लिए देश के मध्य के देशांतर को मानक समय माना जाता है।"
+            },
+            {
+                q: "भारत में मानक समय रेखा किस शहर के पास से गुजरती है?",
+                options: ["दिल्ली", "प्रयागराज (नैनी / मिर्जापुर)", "भोपाल", "नागपुर"],
+                correctText: "प्रयागराज (नैनी / मिर्जापुर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 82.5° पूर्वी देशांतर रेखा उत्तर प्रदेश में प्रयागराज के पास नैनी (मिर्जापुर) से गुजरती है।"
+            },
+            {
+                q: "भारत का मानक समय कितने राज्यों से होकर गुजरता है?",
+                options: ["8 राज्यों", "5 राज्यों", "4 राज्यों", "6 राज्यों"],
+                correctText: "5 राज्यों",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• IST रेखा उत्तर प्रदेश, मध्य प्रदेश, छत्तीसगढ़, ओडिशा और आंध्र प्रदेश (कुल 5 राज्यों) से गुजरती है।"
+            },
+            {
+                q: "विश्व को कुल कितने समय क्षेत्रों (Time Zones) में बांटा गया है?",
+                options: ["12 समय क्षेत्र", "24 समय क्षेत्र", "36 समय क्षेत्र", "60 समय क्षेत्र"],
+                correctText: "24 समय क्षेत्र",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी को 360° देशांतर के आधार पर 15° के अंतराल पर कुल 24 प्रमुख समय क्षेत्रों में विभाजित किया गया है।"
+            },
+            {
+                q: "रूस देश में कुल कितने समय क्षेत्र (Time Zones) हैं?",
+                options: ["24", "11", "5", "9"],
+                correctText: "11",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्षेत्रफल की विशालता के कारण रूस में कुल 11 समय क्षेत्र हैं (जबकि फ्रांस के overseas territories को मिलाकर सबसे ज्यादा हैं)।"
+            },
+            {
+                q: "यदि कोई यात्री अंतर्राष्ट्रीय तिथि रेखा को पश्चिम से पूर्व की ओर पार करता है, तो क्या होता है?",
+                options: ["एक दिन घटा दिया जाता है", "एक दिन जोड़ दिया जाता है (समय बढ़ जाता है)", "समय में कोई बदलाव नहीं होता", "घंटे बदल जाते हैं"],
+                correctText: "एक दिन जोड़ दिया जाता है (समय बढ़ जाता है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पश्चिम से पूर्व (एशिया से अमेरिका की तरफ) जाने पर 1 दिन जोड़ दिया जाता है, और पूर्व से पश्चिम जाने पर 1 दिन घटाया जाता है।"
+            },
+            {
+                q: "पृथ्वी के घूर्णन की दिशा क्या होती है?",
+                options: ["पूर्व से पश्चिम", "पश्चिम से पूर्व", "उत्तर से दक्षिण", "दक्षिण से उत्तर"],
+                correctText: "पश्चिम से पूर्व",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी अपनी धुरी पर पश्चिम से पूर्व की ओर घूमती है।"
+            },
+            {
+                q: "दैनिक गति (Daily Motion) किसे कहा जाता है?",
+                options: ["पृथ्वी के परिक्रमण को", "पृथ्वी के घूर्णन को", "चंद्रमा की गति को", "तारे के मूवमेंट को"],
+                correctText: "पृथ्वी के घूर्णन को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के घूर्णन को दैनिक गति कहते हैं क्योंकि यह 24 घंटे में एक चक्र पूरा करती है।"
+            },
+            {
+                q: "वार्षिक गति (Annual Motion) किसे कहते हैं?",
+                options: ["घूर्णन को", "पृथ्वी के सूर्य के चारों ओर परिक्रमण को", "सौरमंडल की गति को", "आकाशगंगा के चक्कर को"],
+                correctText: "पृथ्वी के सूर्य के चारों ओर परिक्रमण को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य की एक परिक्रमा 365 दिन में पूरी होने के कारण इसे वार्षिक गति कहते हैं।"
+            },
+            {
+                q: "लीप वर्ष (Leap Year) में कुल कितने दिन होते हैं?",
+                options: ["365 दिन", "366 दिन", "364 दिन", "360 दिन"],
+                correctText: "366 दिन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी द्वारा सूर्य की परिक्रमा में 365 दिन और लगभग 6 घंटे लगते हैं। 4 साल में ये 6 घंटे मिलकर 24 घंटे (1 दिन) बन जाते हैं जिससे फरवरी में 29 दिन होते हैं।"
+            },
+            {
+                q: "उत्तरी गोलार्ध में सबसे छोटा दिन किस तारीख को होता है?",
+                options: ["21 जून", "22 दिसंबर", "21 मार्च", "23 सितंबर"],
+                correctText: "22 दिसंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 22 दिसंबर को उत्तरी गोलार्ध में सूर्य की किरणें सबसे तिरछी होती हैं जिससे सबसे छोटा दिन और लंबी रात होती है।"
+            },
+            {
+                q: "दक्षिणी गोलार्ध में ग्रीष्म ऋतु कब होती है?",
+                options: ["जून से अगस्त के दौरान", "दिसंबर से फरवरी के दौरान", "मार्च से मई", "सितंबर से नवंबर"],
+                correctText: "दिसंबर से फरवरी के दौरान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब उत्तरी गोलार्ध में शीत ऋतु होती है (दिसंबर), तब दक्षिणी गोलार्ध में सूर्य की सीधी किरणें पड़ने से ग्रीष्म ऋतु होती है।"
+            },
+            {
+                q: "किस तिथि को संपूर्ण पृथ्वी पर दिन और रात की अवधि बराबर होती है?",
+                options: ["21 जून और 22 दिसंबर", "21 मार्च और 23 सितंबर", "4 जुलाई और 3 जनवरी", "1 जनवरी और 31 दिसंबर"],
+                correctText: "21 मार्च और 23 सितंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुव के दिन (21 मार्च और 23 सितंबर) सूर्य भूमध्य रेखा के ठीक ऊपर होता है जिससे पूरी पृथ्वी पर 12 घंटे का दिन और 12 घंटे की रात होती है।"
+            },
+            {
+                q: "ध्रुवों पर कितने महीने का दिन और कितने महीने की रात होती है?",
+                options: ["3 महीने का दिन और 3 महीने की रात", "6 महीने का दिन और 6 महीने की रात", "12 महीने दिन", "कोई निश्चित नहीं"],
+                correctText: "6 महीने का दिन और 6 महीने की रात",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के अक्षीय झुकाव के कारण एक ध्रुव पर लगातार 6 महीने सूरज दिखाई देता है और दूसरे ध्रुव पर अंधेरा रहता है।"
+            },
+            {
+                q: "महाद्वीपीय विस्थापन के पक्ष में 'पेलियोमैग्नेटिज्म' (पुरातत्त्व चुंबकत्व) का प्रमाण किसने दिया था?",
+                options: ["वेगनर", "ब्लेक और वाइन-मैथ्यूज", "हैरी हेस", "हॉम्स"],
+                correctText: "ब्लेक और वाइन-मैथ्यूज",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महासागरीय चट्टानों के चुंबकीय अध्ययन (पेलियोमैग्नेटिज्म) ने प्लेट विवर्तनिकी और महाद्वीपीय विस्थापन को अकाट्य प्रमाण दिए।"
+            },
+            {
+                q: "प्लेटों के क्षेपण क्षेत्र (Subduction Zone) में सामान्यतः क्या उत्पन्न होता है?",
+                options: ["केवल मैदान", "गहरे महासागरीय गर्त और भूकंप/ज्वालामुखी", "नदियाँ", "मरुस्थल"],
+                correctText: "गहरे महासागरीय गर्त और भूकंप/ज्वालामुखी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारी प्लेट हल्की प्लेट के नीचे धंसती है (सबडक्शन), जिससे ट्रेंच (गर्त) और तीव्र भूकंप/ज्वालामुखी पैदा होते हैं।"
+            },
+            {
+                q: "इनमें से कौन सा बल महाद्वीपीय विस्थापन के लिए वेगनर द्वारा सुझाया गया था लेकिन भौतिक रूप से असंभव माना गया?",
+                options: ["गुरुत्वाकर्षण बल", "पोलर फ्लीइंग फोर्स (ध्रुवीय भागने का बल) और ज्वारीय बल", "चुंबकीय बल", "नाभिकीय बल"],
+                correctText: "पोलर फ्लीइंग फोर्स (ध्रुवीय भागने का बल) और ज्वारीय बल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वेगनर ने पृथ्वी के घूर्णन के कारण अपकेंद्रीय बल और सूर्य/चंद्रमा के ज्वारीय बल को जिम्मेदार बताया था जो बाद में गलत साबित हुआ।"
+            },
+            {
+                q: "संवलन धारा सिद्धांत (Convection Current Theory) भूगर्भ में किसने प्रस्तुत किया था?",
+                options: ["हैरी हेस", "आर्थर होम्स", "वेगनर", "मॉर्गन"],
+                correctText: "आर्थर होम्स",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आर्थर होम्स ने 1930 के दशक में मेंटल में संवहन धाराओं का सिद्धांत दिया जो प्लेटों की गति का कारण बनता है।"
+            },
+            {
+                q: "कौन सी रेखा अफ्रीका महाद्वीप के लगभग मध्य से गुजरती है?",
+                options: ["केवल कर्क रेखा", "केवल विषुवत रेखा", "विषुवत रेखा, कर्क और मकर रेखा तीनों", "कोई नहीं"],
+                correctText: "विषुवत रेखा, कर्क और मकर रेखा तीनों",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अफ्रीका दुनिया का एकमात्र ऐसा महाद्वीप है जिससे विषुवत रेखा, कर्क रेखा और मकर रेखा तीनों गुजरती हैं।"
+            },
+            {
+                q: "प्राइम मेरिडियन (0° देशांतर) इनमें से किस देश से होकर नहीं गुजरती है?",
+                options: ["यूनाइटेड किंगडम (यूके)", "भारत", "फ्रांस", "घाना"],
+                correctText: "भारत",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रीनविच रेखा यूके, फ्रांस, स्पेन, अल्जीरिया, माली, घाना आदि से गुजरती है लेकिन भारत से नहीं।"
+            },
+            {
+                q: "भारत का कुल अक्षांशीय विस्तार (Latitudinal Extent) लगभग कितना है?",
+                options: ["6°4' से 37°6'", "8°4' उत्तर से 37°6' उत्तर", "1° से 90°", "0° से 30°"],
+                correctText: "8°4' उत्तर से 37°6' उत्तर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मुख्य भूमि पर भारत का विस्तार 8°4' N से 37°6' N अक्षांश के बीच है।"
+            },
+            {
+                q: "भारत का देशांतरिय विस्तार (Longitudinal Extent) लगभग कितना है?",
+                options: ["60° से 90°", "68°7' पूर्व से 97°25' पूर्व", "70° से 100°", "80° से 100°"],
+                correctText: "68°7' पूर्व से 97°25' पूर्व",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का देशांतरिय विस्तार 68°7' E से 97°25' E तक है, जिससे गुजरात और अरुणाचल प्रदेश के समय में लगभग 2 घंटे का अंतर होता है।"
+            },
+            {
+                q: "अरुणाचल प्रदेश और गुजरात के स्थानीय समय में लगभग कितने समय का अंतर है?",
+                options: ["लगभग 1 घंटा", "लगभग 2 घंटे", "लगभग 30 मिनट", "कोई अंतर नहीं"],
+                correctText: "लगभग 2 घंटे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लगभग 30° देशांतर का अंतर होने के कारण 30 × 4 = 120 मिनट (2 घंटे) का अंतर होता है।"
+            },
+            {
+                q: "ग्लोब पर दो अक्षांशों के बीच की रेखा को क्या कहते हैं?",
+                options: ["ग्रिड", "यह कोई विशेष रेखा नहीं होती, केवल दूरी मापते हैं", "याम्योत्तर", "भूमध्य रेखा"],
+                correctText: "यह कोई विशेष रेखा नहीं होती, केवल दूरी मापते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अक्षांश रेखाएँ एक-दूसरे के समांतर पूर्व-पश्चिम खींची जाती हैं।"
+            },
+            {
+                q: "सभी देशांतर रेखाएँ कैसी होती हैं?",
+                options: ["पूर्ण वृत्त", "समानांतर रेखाएँ", "अर्धवृत्त (Semicircles) जो दोनों ध्रुवों पर मिलती हैं", "जिग-जैग रेखाएँ"],
+                correctText: "अर्धवृत्त (Semicircles) जो दोनों ध्रुवों पर मिलती हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रत्येक देशांतर रेखा एक अर्धवृत्त होती है जो उत्तर ध्रुव से दक्षिण ध्रुव तक जाती है।"
+            },
+            {
+                q: "अपसौर (Aphelion) की स्थिति में पृथ्वी सूर्य से कितनी दूर होती है?",
+                options: ["लगभग 147 मिलियन किमी", "लगभग 152 मिलियन किमी", "लगभग 150 मिलियन किमी", "लगभग 160 मिलियन किमी"],
+                correctText: "लगभग 152 मिलियन किमी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 4 जुलाई को अपसौर के समय पृथ्वी सूर्य से अधिकतम दूरी (~152 मिलियन किमी) पर होती है।"
+            },
+            {
+                q: "उपसौर (Perihelion) की स्थिति में पृथ्वी सूर्य के कितने निकट होती है?",
+                options: ["लगभग 152 मिलियन किमी", "लगभग 147 मिलियन किमी", "लगभग 140 मिलियन किमी", "लगभग 145 मिलियन किमी"],
+                correctText: "लगभग 147 मिलियन किमी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 3 जनवरी को उपसौर के समय पृथ्वी सूर्य के सबसे निकट (~147 मिलियन किमी) होती है।"
+            },
+            {
+                q: "पृथ्वी के घूर्णन की चाल भूमध्य रेखा पर लगभग कितनी होती है?",
+                options: ["लगभग 1000 किमी/घंटा", "लगभग 1670 किमी/घंटा", "लगभग 3000 किमी/घंटा", "लगभग 500 किमी/घंटा"],
+                correctText: "लगभग 1670 किमी/घंटा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर पृथ्वी की परिधि और 24 घंटे के हिसाब से रेखीय गति लगभग 1670 किमी/घंटा होती है।"
+            },
+            {
+                q: "ध्रुवों पर पृथ्वी के घूर्णन की रेखीय गति कितनी होती है?",
+                options: ["1670 किमी/घंटा", "शून्य (0)", "100 किमी/घंटा", "अन्नत"],
+                correctText: "शून्य (0)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्रुव अपने ही अक्ष पर बिंदुवत घूमते हैं अतः वहाँ घूर्णन रेखीय गति शून्य होती है।"
+            },
+            {
+                q: "पेंजिया के टूटने के बाद उत्तर की ओर खिसकने वाले भूभाग से किस महाद्वीप का निर्माण मुख्य रूप से नहीं हुआ?",
+                options: ["उत्तरी अमेरिका", "यूरोपीय भाग", "अंटार्कटिका", "एशिया का उत्तरी हिस्सा"],
+                correctText: "अंटार्कटिका",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंगारालैंड (लॉरेसिया) से उत्तरी अमेरिका, यूरोप और एशिया बने, जबकि अंटार्कटिका गोंडवानालैंड का हिस्सा था।"
+            },
+            {
+                q: "गोंडवानालैंड का हिस्सा इनमें से कौन सा नहीं था?",
+                options: ["प्रायद्वीपीय भारत", "उत्तरी अमेरिका", "ऑस्ट्रेलिया", "अंटार्कटिका"],
+                correctText: "उत्तरी अमेरिका",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रायद्वीपीय भारत, ऑस्ट्रेलिया, दक्षिण अमेरिका, अफ्रीका और अंटार्कटिका गोंडवानालैंड के अंग थे जबकि उत्तरी अमेरिका लॉरेसिया का था।"
+            },
+            {
+                q: "प्लेट विवर्तनिकी सिद्धांत द्वारा किसकी व्याख्या सफलताપૂર્વक की जा सकती है?",
+                options: ["केवल हवाओं की", "भूकंप, ज्वालामुखी, पर्वत निर्माण और महाद्वीपीयdrift सभी की", "केवल समुद्र की लहरों की", "केवल बादलों की"],
+                correctText: "भूकंप, ज्वालामुखी, पर्वत निर्माण और महाद्वीपीयdrift सभी की",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्लेट टेक्टोनिक्स आधुनिक भूविज्ञान का सबसे सफल सिद्धांत है जो पृथ्वी की अधिकांश आंतरिक हलचलों की व्याख्या करता है।"
+            },
+            {
+                q: "भूमध्य रेखा पर कोरिऑलिस बल (Coriolis Force) का मान कितना होता है?",
+                options: ["सर्वाधिक", "शून्य (0)", "मध्यम", "अनंत"],
+                correctText: "शून्य (0)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर कोरिऑलिस बल शून्य होता है, यही कारण है कि वहाँ चक्रवात नहीं आते हैं।"
+            },
+            {
+                q: "कोरिऑलिस बल उत्तरी गोलार्ध में हवाओं को किस दिशा में विक्षेपित करता है?",
+                options: ["अपनी बाईं ओर", "अपनी दाईं ओर", "सीधे", "नीचे की ओर"],
+                correctText: "अपनी दाईं ओर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फेरेल के नियम के अनुसार कोरिऑलिस बल के कारण उत्तरी गोलार्ध में हवाएँ दाईं ओर और दक्षिणी गोलार्ध में बाईं ओर मुड़ जाती हैं।"
+            },
+            {
+                q: "चंद्र ग्रहण (Lunar Eclipse) हमेशा किस खगोलीय स्थिति में होता है?",
+                options: ["अमावस्या के दिन", "पूर्णिमा के दिन जब सूर्य और चंद्रमा के बीच पृथ्वी होती है", "किसी भी दिन", "केवल सप्तमी को"],
+                correctText: "पूर्णिमा के दिन जब सूर्य और चंद्रमा के बीच पृथ्वी होती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब सूर्य और चंद्रमा के बीच पृथ्वी आ जाती है और उसकी छाया चंद्रमा पर पड़ती है, तब पूर्णिमा को चंद्र ग्रहण होता है।"
+            },
+            {
+                q: "सूर्य ग्रहण (Solar Eclipse) हमेशा किस दिन घटित होता है?",
+                options: ["पूर्णिमा के दिन", "अमावस्या के दिन जब चंद्रमा सूर्य और पृथ्वी के बीच होता है", "संक्रांति को", "चतुर्दशी को"],
+                correctText: "अमावस्या के दिन जब चंद्रमा सूर्य और पृथ्वी के बीच होता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अमावस्या के दिन जब चंद्रमा सूर्य को ढक लेता है तब सूर्य ग्रहण होता है।"
+            },
+            {
+                q: "पृथ्वी के वायुमंडल में 'ओजोन परत' मुख्य रूप से कहाँ पाई जाती है?",
+                options: ["क्षोभ मंडल", "समताप मंडल (Stratosphere)", "मध्य मंडल", "आयन मंडल"],
+                correctText: "समताप मंडल (Stratosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओजोन परत समताप मंडल के निचले हिस्से में पाई जाती है जो सूर्य की हानिकारक पराबैंगनी किरणों को रोकती है।"
+            },
+            {
+                q: "अंतरिक्ष से देखने पर पृथ्वी नीली क्यों दिखाई देती है?",
+                options: ["आकाश के परावर्तन से", "जल की अधिकता (लगभग 71% भाग पर जल) के कारण", "वनों के कारण", "धूलकणों से"],
+                correctText: "जल की अधिकता (लगभग 71% भाग पर जल) के कारण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी की सतह के लगभग 71% हिस्से पर जल होने के कारण अंतरिक्ष से यह नीले रंग की दिखाई देती है, इसलिए इसे नीला ग्रह कहते हैं।"
+            },
+            {
+                q: "विश्व में सबसे पहले किस देश ने मानक समय की प्रणाली को अपनाया था?",
+                options: ["भारत", "ग्रेट ब्रिटेन (यूके)", "संयुक्त राज्य अमेरिका", "फ्रांस"],
+                correctText: "ग्रेट ब्रिटेन (यूके)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रेलवे के विकास के बाद समय की एकरूपता के लिए सबसे पहले ब्रिटेन ने ग्रीनविच मीन टाइम (GMT) को अपनाया था।"
+            },
+            {
+                q: "इनमें से कौन सी रेखा भारत के लगभग बीचों-बीच से गुजरती है?",
+                options: ["मकर रेखा", "कर्क रेखा (23.5° N)", "विषुवत रेखा", "आर्कटिक वृत्त"],
+                correctText: "कर्क रेखा (23.5° N)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कर्क रेखा भारत को लगभग दो बराबर हिस्सों (उष्ण और उपोष्ण कटिबंध) में बांटती है।"
+            },
+            {
+                q: "तारीखों का फेरबदल सबसे पहले किस रेखा को पार करने पर होता है?",
+                options: ["0° ग्रीनविच रेखा", "180° देशांतर (अंतर्राष्ट्रीय तिथि रेखा)", "82.5° पूर्वी देशांतर", "विषुवत रेखा"],
+                correctText: "180° देशांतर (अंतर्राष्ट्रीय तिथि रेखा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतर्राष्ट्रीय तिथि रेखा को पार करते ही कैलेंडर की तिथि बदल जाती है।"
+            },
+            {
+                q: "पृथ्वी के सबसे ऊपरी ठोस आवरण (Crust) को क्या कहा जाता है?",
+                options: ["एस्थेनोस्फीयर", "स्थलमंडल (Lithosphere)", "बेरिस्फयर", "पाइरोस्फीयर"],
+                correctText: "स्थलमंडल (Lithosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी की पपड़ी और ऊपरी मेंटल का ठोस हिस्सा मिलकर स्थलमंडल (Lithosphere) बनाता है।"
+            },
+            {
+                q: "महाद्वीपीय बहाव सिद्धांत के अनुसार कार्बोनिफेरस युग में सभी महाद्वीप आपस में मिलकर क्या बनाते थे?",
+                options: ["गोंडवाना", "पेंजिया", "लॉरेसिया", "रोडिनिया"],
+                correctText: "पेंजिया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कार्बोनिफेरस काल में पृथ्वी के सभी भूभाग आपस में जुड़े हुए थे जिसे पेंजिया कहा गया।"
+            },
+            {
+                q: "प्रशांत महासागर के चारों ओर सक्रिय ज्वालामुखियों की पेटी को क्या कहा जाता है?",
+                options: ["ज्वालामुखी चाप", "रिंग ऑफ़ फायर (प्रशांत अग्नि वलय)", "भूकंप पेटी", "सुनामी जोन"],
+                correctText: "रिंग ऑफ़ फायर (प्रशांत अग्नि वलय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यहाँ दुनिया के लगभग 75% सक्रिय ज्वालामुखी स्थित हैं।"
+            },
+            {
+                q: "पृथ्वी अपने कक्षीय तल (Orbital Plane) के साथ कितने अंश का कोण बनाती है?",
+                options: ["23.5°", "66.5°", "90°", "0°"],
+                correctText: "66.5°",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी का कक्षीय तल के साथ झुकाव 66.5° का है (जबकि इसके ऊर्ध्वाधर अक्ष से 23.5° है)।"
+            },
+            {
+                q: "किस खगोलीय स्थिति में उत्तरी गोलार्ध में सबसे बड़ा दिन और सबसे छोटी रात होती है?",
+                options: ["22 दिसंबर", "21 जून (ग्रीष्म अयनांत)", "21 मार्च", "23 सितंबर"],
+                correctText: "21 जून (ग्रीष्म अयनांत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 21 जून को सूर्य कर्क रेखा पर लंबवत होता है जिससे उत्तरी गोलार्ध में सबसे बड़ा दिन होता है।"
+            },
+            {
+                q: "दक्षिणी गोलार्ध में सबसे लंबा दिन कब होता है?",
+                options: ["21 जून", "22 दिसंबर", "21 मार्च", "23 सितंबर"],
+                correctText: "22 दिसंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 22 दिसंबर को दक्षिणी गोलार्ध में ग्रीष्मकाल होने के कारण सबसे लंबा दिन होता है।"
+            },
+            {
+                q: "ग्लोब पर अक्षांश रेखाओं की प्रकृति कैसी होती है?",
+                options: ["वे ध्रुवों पर मिलती हैं", "वे एक-दूसरे के समानांतर (Parallel) होती हैं", "वे तिरछी होती हैं", "वे वृत्त नहीं बनातीं"],
+                correctText: "वे एक-दूसरे के समानांतर (Parallel) होती हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सभी अक्षांश रेखाएँ एक-दूसरे के समानांतर पूर्व से पश्चिम की ओर खींची जाती हैं।"
+            },
+            {
+                q: "विषुवत वृत्त से दोनों ध्रुवों की ओर जाने पर अक्षांशों का कोणीय मान कैसा होता है?",
+                options: ["घटता जाता है", "बढ़ता जाता है (0° से 90°)", "समान रहता है", "शून्य हो जाता है"],
+                correctText: "बढ़ता जाता है (0° से 90°)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर 0° से शुरू होकर ध्रुवों की तरफ जाने पर अक्षांश का मान बढ़कर 90° हो जाता है।"
+            },
+            {
+                q: "किस देश से होकर प्रधान मध्याह्न रेखा (0° Longitude) नहीं गुजरती?",
+                options: ["स्पेन", "अल्जीरिया", "भारत", "यूनाइटेड किंगडम"],
+                correctText: "भारत",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रीनविच रेखा भारत से नहीं गुजरती; यह यूके, फ्रांस, स्पेन आदि से निकलती है।"
+            },
+            {
+                q: "यदि आप 0° देशांतर से पूर्व की ओर 30° देशांतर पर जाते हैं, तो समय कितना आगे होगा?",
+                options: ["1 घंटा आगे", "2 घंटे आगे", "4 घंटे आगे", "30 मिनट आगे"],
+                correctText: "2 घंटे आगे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 30° × 4 मिनट = 120 मिनट यानी ठीक 2 घंटे समय आगे होगा।"
+            },
+            {
+                q: "प्लेट विवर्तनिकी के संदर्भ में 'अभिसारी सीमा' (Convergent Boundary) पर क्या होता है?",
+                options: ["प्लेटें दूर जाती हैं", "प्लेटें एक-दूसरे के पास आती हैं (टकराती हैं)", "प्लेटें बगल से निकलती हैं", "कुछ नहीं होता"],
+                correctText: "प्लेटें एक-दूसरे के पास आती हैं (टकराती हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अभिसारी किनारों पर प्लेटों की टक्कर होती है जिससे पर्वत बनते हैं या एक प्लेट नीचे धंसती है।"
+            }
+        ];
+
+        let quizDataGeography3 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataGeography3 = rawQuizDataGeography3.map(item => {
+                let options = [...item.options];
+                // Shuffle options
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(item.correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach(dist => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataGeography3;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testj3_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testj3_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने टेस्ट 3 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - World Geography Test 3 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* अक्षांश, देशांतर एवं पृथ्वी की गतियाँ\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testj3.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testj3_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
