@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climatology - Mock Test 5 (जलवायु विज्ञान, वायुमंडल, पवन एवं चक्रवात) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">जलवायु विज्ञान - मॉक टेस्ट 5 (वायुमंडल, पवन, आद्रता एवं चक्रवात)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Test 5)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Climatology - Test 5 (वायुमंडल, पवन एवं चक्रवात)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // जलवायु विज्ञान: वायुमंडल की परतें, सूर्यतप, वायुदाब, पवन, वाताग्र, चक्रवात एवं आद्रता (100 अति-महत्वपूर्ण प्रश्न)
+        const rawQuizDataClimatology5 = [
+            {
+                q: "वायुमंडल में नाइट्रोजन गैस (N2) का प्रतिशत आयतन के आधार पर लगभग कितना है?",
+                options: ["78.08%", "20.95%", "0.93%", "0.038%"],
+                correctText: "78.08%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायुमंडल में सर्वाधिक मात्रा में नाइट्रोजन (~78.08%), ऑक्सीजन (~20.95%), आर्गन (~0.93%) और कार्बन डाइऑक्साइड (~0.04%) पाई जाती है।"
+            },
+            {
+                q: "वायुमंडल की सबसे निचली परत जो मौसम संबंधी घटनाओं के लिए जानी जाती है, कौन सी है?",
+                options: ["क्षोभमंडल (Troposphere)", "समतापमंडल", "मध्यमंडल", "आयनमंडल"],
+                correctText: "क्षोभमंडल (Troposphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्षोभमंडल वायुमंडल की सबसे निचली परत है जिसमें आंधी, वर्षा, बादल और चक्रवात जैसी समस्त मौसमी घटनाएँ घटित होती हैं।"
+            },
+            {
+                q: "क्षोभमंडल की ऊँचाई ध्रुवों पर कम और विषुवत रेखा पर अधिक क्यों होती है?",
+                options: ["विषुवत रेखा पर संवहन धाराओं (Convection Currents) के कारण", "ध्रुवीय गुरुत्वाकर्षण के कारण", "पृथ्वी के घूर्णन बल से", "सूर्य के प्रकाश से"],
+                correctText: "विषुवत रेखा पर संवहन धाराओं (Convection Currents) के कारण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुवत वृत्त पर अत्यधिक गर्मी और संवहन धाराओं के कारण क्षोभमंडल की ऊँचाई लगभग 16-18 किमी होती है, जबकि ध्रुवों पर यह 8 किमी रह जाती है।"
+            },
+            {
+                q: "सामान्य ताप पतन दर (Normal Lapse Rate) क्षोभमंडल में प्रति 165 मीटर की ऊँचाई पर तापमान में कितनी कमी लाती है?",
+                options: ["1°C की कमी", "6.5°C की कमी प्रति किमी", "0.5°C की कमी", "2°C की कमी"],
+                correctText: "1°C की कमी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्षोभमंडल में प्रति 165 मीटर की ऊँचाई पर जाने पर तापमान में 1°C (या प्रति 1000 मीटर पर 6.5°C) की गिरावट आती है।"
+            },
+            {
+                q: "ओजोन परत (Ozone Layer) वायुमंडल की किस परत में पाई जाती है?",
+                options: ["समतापमंडल (Stratosphere)", "क्षोभमंडल", "मध्यमंडल", "क्षोभसीमा"],
+                correctText: "समतापमंडल (Stratosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओजोन परत मुख्य रूप से समतापमंडल के निचले हिस्से (15 से 35 किमी की ऊँचाई) में पाई जाती है, जो सूर्य की पराबैंगनी किरणों को रोकती है।"
+            },
+            {
+                q: "वायुयान (Airplanes) उड़ान भरने के लिए समतापमंडल के निचले हिस्से को क्यों पसंद करते हैं?",
+                options: ["वहाँ मौसमी घटनाएँ (बादल, आंधी) नहीं होतीं और वायु शांत होती है", "वहाँ हवा का घनत्व सबसे अधिक होता है", "वहाँ ऑक्सीजन की मात्रा ज्यादा होती है", "वहाँ गुरुत्वाकर्षण कम होता है"],
+                correctText: "वहाँ मौसमी घटनाएँ (बादल, आंधी) नहीं होतीं और वायु शांत होती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समतापमंडल का निचلا हिस्सा बादलों और मौसमी हलचलों से मुक्त होता है, जिससे विमान चालन सुगम रहता है।"
+            },
+            {
+                q: "वायुमंडल की किस परत में तापमान ऊँचाई बढ़ने के साथ तेजी से गिरने लगता है और यह सबसे ठंडी परत है?",
+                options: ["मध्यमंडल (Mesosphere)", "थर्मोस्फीयर", "समतापमंडल", "आयनमंडल"],
+                correctText: "मध्यमंडल (Mesosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्यमंडल में ऊँचाई के साथ तापमान पुनः गिरने लगता है और इसकी ऊपरी सीमा (मेसोपॉज) पर तापमान -80°C से -100°C तक पहुँच जाता है।"
+            },
+            {
+                q: "रेडियो तरंगों (Radio Waves) को पृथ्वी पर पुनः परावर्तित करने वाली वायुमंडलीय परत कौन सी है?",
+                options: ["आयनमंडल (Ionosphere) / थर्मोस्फीयर", "क्षोभमंडल", "समतापमंडल", "एक्सोस्फीयर"],
+                correctText: "आयनमंडल (Ionosphere) / थर्मोस्फीयर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आयनमंडल में विद्युत आवेशित कण (आयन) होते हैं जो पृथ्वी से भेजी गई रेडियो तरंगों को वापस परावर्तित कर संचार संभव बनाते हैं।"
+            },
+            {
+                q: "वायुमंडल की सबसे ऊपरी परत को क्या कहा जाता है?",
+                options: ["बहिरमंडल (Exosphere)", "आयनमंडल", "मध्यमंडल", "समतापमंडल"],
+                correctText: "बहिरमंडल (Exosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बहिरमंडल वायुमंडल की सबसे बाहरी परत है जहाँ वायु का घनत्व अत्यंत विरल होता है और हल्के गैसें (हाइड्रोजन/हीलियम) अंतरिक्ष में तैरती हैं।"
+            },
+            {
+                q: "सूर्यतप (Insolation) किसे कहा जाता है?",
+                options: ["पृथ्वी की सतह पर प्राप्त होने वाली सौर ऊर्जा (Incoming Solar Radiation)", "पृथ्वी द्वारा अंतरिक्ष में छोड़ी गई ऊष्मा", "सूर्य के अंदर उत्पन्न ऊर्जा", "वायुमंडल का तापमान"],
+                correctText: "पृथ्वी की सतह पर प्राप्त होने वाली सौर ऊर्जा (Incoming Solar Radiation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी को मिलने वाली कुल सौर विकिरण को 'इंसोलेशन' (Insolation) कहा जाता है।"
+            },
+            {
+                q: "पृथ्वी का औसत एल्बेडो (Albedo) लगभग कितना प्रतिशत है?",
+                options: ["30%", "50%", "10%", "70%"],
+                correctText: "30%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य के प्रकाश का जितना हिस्सा बिना गर्म किए सीधे अंतरिक्ष में परावर्तित हो जाता है उसे एल्बेडो कहते हैं। पृथ्वी का औसत एल्बेडो लगभग 30% है।"
+            },
+            {
+                q: "पृथ्वी किस विधि द्वारा अंतरिक्ष में ऊष्मा का विकिरण (Terrestrial Radiation) करती है?",
+                options: ["पार्थिव विकिरण (Long-wave Terrestrial Radiation)", "चालन (Conduction)", "संवहन (Convection)", "अभिकेंद्रण"],
+                correctText: "पार्थिव विकिरण (Long-wave Terrestrial Radiation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य लघु तरंगों के रूप में ऊर्जा देता है, जिसे पृथ्वी अवशोषित कर दीर्घ तरंगों (Long-wave Radiation) के रूप में अंतरिक्ष में लौटाती है।"
+            },
+            {
+                q: "वायुमंडल मुख्य रूप से किसके द्वारा गर्म होता है?",
+                options: ["पार्थिव विकिरण (Terrestrial Radiation)", "सूर्य की सीधी किरणों से", "प्रत्यक्ष चालन से", "ओजोन परत के अवशोषण से"],
+                correctText: "पार्थिव विकिरण (Terrestrial Radiation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सूर्य की किरणें वायुमंडल को सीधे ज्यादा गर्म नहीं करतीं; पृथ्वी की सतह गर्म होकर नीचे से वायुमंडल को गर्म करती है (पार्थिव विकिरण)।"
+            },
+            {
+                q: "वार्षिक तापीय परिसर (Annual Temperature Range) किस क्षेत्र में सबसे अधिक होता है?",
+                options: ["महाद्वीपों के आंतरिक भागों में (Continental Interiors)", "तटीय क्षेत्रों में", "विषुवत रेखा पर", "महासागरों के मध्य में"],
+                correctText: "महाद्वीपों के आंतरिक भागों में (Continental Interiors)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्र से दूर महाद्वीपों के भीतर गर्मियों में अत्यधिक गर्मी और सर्दियों में अत्यधिक ठंड पड़ती है, जिससे वार्षिक तापीय परिसर बहुत अधिक होता है।"
+            },
+            {
+                q: "समताप रेखाएँ (Isotherms) सामान्यतः किस दिशा के समांतर चलती हैं?",
+                options: ["अक्षांश रेखाओं (Latitudes) के समांतर", "देशांतर रेखाओं के समांतर", "भ्रंश रेखाओं के समांतर", "उत्तर-दक्षिण दिशा में"],
+                correctText: "अक्षांश रेखाओं (Latitudes) के समांतर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चूँकि तापमान का मुख्य नियंत्रक अक्षांश है, अतः समताप रेखाएँ सामान्यतः अक्षांश रेखाओं के समांतर पूर्व-पश्चिम फैली होती हैं।"
+            },
+            {
+                q: "वायुदाब (Atmospheric Pressure) को मापने की इकाई क्या है?",
+                options: ["मिलीबार (Millibar) या हेक्टोपैस्कल", "मीटर प्रति सेकंड", "डिग्री सेल्सियस", "प्रतिशत"],
+                correctText: "मिलीबार (Millibar) या हेक्टोपैस्कल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायुमंडलीय दाब को बैरोमीटर से मापा जाता है और इसकी इकाई मिलीबार (mb) है। समुद्र तल पर औसत दाब 1013.25 mb होता है।"
+            },
+            {
+                q: "समान वायुदाब वाले स्थानों को मिलाने वाली काल्पनिक रेखा को क्या कहते हैं?",
+                options: ["समदाब रेखा (Isobar)", "समताप रेखा", "समवर्षा रेखा", "समोच्च रेखा"],
+                correctText: "समदाब रेखा (Isobar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मानचित्र पर समान वायुदाब वाले बिंदुओं को जोड़ने वाली रेखाओं को आइसोबार (Isobars) कहते हैं।"
+            },
+            {
+                q: "पृथ्वी पर कुल कितने प्रमुख वायुदाब पेटियाँ (Pressure Belts) पाई जाती हैं?",
+                options: ["सात (7)", "चार (4)", "पाँच (5)", "दस (10)"],
+                correctText: "सात (7)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी पर कुल 7 वायुदाब पेटियाँ हैं: 1 विषुवतीय निम्न दाब पेटी, 2 उपोष्ण उच्च दाब पेटियाँ, 2 उपध्रुवीय निम्न दाब पेटियाँ और 2 ध्रुवीय उच्च दाब पेटियाँ।"
+            },
+            {
+                q: "विषुवत रेखीय निम्न वायुदाब पेटी (Equatorial Low Pressure Belt) का अन्य नाम क्या है?",
+                options: ["डोलड्रम (Doldrums / शांत पेटी)", "हॉर्स लैटीट्यूड", "रोरिंग फोर्टिज", "व्यापारिक पवन क्षेत्र"],
+                correctText: "डोलड्रम (Doldrums / शांत पेटी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा के पास क्षैतिज पवनें नहीं चलतीं, केवल संवहन धाराएँ ऊपर उठती हैं, इसलिए इस शांत क्षेत्र को 'डोलड्रम' कहते हैं।"
+            },
+            {
+                q: "अश्व अक्षांश (Horse Latitudes) किन वायुदाब पेटियों से संबंधित हैं?",
+                options: ["उपोष्ण उच्च वायुदाब पेटी (Subtropical High Pressure Belt)", "विषुवत रेखीय पेटी", "ध्रुवीय उच्च दाब", "उपध्रुवीय निम्न दाब"],
+                correctText: "उपोष्ण उच्च वायुदाब पेटी (Subtropical High Pressure Belt)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 30° से 35° उत्तर और दक्षिण अक्षांशों के पास उपोष्ण उच्च दाब पेटी होती है, जिसे प्राचीन काल में घोड़ों के व्यापार के नाम पर 'अश्व अक्षांश' कहा गया।"
+            },
+            {
+                q: "पवन हमेशा किस दिशा से किस दिशा की ओर प्रवाहित होती है?",
+                options: ["उच्च वायुदाब से निम्न वायुदाब की ओर (High to Low Pressure)", "निम्न से उच्च दाब की ओर", "उत्तर से दक्षिण की ओर हमेशा", "पूर्व से पश्चिम की ओर"],
+                correctText: "उच्च वायुदाब से निम्न वायुदाब की ओर (High to Low Pressure)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायुदाब प्रवणता के कारण हवाएँ हमेशा उच्च दाब क्षेत्र से निम्न दाब क्षेत्र की तरफ चलती हैं।"
+            },
+            {
+                q: "फेरेल का नियम (Ferrel's Law) किससे संबंधित है?",
+                options: ["पवनों के विक्षेपण (Deflection of Winds due to Coriolis force)", "तापमान मापने से", "समुद्री धाराओं से", "भूकंप की तीव्रता से"],
+                correctText: "पवनों के विक्षेपण (Deflection of Winds due to Coriolis force)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फेरेल के नियम के अनुसार पृथ्वी के घूर्णन (कोरिऑलिस बल) के कारण उत्तरी गोलार्ध में हवाएँ अपनी दाईं ओर और दक्षिणी गोलार्ध में बाईं ओर मुड़ जाती हैं।"
+            },
+            {
+                q: "व्यापारिक पवनें (Trade Winds) किस दिशा से बहती हैं?",
+                options: ["उपोष्ण उच्च दाब से विषुवत निम्न दाब की ओर", "ध्रुवों से विषुवत रेखा की ओर", "विषुवत से ध्रुवों की ओर", "पश्चिम से पूर्व की ओर"],
+                correctText: "उपोष्ण उच्च दाब से विषुवत निम्न दाब की ओर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उपोष्ण उच्च दाब पेटियों से भूमध्य रेखा की ओर बहने वाली नियमित पवनों को व्यापारिक पवनें (Trade Winds) कहते हैं।"
+            },
+            {
+                q: "पछुआ पवनें (Westerlies) किस दिशा से किस दिशा की ओर चलती हैं?",
+                options: ["उपोष्ण उच्च दाब से उपध्रुवीय निम्न दाब की ओर (पश्चिम से पूर्व)", "ध्रुवों से विषुवत रेखा की ओर", "पूर्व से पश्चिम", "उत्तर से दक्षिण"],
+                correctText: "उपोष्ण उच्च दाब से उपध्रुवीय निम्न दाब की ओर (पश्चिम से पूर्व)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उपोष्ण उच्च दाब से उपध्रुवीय निम्न दाब की ओर प्रवाहित होने वाली पवनें पछुआ पवनें कहलाती हैं जिनका रुख पश्चिम से पूर्व होता है।"
+            },
+            {
+                q: "दक्षिणी गोलार्ध में 40°, 50°, और 60° अक्षांशों के पास पछुआ पवनों की तीव्र गति के कारण उन्हें क्या कहा जाता है?",
+                options: ["गरजता चालीसा, प्रचंड पचासा, चीखता साठा (Roaring Forties, Furious Fifties, Shrieking Sixties)", "व्यापारिक पवनें", "ध्रुवीय पूर्वी पवनें", "मानसूनी हवाएँ"],
+                correctText: "गरजता चालीसा, प्रचंड पचासा, चीखता साठा (Roaring Forties, Furious Fifties, Shrieking Sixties)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिणी गोलार्ध में विशाल महासागरीय विस्तार के कारण पछुआ पवनें बहुत तेज आंधी के रूप में चलती हैं जिन्हें 40° पर गरजता चालीसा आदि कहते हैं।"
+            },
+            {
+                q: "ध्रुवीय पूर्वी पवनें (Polar Easterlies) किस दाब क्षेत्र से प्रवाहित होती हैं?",
+                options: ["ध्रुवीय उच्च दाब से उपध्रुवीय निम्न दाब की ओर", "विषुवत रेखा से ध्रुवों की ओर", "उपोष्ण उच्च दाब से ध्रुवों की ओर", "समतापमंडल से"],
+                correctText: "ध्रुवीय उच्च दाब से उपध्रुवीय निम्न दाब की ओर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्रुवीय उच्च दाब क्षेत्रों से उपध्रुवीय निम्न दाब पेटियों की ओर बहने वाली ठंडी हवाओं को ध्रुवीय पूर्वी पवनें कहते हैं।"
+            },
+            {
+                q: "मानसून (Monsoon) किस भाषा के शब्द 'मौसिम' से बना है जिसका अर्थ क्या होता है?",
+                options: ["अरबी भाषा - ऋतु (Season)", "ग्रीक भाषा - हवा", "लैटिन भाषा - चक्रवात", "فرانسیسی - दाब"],
+                correctText: "अरबी भाषा - ऋतु (Season)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'मानसून' शब्द अरबी शब्द 'मौसिम' से आया है जिसका अर्थ मौसम या ऋतु के अनुसार हवाओं की दिशा बदलना है।"
+            },
+            {
+                q: "जेट स्ट्रीम (Jet Stream) क्या होती है?",
+                options: ["क्षोभमंडल की ऊपरी सीमा पर तीव्र गति से बहने वाली संकीर्ण वायु धाराएँ", "समुद्री लहरें", "भूपर्पटी की लावा नली", "स्थानीय धूल भरी आँधी"],
+                correctText: "क्षोभमंडल की ऊपरी सीमा पर तीव्र गति से बहने वाली संकीर्ण वायु धाराएँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जेट स्ट्रीम क्षोभसीमा के पास भू-पटल से 7-12 किमी ऊपर पश्चिम से पूर्व की ओर अत्यधिक तेज गति (150-300 किमी/घंटा) से बहने वाली हवाएँ हैं।"
+            },
+            {
+                q: "भूविक्षेपी पवन (Geostrophic Wind) कब प्रवाहित होती है?",
+                options: ["जब कोरिऑलिस बल वायुदाब प्रवणता बल के बिल्कुल संतुलित (संतुलन में) हो जाता है", "जब चक्रवात आता है", "भूमध्य रेखा पर", "रात के समय"],
+                correctText: "जब कोरिऑलिस बल वायुदाब प्रवणता बल के बिल्कुल संतुलित (संतुलन में) हो जाता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब दाब प्रवणता बल और कोरिऑलिस बल एक-दूसरे के विपरीत और बराबर हो जाते हैं, तो समदाब रेखाओं के समानांतर बहने वाली हवा को भूविक्षेपी पवन कहते हैं।"
+            },
+            {
+                q: "लू (Loo) किस प्रकार की स्थानीय पवन का उदाहरण है?",
+                options: ["गर्म और शुष्क स्थानीय पवन (भारत के उत्तर-पश्चिम मैदान)", "ठंडी पर्वतीय पवन", "चक्रवाती पवन", "स्थाई पवन"],
+                correctText: "गर्म और शुष्क स्थानीय पवन (भारत के उत्तर-पश्चिम मैदान)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रीष्मकाल में उत्तर भारत और पाकिस्तान के मैदानी भागों में दोपहर के समय बहने वाली गर्म व शुष्क हवा को 'लू' कहते हैं।"
+            },
+            {
+                q: "आल्प्स पर्वत के उत्तर ढाल पर उतरने वाली गर्म व शुष्क स्थानीय पवन को क्या कहते हैं?",
+                options: ["फॉन (Foehn)", "चिनूक", "सिराको", "ब्लिज़र्ड"],
+                correctText: "फॉन (Foehn)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्विट्जरलैंड में आल्प्स पर्वत को पार करके नीचे उतरने वाली गर्म व शुष्क हवा को 'फॉन' कहते हैं जो वहाँ बर्फ पिघलाने में मददगार है।"
+            },
+            {
+                q: "रॉकी पर्वत के पूर्वी ढाल पर नीचे उतरने वाली गर्म हवा को क्या कहा जाता है?",
+                options: ["चिनूक (Chinook - 'बर्फ खाने वाली')", "फॉन", "हरिकेन", "नॉरवेस्टर"],
+                correctText: "चिनूक (Chinook - 'बर्फ खाने वाली')",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रॉकी पर्वत के पूर्व में चलने वाली 'चिनूक' हवा को स्नो-ईटर (बर्फ खाने वाली) भी कहते हैं क्योंकि यह वहाँ बर्फ पिघला देती है।"
+            },
+            {
+                q: "सहारा मरुस्थल से भूमध्य सागर की ओर चलने वाली गर्म व रक्तवर्णी धूल भरी आंधी को क्या कहते हैं?",
+                options: ["सिराको (Sirocco)", "खमसिन", "ब्रिकफील्डर", "लेवèche"],
+                correctText: "सिराको (Sirocco)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सहारा से इटली की तरफ चलने वाली सिराको हवा अपने साथ लाल धूलकण लाती है जिससे वहाँ 'रक्त वर्षा' (Blood Rain) होती है।"
+            },
+            {
+                q: "संयंत्र या अंटार्कटिका से चलने वाली अत्यंत ठंडी ध्रुवीय पवनों को क्या कहा जाता है?",
+                options: ["ब्लिज़र्ड (Blizzard)", "बोरा", "मिस्ट्रल", "पम्पेरो"],
+                correctText: "ब्लिज़र्ड (Blizzard)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• टुंड्रा प्रदेशों और ध्रुवीय क्षेत्रों में चलने वाली बर्फ से भरी अत्यधिक ठंडी और तेज आंधी को **ब्लिज़र्ड** कहते हैं।"
+            },
+            {
+                q: "वाताग्र (Front) का निर्माण कब होता है?",
+                options: ["जब दो भिन्न स्वभाव वाली वायुराशियाँ (गर्म और ठंडी) मिलती हैं", "जब दो नदियाँ मिलती हैं", "जब उच्च दाब और निम्न दाब टकराते हैं", "भूमध्य रेखा पर"],
+                correctText: "जब दो भिन्न स्वभाव वाली वायुराशियाँ (गर्म और ठंडी) मिलती हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब एक गर्म वायुराशि और एक ठंडी वायुराशि आपस में मिलती हैं, तो उनके मिलने के संपर्क क्षेत्र को **वाताग्र (Front)** कहते हैं।"
+            },
+            {
+                q: "शीतोष्ण कटिबंधीय चक्रवात (Temperate Cyclones) की आकृति सामान्यतः कैसी होती है?",
+                options: ["अंडाकार या 'V' आकार की (Elliptical / V-shape)", "गोलाकार चक्र", "सरल रेखा", "त्रिकोणीय"],
+                correctText: "अंडाकार या 'V' आकार की (Elliptical / V-shape)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शीतोष्ण चक्रवात पछुआ पवनों के प्रभाव से पश्चिम से पूर्व की ओर चलते हैं और इनकी आकृति अंडाकार या वी-आकार की होती है।"
+            },
+            {
+                q: "उष्णकटिबंधीय चक्रवात (Tropical Cyclones) को मैक्सिको की खाड़ी में किस नाम से पुकारा जाता है?",
+                options: ["हरिकेन (Hurricane)", "टाइफून", "विली-विलीज", "साइक्लोन"],
+                correctText: "हरिकेन (Hurricane)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उष्णकटिबंधीय चक्रवातों को कैरिबियन सागर और मैक्सिको की खाड़ी में **हरिकेन**, चीन सागर में **टाइफून** और ऑस्ट्रेलिया में **विली-विलीज** कहते हैं।"
+            },
+            {
+                q: "चक्रवात की आँख (Eye of Cyclone) की विशेषता क्या होती है?",
+                options: ["यह शांत, साफ मौसम और निम्नतम वायुदाब वाला केंद्र होता है", "यहाँ सबसे तेज हवाएँ चलती हैं", "यहाँ भारी वर्षा होती है", "यह उच्च दाब का क्षेत्र होता है"],
+                correctText: "यह शांत, साफ मौसम और निम्नतम वायुदाब वाला केंद्र होता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उष्णकटिबंधीय चक्रवात का केंद्रीय भाग 'चक्रवात की आँख' कहलाता है जहाँ आसमान साफ, हवा शांत और न्यूनतम दाब होता है।"
+            },
+            {
+                q: "प्रतिचक्रवात (Anticyclone) में हवाओं की दिशा उत्तरी गोलार्ध में कैसी होती है?",
+                options: ["केंद्र से बाहर की ओर घड़ी की सुई की दिशा में (Clockwise)", "केंद्र की तरफ अंदर", "घड़ी की विपरीत दिशा में", "कोई निश्चित नहीं"],
+                correctText: "केंद्र से बाहर की ओर घड़ी की सुई की दिशा में (Clockwise)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रतिचक्रवात में केंद्र में उच्च दाब होता है, जिससे उत्तरी गोलार्ध में हवाएँ केंद्र से बाहर की ओर क्लॉकवाइज (घड़ी की दिशा में) चलती हैं।"
+            },
+            {
+                q: "निरपेक्ष आद्रता (Absolute Humidity) किसे कहते हैं?",
+                options: ["प्रति इकाई आयतन वायु में मौजूद जलवाष्प की वास्तविक मात्रा (ग्राम प्रति घन मीटर)", "संतृप्त वायु की मात्रा", "सापेक्षिक आद्रता का प्रतिशत", "वर्षा की मात्रा"],
+                correctText: "प्रति इकाई आयतन वायु में मौजूद जलवाष्प की वास्तविक मात्रा (ग्राम प्रति घन मीटर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायु के निश्चित आयतन में उपस्थित जलवाष्प के भार को निरपेक्ष आद्रता कहते हैं।"
+            },
+            {
+                q: "सापेक्षिक आद्रता (Relative Humidity) को किसमें व्यक्त किया जाता है?",
+                options: ["प्रतिशत (%) में", "ग्राम प्रति मीटर", "मिलीबार में", "डिग्री में"],
+                correctText: "प्रतिशत (%) में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिए गए तापमान पर वायु की जलवाष्प धारण करने की क्षमता और उसमें मौजूद वास्तविक जलवाष्प के अनुपात को प्रतिशत में **सापेक्षिक आद्रता** कहते हैं।"
+            },
+            {
+                q: "संतृप्त वायु (Saturated Air) के लिए सापेक्षिक आद्रता कितनी होती है?",
+                options: ["100%", "50%", "0%", "200%"],
+                correctTest: "100%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब हवा में नमी अपनी अधिकतम क्षमता तक पहुँच जाती है (संतृप्त हो जाती है), तो सापेक्षिक आद्रता 100% होती है।"
+            },
+            {
+                q: "ओस (Dew) के निर्माण के लिए अनुकूलतम मौسमी दशाएँ कौन सी हैं?",
+                options: ["साफ आसमान, शांत हवा, लंबी रातें और ठंडा तापमान", "बादल छाए रहना और तेज हवा", "दोपहर का समय", "तेज वर्षा"],
+                correctTest: "साफ आसमान, शांत हवा, लंबी रातें और ठंडा तापमान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओस तब बनती है जब रात में विकिरण से धरातल ठंडा हो जाता है और हवा का तापमान ओसांक से नीचे गिर जाता है।"
+            },
+            {
+                q: "कुहरा (Fog) और कोहराम किस रूप में जाने जाते हैं?",
+                options: ["धरातल के निकट संघनन से बने सूक्ष्म जलकणों के बादल", "वर्षा के प्रकार", "बादल का प्रकार", "धूल भरी आंधी"],
+                correctTest: "धरातल के निकट संघनन से बने सूक्ष्म जलकणों के बादल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब हवा में नमी का संघनन धरातल के ठीक ऊपर तैरते हुए धूलकणों पर होता है, तो उसे कोहरा (Fog) कहते हैं।"
+            },
+            {
+                q: "निम्नलिखित में से बादलों का कौन सा प्रकार 'पंखे के आकार' या 'सिरस' जैसा रेशेदार और सबसे अधिक ऊँचाई पर बनता है?",
+                options: ["पक्षाभ मेघ (Cirrus Clouds)", "कपासी मेघ", "वर्षा मेघ", "स्तरी मेघ"],
+                correctTest: "पक्षाभ मेघ (Cirrus Clouds)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पक्षाभ मेघ (Cirrus) 8,000 से 12,000 मीटर की ऊँचाई पर रेशम या पंख जैसे सफेद रंग के तैरते हैं।"
+            },
+            {
+                q: "मूसलाधार भारी वर्षा कराने वाले काले और घने बादलों को क्या कहते हैं?",
+                options: ["कपासी-वर्षा मेघ (Cumulonimbus Clouds)", "पक्षाभ मेघ", "स्तरी मेघ", "मध्य मेघ"],
+                correctTest: "कपासी-वर्षा मेघ (Cumulonimbus Clouds)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कपासी-वर्षा मेघ (Cumulonimbus) बहुत ऊँचे और विशाल पर्वत जैसे होते हैं जो मूसलाधार वर्षा, बिजली कड़कने और ओलावृष्टि के लिए जाने जाते हैं।"
+            },
+            {
+                q: "विश्व में सर्वाधिक वर्षा किस प्रकार की वर्षा का परिणाम है?",
+                options: ["संवहनीय वर्षा (Convectional Rainfall)", "पर्वतीय वर्षा", "चक्रवाती वर्षा", "मानसूनी वर्षा"],
+                correctTest: "पर्वतीय वर्षा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अधिकांश पर्वतीय क्षेत्रों में मानसूनी हवाओं के पहाड़ों से टकराने पर होने वाली **पर्वतीय वर्षा (Orographic Rainfall)** विश्व में सबसे आम है, जबकि विषुवत रेखीय क्षेत्रों में संवहनीय वर्षा होती है।"
+            },
+            {
+                q: "वृष्टि-छाया क्षेत्र (Rain Shadow Area) किसे कहते हैं?",
+                options: ["पर्वत के पवन-विमुख ढाल (Leeward side) का सूखा क्षेत्र", "पर्वत का सामने वाला भाग", "समुद्र तट का क्षेत्र", "रेगिस्तान का केंद्र"],
+                correctTest: "पर्वत के पवन-विमुख ढाल (Leeward side) का सूखा क्षेत्र",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब हवाएँ पहाड़ के एक तरफ वर्षा कर देती हैं और दूसरी तरफ उतरते समय सूखी हो जाती हैं, तो उस विमुख ढाल को वृष्टि-छाया क्षेत्र कहते हैं।"
+            },
+            {
+                q: "वायुमंडल की किस परत को 'होमोज़ेस्फीयर' (Homosphere) के अंतर्गत नहीं रखा जाता?",
+                options: ["बहिमंडल (Exosphere) का ऊपरी भाग", "क्षोभमंडल", "समतापमंडल", "मध्यमंडल का निचला हिस्सा"],
+                correctTest: "बहिमंडल (Exosphere) का ऊपरी भाग",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 80-90 किमी तक की परतों (क्षोभ, समताप, मध्यमंडल) में गैसों का अनुपात लगभग समान होता है (Homosphere), जबकि उसके ऊपर 'Heterosphere' होता है।"
+            },
+            {
+                q: "ओसांक (Dew Point) वह तापमान है जिस पर:",
+                options: ["वायु में जलवाष्प संतृप्त हो जाती है और संघनन शुरू होता है", "बर्फ पिघलने लगती है", "हवा सबसे गर्म होती है", "वायुदाब शून्य हो जाता है"],
+                correctTest: "वायु में जलवाष्प संतृप्त हो जाती है और संघनन शुरू होता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओसांक वह तापमान है जिस पर हवा संतृप्त हो जाती है और जलवाष्प पानी की बूंदों में बदलने लगती है।"
+            },
+            {
+                q: "पृथ्वी पर प्राप्त होने वाली कुल सौर ऊर्जा का कितना प्रतिशत भाग अंतरिक्ष से बिना गर्म किए लौट जाता है (एल्बेडो द्वारा)?",
+                options: ["लगभग 30%", "लगभग 50%", "लगभग 14%", "लगभग 65%"],
+                correctTest: "लगभग 30%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतरिक्ष में कुल परावर्तित सौर विकिरण (Albedo) लगभग 30% होती है, जिसमें बादल, बर्फ और धरातल का योगदान शामिल है।"
+            },
+            {
+                q: "उष्णकटिबंधीय चक्रवात (Tropical Cyclones) के विकास के लिए समुद्र की सतह का न्यूनतम तापमान कितना होना आवश्यक है?",
+                options: ["26°C - 27°C", "15°C", "35°C", "20°C"],
+                correctTest: "26°C - 27°C",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उष्णकटिबंधीय चक्रवातों को ऊर्जा समुद्री सतह के गर्म पानी से मिलती है, जिसके लिए न्यूनतम तापमान 26-27°C आवश्यक है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी ठंडी स्थानीय पवन नहीं है?",
+                options: ["फॉन (Foehn)", "बोरा", "मिस्ट्रल", "ब्लिज़र्ड"],
+                correctTest: "फॉन (Foehn)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फॉन एक गर्म और शुष्क स्थानीय पवन है जो आल्प्स के उत्तर में बहती है; जबकि बोरा, मिस्ट्रल और ब्लिज़र्ड ठंडी हवाएँ हैं।"
+            },
+            {
+                q: "भूमध्य रेखा के दोनों ओर 5° से 8° अक्षांश तक के क्षेत्र को क्या कहा जाता है जहाँ शांत मौसमी दशाएँ होती हैं?",
+                options: ["डोलड्रम (Doldrums)", "घोड़े का अक्षांश", "रोरिंग फोर्टिज", "व्यापारिक बेल्ट"],
+                correctTest: "डोलड्रम (Doldrums)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुवत रेखा के पास का शांत क्षेत्र डोलड्रम कहलाता है।"
+            },
+            {
+                q: "शीतोष्ण कटिबंधीय चक्रवातों के आगमन से पहले आकाश में किस प्रकार के बादल दिखाई देते हैं?",
+                options: ["पक्षाभ मेघ (Cirrus Clouds)", "कपासी मेघ", "वर्षा मेघ", "स्तरी मेघ"],
+                correctTest: "पक्षाभ मेघ (Cirrus Clouds)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शीतोष्ण चक्रवात के आने से पहले आसमान में सबसे पहले ऊँचाई पर पक्षाभ मेघ छा जाते हैं।"
+            },
+            {
+                q: "वायुदाब मापने के लिए प्रयुक्त 'एनरोइड बैरोमीटर' (Aneroid Barometer) में किस पदार्थ का प्रयोग होता है?",
+                options: ["किसी द्रव का प्रयोग नहीं होता (निर्वात धातु डिब्बी)", "पारा (Mercury)", "पानी", "अल्कोहल"],
+                correctTest: "किसी द्रव का प्रयोग नहीं होता (निर्वात धातु डिब्बी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एनरोइड बैरोमीटर में पारे का उपयोग नहीं होता बल्कि एक लचीली धातु की निर्वात डिब्बी होती है जो दाब परिवर्तन पर सिकुड़ती-फैलती है।"
+            },
+            {
+                q: "ध्रुवीय क्षेत्रों में उच्च वायुदाब पाए जाने का मुख्य कारण क्या है?",
+                options: ["अत्यधिक कम तापमान के कारण हवा का भारी होकर बैठना", "पृथ्वी का घूर्णन", "समुद्री प्रभाव", "सौर विकिरण की अधिकता"],
+                correctTest: "अत्यधिक कम तापमान के कारण हवा का भारी होकर बैठना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्रुवों पर अत्यधिक ठंड के कारण हवा ठंडी और घनी होकर नीचे बैठती है, जिससे उच्च वायुदाब बनता है।"
+            },
+            {
+                q: "भारत में दक्षिण-पश्चिम मानसून (South-West Monsoon) की अवधि सामान्यतः कब से कब तक होती है?",
+                options: ["जून से सितंबर", "अक्टूबर से दिसंबर", "जनवरी से मार्च", "अप्रैल से मई"],
+                correctTest: "जून से सितंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में मुख्य वर्षा दक्षिण-पश्चिम मानसून द्वारा जून से सितंबर के महीनों में होती है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी हवा 'व्यापारिक पवन' (Trade Wind) का हिस्सा है?",
+                options: ["उत्तर-पूर्वी व्यापारिक पवनें (Northern Hemisphere)", "पछुआ पवनें", "ध्रुवीय हवाएँ", "लू"],
+                correctTest: "उत्तर-पूर्वी व्यापारिक पवनें (Northern Hemisphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तरी गोलार्ध में उपोष्ण उच्च दाब से विषुवत रेखा की ओर बहने वाली हवाएँ कोरिऑलिस बल से मुड़कर उत्तर-पूर्वी व्यापारिक पवनें कहलाती हैं।"
+            },
+            {
+                q: "जेट स्ट्रीम की खोज सबसे पहले किस द्वितीय विश्व युद्ध के दौरान या उसके आसपास किस क्षेत्र में की गई थी?",
+                options: ["प्रशांत महासागर / एशिया के ऊपर लड़ाकू पायलटों द्वारा", "अटलांटिक में", "यूरोप में", "अंटार्कटिका में"],
+                correctTest: "प्रशांत महासागर / एशिया के ऊपर लड़ाकू पायलटों द्वारा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• द्वितीय विश्व युद्ध के दौरान जेट विमानों के पायलटों ने उच्च वायुमंडल में तीव्र गति से बहने वाली इन हवाओं (जेट स्ट्रीम) का अनुभव किया था।"
+            },
+            {
+                q: "समुद्र तल से ऊपर जाने पर वायुदाब पर क्या प्रभाव पड़ता है?",
+                options: ["दाब तेजी से घटता जाता है", "दाब बढ़ता है", "कोई परिवर्तन नहीं होता", "पहले बढ़ता है फिर घटता है"],
+                correctTest: "दाब तेजी से घटता जाता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायुमंडल की सघनता ऊपर जाने पर कम होती जाती है, इसलिए ऊँचाई के साथ वायुदाब घटता है।"
+            },
+            {
+                q: "चक्रवात के केंद्र में हवा का दबाव कैसा होता है?",
+                options: ["न्यूनतम (Low Pressure)", "उच्चतम (High Pressure)", "स्थिर", "शून्य"],
+                correctTest: "न्यूनतम (Low Pressure)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चक्रवात एक निम्न दाब प्रणाली (Low Pressure System) है जिसके केंद्र में हवा का दाब सबसे कम होता है।"
+            },
+            {
+                q: "प्रतिचक्रवात (Anticyclone) को मौसम की दृष्टि से किस रूप में जाना जाता है?",
+                options: ["साफ और स्थिर मौसम का प्रतीक", "भयानक आंधी और वर्षा", "तूफानी चक्रवात", "ओलावृष्टि"],
+                correctTest: "साफ और स्थिर मौसम का प्रतीक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रतिचक्रवात में केंद्र से हवाएँ बाहर की ओर बैठती हैं, जिससे आकाश साफ रहता है और शांत मौसम रहता है।"
+            },
+            {
+                q: "वर्षा की मात्रा किस यंत्र से मापी जाती है?",
+                options: ["वर्षामापी (Rain Gauge)", "अैनмоमीटर", "हाइड्रोमीटर", "बैरोमीटर"],
+                correctTest: "वर्षामापी (Rain Gauge)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वर्षा की कुल मात्रा को मापने के लिए वर्षामापी (Rain Gauge) का प्रयोग किया जाता है।"
+            },
+            {
+                q: "आर्द्रता (Humidity) मापने के लिए किस उपकरण का उपयोग किया जाता है?",
+                options: ["हाइग्रोमीटर (Hygrometer)", "बैरोमीटर", "थर्मोमीटर", "सिस्मोग्राफ"],
+                correctTest: "हाइग्रोमीटर (Hygrometer)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वायुमंडल में नमी या आद्रता मापने के लिए हाइग्रोमीटर का उपयोग होता है।"
+            },
+            {
+                q: "पवन की दिशा और वेग ज्ञात करने के लिए किसका प्रयोग किया जाता है?",
+                options: ["पवन दिकसूचक (Wind Vane) और एनिमोमीटर (Anemometer)", "हाइग्रोमीटर", "रेन गेज", "अल्टीमीटर"],
+                correctTest: "पवन दिकसूचक (Wind Vane) और एनिमोमीटर (Anemometer)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पवन की दिशा विंड वेव से और गति एनिमोमीटर से मापी जाती है।"
+            },
+            {
+                q: "भूमध्य रेखा पर कोरिऑलिस बल का मान कितना होता है?",
+                options: ["शून्य (Zero)", "सर्वाधिक", "मध्यम", "अनंत"],
+                correctTest: "शून्य (Zero)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूमध्य रेखा पर कोरिऑलिस बल शून्य होता है, इसी कारण वहाँ चक्रवात उत्पन्न नहीं होते।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी गैस ग्रीनहाउस प्रभाव के लिए सबसे अधिक जिम्मेदार है?",
+                options: ["कार्बन डाइऑक्साइड ($CO_2$)", "ऑक्सीजन", "नाइट्रोजन", "आर्गन"],
+                correctTest: "कार्बन डाइऑक्साइड ($CO_2$)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• $CO_2$ और जलवाष्प पृथ्वी के पार्थिव विकिरण को रोककर ग्रीनहाउस प्रभाव पैदा करते हैं।"
+            },
+            {
+                q: "शीतोष्ण कटिबंधीय चक्रवातों की उत्पत्ति में किस सिद्धांत को सबसे प्रमुख माना जाता है?",
+                options: ["ध्रुवीय वाताग्र सिद्धांत (Polar Front Theory)", "संवहन सिद्धांत", "ज्वालामुखी सिद्धांत", "घूर्णन सिद्धांत"],
+                correctTest: "ध्रुवीय वाताग्र सिद्धांत (Polar Front Theory)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जे. बर्कनीज द्वारा प्रतिपादित 'ध्रुवीय वाताग्र सिद्धांत' शीतोष्ण चक्रवातों की उत्पत्ति की सबसे अच्छी व्याख्या करता है।"
+            },
+            {
+                q: "ओजोन परत की मोटाई किस इकाई में मापी जाती है?",
+                options: ["डॉबसन इकाई (Dobson Unit)", "मिलीबार", "डेसिबल", "पारसेक"],
+                correctTest: "डॉबसन इकाई (Dobson Unit)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओजोन परत के घनत्व और मोटाई को डॉबसन यूनिट (DU) में मापा जाता है।"
+            },
+            {
+                q: "कौन सी मेघ आकृतियाँ समूचे आकाश में चादर की तरह फैली होती हैं और अक्सर इनसे लगातार हल्की वर्षा होती है?",
+                options: ["स्तरी मेघ (Stratus Clouds)", "कपासी मेघ", "पक्षाभ मेघ", "तूफानी मेघ"],
+                correctTest: "स्तरी मेघ (Stratus Clouds)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्तरी मेघ भूतल के पास कम ऊँचाई पर एक धुंधली चादर की तरह फैले रहते हैं जिनसे रिमझिम फुहारें पड़ती हैं।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सा देश उष्णकटिबंधीय चक्रवातों से सबसे अधिक प्रभावित क्षेत्रों (टाइफून बेल्ट) में आता है?",
+                options: ["फिलीपींस और चीन", "ब्रिटेन", "कनाडा", "ग्रीनलैंड"],
+                correctTest: "फिलीपींस और चीन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पश्चिमी प्रशांत महासागर से उठने वाले टाइफून फिलीपींस, चीन और जापान के तटीय क्षेत्रों को सर्वाधिक प्रभावित करते हैं।"
+            },
+            {
+                q: "रात के समय बादलों के छाए रहने पर ठंड कम क्यों लगती है?",
+                options: ["बादल पृथ्वी के पार्थिव विकिरण को रोककर वापस धरातल की ओर परावर्तित कर देते हैं", "बादल गर्मी पैदा करते हैं", "हवा रुक जाती है", "नमी कम हो जाती है"],
+                correctTest: "बादल पृथ्वी के पार्थिव विकिरण को रोककर वापस धरातल की ओर परावर्तित कर देते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मेघ एक कंबल की तरह कार्य करते हैं जो पार्थिव विकिरण को अंतरिक्ष में जाने से रोकते हैं, जिससे रात ठंडी नहीं होती।"
+            },
+            {
+                q: "वायुमंडल में ओजोन परत का क्षरण मुख्य रूप से किस रसायन के कारण होता है?",
+                options: ["क्लोरोफ्लोरोकार्बन (CFCs)", "कार्बन मोनोऑक्साइड", "सल्फर डाइऑक्साइड", "मीथेन"],
+                correctTest: "क्लोरोफ्लोरोकार्बन (CFCs)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रेफ्रिजरेटर और एसी में प्रयुक्त CFCs से निकलने वाली क्लोरीन गैस ओजोन अणुओं को नष्ट करती है।"
+            },
+            {
+                q: "पर्वतीय क्षेत्रों में दिन के समय घाटी से ऊपर की ओर बहने वाली हवा को क्या कहते हैं?",
+                options: ["घाटी समीर (Anabatic Wind)", "पर्वतीय समीर", "लू", "फॉन"],
+                correctTest: "घाटी समीर (Anabatic Wind)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिन में पर्वतीय ढाल जल्दी गर्म होने से हवा ऊपर उठती है और घाटी से ऊपर की ओर हवा चलती है जिसे घाटी समीर कहते हैं।"
+            },
+            {
+                q: "रात के समय पहाड़ों से घाटी की तरफ ठंडी हवाओं के उतरने को क्या कहा जाता है?",
+                options: ["पर्वतीय समीर (Katabatic Wind)", "घाटी समीर", "चिनूक", "सिराको"],
+                correctTest: "पर्वतीय समीर (Katabatic Wind)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रात में पहाड़ों की ढाल ठंडी होने से भारी हवा नीचे घाटी की ओर बहती है जिसे कैटाबेटिक या पर्वतीय समीर कहते हैं।"
+            },
+            {
+                q: "समुद्री समीर (Sea Breeze) किस समय चलती है?",
+                options: ["दिन के समय (समुद्र से थल की ओर)", "रात के समय", "सूर्योदय से ठीक पहले", "मध्यरात्रि को"],
+                correctTest: "दिन के समय (समुद्र से थल की ओर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिन में थल भाग जल्दी गर्म होकर निम्न दाब बनाता है जबकि समुद्र ठंडा रहता है, जिससे हवा समुद्र से थल की तरफ चलती है।"
+            },
+            {
+                q: "थलीय समीर (Land Breeze) कब प्रवाहित होती है?",
+                options: ["रात के समय (थल से समुद्र की ओर)", "दिन के समय", "दोपहर में", "कभी नहीं"],
+                correctTest: "रात के समय (थल से समुद्र की ओर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रात में थल भाग जल्दी ठंडा हो जाता है और समुद्र अपेक्षाकृत गर्म रहता है, जिससे हवा थल से समुद्र की ओर चलती है।"
+            },
+            {
+                q: "पृथ्वी पर कुल सौर विकिरण का कितना प्रतिशत भाग सीधे बादलों और धूलकणों द्वारा अंतरिक्ष में परावर्तित हो जाता है?",
+                options: ["लगभग 27% (अल्बेडो का प्रमुख हिस्सा)", "5%", "50%", "80%"],
+                correctTest: "लगभग 27% (अल्बेडो का प्रमुख हिस्सा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बादलों के ऊपरी छोर और वायुमंडल द्वारा कुल सौर ऊर्जा का लगभग 27% हिस्सा सीधे अंतरिक्ष में लौटा दिया जाता है।"
+            },
+            {
+                q: "समतापमंडल में ओजोन परत की उपस्थिति के कारण तापमान पर क्या प्रभाव पड़ता है?",
+                options: ["ऊँचाई बढ़ने के साथ तापमान बढ़ता है (Temperature increases with height)", "तापमान घटता है", "तापमान स्थिर रहता है", "शून्य हो जाता है"],
+                correctTest: "ऊँचाई बढ़ने के साथ तापमान बढ़ता है (Temperature increases with height)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ओजोन गैस पराबैंगनी किरणों को अवशोषित करती है, जिससे समतापमंडल में ऊँचाई के साथ तापमान बढ़ता जाता है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी वायुदाब पेटी तापीय रूप से उत्पन्न (Thermally Induced) होती है?",
+                options: ["विषुवत रेखीय निम्न दाब पेटी और ध्रुवीय उच्च दाब पेटी", "उपोष्ण उच्च दाब पेटी", "उपध्रुवीय निम्न दाब पेटी", "सभी पेटियाँ"],
+                correctTest: "विषुवत रेखीय निम्न दाब पेटी और ध्रुवीय उच्च दाब पेटी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विषुवतीय निम्न दाब अत्यधिक तापमान (ताप) के कारण और ध्रुवीय उच्च दाब अत्यधिक ठंड के कारण बनते हैं, जो तापीय पेटी हैं।"
+            },
+            {
+                q: "गत्यात्मक रूप से उत्पन्न (Dynamically Induced) वायुदाब पेटियाँ कौन सी हैं?",
+                options: ["उपोष्ण उच्च दाब और उपध्रुवीय निम्न दाब पेटियाँ", "विषुवत रेखीय पेटी", "ध्रुवीय उच्च दाब पेटी", "कोई नहीं"],
+                correctTest: "उपोष्ण उच्च दाब और उपध्रुवीय निम्न दाब पेटियाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पृथ्वी के घूर्णन और हवाओं के अभिसरण-अपसररण के कारण उपोष्ण उच्च दाब और उपध्रुवीय निम्न दाब पेटियाँ बनती हैं।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सा यंत्र वायुमंडल की आद्रता मापने के लिए प्रत्यक्ष रूप से काम में आता है?",
+                options: ["साइक्रोमीटर (Psychrometer) / हाइग्रोमीटर", "बैरोमीटर", "पाइਰोमीटर", "एनिमोमीटर"],
+                correctTest: "साइक्रोमीटर (Psychrometer) / हाइग्रोमीटर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शुष्क और नम बल्ब वाले थर्मामीटर (साइक्रोमीटर) या हाइग्रोमीटर से सापेक्षिक आद्रता मापी जाती है।"
+            },
+            {
+                q: "महासागरों के ऊपर चक्रवातों को ऊर्जा मुख्य रूप से कहाँ से प्राप्त होती है?",
+                options: ["संघनन की गुप्त ऊष्मा (Latent Heat of Condensation) से", "सौर विकिरण सीधे", "भूकंपीय ऊर्जा", "समुद्री धाराओं के घर्षण से"],
+                correctTest: "संघनन की गुप्त ऊष्मा (Latent Heat of Condensation) से",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब समुद्र के गर्म पानी से जलवाष्प ऊपर उठकर संघनित होती है, तो गुप्त ऊष्मा मुक्त होती है जो चक्रवात को प्रचंड ऊर्जा देती है।"
+            },
+            {
+                q: "विश्व में सबसे अधिक चक्रवात किस क्षेत्र में आते हैं?",
+                options: ["उत्तर-पश्चिमी प्रशांत महासागर (चीन सागर के पास)", "अटलांटिक महासागर", "हिंद महासागर", "आर्कटिक महासागर"],
+                correctTest: "उत्तर-पश्चिमी प्रशांत महासागर (चीन सागर के पास)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रशांत महासागर का पश्चिमी भाग (विशेषकर दक्षिण-पूर्वी एशिया व चीन सागर) विश्व में सर्वाधिक उष्णकटिबंधीय चक्रवातों (टाइफून) का केंद्र है।"
+            },
+            {
+                q: "भारत के पूर्वी तट (बंगाल की खाड़ी) पर आने वाले चक्रवात मुख्य रूप से किस मौसम में अधिक आते हैं?",
+                options: ["उत्तर-पूर्वी मानसून काल / लौटता मानसून (अक्टूबर-नवंबर)", "जून-जुलाई", "मार्च-अप्रैल", "सर्दियों में जनवरी"],
+                correctTest: "उत्तर-पूर्वी मानसून काल / लौटता मानसून (अक्टूबर-नवंबर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बंगाल की खाड़ी में अक्टूबर और नवंबर के महीनों में (लौटते मानसून के समय) उष्णकटिबंधीय चक्रवातों की आवृत्ति सर्वाधिक होती है।"
+            },
+            {
+                q: "वायुमंडल की किस परत में 'नॉकल्युसेंट क्लाउड' (Noctilucent Clouds / निशादीप्त मेघ) दिखाई देते हैं?",
+                options: ["मध्यमंडल (Mesosphere)", "क्षोभमंडल", "समतापमंडल", "बहिरमंडल"],
+                correctTest: "मध्यमंडल (Mesosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्यमंडल के ऊपरी हिस्से (मेसोपॉज) में अत्यधिक ऊँचाई पर चमकने वाले बादलों को नॉकल्युसेंट क्लाउड कहते हैं।"
+            },
+            {
+                q: "ऑरोरा बोरियालिस (Aurora Borealis / उत्तरी ध्रुवीय प्रकाश) वायुमंडल की किस परत में घटित होता है?",
+                options: ["आयनमंडल / थर्मोस्फीयर (Ionosphere)", "क्षोभमंडल", "समतापमंडल", "ट्रोपोपॉज"],
+                correctTest: "आयनमंडल / थर्मोस्फीयर (Ionosphere)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सौर हवाओं के आयनमंडल के कणों से टकराने के कारण ध्रुवीय क्षेत्रों में रंगीन प्रकाश (ऑरोरा बोरियालिस व ऑस्ट्रियालिस) उत्पन्न होता है।"
+            }
+        ];
+
+        let quizDataClimatology5 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataClimatology5 = rawQuizDataClimatology5.map(item => {
+                let options = [...item.options];
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(item.correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach(dist => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataClimatology5;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testj5_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testj5_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने टेस्ट 5 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.
