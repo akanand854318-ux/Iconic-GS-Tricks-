@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 7 (अनुसूचियाँ, भाग, महत्वपूर्ण अनुच्छेद व विशेष उपबंध) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 7 (अनुसूचियाँ, भाग, अनुच्छेद व विशेष उपबंध)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 7)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 7 (अनुसूचियाँ, भाग, अनुच्छेद व विशेष उपबंध)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: अनुसूचियाँ, भाग, महत्वपूर्ण अनुच्छेद तथा विशेष उपबंध - 100 प्रश्न
+        const rawQuizDataPolity7 = [
+            {
+                q: "भारतीय संविधान में मूल रूप से कुल कितनी अनुसूचियाँ (Schedules) थीं और वर्तमान में कितनी हैं?",
+                options: ["मूल रूप से 8 अनुसूचियाँ (वर्तमान में 12 अनुसूचियाँ हैं)", "मूल रूप से 10, वर्तमान में 12", "मूल रूप से 12, वर्तमान में 12", "मूल रूप से 6, वर्तमान में 10"],
+                correctText: "मूल रूप से 8 अनुसूचियाँ (वर्तमान में 12 अनुसूचियाँ हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल संविधान में 8 अनुसूचियाँ थीं, जिन्हें बाद में संविधान संशोधनों के माध्यम से बढ़ाकर 12 कर दिया गया।"
+            },
+            {
+                q: "भारतीय संविधान की प्रथम अनुसूची (First Schedule) किससे संबंधित है?",
+                options: ["राज्य और संघ राज्य क्षेत्रों (UTs) के नाम और उनके राज्यक्षेत्र", "वेतन और भत्ते", "शपथ के प्रारूप", "राज्यों का राज्यसभा में प्रतिनिधित्व"],
+                correctText: "राज्य और संघ राज्य क्षेत्रों (UTs) के नाम और उनके राज्यक्षेत्र",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम अनुसूची में भारत के 28 राज्यों और 8 केंद्रशासित प्रदेशों की सीमाओं व नामों का विवरण है।"
+            },
+            {
+                q: "संविधान की दूसरी अनुसूची (Second Schedule) में निम्नलिखित में से किसका उल्लेख नहीं है?",
+                options: ["सांसदों और विधायकों की शपथ का प्रारूप", "राष्ट्रपति और राज्यपालों के वेतन-भत्ते", "लोकसभा अध्यक्ष और राज्यसभा सभापति के वेतन", "उच्चतम न्यायालय के न्यायाधीशों के वेतन"],
+                correctText: "सांसदों और विधायकों की शपथ का प्रारूप",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दूसरी अनुसूची में प्रमुख पदाधिकारियों (राष्ट्रपति, राज्यपाल, जज आदि) के वेतन व भत्ते हैं; शपथ का प्रारूप तीसरी अनुसूची में है।"
+            },
+            {
+                q: "भारतीय संविधान की तीसरी अनुसूची (Third Schedule) किससे जुड़ी है?",
+                options: ["विभिन्न पदाधिकारियों द्वारा ली जाने वाली शपथ या प्रतिज्ञान (Oaths)", "भाषाओं की सूची", "भूमि सुधार कानून", "दल-बदल विरोधी कानून"],
+                correctText: "विभिन्न पदाधिकारियों द्वारा ली जाने वाली शपथ या प्रतिज्ञान (Oaths)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तीसरी अनुसूची में मंत्रियों, सांसदों, जजों आदि की शपथ के प्रारूप दिए गए हैं (ध्यान दें: राष्ट्रपति/उपराष्ट्रपति/राज्यपाल की शपथ इसमें नहीं है)।"
+            },
+            {
+                q: "संविधान की चौथी अनुसूची (Fourth Schedule) में क्या प्रावधान है?",
+                options: ["राज्यसभा में राज्यों और संघ राज्यक्षेत्रों के स्थानों का आवंटन", "अनुसूचित क्षेत्रों का प्रशासन", "भाषाओं का उल्लेख", "पंचायती राज संस्थाएँ"],
+                correctText: "राज्यसभा में राज्यों और संघ राज्यक्षेत्रों के स्थानों का आवंटन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चौथी अनुसूची राज्यसभा की सीटों के आबंटन (Allocation of seats) से संबंधित है।"
+            },
+            {
+                q: "संविधान की पाँचवीं अनुसूची (Fifth Schedule) का संबंध किससे है?",
+                options: ["अनुसूचित क्षेत्रों और अनुसूचित जनजातियों के प्रशासन तथा नियंत्रण से", "असम, मेघालय, त्रिपुरा और मिजोरम के जनजाति क्षेत्रों से", "केंद्र-राज्य वित्तीय संबंध", "नगरपालिकाएँ"],
+                correctText: "अनुसूचित क्षेत्रों और अनुसूचित जनजातियों के प्रशासन तथा नियंत्रण से",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पाँचवीं अनुसूची देश के सामान्य राज्यों के अनुसूचित क्षेत्रों (Scheduled Areas) के प्रशासन से जुड़ी है।"
+            },
+            {
+                q: "छठी अनुसूची (Sixth Schedule) विशेष रूप से किन चार पूर्वोत्तर राज्यों के जनजातीय क्षेत्रों के प्रशासन से संबंधित है?",
+                options: ["असम, मेघालय, त्रिपुरा और मिजोरम (AMTM)", "मणिपुर, नागालैंड, सिक्किम, अरुणाचल", "त्रिपुरा, मिजोरम, मणिपुर, असम", "मेघालय, नागालैंड, मिजोरम, त्रिपुरा"],
+                correctText: "असम, मेघालय, त्रिपुरा और मिजोरम (AMTM)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• छठी अनुसूची में असम, मेघालय, त्रिपुरा और मिजोरम (एएमटीएम) के जनजातीय क्षेत्रों (Autonomous Districts) के प्रशासन का विशेष प्रावधान है।"
+            },
+            {
+                q: "सातवीं अनुसूची (Seventh Schedule) में शक्तियों के विभाजन हेतु कौन सी तीन सूचियाँ दी गई हैं?",
+                options: ["संघ सूची, राज्य सूची और समवर्ती सूची", "मूल अधिकार, नीति निदेशक तत्व, मूल कर्तव्य", "कार्यपालिका, न्यायपालिका, विधायिका", "वित्तीय, प्रशासनिक, विधाई"],
+                correctText: "संघ सूची, राज्य सूची और समवर्ती सूची",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवीं अनुसूची केंद्र और राज्यों के बीच विधाई शक्तियों को तीन सूचियों में बाँटती है।"
+            },
+            {
+                q: "आठवीं अनुसूची (Eighth Schedule) में कुल कितनी मान्यता प्राप्त भाषाएँ हैं?",
+                options: ["22 भाषाएँ", "14 भाषाएँ", "18 भाषाएँ", "25 भाषाएँ"],
+                correctText: "22 भाषाएँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल रूप से 14 भाषाएँ थीं, जो संशोधन के बाद अब बढ़कर 22 हो चुकी हैं।"
+            },
+            {
+                q: "भारतीय संविधान में 'नौवीं अनुसूची' (Ninth Schedule) किस संविधान संशोधन द्वारा जोड़ी गई थी?",
+                options: ["पहला संविधान संशोधन 1951", "42वाँ संशोधन 1976", "44वाँ संशोधन 1978", "52वाँ संशोधन 1985"],
+                correctText: "पहला संविधान संशोधन 1951",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम संविधान संशोधन 1951 द्वारा भूमि सुधारों को अदालत की चुनौती से बचाने के लिए 9वीं अनुसूची जोड़ी गई।"
+            },
+            {
+                q: "दसवीं अनुसूची (Tenth Schedule) जो 'दल-बदल विरोधी कानून' से संबंधित है, किस संशोधन द्वारा जोड़ी गई?",
+                options: ["52वाँ संविधान संशोधन 1985", "73वाँ संशोधन 1992", "61वाँ संशोधन 1988", "91वाँ संशोधन 2003"],
+                correctText: "52वाँ संविधान संशोधन 1985",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 52वें संशोधन 1985 द्वारा दसवीं अनुसूची जोड़कर दलबदल पर प्रतिबंध लगाया गया।"
+            },
+            {
+                q: "ग्यारहवीं अनुसूची (Eleventh Schedule) जो पंचायती राज से संबंधित है, किस संशोधन द्वारा जोड़ी गई?",
+                options: ["73वाँ संविधान संशोधन 1992", "74वाँ संशोधन 1992", "86वाँ संशोधन 2002", "42वाँ संशोधन 1976"],
+                correctText: "73वाँ संविधान संशोधन 1992",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 73वें संशोधन द्वारा पंचायती राज संस्थाओं को संवैधानिक मान्यता देकर 11वीं अनुसूची जोड़ी गई (29 विषय)।"
+            },
+            {
+                q: "बारहवीं अनुसूची (Twelfth Schedule) जो नगरपालिकाओं से संबंधित है, किस संशोधन द्वारा जोड़ी गई?",
+                options: ["74वाँ संविधान संशोधन 1992", "73वाँ संशोधन 1992", "91वाँ संशोधन", "101वाँ संशोधन"],
+                correctText: "74वाँ संविधान संशोधन 1992",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 74वें संशोधन द्वारा शहरी निकायों हेतु 12वीं अनुसूची जोड़ी गई जिसमें 18 विषय हैं।"
+            },
+            {
+                q: "भारतीय संविधान में कुल कितने भाग (Parts) हैं?",
+                options: ["मूल रूप से 22 भाग (वर्तमान में गणना की दृष्टि से 25 भाग)", "20 भाग", "24 भाग", "26 भाग"],
+                correctText: "मूल रूप से 22 भाग (वर्तमान में गणना की दृष्टि से 25 भाग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में मूल रूप से 22 भाग हैं, जिनमें उप-भाग (जैसे 4क, 9क, 9ख, 14क) जोड़ने पर कुल संख्या 25 हो जाती है।"
+            },
+            {
+                q: "संविधान का भाग I (Part I) किससे संबंधित है?",
+                options: ["संघ और उसका राज्यक्षेत्र (अनुच्छेद 1-4)", "नागरिकता (अनुच्छेद 5-11)", "मौलिक अधिकार", "नीति निदेशक तत्व"],
+                correctText: "संघ और उसका राज्यक्षेत्र (अनुच्छेद 1-4)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 1 अनुच्छेद 1 से 4 तक संघ और उसके राज्यों के भू-क्षेत्र का वर्णन करता है।"
+            },
+            {
+                q: "संविधान का भाग II (Part II) किस विषय से संबंधित है?",
+                options: ["नागरिकता (Citizenship - अनुच्छेद 5-11)", "संघ सरकार", "मूल अधिकार", "आपात उपबंध"],
+                correctText: "नागरिकता (Citizenship - अनुच्छेद 5-11)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग II अनुच्छेद 5 से 11 तक भारत की नागरिकता के प्रावधानों से संबंधित है।"
+            },
+            {
+                q: "संविधान के किस भाग में 'मौलिक अधिकारों' (Fundamental Rights) का वर्णन है?",
+                options: ["भाग III (अनुच्छेद 12-35)", "भाग IV (अनुच्छेद 36-51)", "भाग IVक", "भाग V"],
+                correctText: "भाग III (अनुच्छेद 12-35)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग III को भारत का मैग्नाकार्टा कहा जाता है जिसमें अनुच्छेद 12 से 35 तक मूल अधिकार हैं।"
+            },
+            {
+                q: "संविधान का भाग IX (Part IX) किस विषय से जुड़ा है?",
+                options: ["पंचायते (Panchayats - अनुच्छेद 243 से 243O)", "नगरपालिकाएँ", "सहकारी समितियाँ", "अधिकरण"],
+                correctText: "पंचायते (Panchayats - अनुच्छेद 243 से 243O)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 9 पंचायतों (73वाँ संशोधन) से संबंधित है।"
+            },
+            {
+                q: "संविधान का भाग IXक (Part IX-A) किससे संबंधित है?",
+                options: ["नगरपालिकाएँ (Municipalities - अनुच्छेद 243P से 243ZG)", "पंचायते", "सहकारी समितियाँ", "संघ राज्य क्षेत्र"],
+                correctText: "नगरपालिकाएँ (Municipalities - अनुच्छेद 243P से 243ZG)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग IX-A नगरपालिकाओं (74वाँ संशोधन) का प्रावधान करता है।"
+            },
+            {
+                q: "संविधान का भाग XV (Part XV) किस विषय से संबंधित है?",
+                options: ["निर्वाचन (Elections - अनुच्छेद 324 से 329)", "आपात उपबंध", "संविधान संशोधन", "राजभाषा"],
+                correctText: "निर्वाचन (Elections - अनुच्छेद 324 से 329)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 15 निर्वाचन आयोग और चुनाव प्रक्रियाओं से संबंधित है।"
+            },
+            {
+                q: "संविधान का भाग XVIII (Part XVIII) किससे संबंधित है?",
+                options: ["आपात उपबंध (Emergency Provisions - अनुच्छेद 352 से 360)", "संविधान संशोधन", "अस्थायी और विशेष उपबंध", "राजभाषा"],
+                correctText: "आपात उपबंध (Emergency Provisions - अनुच्छेद 352 से 360)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 18 में राष्ट्रीय आपात, राष्ट्रपति शासन और वित्तीय आपात का वर्णन है।"
+            },
+            {
+                q: "संविधान का भाग XX (Part XX) किस विषय पर है?",
+                options: ["संविधान का संशोधन (Amendment of the Constitution - अनुच्छेद 368)", "आपात उपबंध", "निर्वाचन", "अस्थायी उपबंध"],
+                correctText: "संविधान का संशोधन (Amendment of the Constitution - अनुच्छेद 368)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 20 का एकमात्र अनुच्छेद 368 संविधान संशोधन की प्रक्रिया बताता है।"
+            },
+            {
+                q: "संविधान के भाग XXI (Part XXI) का शीर्षक क्या है?",
+                options: ["अस्थायी, संक्रमणकालीन और विशेष उपबंध (Temporary, Transitional and Special Provisions)", "आपात उपबंध", "संविधान संशोधन", "प्रकीर्ण"],
+                correctText: "अस्थायी, संक्रमणकालीन और विशेष उपबंध (Temporary, Transitional and Special Provisions)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 21 (अनुच्छेद 369-392) अस्थायी, संक्रमणकालीन और कुछ राज्यों हेतु विशेष उपबंधों से संबंधित है।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद 'विधि के समक्ष समानता' (Equality before law) प्रदान करता है?",
+                options: ["अनुच्छेद 14", "अनुच्छेद 15", "अनुच्छेद 16", "अनुच्छेद 21"],
+                correctText: "अनुच्छेद 14",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 14 कानून के समक्ष समता और कानूनों के समान संरक्षण की गारंटी देता है।"
+            },
+            {
+                q: "धर्म, मूलवंश, जाति, लिंग या जन्मस्थान के आधार पर भेदभाव का निषेध किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 15", "अनुच्छेद 14", "अनुच्छेद 16", "अनुच्छेद 19"],
+                correctText: "अनुच्छेद 15",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 15 नागरिकों के बीच सामाजिक भेदभाव पर रोक लगाता है।"
+            },
+            {
+                q: "लोक रोजगार के विषयों में अवसर की समानता (Equality of opportunity in public employment) का अधिकार किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 16", "अनुच्छेद 14", "अनुच्छेद 15", "अनुच्छेद 18"],
+                correctText: "अनुच्छेद 16",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 16 सरकारी नौकरियों में सभी नागरिकों को समान अवसर प्रदान करता है।"
+            },
+            {
+                q: "अस्पृश्यता का अंत (Abolition of Untouchability) भारतीय संविधान के किस अनुच्छेद द्वारा किया गया है?",
+                options: ["अनुच्छेद 17", "अनुच्छेद 18", "अनुच्छेद 19", "अनुच्छेद 20"],
+                correctText: "अनुच्छेद 17",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 17 छुआछूत (अस्पृश्यता) को एक दंडनीय अपराध घोषित करता है।"
+            },
+            {
+                q: "उपाधियों का अंत (Abolition of Titles) किस अनुच्छेद के अंतर्गत आता है?",
+                options: ["अनुच्छेद 18", "अनुच्छेद 17", "अनुच्छेद 19", "अनुच्छेद 25"],
+                correctText: "अनुच्छेद 18",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 18 सेना या विद्या संबंधी सम्मान के अलावा अन्य सभी उपाधियों का अंत करता है।"
+            },
+            {
+                q: "भारतीय नागरिकों को 6 प्रकार की स्वतंत्रता (वाक् स्वतंत्रता, संघ बनाने की स्वतंत्रता आदि) किस अनुच्छेद में दी गई हैं?",
+                options: ["अनुच्छेद 19", "अनुच्छेद 20", "अनुच्छेद 21", "अनुच्छेद 22"],
+                correctText: "अनुच्छेद 19",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 19 अभिव्यक्ति की स्वतंत्रता सहित 6 मौलिक स्वतंत्रताओं की गारंटी देता है।"
+            },
+            {
+                q: "प्राण और दैहिक स्वतंत्रता का संरक्षण (Protection of Life and Personal Liberty) किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 21", "अनुच्छेद 19", "अनुच्छेद 20", "अनुच्छेद 22"],
+                correctText: "अनुच्छेद 21",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 21 किसी भी व्यक्ति को विधि द्वारा स्थापित प्रक्रिया के बिना उसके जीवन व व्यक्तिगत स्वतंत्रता से वंचित नहीं करता।"
+            },
+            {
+                q: "6 से 14 वर्ष तक के सभी बच्चों को निःशुल्क एवं अनिवार्य शिक्षा का अधिकार किस अनुच्छेद के तहत जोड़ा गया?",
+                options: ["अनुच्छेद 21क (Article 21A)", "अनुच्छेद 45", "अनुच्छेद 51क", "अनुच्छेद 24"],
+                correctText: "अनुच्छेद 21क (Article 21A)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 86वें संशोधन 2002 द्वारा अनुच्छेद 21क जोड़कर शिक्षा को मूल अधिकार बनाया गया।"
+            },
+            {
+                q: "कुछ दशाओं में गिरफ्तारी और निरोध से संरक्षण (Protection against arrest and detention) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 22", "अनुच्छेद 20", "अनुच्छेद 21", "अनुच्छेद 23"],
+                correctText: "अनुच्छेद 22",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 22 गिरफ्तार व्यक्ति को कारण जानने और 24 घंटे में मजिस्ट्रेट के समक्ष पेश करने का अधिकार देता है।"
+            },
+            {
+                q: "मानव दुव्यापार (Human Trafficking) और बलात्श्रम (Forced Labour) का प्रतिषेध किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 23", "अनुच्छेद 24", "अनुच्छेद 17", "अनुच्छेद 19"],
+                correctText: "अनुच्छेद 23",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 23 शोषण के विरुद्ध अधिकार के तहत मानव तस्करी और बेगार पर रोक लगाता है।"
+            },
+            {
+                q: "कारखानों आदि में बालकों के नियोजन का प्रतिषेध (14 वर्ष से कम उम्र के बच्चों से काम पर रोक) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 24", "अनुच्छेद 23", "अनुच्छेद 21क", "अनुच्छेद 45"],
+                correctText: "अनुच्छेद 24",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 24 जोखिम भरे कारखानों या खदानों में बाल श्रम को प्रतिबंधित करता है।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत सर्वोच्च न्यायालय (अनुच्छेद 32) और उच्च न्यायालय (अनुच्छेद 226) रिट जारी करते हैं?",
+                options: ["अनुच्छेद 32 और अनुच्छेद 226", "अनुच्छेद 136 और 227", "अनुच्छेद 124 और 214", "अनुच्छेद 143 और 222"],
+                correctText: "अनुच्छेद 32 और अनुच्छेद 226",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डॉ. अंबेडकर ने अनुच्छेद 32 को 'संविधान की आत्मा और हृदय' कहा है जो मौलिक अधिकारों की रक्षा के लिए रिट प्रदान करता है।"
+            },
+            {
+                q: "भारत के राष्ट्रपति का निर्वाचन (Election of President) किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 54", "अनुच्छेद 52", "अनुच्छेद 53", "अनुच्छेद 55"],
+                correctText: "अनुच्छेद 54",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 54 में राष्ट्रपति के निर्वाचक मंडल (Electoral College) का प्रावधान है।"
+            },
+            {
+                q: "राष्ट्रपति पर महाभियोग (Impeachment of President) चलाने की प्रक्रिया किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 61", "अनुच्छेद 60", "अनुच्छेद 56", "अनुच्छेद 72"],
+                correctText: "अनुच्छेद 61",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के उल्लंघन पर अनुच्छेद 61 के तहत संसद द्वारा राष्ट्रपति पर महाभियोग लगाया जाता है।"
+            },
+            {
+                q: "भारत के महान्यायवादी (Attorney General for India) का पद किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 76", "अनुच्छेद 148", "अनुच्छेद 165", "अनुच्छेद 75"],
+                correctText: "अनुच्छेद 76",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 76 के तहत राष्ट्रपति देश के सर्वोच्च विधि अधिकारी (Attorney General) की नियुक्ति करते हैं।"
+            },
+            {
+                q: "संसद के दोनों सदनों की संयुक्त बैठक (Joint Sitting) किस अनुच्छेद के अंतर्गत बुलाई जाती है?",
+                options: ["अनुच्छेद 108", "अनुच्छेद 110", "अनुच्छेद 112", "अनुच्छेद 123"],
+                correctText: "अनुच्छेद 108",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• साधारण विधेयक पर गतिरोध होने पर राष्ट्रपति अनुच्छेद 108 से संयुक्त बैठक बुलाते हैं जिसकी अध्यक्षता लोकसभा अध्यक्ष करते हैं।"
+            },
+            {
+                q: "धन विधेयक (Money Bill) की परिभाषा किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 110", "अनुच्छेद 109", "अनुच्छेद 112", "अनुच्छेद 114"],
+                correctText: "अनुच्छेद 110",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 110 में धन विधेयक की परिभाषा है, जिसे केवल लोकसभा में ही पेश किया जा सकता है।"
+            },
+            {
+                q: "वार्षिक वित्तीय विवरण यानी 'बजट' (Budget) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 112", "अनुच्छेद 110", "अनुच्छेद 114", "अनुच्छेद 266"],
+                correctText: "अनुच्छेद 112",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में 'बजट' शब्द नहीं है; अनुच्छेद 112 में 'वार्षिक वित्तीय विवरण' उल्लिखित है।"
+            },
+            {
+                q: "राष्ट्रपति की अध्यादेश जारी करने की शक्ति (Ordinance Making Power) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 123", "अनुच्छेद 213", "अनुच्छेद 143", "अनुच्छेद 72"],
+                correctText: "अनुच्छेद 123",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद सत्र न चलने पर राष्ट्रपति अनुच्छेद 123 के तहत अध्यादेश जारी कर सकते हैं।"
+            },
+            {
+                q: "भारत के नियंत्रक एवं महालेखापरीक्षक (CAG) का पद किस अनुच्छेद में आता है?",
+                options: ["अनुच्छेद 148", "अनुच्छेद 149", "अनुच्छेद 150", "अनुच्छेद 280"],
+                correctText: "अनुच्छेद 148",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 148 के तहत राष्ट्रपति CAG की नियुक्ति करते हैं जो लोक वित्त के संरक्षक हैं।"
+            },
+            {
+                q: "राज्य के राज्यपाल की नियुक्ति (Appointment of Governor) किस अनुच्छेद के तहत की जाती है?",
+                options: ["अनुच्छेद 155", "अनुच्छेद 153", "अनुच्छेद 154", "अनुच्छेद 161"],
+                correctText: "अनुच्छेद 155",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 155 के अनुसार राज्य के राज्यपाल की नियुक्ति राष्ट्रपति द्वारा की जाती है।"
+            },
+            {
+                q: "राज्यपाल द्वारा अध्यादेश जारी करने की शक्ति किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 213", "अनुच्छेद 123", "अनुच्छेद 200", "अनुच्छेद 161"],
+                correctText: "अनुच्छेद 213",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्य विधानमंडल का सत्र न होने पर राज्यपाल अनुच्छेद 213 के तहत अध्यादेश जारी करते हैं।"
+            },
+            {
+                q: "उच्च न्यायालय (High Court) का गठन प्रत्येक राज्य के लिए होगा, यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 214", "अनुच्छेद 215", "अनुच्छेद 226", "अनुच्छेद 231"],
+                correctText: "अनुच्छेद 214",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 214 प्रत्येक राज्य हेतु उच्च न्यायालय का प्रावधान करता है।"
+            },
+            {
+                q: "वित्तीय आपातकाल (Financial Emergency) की घोषणा किस अनुच्छेद के तहत की जाती है?",
+                options: ["अनुच्छेद 360", "अनुच्छेद 352", "अनुच्छेद 356", "अनुच्छेद 365"],
+                correctText: "अनुच्छेद 360",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 360 के तहत वित्तीय संकट आने पर राष्ट्रपति वित्तीय आपात लगा सकते हैं (जो भारत में अभी तक एक बार भी नहीं लगा है)।"
+            },
+            {
+                q: "राष्ट्रीय आपातकाल (National Emergency) की घोषणा राष्ट्रपति किस अनुच्छेद के तहत करते हैं?",
+                options: ["अनुच्छेद 352", "अनुच्छेद 356", "अनुच्छेद 360", "अनुच्छेद 368"],
+                correctText: "अनुच्छेद 352",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• युद्ध, बाह्य आक्रमण या सशस्त्र विद्रोह के आधार पर अनुच्छेद 352 के तहत राष्ट्रीय आपात घोषित होता है।"
+            },
+            {
+                q: "राज्यों में संवैधानिक तंत्र की विफलता पर राष्ट्रपति शासन (President's Rule) किस अनुच्छेद से लगाया जाता है?",
+                options: ["अनुच्छेद 356", "अनुच्छेद 352", "अनुच्छेद 360", "अनुच्छेद 370"],
+                correctText: "अनुच्छेद 356",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 356 (और 365) के तहत राज्यों में राष्ट्रपति शासन लगाया जाता है।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत संसद संविधान में संशोधन कर सकती है?",
+                options: ["अनुच्छेद 368", "अनुच्छेद 356", "अनुच्छेद 352", "अनुच्छेद 370"],
+                correctText: "अनुच्छेद 368",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 20 के अंतर्गत अनुच्छेद 368 संसद को संविधान संशोधन की शक्ति देता है।"
+            },
+            {
+                q: "भारतीय संविधान के किस अनुच्छेद के तहत जम्मू-कश्मीर को विशेष दर्जा दिया गया था जिसे अगस्त 2019 में निष्प्रभावी कर दिया गया?",
+                options: ["अनुच्छेद 370", "अनुच्छेद 371क", "अनुच्छेद 371", "अनुच्छेद 356"],
+                correctText: "अनुच्छेद 370",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 21 के अंतर्गत अनुच्छेद 370 J&K को विशेष स्वायत्तता देता था, जिसे 5 अगस्त 2019 को समाप्त कर दिया गया।"
+            },
+            {
+                q: "नागालैंड राज्य के संबंध में विशेष उपबंध (Special provision for Nagaland) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 371क (371A)", "अनुच्छेद 370", "अनुच्छेद 371ख", "अनुच्छेद 371घ"],
+                correctText: "अनुच्छेद 371क (371A)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 21 (अस्थायी, संक्रमणकालीन और विशेष उपबंध) के तहत अनुच्छेद 371A में नागालैंड हेतु विशेष प्रावधान हैं।"
+            },
+            {
+                q: "असम और मणिपुर राज्यों के लिए विशेष उपबंध संविधान के किस अनुच्छेद में दिए गए हैं?",
+                options: ["अनुच्छेद 371B और अनुच्छेद 371C", "अनुच्छेद 370 और 371", "अनुच्छेद 371E और 371F", "अनुच्छेद 372 और 373"],
+                correctText: "अनुच्छेद 371B और अनुच्छेद 371C",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 371B असम के लिए और 371C मणिपुर राज्य के लिए विशेष उपबंध करता है।"
+            },
+            {
+                q: "आंध्र प्रदेश और तेलंगाना राज्यों के लिए केंद्रीय विश्वविद्यालय व विशेष विकास व्यवस्था किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 371D और अनुच्छेद 371E", "अनुच्छेद 371F", "अनुच्छेद 371G", "अनुच्छेद 371H"],
+                correctText: "अनुच्छेद 371D और अनुच्छेद 371E",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 371D और 371E आंध्र प्रदेश और तेलंगाना राज्यों के संबंध में विशेष निर्देश देते हैं।"
+            },
+            {
+                q: "सिक्किम राज्य के लिए विशेष प्रावधान (Special provision for Sikkim) किस अनुच्छेद के तहत जोड़े गए?",
+                options: ["अनुच्छेद 371F (36वें संशोधन द्वारा)", "अनुच्छेद 371G", "अनुच्छेद 371H", "अनुच्छेद 371I"],
+                correctText: "अनुच्छेद 371F (36वें संशोधन द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1975 में सिक्किम के भारत में विलय के बाद अनुच्छेद 371F के तहत विशेष उपबंध जोड़े गए।"
+            },
+            {
+                q: "मिजोरम और अरुणाचल प्रदेश राज्यों के लिए विशेष उपबंध किन अनुच्छेदों में हैं?",
+                options: ["अनुच्छेद 371G (मिजोरम) तथा अनुच्छेद 371H (अरुणाचल प्रदेश)", "अनुच्छेद 371I और 371J", "अनुच्छेद 370 और 371", "अनुच्छेद 371D और 371E"],
+                correctText: "अनुच्छेद 371G (मिजोरम) तथा अनुच्छेद 371H (अरुणाचल प्रदेश)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 21 के तहत मिजोरम (371G) और अरुणाचल प्रदेश (371H) की संस्कृति व भूमि सुरक्षा हेतु विशेष प्रावधान हैं।"
+            },
+            {
+                q: "गोवा राज्य के लिए विशेष उपबंध संविधान के किस अनुच्छेद में निर्दिष्ट हैं?",
+                options: ["अनुच्छेद 371I (371-आई)", "अनुच्छेद 371J", "अनुच्छेद 371H", "अनुच्छेद 371G"],
+                correctText: "अनुच्छेद 371I (371-आई)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 371I गोवा विधानसभा की न्यूनतम संख्या (30) आदि से संबंधित विशेष उपबंध है।"
+            },
+            {
+                q: "कर्नाटक के हैदराबाद-कर्नाटक क्षेत्र के विकास हेतु विशेष प्रावधान किस अनुच्छेद के तहत जोड़े गए?",
+                options: ["अनुच्छेद 371J (98वें संशोधन 2012 द्वारा)", "अनुच्छेद 371I", "अनुच्छेद 370", "अनुच्छेद 371"],
+                correctText: "अनुच्छेद 371J (98वें संशोधन 2012 द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 98वें संशोधन 2012 द्वारा अनुच्छेद 371J जोड़कर कर्नाटक के पिछड़े क्षेत्रों हेतु विशेष व्यवस्था की गई।"
+            },
+            {
+                q: "संविधान के प्रारंभिक दौर में कानूनों के निरंतर बने रहने (Continuance of existing laws) से संबंधित संक्रमणकालीन उपबंध किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 372", "अनुच्छेद 369", "अनुच्छेद 373", "अनुच्छेद 392"],
+                correctText: "अनुच्छेद 372",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 372 संविधान लागू होने से पहले के ब्रिटिशकालीन कानूनों को तब तक बनाए रखता है जब तक संसद उन्हें संशोधित न करे।"
+            },
+            {
+                q: "संविधान के भाग XXI (अस्थायी, संक्रमणकालीन और विशेष उपबंध) के अंतर्गत कुल कितने अनुच्छेद (369 से कहाँ तक) आते हैं?",
+                options: ["अनुच्छेद 369 से 392 तक", "अनुच्छेद 352 से 360", "अनुच्छेद 324 से 329", "अनुच्छेद 343 से 351"],
+                correctText: "अनुच्छेद 369 से 392 तक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग XXI में अनुच्छेद 369 से 392 तक अस्थायी व संक्रमणकालीन प्रावधानों का विस्तृत उल्लेख है।"
+            },
+            {
+                q: "राष्ट्रपति को संविधान की कठिनाइयों को दूर करने की 'कठिनाइयों का निवारण करने की शक्ति' (Power to remove difficulties) किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 392", "अनुच्छेद 370", "अनुच्छेद 368", "अनुच्छेद 365"],
+                correctText: "अनुच्छेद 392",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के प्रारंभ में आने वाली व्यावहारिक कठिनाइयों को दूर करने के लिए राष्ट्रपति को अनुच्छेद 392 के तहत आदेश देने की शक्ति थी।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद में 'संविधान के संक्षिप्त नाम, प्रारंभ (19 January 1950 आदि) और प्राधिकृत पाठ' का उल्लेख है?",
+                options: ["अनुच्छेद 393, 394 और 395", "अनुच्छेद 1, 2, 3", "अनुच्छेद 5 से 11", "अनुच्छेद 368"],
+                correctText: "अनुच्छेद 393, 394 और 395",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 393 (संक्षिप्त नाम - भारत का संविधान), 394 (प्रारंभ) और 395 (निरसन) अंतिम अनुच्छेदों में शामिल हैं।"
+            },
+            {
+                q: "भारतीय संविधान कब अंगीकृत (Adopt) किया गया था और कब पूर्णतः लागू हुआ?",
+                options: ["अंगीकृत: 26 नवंबर 1949, लागू: 26 जनवरी 1950", "अंगीकृत: 26 जनवरी 1950, लागू: 15 अगस्त 1947", "अंगीकृत: 15 अगस्त 1947, लागू: 26 जनवरी 1950", "अंगीकृत और लागू दोनों 26 जनवरी 1950"],
+                correctText: "अंगीकृत: 26 नवंबर 1949, लागू: 26 जनवरी 1950",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 26 नवंबर 1949 को संविधान अपनाया गया और 26 जनवरी 1950 को गणतंत्र के रूप में पूर्णतः लागू हुआ।"
+            },
+            {
+                q: "संविधान सभा की अंतिम बैठक किस दिन हुई थी जिस दिन डॉ. राजेंद्र प्रसाद को भारत का प्रथम राष्ट्रपति चुना गया?",
+                options: ["24 जनवरी 1950 को", "26 जनवरी 1950 को", "26 नवंबर 1949 को", "11 दिसंबर 1946 को"],
+                correctText: "24 जनवरी 1950 को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा की 12वीं और अंतिम बैठक 24 जनवरी 1950 को हुई थी जिसपर सभी सदस्यों ने हस्ताक्षर किए।"
+            },
+            {
+                q: "भारतीय संविधान के निर्माण में कुल कितना समय लगा था?",
+                options: ["2 वर्ष 11 महीने और 18 दिन", "3 वर्ष 2 महीने 15 दिन", "2 वर्ष 5 महीने 10 दिन", "1 વર્ષ 11 महीने 18 दिन"],
+                correctText: "2 वर्ष 11 महीने और 18 दिन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान को तैयार करने में 2 साल, 11 महीने और 18 दिन का समय लगा था।"
+            },
+            {
+                q: "संविधान सभा द्वारा गठित 'प्रारूप समिति' (Drafting Committee) के अध्यक्ष कौन थे?",
+                options: ["डॉ. भीमराव अंबेडकर", "डॉ. राजेंद्र प्रसाद", "जवाहरलाल नेहरू", "सरदार पटेल"],
+                correctText: "डॉ. भीमराव अंबेडकर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 29 अगस्त 1947 को गठित 7 सदस्यीय प्रारूप समिति के अध्यक्ष डॉ. बी.आर. अंबेडकर थे।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना (Preamble) का प्रस्ताव जवाहरलाल नेहरू द्वारा किस ऐतिहासिक उद्देश्य प्रस्ताव (Objectives Resolution) पर आधारित था?",
+                options: ["13 दिसंबर 1946 को प्रस्तुत उद्देश्य प्रस्ताव", "22 जुलाई 1947 का प्रस्ताव", "26 नवंबर 1949 का प्रस्ताव", "कैबिनेट मिशन योजना"],
+                correctText: "13 दिसंबर 1946 को प्रस्तुत उद्देश्य प्रस्ताव",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नेहरू जी द्वारा 13 दिसंबर 1946 को पेश 'उद्देश्य प्रस्ताव' को 22 जनवरी 1947 को अपनाया गया जो बाद में प्रस्तावना बना।"
+            },
+            {
+                q: "संविधान के किस भाग को 'संविधान की आत्मा' (Soul of the Constitution) कहा जाता है?",
+                options: ["प्रस्तावना (Preamble) (तथा डॉ. अंबेडकर के अनुसार अनुच्छेद 32)", "भाग III", "भाग IV", "अनुच्छेद 21"],
+                correctText: "प्रस्तावना (Preamble) (तथा डॉ. अंबेडकर के अनुसार अनुच्छेद 32)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ठाकुर दास भार्गव ने प्रस्तावना को संविधान की आत्मा कहा है, जबकि डॉ. अंबेडकर ने अनुच्छेद 32 को यह पद दिया।"
+            },
+            {
+                q: "संविधान सभा के संवैधानिक सलाहकार (Constitutional Advisor) कौन थे?",
+                options: ["बी.एन. राव (Sir B.N. Rau)", "एस.के. मुखर्जी", "एच.सी. मुखर्जी", "वी.टी. कृष्णमाचारी"],
+                correctText: "बी.एन. राव (Sir B.N. Rau)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर बी.एन. राव संविधान सभा के कानूनी व संवैधानिक सलाहकार थे।"
+            },
+            {
+                q: "भारतीय संविधान का 'सुप्रीम कोर्ट' किस देश के संविधान से लिया गया है?",
+                options: ["संयुक्त राज्य अमेरिका (USA)", "ब्रिटेन", "कनाडा", "ऑस्ट्रेलिया"],
+                correctText: "संयुक्त राज्य अमेरिका (USA)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर्वोच्च न्यायालय, न्यायिक समीक्षा और मूल अधिकार अमेरिका के संविधान से लिए गए हैं।"
+            },
+            {
+                q: "संसदीय शासन प्रणाली (Parliamentary System) और एकल नागरिकता (Single Citizenship) भारत ने किस देश से अपनाई है?",
+                options: ["ब्रिटेन (Britain)", "अमेरिका", "आयरलैंड", "रूस"],
+                correctText: "ब्रिटेन (Britain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रिटेन के संविधान से संसदीय शासन, विधि का शासन और एकल नागरिकता ग्रहण की गई है।"
+            },
+            {
+                q: "समवर्ती सूची (Concurrent List) का प्रावधान किस देश के संविधान से लिया गया है?",
+                options: ["ऑस्ट्रेलिया (Australia)", "कनाडा", "जर्मनी", "दक्षिण अफ्रीका"],
+                correctText: "ऑस्ट्रेलिया (Australia)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समवर्ती सूची तथा संसद के दोनों सदनों की संयुक्त बैठक का विचार ऑस्ट्रेलिया से लिया गया है।"
+            },
+            {
+                q: "मौलिक कर्तव्य (Fundamental Duties) भारतीय संविधान में किस देश के संविधान से जोड़े गए?",
+                options: ["पूर्व सोवियत संघ (USSR / रूस)", "अमेरिका", "आयरलैंड", "फ्रांस"],
+                correctText: "पूर्व सोवियत संघ (USSR / रूस)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्वर्ण सिंह समिति की सिफारिश पर मौलिक कर्तव्य पूर्व USSR से लिए गए।"
+            },
+            {
+                q: "गणतंत्रात्मक व्यवस्था और 'स्वतंत्रता, समानता, बंधुत्व' के आदर्श किस देश के संविधान से प्रेरित हैं?",
+                options: ["फ्रांस (France)", "अमेरिका", "ब्रिटेन", "जर्मनी"],
+                correctText: "फ्रांस (France)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फ्रांसीसी क्रांति के आदर्श 'स्वतंत्रता, समता और बंधुत्व' भारतीय प्रस्तावना का हिस्सा हैं।"
+            },
+            {
+                q: "आपातकाल के दौरान मौलिक अधिकारों के स्थगन का प्रावधान किस देश के संविधान से लिया गया है?",
+                options: ["जर्मनी का वाइमर संविधान", "रूस", "कनाडा", "आयरलैंड"],
+                correctText: "जर्मनी का वाइमर संविधान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जर्मनी के संविधान से आपातकाल के दौरान मूल अधिकारों के निलंबन की शक्ति ली गई है।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत राज्यों को 'ग्राम पंचायतों के संगठन' का निर्देश दिया गया है?",
+                options: ["अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 48", "अनुच्छेद 50"],
+                correctText: "अनुच्छेद 40",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीति निदेशक तत्वों के अंतर्गत अनुच्छेद 40 ग्राम पंचायतों के गठन से संबंधित गांधीवादी अनुच्छेद है।"
+            },
+            {
+                q: "समान नागरिक संहिता (Uniform Civil Code) का उल्लेख संविधान के किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 44", "अनुच्छेद 45", "अनुच्छेद 48", "अनुच्छेद 51"],
+                correctText: "अनुच्छेद 44",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 44 पूरे देश में एकसमान नागरिक संहिता लागू करने का निर्देश राज्य को देता है।"
+            },
+            {
+                q: "कार्यकारिणी से न्यायपालिका का पृथक्करण (Separation of judiciary from executive) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 50", "अनुच्छेद 51", "अनुच्छेद 49", "अनुच्छेद 48"],
+                correctText: "अनुच्छेद 50",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 50 राज्य की लोक सेवाओं में न्यायपालिका को कार्यपालिका से अलग रखने का निर्देश देता है।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय शांति और सुरक्षा की अभिवृद्धि से संबंधित अनुच्छेद कौन सा है?",
+                options: ["अनुच्छेद 51", "अनुच्छेद 50", "अनुच्छेद 48", "अनुच्छेद 47"],
+                correctText: "अनुच्छेद 51",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 51 भारत की विदेश नीति और अंतर्राष्ट्रीय शांति को बढ़ावा देने से जुड़ा है।"
+            },
+            {
+                q: "भारत का राष्ट्रपति अपना त्यागपत्र किसे सौंपता है?",
+                options: ["भारत के उपराष्ट्रपति को", "भारत के मुख्य न्यायाधीश को", "लोकसभा अध्यक्ष को", "प्रधानमंत्री को"],
+                correctText: "भारत के उपराष्ट्रपति को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 56(1)(a) के अनुसार राष्ट्रपति अपना इस्तीफा उपराष्ट्रपति को देते हैं जो इसकी सूचना लोकसभा स्पीकर को देते हैं।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत सर्वोच्च न्यायालय को 'परामर्शदात्री क्षेत्राधिकार' (Advisory Jurisdiction) प्राप्त है?",
+                options: ["अनुच्छेद 143", "अनुच्छेद 136", "अनुच्छेद 137", "अनुच्छेद 141"],
+                correctText: "अनुच्छेद 143",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 143 के तहत राष्ट्रपति कानूनी मामलों पर सुप्रीम कोर्ट से सलाह ले सकते हैं।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद संसद को नए राज्यों के प्रवेश या स्थापना की शक्ति देता है?",
+                options: ["अनुच्छेद 2", "अनुच्छेद 1", "अनुच्छेद 3", "अनुच्छेद 4"],
+                correctText: "अनुच्छेद 2",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 2 संसद को नए राज्यों को संघ में प्रवेश या स्थापित करने की शक्ति देता है (जबकि अनुच्छेद 3 आंतरिक राज्यों के नाम/सीमा परिवर्तन से है)।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के अंतर्गत संसद को 'राज्यों के नाम, सीमा या क्षेत्र में परिवर्तन' करने की शक्ति प्राप्त है?",
+                options: ["अनुच्छेद 3", "अनुच्छेद 2", "अनुच्छेद 4", "अनुच्छेद 1"],
+                correctText: "अनुच्छेद 3",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 3 के तहत संसद साधारण बहुमत से किसी राज्य का नाम या सीमा बदल सकती है।"
+            },
+            {
+                q: "भारतीय संविधान के किस अनुच्छेद में 'अस्पृश्यता का अंत' (Abolition of Untouchability) सुनिश्चित किया गया है?",
+                options: ["अनुच्छेद 17", "अनुच्छेद 18", "अनुच्छेद 19", "अनुच्छेद 21"],
+                correctText: "अनुच्छेद 17",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 17 अस्पृश्यता का अंत करता है और इसका किसी भी रूप में आचरण वर्जित है।"
+            },
+            {
+                q: "संसद के सत्र आहूत करने, सत्रावसान करने और लोकसभा को विघटित करने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 85", "अनुच्छेद 86", "अनुच्छेद 87", "अनुच्छेद 88"],
+                correctText: "अनुच्छेद 85",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 85 राष्ट्रपति को संसद सत्र बुलाने, सत्रावसान करने व लोकसभा भंग करने की शक्ति देता है।"
+            },
+            {
+                q: "संसद के दोनों सदनों की गणपूर्ति (Quorum) कुल सदस्य संख्या का कितना भाग होती है?",
+                options: ["1/10 भाग (अनुच्छेद 100(3))", "1/5 भाग", "1/3 भाग", "1/2 भाग"],
+                correctText: "1/10 भाग (अनुच्छेद 100(3))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सदन की कार्यवाही चलाने हेतु कम से कम 1/10 सदस्यों की उपस्थिति अनिवार्य है।"
+            },
+            {
+                q: "भारत के महान्यायवादी (Attorney General) को संसद के सदनों में बोलने और भाग लेने का अधिकार किस अनुच्छेद से मिलता है?",
+                options: ["अनुच्छेद 88", "अनुच्छेद 76", "अनुच्छेद 105", "अनुच्छेद 78"],
+                correctText: "अनुच्छेद 88",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 88 के तहत महान्यायवादी संसद की बैठकों में बोल सकते हैं, परंतु मतदान नहीं कर सकते।"
+            },
+            {
+                q: "संसद सदस्यों के विशेषाधिकार (Parliamentary Privileges) का वर्णन किस अनुच्छेद में किया गया है?",
+                options: ["अनुच्छेद 105", "अनुच्छेद 108", "अनुच्छेद 110", "अनुच्छेद 111"],
+                correctText: "अनुच्छेद 105",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 105 सांसदों को सदन के भीतर स्वतंत्रता और विशेषाधिकार प्रदान करता है।"
+            },
+            {
+                q: "भारत की संचित निधि (Consolidated Fund of India) का प्रावधान किस अनुच्छेद के अंतर्गत है?",
+                options: ["अनुच्छेद 266(1)", "अनुच्छेद 267", "अनुच्छेद 112", "अनुच्छेद 280"],
+                correctText: "अनुच्छेद 266(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 266(1) में संचित निधि का वर्णन है जिससे सरकार के सभी खर्चे पूरे होते हैं।"
+            },
+            {
+                q: "भारत की आकस्मिकता निधि (Contingency Fund of India) किस अनुच्छेद के तहत गठित होती है?",
+                options: ["अनुच्छेद 267", "अनुच्छेद 266", "अनुच्छेद 280", "अनुच्छेद 275"],
+                correctText: "अनुच्छेद 267",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 267 के तहत आकस्मिक निधि राष्ट्रपति के नियंत्रण में आपातकालीन खर्च हेतु होती है।"
+            },
+            {
+                q: "वित्त आयोग (Finance Commission) के गठन का प्रावधान संविधान के किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 280", "अनुच्छेद 281", "अनुच्छेद 279", "अनुच्छेद 268"],
+                correctText: "अनुच्छेद 280",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 280 के तहत राष्ट्रपति हर 5 वर्ष पर वित्त आयोग का गठन करते हैं।"
+            },
+            {
+                q: "अखिल भारतीय सेवाएँ (All India Services - IAS, IPS, IFS) सृजित करने की शक्ति किस अनुच्छेद के तहत राज्यसभा के पास है?",
+                options: ["अनुच्छेद 312 (2/3 बहुमत से)", "अनुच्छेद 315", "अनुच्छेद 249", "अनुच्छेद 324"],
+                correctText: "अनुच्छेद 312 (2/3 बहुमत से)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 312 राज्यसभा को नई अखिल भारतीय सेवाएँ बनाने का अनन्य अधिकार देता है।"
+            },
+            {
+                q: "संघ और राज्यों के लिए लोक सेवा आयोग (UPSC & SPSC) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 315", "अनुच्छेद 320", "अनुच्छेद 323", "अनुच्छेद 316"],
+                correctText: "अनुच्छेद 315",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 315 के तहत संघ के लिए UPSC और राज्यों के लिए SPSC का गठन होता है।"
+            },
+            {
+                q: "निर्वाचन आयोग (Election Commission) का गठन किस अनुच्छेद के अंतर्गत आता है?",
+                options: ["अनुच्छेद 324", "अनुच्छेद 325", "अनुच्छेद 326", "अनुच्छेद 329"],
+                correctText: "अनुच्छेद 324",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 324 स्वतंत्र और निष्पक्ष चुनाव हेतु निर्वाचन आयोग की स्थापना करता है।"
+            },
+            {
+                q: "लोकसभा और राज्य विधानसभाओं के चुनाव 'वयस्क मताधिकार' (Adult Suffrage) के आधार पर होंगे, यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 326", "अनुच्छेद 324", "अनुच्छेद 325", "अनुच्छेद 327"],
+                correctText: "अनुच्छेद 326",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 326 लोकसभा और विधानसभा चुनावों में 18 वर्ष से ऊपर के सभी नागरिकों को मताधिकार देता है।"
+            },
+            {
+                q: "लोकसभा में अनुसूचित जातियों (SC) और अनुसूचित जनजातियों (ST) के आरक्षण का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 330", "अनुच्छेद 332", "अनुच्छेद 335", "अनुच्छेद 338"],
+                correctText: "अनुच्छेद 330",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 330 लोकसभा में SC/ST के सीटों के आरक्षण से संबंधित है (जबकि 332 विधानसभाओं में आरक्षण से है)।"
+            },
+            {
+                q: "संघ की राजभाषा हिंदी और लिपि देवनागरी होगी, यह किस अनुच्छेद में स्पष्ट किया गया है?",
+                options: ["अनुच्छेद 343(1)", "अनुच्छेद 344", "अनुच्छेद 351", "अनुच्छेद 348"],
+                correctText: "अनुच्छेद 343(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 343 संघ की राजभाषा हिंदी को घोषित करता है।"
+            },
+            {
+                q: "राष्ट्रीय आपातकाल (अनुच्छेद 352) के दौरान कौन से दो मौलिक अधिकार कभी निलंबित नहीं किए जा सकते?",
+                options: ["अनुच्छेद 20 और 21", "अनुच्छेद 14 और 19", "अनुच्छेद 17 और 18", "अनुच्छेद 23 और 24"],
+                correctText: "अनुच्छेद 20 और 21",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 44वें संशोधन 1978 के बाद से आपातकाल में भी अनुच्छेद 20 (दोषसिद्धि संरक्षण) और 21 (प्राण-दैहिक स्वतंत्रता) निलंबित नहीं होते।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत संसद को देश या उसके किसी भाग में 'नया राज्य बनाने या सीमा बदलने' की पूर्ण शक्ति है?",
+                options: ["अनुच्छेद 3", "अनुच्छेद 2", "अनुच्छेद 4", "अनुच्छेद 1"],
+                correctText: "अनुच्छेद 3",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 3 संसद को नए राज्यों के निर्माण, क्षेत्रफल घटाने-बढ़ाने या नाम बदलने की शक्ति देता है।"
+            }
+        ];
+
+        let quizDataPolity7 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity7 = rawQuizDataPolity7.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity7;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp7_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp7_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 7 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 7 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* अनुसूचियाँ, भाग, महत्वपूर्ण अनुच्छेद व विशेष उपबंध\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp7.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp7_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
