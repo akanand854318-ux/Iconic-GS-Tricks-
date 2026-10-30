@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 5 (न्यायपालिका, पंचायती राज एवं नगरपालिकाएँ) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 5 (न्यायपालिका, पंचायती राज व नगरपालिकाएँ)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 5)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 5 (न्यायपालिका, पंचायती राज एवं नगरपालिकाएँ)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: न्यायपालिका, पंचायती राज (73वाँ संशोधन) एवं नगरपालिकाएँ (74वाँ संशोधन) - 100 प्रश्न
+        const rawQuizDataPolity5 = [
+            {
+                q: "भारतीय संविधान के अनुसार न्यायपालिका (Judiciary) की संरचना किस प्रकार की है?",
+                options: ["एकीकृत और दोहरी (Integrated Single Judiciary)", "दोहरी स्वतंत्र न्यायपालिका", "संघीय न्यायपालिका", "त्रिस्तरीय पृथक्कृत"],
+                correctText: "एकीकृत और दोहरी (Integrated Single Judiciary)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में केंद्र और राज्यों के लिए एक ही एकीकृत न्यायिक व्यवस्था (Supreme Court -> High Court -> Subordinate Courts) है।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद 'भारत का एक सर्वोच्च न्यायालय होगा' का प्रावधान करता है?",
+                options: ["अनुच्छेद 124(1)", "अनुच्छेद 125", "अनुच्छेद 126", "अनुच्छेद 129"],
+                correctText: "अनुच्छेद 124(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 124(1) के तहत सर्वोच्च न्यायालय की स्थापना का वर्णन है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के न्यायाधीशों की संख्या में वृद्धि करने की शक्ति किसके पास है?",
+                options: ["भारतीय संसद (Parliament)", "राष्ट्रपति", "सर्वोच्च न्यायालय का मुख्य न्यायाधीश", "विधि मंत्रालय"],
+                correctText: "भारतीय संसद (Parliament)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 124(1) के तहत संसद कानून बनाकर न्यायाधीशों की संख्या बढ़ा सकती है (वर्तमान में संख्या 34 है)।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के मुख्य न्यायाधीश तथा अन्य न्यायाधीशों की नियुक्ति कौन करता है?",
+                options: ["भारत के राष्ट्रपति (कोलेजियम प्रणाली की सलाह पर)", "प्रधानमंत्री", "संसद", "कानून मंत्री"],
+                correctText: "भारत के राष्ट्रपति (कोलेजियम प्रणाली की सलाह पर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर्वोच्च न्यायालय के न्यायाधीशों की नियुक्ति राष्ट्रपति द्वारा कोलेजियम की सिफारिश पर की जाती है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय का न्यायाधीश बनने हेतु न्यूनतम आयु सीमा क्या निर्धारित है?",
+                options: ["कोई न्यूनतम आयु निर्धारित नहीं है", "35 वर्ष", "30 वर्ष", "45 वर्ष"],
+                correctText: "कोई न्यूनतम आयु निर्धारित नहीं है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में सर्वोच्च न्यायालय या उच्च न्यायालय के न्यायाधीश बनने की कोई न्यूनतम आयु सीमा तय नहीं है; केवल सेवानिवृत्ति आयु (65 वर्ष) का उल्लेख है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के न्यायाधीशों की सेवानिवृत्ति की आयु कितनी होती है?",
+                options: ["65 वर्ष", "62 वर्ष", "60 वर्ष", "70 वर्ष"],
+                correctText: "65 वर्ष",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर्वोच्च न्यायालय के न्यायाधीश 65 वर्ष की आयु तक पद पर बने रहते हैं (उच्च न्यायालय के लिए 62 वर्ष)।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के न्यायाधीशों को हटाने की प्रक्रिया (अनुच्छेद 124(4)) का आधार क्या है?",
+                options: ["सिद्ध कदाचार (Proved Misbehaviour) या असमर्थता (Incapacity)", "राष्ट्रपति का असंतोष", "संसद की नाखुशी", "भ्रष्टाचार की शिकायत"],
+                correctText: "सिद्ध कदाचार (Proved Misbehaviour) या असमर्थता (Incapacity)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 124(4) के तहत केवल दो आधारों पर ही न्यायाधीश जाँच अधिनियम 1968 के अनुसार संसद द्वारा विशेष बहुमत से हटाया जा सकता है।"
+            },
+            {
+                q: "न्यायाधीशों को हटाने संबंधी प्रस्ताव लाने हेतु लोकसभा और राज्यसभा में न्यूनतम कितने सदस्यों का समर्थन अनिवार्य है?",
+                options: ["100 सदस्य (लोकसभा) तथा 50 सदस्य (राज्यसभा)", "50 लोकसभा तथा 25 राज्यसभा", "200 सदस्य", "1/10 सदस्य"],
+                correctText: "100 सदस्य (लोकसभा) तथा 50 सदस्य (राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्ताव प्रस्तुत करने के लिए लोकसभा में 100 सदस्यों और राज्यसभा में 50 सदस्यों के हस्ताक्षर आवश्यक हैं।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय को 'अभिलेख न्यायालय' (Court of Record) किस अनुच्छेद के तहत घोषित किया गया है?",
+                options: ["अनुच्छेद 129", "अनुच्छेद 130", "अनुच्छेद 131", "अनुच्छेद 136"],
+                correctText: "अनुच्छेद 129",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 129 के तहत सर्वोच्च न्यायालय एक अभिलेख न्यायालय है, जिसके निर्णयों को साक्ष्य के रूप में रखा जाता है और उसे अवमानना पर दंड देने का अधिकार है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय का स्थान (Seat of Supreme Court - नई दिल्ली) किस अनुच्छेद में निर्दिष्ट है?",
+                options: ["अनुच्छेद 130", "अनुच्छेद 129", "अनुच्छेद 131", "अनुच्छेद 132"],
+                correctText: "अनुच्छेद 130",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 130 के अनुसार सर्वोच्च न्यायालय दिल्ली में स्थित होगा या राष्ट्रपति के अनुमोदन से CJI अन्य स्थान तय कर सकते हैं।"
+            },
+            {
+                q: "केंद्र तथा राज्यों के बीच विवादों का निपटारा करना सर्वोच्च न्यायालय के किस क्षेत्राधिकार में आता है?",
+                options: ["मूल/प्रारंभिक क्षेत्राधिकार (Original Jurisdiction - अनुच्छेद 131)", "अपीलीय क्षेत्राधिकार", "परामर्शदात्री क्षेत्राधिकार", "पुनर्विलोकन क्षेत्राधिकार"],
+                correctText: "मूल/प्रारंभिक क्षेत्राधिकार (Original Jurisdiction - अनुच्छेद 131)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• केंद्र-राज्य व अंतर्राज्यीय कानूनी विवादों को केवल सीधे सर्वोच्च न्यायालय (अनुच्छेद 131) में ही उठाया जा सकता है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय को विशेष इजाजत से अपील (Special Leave Petition - SLP) सुनने की शक्ति किस अनुच्छेद के तहत प्राप्त है?",
+                options: ["अनुच्छेद 136", "अनुच्छेद 133", "अनुच्छेद 132", "अनुच्छेद 137"],
+                correctText: "अनुच्छेद 136",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 136 के तहत सर्वोच्च न्यायालय भारत के किसी भी न्यायालय/न्यायाधिकरण के फैसले के खिलाफ अपील की विशेष अनुमति दे सकता है।"
+            },
+            {
+                q: "अपने स्वयं के निर्णयों या आदेशों का पुनर्विलोकन (Review of Judgments/Orders) करने की शक्ति सुप्रीम कोर्ट को किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 137", "अनुच्छेद 136", "अनुच्छेद 139", "अनुच्छेद 141"],
+                correctText: "अनुच्छेद 137",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 137 के तहत सर्वोच्च न्यायालय को अपने पूर्व में दिए गए निर्णयों की समीक्षा करने तथा उन्हें बदलने का अधिकार है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय द्वारा घोषित कानून भारत के सभी न्यायालयों पर बाध्यकारी (Binding) होगा—यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 141", "अनुच्छेद 142", "अनुच्छेद 143", "अनुच्छेद 139"],
+                correctText: "अनुच्छेद 141",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 141 के अनुसार सर्वोच्च न्यायालय की विधि देश के सभी न्यायालयों पर लागू होती है।"
+            },
+            {
+                q: "पूर्ण न्याय (Complete Justice) प्रदान करने के लिए सुप्रीम कोर्ट की विवेकाधीन आदेश जारी करने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 142", "अनुच्छेद 141", "अनुच्छेद 143", "अनुच्छेद 136"],
+                correctText: "अनुच्छेद 142",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 142 सुप्रीम कोर्ट को पूर्ण न्याय हेतु कोई भी आदेश पारित करने की असाधारण शक्ति देता है (जैसे अयोध्‍या विवाद, यूनियन कार्बाइड केस)।"
+            },
+            {
+                q: "राष्ट्रपति सर्वोच्च न्यायालय से किसी कानूनी प्रश्न पर सलाह माँग सकते हैं—यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 143", "अनुच्छेद 141", "अनुच्छेद 142", "अनुच्छेद 144"],
+                correctText: "अनुच्छेद 143",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 143 के तहत राष्ट्रपति सुप्रीम कोर्ट से राय माँग सकते हैं, किंतु कोर्ट राय देने और राष्ट्रपति उसे मानने के लिए बाध्य नहीं हैं।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय में 'तदर्थ न्यायाधीशों' (Ad-hoc Judges) की नियुक्ति किस अनुच्छेद के तहत की जाती है?",
+                options: ["अनुच्छेद 127", "अनुच्छेद 128", "अनुच्छेद 126", "अनुच्छेद 130"],
+                correctText: "अनुच्छेद 127",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कोरम पूरा न होने की स्थिति में CJI राष्ट्रपति की पूर्व सहमति से हाई कोर्ट के योग्य जजों को एड-हॉक जज (अनुच्छेद 127) नियुक्त करते हैं।"
+            },
+            {
+                q: "प्रत्येक राज्य के लिए एक उच्च न्यायालय (High Court) होगा—यह किस अनुच्छेद में लिखा गया है?",
+                options: ["अनुच्छेद 214", "अनुच्छेद 215", "अनुच्छेद 216", "अनुच्छेद 217"],
+                correctText: "अनुच्छेद 214",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 214 में प्रत्येक राज्य के लिए उच्च न्यायालय का प्रावधान है।"
+            },
+            {
+                q: "उच्च न्यायालय को 'अभिलेख न्यायालय' (Court of Record) किस अनुच्छेद के तहत घोषित किया गया है?",
+                options: ["अनुच्छेद 215", "अनुच्छेद 214", "अनुच्छेद 225", "अनुच्छेद 226"],
+                correctText: "अनुच्छेद 215",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 215 उच्च न्यायालय को अभिलेख न्यायालय का दर्जा देता है।"
+            },
+            {
+                q: "उच्च न्यायालय के न्यायाधीशों की सेवानिवृत्ति की आयु सीमा 60 वर्ष से बढ़ाकर 62 वर्ष किस संशोधन से की गई?",
+                options: ["15वाँ संविधान संशोधन 1963", "42वाँ संशोधन", "44वाँ संशोधन", "52वाँ संशोधन"],
+                correctText: "15वाँ संविधान संशोधन 1963",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 15वें संशोधन 1963 द्वारा हाईकोर्ट के न्यायाधीशों की सेवानिवृत्ति आयु 60 से बढ़ाकर 62 वर्ष कर दी गई।"
+            },
+            {
+                q: "उच्च न्यायालय के न्यायाधीशों को शपथ (Oath) कौन दिलाता है?",
+                options: ["संबंधित राज्य का राज्यपाल (अनुच्छेद 219)", "भारत का राष्ट्रपति", "सर्वोच्च न्यायालय का मुख्य न्यायाधीश", "राज्य का मुख्यमंत्री"],
+                correctText: "संबंधित राज्य का राज्यपाल (अनुच्छेद 219)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्यान दें कि नियुक्ति राष्ट्रपति करते हैं, परंतु शपथ राज्य के राज्यपाल दिलाते हैं।"
+            },
+            {
+                q: "उच्च न्यायालय का कोई न्यायाधीश अपना त्यागपत्र किसे संबोधित करके देता है?",
+                options: ["भारत के राष्ट्रपति को", "राज्य के राज्यपाल को", "सर्वोच्च न्यायालय के मुख्य न्यायाधीश को", "उच्च न्यायालय के मुख्य न्यायाधीश को"],
+                correctText: "भारत के राष्ट्रपति को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• न्यायाधीशों का नियुक्ति प्राधिकारी राष्ट्रपति होने के कारण इस्तीफा राष्ट्रपति को ही भेजा जाता है।"
+            },
+            {
+                q: "उच्च न्यायालय के न्यायाधीशों का एक उच्च न्यायालय से दूसरे उच्च न्यायालय में स्थानांतरण (Transfer) किस अनुच्छेद के तहत होता है?",
+                options: ["अनुच्छेद 222", "अनुच्छेद 220", "अनुच्छेद 224", "अनुच्छेद 223"],
+                correctText: "अनुच्छेद 222",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 222 के तहत राष्ट्रपति CJI से परामर्श कर हाई कोर्ट जजों का ट्रांसफर करते हैं।"
+            },
+            {
+                q: "उच्च न्यायालय को मौलिक अधिकारों तथा अन्य विधिक अधिकारों के प्रवर्तन हेतु रिट जारी करने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 226", "अनुच्छेद 32", "अनुच्छेद 227", "अनुच्छेद 228"],
+                correctText: "अनुच्छेद 226",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 226 के तहत हाई कोर्ट मूल अधिकारों व साधारण कानूनी अधिकारों दोनों पर रिट निकाल सकता है।"
+            },
+            {
+                q: "उच्च न्यायालय की अपने सभी अधीनस्थ न्यायालयों पर 'अधीक्षण की शक्ति' (Power of Superintendence) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 227", "अनुच्छेद 226", "अनुच्छेद 228", "अनुच्छेद 235"],
+                correctText: "अनुच्छेद 227",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 227 के तहत हाईकोर्ट अपने क्षेत्राधिकार में आने वाले सभी अधीनस्थ न्यायालयों व ट्रिब्यूनलों पर प्रशासनिक एवं न्यायिक अधीक्षण रखता है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय और उच्च न्यायालय की तुलना में रिट जारी करने का क्षेत्राधिकार किसका अधिक व्यापक (Wider) है?",
+                options: ["उच्च न्यायालय का (क्योंकि यह मूल अधिकार + कानूनी अधिकार दोनों पर रिट दे सकता है)", "सर्वोच्च न्यायालय का", "दोनों का समान है", "किसी का नहीं"],
+                correctText: "उच्च न्यायालय का (क्योंकि यह मूल अधिकार + कानूनी अधिकार दोनों पर रिट दे सकता है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 32 के तहत SC केवल मूल अधिकारों पर रिट देता है, जबकि अनुच्छेद 226 के तहत HC अन्य विधिक विषयों पर भी रिट जारी कर सकता है।"
+            },
+            {
+                q: "जिला न्यायाधीशों (District Judges) की नियुक्ति, पदस्थापना तथा पदोन्नति किसके द्वारा की जाती है?",
+                options: ["संबंधित राज्य के राज्यपाल द्वारा (उच्च न्यायालय के परामर्श से - अनुच्छेद 233)", "राष्ट्रपति द्वारा", "हाई कोर्ट के मुख्य न्यायाधीश द्वारा", "राज्य लोक सेवा आयोग द्वारा"],
+                correctText: "संबंधित राज्य के राज्यपाल द्वारा (उच्च न्यायालय के परामर्श से - अनुच्छेद 233)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 233 के तहत जिला जजों की नियुक्ति राज्यपाल हाईकोर्ट की सलाह से करते हैं।"
+            },
+            {
+                q: "अधीनस्थ न्यायालयों (Subordinate Courts) पर नियंत्रण और पर्यवेक्षण का अधिकार किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 235", "अनुच्छेद 233", "अनुच्छेद 234", "अनुच्छेद 236"],
+                correctText: "अनुच्छेद 235",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अधीनस्थ न्यायपालिका की पदस्थापना, छुट्टी, अनुशासन आदि पर पूरा नियंत्रण हाई कोर्ट का होता है।"
+            },
+            {
+                q: "भारत में 'जनहित याचिका' (Public Interest Litigation - PIL / लोकहितवाद) की शुरुआत का श्रेय किसे दिया जाता है?",
+                options: ["जस्टिस पी.एन. भगवती तथा जस्टिस वी.आर. कृष्ण अय्यर (1980 के दशक में)", "जस्टिस एच.जे. कनिया", "जस्टिस वाई.वी. चंद्रचूड़", "जस्टिस दीपक मिश्रा"],
+                correctText: "जस्टिस पी.एन. भगवती तथा जस्टिस वी.आर. कृष्ण अय्यर (1980 के दशक में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जस्टिस पी.एन. भगवती को भारत में जनहित याचिका का जनक माना जाता है जिन्होंने 'लोकस स्टैंडाई' नियम को शिथिल किया।"
+            },
+            {
+                q: "प्रशासनिक अधिकरणों (Administrative Tribunals - जैसे CAT) का प्रावधान किस संविधान संशोधन द्वारा भाग XIVक के तहत जोड़ा गया?",
+                options: ["42वाँ संविधान संशोधन 1976 (अनुच्छेद 323A व 323B)", "44वाँ संशोधन", "73वाँ संशोधन", "86वाँ संशोधन"],
+                correctText: "42वाँ संविधान संशोधन 1976 (अनुच्छेद 323A व 323B)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन द्वारा भाग 14क जोड़कर अनुच्छेद 323A में प्रशासनिक ट्रिब्यूनल और 323B में अन्य विषयों हेतु ट्रिब्यूनल का प्रावधान किया गया।"
+            },
+            {
+                q: "केन्द्रीय प्रशासनिक अधिकरण (Central Administrative Tribunal - CAT) का गठन किस वर्ष किया गया था?",
+                options: ["वर्ष 1985 में (प्रशासनिक अधिकरण अधिनियम 1985)", "वर्ष 1976 में", "वर्ष 1990 में", "वर्ष 2000 में"],
+                correctText: "वर्ष 1985 में (प्रशासनिक अधिकरण अधिनियम 1985)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1 नवंबर 1985 को CAT की स्थापना लोक सेवकों की सेवा संबंधी विवादों के त्वरित निस्तारण हेतु की गई थी।"
+            },
+            {
+                q: "भारत में पहली 'लोक अदालत' (Lok Adalat) का आयोजन 1982 में कहाँ किया गया था?",
+                options: ["जूनागढ़, गुजरात में", "नई दिल्ली में", "चेन्नई में", "मुंबई में"],
+                correctText: "जूनागढ़, गुजरात में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पहली प्रायोगिक लोक अदालत मार्च 1982 में जूनागढ़ (गुजरात) में आयोजित की गई थी।"
+            },
+            {
+                q: "लोक अदालतों को किस अधिनियम के तहत वैधानिक दर्जा (Statutory Status) प्रदान किया गया है?",
+                options: ["विधिक सेवा प्राधिकरण अधिनियम 1987 (Legal Services Authorities Act)", "न्यायाधीश अधिनियम 1968", "सिविल प्रक्रिया संहिता 1908", "उपभोक्ता संरक्षण अधिनियम"],
+                correctText: "विधिक सेवा प्राधिकरण अधिनियम 1987 (Legal Services Authorities Act)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1987 के अधिनियम के तहत लोक अदालतों के फैसलों को दीवानी अदालत (Civil Court) के फैसले के बराबर माना गया है और इसकी कोई अपील नहीं होती।"
+            },
+            {
+                q: "'ग्राम न्यायालय अधिनियम' (Gram Nyayalay Act) संसद द्वारा किस वर्ष पारित किया गया था?",
+                options: ["वर्ष 2008 में (2 अक्टूबर 2009 से लागू)", "वर्ष 2005", "वर्ष 2010", "वर्ष 1993"],
+                correctText: "वर्ष 2008 में (2 अक्टूबर 2009 से लागू)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रामीण क्षेत्रों में द्वार पर न्याय पहुँचाने हेतु 2008 में कानून बना; इसके पीठ के अधिकारी 'न्यायाधिकारी' कहलाते हैं।"
+            },
+            {
+                q: "राष्ट्रीय हरित अधिकरण (National Green Tribunal - NGT) की स्थापना किस वर्ष की गई थी?",
+                options: ["वर्ष 2010 में (NGT Act 2010)", "वर्ष 2005", "वर्ष 2015", "वर्ष 2008"],
+                correctText: "वर्ष 2010 में (NGT Act 2010)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पर्यावरण संबंधी मामलों के त्वरित निपटारे हेतु 18 अक्टूबर 2010 को NGT का गठन हुआ (मुख्यालय: नई दिल्ली)।"
+            },
+            {
+                q: "आपराधिक मामलों में आरोपी द्वारा अपने दोष को स्वीकार कर सजा कम कराने की प्रक्रिया को क्या कहते हैं?",
+                options: ["दलील सौदेबाज़ी / प्ली बार्गेनिंग (Plea Bargaining)", "लोकहितवाद", "अपील", "न्यायिक समीक्षा"],
+                correctText: "दलील सौदेबाज़ी / प्ली बार्गेनिंग (Plea Bargaining)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• CrPC (अब भारतीय नागरिक सुरक्षा संहिता) में शामिल प्ली बार्गेनिंग के तहत आरोपी अपराध मानकर कम सजा की माँग करता है।"
+            },
+            {
+                q: "स्वतंत्र भारत में पंचायती राज की औपचारिक शुरुआत कब और कहाँ से हुई थी?",
+                options: ["2 अक्टूबर 1959 को नागौर (राजस्थान) से (पंडित जवाहरलाल नेहरू द्वारा)", "15 अगस्त 1947 को दिल्ली से", "26 जनवरी 1950 को", "1961 में आंध्र प्रदेश से"],
+                correctText: "2 अक्टूबर 1959 को नागौर (राजस्थान) से (पंडित जवाहरलाल नेहरू द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2 अक्टूबर 1959 को राजस्थान के नागौर जिले से प्रथम प्रधानमंत्री नेहरू ने पंचायती राज का उद्घाटन किया।"
+            },
+            {
+                q: "त्रिस्तरीय पंचायती राज व्यवस्था (Three-tier Panchayati Raj System) की सिफारिश सबसे पहले किस समिति ने की थी?",
+                options: ["बलवंत राय मेहता समिति (1957)", "अशोक मेहता समिति (1977)", "जी.वी.के. राव समिति (1985)", "एल.एम. सिंघवी समिति (1986)"],
+                correctText: "बलवंत राय मेहता समिति (1957)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1957 में बलवंत राय मेहता समिति ने ग्राम स्तर पर ग्राम पंचायत, खंड स्तर पर पंचायत समिति और जिला स्तर पर जिला परिषद की सिफारिश की।"
+            },
+            {
+                q: "द्वि-स्तरीय (Two-tier) पंचायती राज मॉडल की सिफारिश किस समिति द्वारा की गई थी?",
+                options: ["अशोक मेहता समिति (1977)", "बलवंत राय मेहता समिति", "संथानम समिति", "थुंगन समिति"],
+                correctText: "अशोक मेहता समिति (1977)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1977 की अशोक मेहता समिति ने केवल दो स्तरों—मंडल पंचायत और जिला परिषद की सिफारिश की थी।"
+            },
+            {
+                q: "पंचायतों को 'संवैधानिक दर्जा' (Constitutional Status) देने की सिफारिश सर्वप्रथम किस समिति ने की थी?",
+                options: ["एल.एम. सिंघवी समिति (1986) तथा पी.के. थुंगन समिति (1988)", "बलवंत राय मेहता समिति", "अशोक मेहता समिति", "जी.वी.के. राव समिति"],
+                correctText: "एल.एम. सिंघवी समिति (1986) तथा पी.के. थुंगन समिति (1988)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एल.एम. सिंघवी समिति ने पंचायतों को संवैधानिक मान्यता देने व वित्तीय साधन जुटाने पर जोर दिया था।"
+            },
+            {
+                q: "73वाँ संविधान संशोधन अधिनियम 1992 किससे संबंधित है और यह कब लागू हुआ?",
+                options: ["पंचायती राज से (लागू: 24 अप्रैल 1993)", "नगरपालिकाओं से (1 जून 1993)", "सहकारी समितियों से", "दलबदल कानून से"],
+                correctText: "पंचायती राज से (लागू: 24 अप्रैल 1993)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 73वाँ संशोधन 24 अप्रैल 1993 से पूरे देश में लागू हुआ, इसीलिए 24 अप्रैल को 'राष्ट्रीय पंचायती राज दिवस' मनाते हैं।"
+            },
+            {
+                q: "73वें संविधान संशोधन द्वारा संविधान में कौन सा भाग, अनुसूची और कुल कितने विषय जोड़े गए?",
+                options: ["भाग IX, 11वीं अनुसूची (29 विषय - अनुच्छेद 243 से 243O)", "भाग IXक, 12वीं अनुसूची (18 विषय)", "भाग VIII, 10वीं अनुसूची (10 विषय)", "भाग X, 9वीं अनुसूची (15 विषय)"],
+                correctText: "भाग IX, 11वीं अनुसूची (29 विषय - अनुच्छेद 243 से 243O)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पंचायतों हेतु भाग IX, 11वीं अनुसूची तथा पंचायतों के काम हेतु 29 विषय जोड़े गए।"
+            },
+            {
+                q: "'ग्राम सभा' (Gram Sabha) की परिभाषा किस अनुच्छेद के तहत दी गई है?",
+                options: ["अनुच्छेद 243(a)", "अनुच्छेद 243(b)", "अनुच्छेद 243(c)", "अनुच्छेद 243(d)"],
+                correctText: "अनुच्छेद 243(a)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243(क) के अनुसार ग्राम स्तर पर गाँव की मतदाता सूची में पंजीकृत सभी व्यक्तियों से बनी सभा 'ग्राम सभा' है।"
+            },
+            {
+                q: "त्रिस्तरीय पंचायतों के गठन (Constitution of Panchayats) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243B", "अनुच्छेद 243A", "अनुच्छेद 243C", "अनुच्छेद 243D"],
+                correctText: "अनुच्छेद 243B",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243B में पंचायतों के त्रिस्तरीय गठन का प्रावधान है (20 लाख से कम आबादी वाले राज्यों में मध्यवर्ती स्तर न बनाना छूट है)।"
+            },
+            {
+                q: "पंचायतों की संरचना (Composition of Panchayats) से संबंधित अनुच्छेद कौन सा है?",
+                options: ["अनुच्छेद 243C", "अनुच्छेद 243B", "अनुच्छेद 243D", "अनुच्छेद 243E"],
+                correctText: "अनुच्छेद 243C",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243C राज्य विधानमंडल को पंचायतों की संरचना के संबंध में कानून बनाने का अधिकार देता है।"
+            },
+            {
+                q: "पंचायतों में अनुसूचित जाति, जनजाति तथा महिलाओं के लिए स्थानों के आरक्षण (Reservation of Seats) का उल्लेख किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243D", "अनुच्छेद 243E", "अनुच्छेद 243K", "अनुच्छेद 243I"],
+                correctText: "अनुच्छेद 243D",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243D के तहत महिलाओं को कम से कम 1/3 (33%) सीटें आरक्षित हैं (बिहार जैसे कई राज्यों में 50% है)।"
+            },
+            {
+                q: "पंचायतों की कार्यकाल/अवधि (Duration of Panchayats) किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 243E (प्रथम बैठक से 5 वर्ष)", "अनुच्छेद 243F", "अनुच्छेद 243G", "अनुच्छेद 243H"],
+                correctText: "अनुच्छेद 243E (प्रथम बैठक से 5 वर्ष)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243E के अनुसार पंचायत का कार्यकाल 5 वर्ष होता है; विघटित होने पर 6 महीने के अंदर चुनाव अनिवार्य हैं।"
+            },
+            {
+                q: "यदि कोई पंचायत 5 वर्ष से पहले भंग हो जाती है, तो पुनर्गठित पंचायत कितने समय के लिए कार्य करेगी?",
+                options: ["केवल शेष बचे हुए कार्यकाल (Remaining period) के लिए", "पूरे 5 वर्ष के लिए", "3 वर्ष के लिए", "राज्यपाल के निर्णय पर"],
+                correctText: "केवल शेष बचे हुए कार्यकाल (Remaining period) के लिए",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यदि बची हुई अवधि 6 माह से कम हो तो चुनाव कराना आवश्यक नहीं होता; वरना नई पंचायत केवल शेष अवधि हेतु काम करती है।"
+            },
+            {
+                q: "पंचायत सदस्य या मुखिया का चुनाव लड़ने के लिए न्यूनतम आयु सीमा कितनी होनी चाहिए?",
+                options: ["21 वर्ष (अनुच्छेद 243F)", "25 वर्ष", "18 वर्ष", "30 वर्ष"],
+                correctText: "21 वर्ष (अनुच्छेद 243F)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पंचायत चुनाव लड़ने की न्यूनतम आयु 21 वर्ष है (जबकि वोट देने की आयु 18 वर्ष है)।"
+            },
+            {
+                q: "पंचायतों की शक्तियों, प्राधिकार और उत्तरदायित्वों (29 विषयों पर काम) का उल्लेख किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243G", "अनुच्छेद 243H", "अनुच्छेद 243I", "अनुच्छेद 243J"],
+                correctText: "अनुच्छेद 243G",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243G पंचायतों के 29 विषयों पर आर्थिक विकास और सामाजिक न्याय की योजनाएँ बनाने की शक्ति देता है।"
+            },
+            {
+                q: "राज्य के राज्यपाल प्रत्येक 5 वर्ष में पंचायतों की वित्तीय स्थिति की समीक्षा हेतु 'राज्य वित्त आयोग' (State Finance Commission) का गठन किस अनुच्छेद से करते हैं?",
+                options: ["अनुच्छेद 243I (243-आई)", "अनुच्छेद 243K", "अनुच्छेद 280", "अनुच्छेद 243H"],
+                correctText: "अनुच्छेद 243I (243-आई)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243I के तहत राज्य वित्त आयोग का गठन राज्यपाल द्वारा हर 5 साल पर किया जाता है।"
+            },
+            {
+                q: "पंचायतों के स्वतंत्र एवं निष्पक्ष चुनाव कराने हेतु 'राज्य निर्वाचन आयोग' (State Election Commission) की स्थापना किस अनुच्छेद के तहत होती है?",
+                options: ["अनुच्छेद 243K", "अनुच्छेद 324", "अनुच्छेद 243I", "अनुच्छेद 243L"],
+                correctText: "अनुच्छेद 243K",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243K के अनुसार राज्य निर्वाचन आयुक्त की नियुक्ति राज्यपाल करते हैं जो पंचायतों व निकायों के चुनाव कराता है।"
+            },
+            {
+                q: "73वाँ संविधान संशोधन अधिनियम लागू करने वाला भारत का पहला राज्य कौन सा था?",
+                options: ["मध्य प्रदेश", "राजस्थान", "आंध्र प्रदेश", "कर्नाटक"],
+                correctText: "मध्य प्रदेश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 73वें संशोधन के संवैधानिक रूप से पारित होने के बाद इसे लागू करने वाला पहला राज्य मध्य प्रदेश था।"
+            },
+            {
+                q: "74वाँ संविधान संशोधन अधिनियम 1992 किससे संबंधित है और यह कब लागू हुआ?",
+                options: ["शहरी स्थानीय निकायों / नगरपालिकाओं से (लागू: 1 जून 1993)", "पंचायती राज से (24 अप्रैल 1993)", "सहकारी समितियों से", "अनुसूचित क्षेत्रों से"],
+                correctText: "शहरी स्थानीय निकायों / नगरपालिकाओं से (लागू: 1 जून 1993)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 74वाँ संशोधन 1 जून 1993 से लागू हुआ जो शहरी निकायों (Urban Local Bodies) से संबंधित है।"
+            },
+            {
+                q: "74वें संविधान संशोधन द्वारा संविधान में कौन सा भाग, अनुसूची तथा कितने विषय जोड़े गए?",
+                options: ["भाग IXक, 12वीं अनुसूची (18 विषय - अनुच्छेद 243P से 243ZG)", "भाग IX, 11वीं अनुसूची (29 विषय)", "भाग IXख, 10वीं अनुसूची (15 विषय)", "भाग VIII, 12वीं अनुसूची (20 विषय)"],
+                correctText: "भाग IXक, 12वीं अनुसूची (18 विषय - अनुच्छेद 243P से 243ZG)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नगरपालिकाओं हेतु भाग IXA, 12वीं अनुसूची और 18 विषय जोड़े गए।"
+            },
+            {
+                q: "74वें संशोधन के अनुसार नगरपालिकाओं (Municipalities) के कितने प्रकार तय किए गए हैं?",
+                options: ["3 प्रकार (नगर पंचायत, नगरपालिका परिषद, नगर निगम - अनुच्छेद 243Q)", "2 प्रकार", "4 प्रकार", "5 प्रकार"],
+                correctText: "3 प्रकार (नगर पंचायत, नगरपालिका परिषद, नगर निगम - अनुच्छेद 243Q)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संक्रमणशील क्षेत्रों हेतु नगर पंचायत, छोटे शहरी क्षेत्रों हेतु नगरपालिका परिषद और बड़े शहरी क्षेत्रों हेतु नगर निगम।"
+            },
+            {
+                q: "वार्ड समितियों (Wards Committees) का गठन किस अनुच्छेद के तहत ऐसी नगरपालिकाओं में किया जाता है जिनकी जनसंख्या 3 लाख या अधिक है?",
+                options: ["अनुच्छेद 243S", "अनुच्छेद 243R", "अनुच्छेद 243T", "अनुच्छेद 243U"],
+                correctText: "अनुच्छेद 243S",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 3 लाख या उससे अधिक आबादी वाले नगरपालिका क्षेत्र में वार्ड समितियों का गठन अनुच्छेद 243S के तहत होता है।"
+            },
+            {
+                q: "नगरपालिकाओं में सीटों का आरक्षण (Reservation of Seats) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243T", "अनुच्छेद 243S", "अनुच्छेद 243U", "अनुच्छेद 243V"],
+                correctText: "अनुच्छेद 243T",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243T में SC/ST तथा महिलाओं (न्यूनतम 33%) हेतु आरक्षण का प्रावधान है।"
+            },
+            {
+                q: "नगरपालिकाओं का कार्यकाल कितना निर्धारित किया गया है?",
+                options: ["प्रथम बैठक की तिथि से 5 वर्ष (अनुच्छेद 243U)", "6 वर्ष", "4 वर्ष", "3 वर्ष"],
+                correctText: "प्रथम बैठक की तिथि से 5 वर्ष (अनुच्छेद 243U)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नगरपालिकाओं की अवधि 5 वर्ष होती है; विघटन पर 6 माह में चुनाव जरूरी हैं।"
+            },
+            {
+                q: "जिला योजना समिति (District Planning Committee - DPC) का गठन किस अनुच्छेद के तहत किया जाता है?",
+                options: ["अनुच्छेद 243ZD", "अनुच्छेद 243ZE", "अनुच्छेद 243ZA", "अनुच्छेद 243ZB"],
+                correctText: "अनुच्छेद 243ZD",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जिला स्तर पर जिले के समेकित विकास हेतु अनुच्छेद 243ZD के तहत जिला योजना समिति बनती है।"
+            },
+            {
+                q: "महानगर योजना समिति (Metropolitan Planning Committee - MPC) का गठन किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243ZE", "अनुच्छेद 243ZD", "अनुच्छेद 243ZA", "अनुच्छेद 243ZC"],
+                correctText: "अनुच्छेद 243ZE",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 10 लाख या उससे अधिक आबादी वाले महानगर क्षेत्रों हेतु अनुच्छेद 243ZE के तहत MPC का गठन होता है।"
+            },
+            {
+                q: "भारत में पहला 'नगर निगम' (Municipal Corporation) किस वर्ष और कहाँ स्थापित किया गया था?",
+                options: ["वर्ष 1687 में मद्रास (चेन्नई) में", "वर्ष 1726 में मुंबई में", "वर्ष 1881 में कलकत्ता में", "वर्ष 1950 में दिल्ली में"],
+                correctText: "वर्ष 1687 में मद्रास (चेन्नई) में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रिटिश काल में 1687-88 में मद्रास में पहला नगर निगम स्थापित किया गया था।"
+            },
+            {
+                q: "97वें संविधान संशोधन अधिनियम 2011 द्वारा 'सहकारी समितियों' (Cooperative Societies) को किस भाग में जोड़ा गया?",
+                options: ["भाग IXख (अनुच्छेद 243ZH से 243ZT)", "भाग IXक", "भाग IX", "भाग XIV"],
+                correctText: "भाग IXख (अनुच्छेद 243ZH से 243ZT)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 97वें संशोधन द्वारा भाग 9B जोड़ा गया तथा अनुच्छेद 19(1)(c) में सहकारिता बनाना मूल अधिकार बनाया गया।"
+            },
+            {
+                q: "संविधान का कौन सा अनुच्छेद पंचायतों के लिए चुनाव याचिकाओं पर अदालतों के हस्तक्षेप पर रोक लगाता है?",
+                options: ["अनुच्छेद 243O", "अनुच्छेद 243K", "अनुच्छेद 243N", "अनुच्छेद 243M"],
+                correctText: "अनुच्छेद 243O",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243O के तहत चुनावी मामलों में अदालती हस्तक्षेप वर्जित है; चुनाव केवल राज्य द्वारा बनाए गए कानून से चुनौती पा सकते हैं।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय द्वारा किस वाद में 'न्यायिक समीक्षा' (Judicial Review) को संविधान का आधारभूत ढांचा (Basic Structure) घोषित किया गया?",
+                options: ["मिनर्वा मिल्स वाद 1980 तथा एल. चंद्र कुमार वाद 1997", "केशवानंद भारती वाद 1973", "गोलकनाथ वाद 1967", "मेनका गांधी वाद"],
+                correctText: "मिनर्वा मिल्स वाद 1980 तथा एल. चंद्र कुमार वाद 1997",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एल. चंद्र कुमार मामले (1997) में सुप्रीम कोर्ट ने कहा कि अनुच्छेद 32 व 226 के तहत न्यायिक समीक्षा मूल ढांचा है जिसे छीना नहीं जा सकता।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के अनुसार सर्वोच्च न्यायालय द्वारा सुनाए गए फैसले को निष्पादित करने संबंधी आदेश पूरे भारत में लागू होंगे?",
+                options: ["अनुच्छेद 142(2)", "अनुच्छेद 141", "अनुच्छेद 136", "अनुच्छेद 137"],
+                correctText: "अनुच्छेद 142(2)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 142(2) के तहत सुप्रीम कोर्ट का आदेश पूरे भारत में बाध्यकारी व प्रवर्तनीय होता है।"
+            },
+            {
+                q: "उच्च न्यायालय के मुख्य न्यायाधीश और अन्य न्यायाधीशों का वेतन भारत या राज्य की किस निधि पर भारित (Charged) होता है?",
+                options: ["वेतन राज्य की संचित निधि पर, परंतु पेंशन भारत की संचित निधि पर भारित होती है", "वेतन व पेंशन दोनों भारत की संचित निधि पर", "दोनों राज्य की संचित निधि पर", "आकस्मिकता निधि पर"],
+                correctText: "वेतन राज्य की संचित निधि पर, परंतु पेंशन भारत की संचित निधि पर भारित होती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्यान दें! हाई कोर्ट जजों का वेतन संबंधित 'राज्य की संचित निधि' से जाता है, लेकिन पेंशन 'भारत की संचित निधि' (अनुच्छेद 112(3)(d)) से दी जाती है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के न्यायाधीशों का वेतन और पेंशन किस निधि पर भारित होता है?",
+                options: ["भारत की संचित निधि (Consolidated Fund of India) पर", "राज्य की संचित निधि पर", "आकस्मिकता निधि पर", "संसदीय बजट पर"],
+                correctText: "भारत की संचित निधि (Consolidated Fund of India) पर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुप्रीम कोर्ट के जजों के वेतन व पेंशन भारत की संचित निधि पर भारित होते हैं जिस पर संसद में मतदान नहीं होता।"
+            },
+            {
+                q: "भारत के मुख्य न्यायाधीश को उनके पद की शपथ कौन दिलाता है?",
+                options: ["भारत के राष्ट्रपति (अनुच्छेद 124(6))", "निवर्तमान मुख्य न्यायाधीश", "उपराष्ट्रपति", "प्रधानमंत्री"],
+                correctText: "भारत के राष्ट्रपति (अनुच्छेद 124(6))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 124(6) के अनुसार सर्वोच्च न्यायालय के न्यायाधीशों को राष्ट्रपति शपथ दिलाते हैं।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय में कार्यवाहक मुख्य न्यायाधीश (Acting Chief Justice) की नियुक्ति किस अनुच्छेद के तहत होती है?",
+                options: ["अनुच्छेद 126", "अनुच्छेद 127", "अनुच्छेद 128", "अनुच्छेद 125"],
+                correctText: "अनुच्छेद 126",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• CJI का पद रिक्त या अनुपस्थित होने पर अनुच्छेद 126 से राष्ट्रपति अन्य जज को कार्यवाहक CJI बनाते हैं।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय में सेवानिवृत्त न्यायाधीशों की बैठकों में उपस्थिति का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 128", "अनुच्छेद 127", "अनुच्छेद 129", "अनुच्छेद 130"],
+                correctText: "अनुच्छेद 128",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 128 के तहत CJI राष्ट्रपति की अनुमति से रिटायर्ड जज को पुनः सेवा हेतु अनुरोध कर सकते हैं।"
+            },
+            {
+                q: "उच्च न्यायालय में कार्यवाहक मुख्य न्यायाधीश की नियुक्ति राष्ट्रपति किस अनुच्छेद के तहत करते हैं?",
+                options: ["अनुच्छेद 223", "अनुच्छेद 224", "अनुच्छेद 222", "अनुच्छेद 221"],
+                correctText: "अनुच्छेद 223",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हाईकोर्ट के मुख्य न्यायाधीश का पद खाली होने पर अनुच्छेद 223 से कार्यवाहक मुख्य न्यायाधीश बनते हैं।"
+            },
+            {
+                q: "उच्च न्यायालय में 'अपर और कार्यकारी न्यायाधीशों' (Additional and Acting Judges) की नियुक्ति अधिकतम कितने वर्ष के लिए होती है?",
+                options: ["अधिकतम 2 वर्ष के लिए (अनुच्छेद 224)", "1 वर्ष", "3 वर्ष", "5 वर्ष"],
+                correctText: "अधिकतम 2 वर्ष के लिए (अनुच्छेद 224)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• काम के बकाया होने पर अनुच्छेद 224 के तहत राष्ट्रपति 2 वर्ष हेतु अपर न्यायाधीश नियुक्त कर सकते हैं (62 वर्ष की आयु तक)।"
+            },
+            {
+                q: "भारत में वर्तमान में कुल कितने उच्च न्यायालय (High Courts) हैं?",
+                options: ["25 उच्च न्यायालय (25वाँ: आंध्र प्रदेश अमरावती HC - 2019)", "24 उच्च न्यायालय", "28 उच्च न्यायालय", "21 उच्च न्यायालय"],
+                correctText: "25 उच्च न्यायालय (25वाँ: आंध्र प्रदेश अमरावती HC - 2019)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1 जनवरी 2019 को अमरावती में बने आंध्र प्रदेश HC के साथ भारत में कुल 25 उच्च न्यायालय हैं।"
+            },
+            {
+                q: "सबसे पुराना उच्च न्यायालय कौन सा है जिसकी स्थापना 1862 में हुई थी?",
+                options: ["कलकत्ता उच्च न्यायालय (1 जुलाई 1862)", "बॉम्बे उच्च न्यायालय", "मद्रास उच्च न्यायालय", "इलाहाबाद उच्च न्यायालय"],
+                correctText: "कलकत्ता उच्च न्यायालय (1 जुलाई 1862)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1861 के अधिनियम से 1862 में कलकत्ता, बॉम्बे और मद्रास में हाईकोर्ट बने (कलकत्ता सबसे पुराना है)।"
+            },
+            {
+                q: "क्षेत्रफल और न्यायाधीशों की संख्या की दृष्टि से भारत का सबसे बड़ा उच्च न्यायालय कौन सा है?",
+                options: ["इलाहाबाद उच्च न्यायालय (स्वीकृत पद: 160)", "कलकत्ता उच्च न्यायालय", "बॉम्बे उच्च न्यायालय", "दिल्ली उच्च न्यायालय"],
+                correctText: "इलाहाबाद उच्च न्यायालय (स्वीकृत पद: 160)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इलाहाबाद उच्च न्यायालय (स्थापना 1866) जजों की संख्या के हिसाब से भारत का सबसे बड़ा हाईकोर्ट है।"
+            },
+            {
+                q: "73वें संविधान संशोधन के तहत पंचायतों के चुनाव में महिलाओं के लिए कितने प्रतिशत स्थान आरक्षित किए गए हैं?",
+                options: ["न्यूनतम 33% (1/3 भाग)", "50%", "25%", "20%"],
+                correctText: "न्यूनतम 33% (1/3 भाग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में न्यूनतम 33% (1/3) का अनिवार्य प्रावधान है, जिसे राज्य अपने कानून से बढ़ा सकते हैं।"
+            },
+            {
+                q: "बिहार पंचायती राज अधिनियम 2006 के तहत पंचायतों में महिलाओं को कितना प्रतिशत आरक्षण दिया गया है?",
+                options: ["50% आरक्षण (बिहार पहला राज्य बना था)", "33%", "40%", "30%"],
+                correctText: "50% आरक्षण (बिहार पहला राज्य बना था)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बिहार भारत का पहला ऐसा राज्य था जिसने 2006 में पंचायतों में महिलाओं को 50% आरक्षण दिया।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के अनुसार अनुसूचित जाति/जनजाति के लिए पंचायतों में आरक्षण उनकी जनसंख्या के अनुपात में दिया जाता है?",
+                options: ["अनुच्छेद 243D(1)", "अनुच्छेद 243D(3)", "अनुच्छेद 243C", "अनुच्छेद 243E"],
+                correctText: "अनुच्छेद 243D(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• SC/ST हेतु आरक्षण जनसंख्या के अनुपात में तय होता है, जबकि महिलाओं हेतु 33% नियत है।"
+            },
+            {
+                q: "संविधान का कौन सा अनुच्छेद राज्य विधानमंडल को पंचायतों में 'पिछड़े वर्गों' (OBCs) के लिए आरक्षण का प्रावधान करने का अधिकार देता है?",
+                options: ["अनुच्छेद 243D(6)", "अनुच्छेद 243D(3)", "अनुच्छेद 243C", "अनुच्छेद 243F"],
+                correctText: "अनुच्छेद 243D(6)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243D(6) राज्य सरकार को पिछड़े वर्गों हेतु पंचायतों में सीट आरक्षित करने का विवेकाधिकार देता है।"
+            },
+            {
+                q: "73वां संविधान संशोधन अधिनियम संविधान के किस अनुच्छेद के तहत अपवाद क्षेत्रों (जैसे 5वीं अनुसूची के आदिवासी क्षेत्रों) में लागू नहीं होता था?",
+                options: ["अनुच्छेद 243M (जिस हेतु PESA Act 1996 लाया गया)", "अनुच्छेद 243N", "अनुच्छेद 243O", "अनुच्छेद 243L"],
+                correctText: "अनुच्छेद 243M (जिस हेतु PESA Act 1996 लाया गया)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुसूची 5 के क्षेत्रों हेतु 1996 में 'PESA' (Panchayats Extension to Scheduled Areas) अधिनियम पारित किया गया।"
+            },
+            {
+                q: "'पेसा अधिनियम' (PESA Act 1996) किस समिति की सिफारिश पर पारित किया गया था?",
+                options: ["दिलीप सिंह भूरिया समिति (Bhuria Committee)", "एल.एम. सिंघवी समिति", "अशोक मेहता समिति", "संथानम समिति"],
+                correctText: "दिलीप सिंह भूरिया समिति (Bhuria Committee)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भूरिया समिति की सिफारिश पर जनजातीय क्षेत्रों में स्वशासन हेतु पेसा कानून 1996 बना।"
+            },
+            {
+                q: "नगरपालिकाओं के वित्तीय संसाधनों की समीक्षा के लिए राज्य वित्त आयोग की सिफारिशें किस अनुच्छेद से लागू होती हैं?",
+                options: ["अनुच्छेद 243Y (तथा 243I)", "अनुच्छेद 243ZA", "अनुच्छेद 243X", "अनुच्छेद 243W"],
+                correctText: "अनुच्छेद 243Y (तथा 243I)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243Y के तहत पंचायतों वाला ही राज्य वित्त आयोग नगरपालिकाओं की वित्तीय स्थिति भी देखता है।"
+            },
+            {
+                q: "नगरपालिकाओं के लिए चुनाव आयोजित करने का दायित्व किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 243ZA (राज्य निर्वाचन आयोग)", "अनुच्छेद 243K", "अनुच्छेद 324", "अनुच्छेद 243ZG"],
+                correctText: "अनुच्छेद 243ZA (राज्य निर्वाचन आयोग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 243ZA के तहत राज्य निर्वाचन आयोग नगरपालिकाओं के चुनाव कराता है।"
+            },
+            {
+                q: "मोबाइल कोर्ट (Mobile Courts - मोबाइल अदालत) का विचार भारत में सर्वप्रथम किसने दिया था?",
+                options: ["डॉ. ए.पी.जे. अब्दुल कलाम (2006 में हरियाणा से शुरुआत)", "जस्टिस भगवती", "जस्टिस वी.आर. कृष्ण अय्यर", "अटल बिहारी वाजपेयी"],
+                correctText: "डॉ. ए.पी.जे. अब्दुल कलाम (2006 में हरियाणा से शुरुआत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्व राष्ट्रपति डॉ. कलाम की सोच से 2007 में हरियाणा के मेवात में पहली मोबाइल कोर्ट शुरू हुई।"
+            },
+            {
+                q: "परिवार न्यायालय अधिनियम (Family Courts Act) किस वर्ष पारित हुआ था?",
+                options: ["वर्ष 1984 में", "वर्ष 1988 में", "वर्ष 1990 में", "वर्ष 1976 में"],
+                correctText: "वर्ष 1984 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वैवाहिक व पारिवारिक विवादों को आपसी समझौते से सुलझाने हेतु 1984 में परिवार न्यायालय अधिनियम बना।"
+            },
+            {
+                q: "फास्ट ट्रैक कोर्ट (Fast Track Courts) की स्थापना किस वित्त आयोग की सिफारिश पर वर्ष 2000 में हुई थी?",
+                options: ["11वें वित्त आयोग (अध्यक्ष: ए.एम. खुसरो)", "10वें वित्त आयोग", "12वें वित्त आयोग", "9वें वित्त आयोग"],
+                correctText: "11वें वित्त आयोग (अध्यक्ष: ए.एम. खुसरो)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 11वें वित्त आयोग की सिफारिश पर लंबित मुकदमों के त्वरित निस्तारण हेतु फास्ट ट्रैक कोर्ट बने।"
+            },
+            {
+                q: "ई-न्यायालय (e-Courts) मिशन मोड प्रोजेक्ट की शुरुआत किस वर्ष की गई थी?",
+                options: ["वर्ष 2007 में (राष्ट्रीय ई-गवर्नेंस योजना के तहत)", "वर्ष 2014 में", "वर्ष 2000 में", "वर्ष 2019 में"],
+                correctText: "वर्ष 2007 में (राष्ट्रीय ई-गवर्नेंस योजना के तहत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारतीय न्यायपालिका में तकनीक को जोड़ने हेतु 2007 से ई-कोर्ट्स प्रोजेक्ट लागू है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के किस मुख्य न्यायाधीश ने 'न्यायिक सक्रियता' (Judicial Activism) को बढ़ावा दिया?",
+                options: ["जस्टिस पी.एन. भगवती और जस्टिस वी.आर. कृष्ण अय्यर", "जस्टिस कानिया", "जस्टिस गोगोई", "जस्टिस एस.आर. दास"],
+                correctText: "जस्टिस पी.एन. भगवती और जस्टिस वी.आर. कृष्ण अय्यर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1980 के दशक में PIL और न्यायिक सक्रियता की मजबूत नींव इन जजों द्वारा रखी गई।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय में न्यायाधीशों की नियुक्ति हेतु लाया गया 99वाँ संविधान संशोधन (NJAC - राष्ट्रीय न्यायिक नियुक्ति आयोग) को कोर्ट ने रद्द क्यों कर दिया?",
+                options: ["क्योंकि यह 'न्यायपालिका की स्वतंत्रता' (मूल ढांचे) का उल्लंघन करता था (2015 में)", "क्योंकि यह संसद ने पास नहीं किया था", "क्योंकि इसमें राज्यों की सहमति नहीं थी", "क्योंकि राष्ट्रपति ने मना किया था"],
+                correctText: "क्योंकि यह 'न्यायपालिका की स्वतंत्रता' (मूल ढांचे) का उल्लंघन करता था (2015 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुप्रीम कोर्ट की 5 जजों की बेंच ने 99वें संशोधन (NJAC) को असंवैधानिक घोषित कर निरस्त कर दिया।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय की प्रथम महिला न्यायाधीश कौन थीं?",
+                options: ["फातिमा बीवी (M. Fathima Beevi - 1989)", "ज्ञान सुधा मिश्रा", "इंदिरा बनर्जी", "लीला सेठ"],
+                correctText: "फातिमा बीवी (M. Fathima Beevi - 1989)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• न्यायमूर्ति एम. फातिमा बीवी 1989 में सर्वोच्च न्यायालय की पहली महिला जज बनी थीं।"
+            },
+            {
+                q: "भारत के किसी उच्च न्यायालय (High Court) की प्रथम महिला मुख्य न्यायाधीश (Chief Justice) कौन थीं?",
+                options: ["लीला सेठ (हिमाचल प्रदेश उच्च न्यायालय - 1991)", "फातिमा बीवी", "अन्ना चांडी", "रुमा पाल"],
+                correctText: "लीला सेठ (हिमाचल प्रदेश उच्च न्यायालय - 1991)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• न्यायमूर्ति लीला सेठ किसी हाईकोर्ट (हिमाचल प्रदेश) की पहली महिला मुख्य न्यायाधीश बनीं।"
+            },
+            {
+                q: "भारत की पहली महिला न्यायाधीश (District Court Judge) कौन थीं?",
+                options: ["अन्ना चांडी (Anna Chandy - केरल, 1937)", "लीला सेठ", "फातिमा बीवी", "सरोजिनी नायडू"],
+                correctText: "अन्ना चांडी (Anna Chandy - केरल, 1937)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अन्ना चांडी 1937 में भारत की पहली महिला जिला जज बनी थीं।"
+            },
+            {
+                q: "पंचायतों का चुनाव कराने का निर्णय किसके द्वारा लिया जाता है?",
+                options: ["राज्य सरकार (State Government) द्वारा", "केंद्र सरकार द्वारा", "चुनाव आयोग द्वारा", "उच्च न्यायालय द्वारा"],
+                correctText: "राज्य सरकार (State Government) द्वारा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पंचायत चुनाव कब कराए जाएँ, इसका निर्णय राज्य सरकार करती है, जबकि चुनाव सम्पन्न राज्य निर्वाचन आयोग कराता है।"
+            },
+            {
+                q: "नगर पालिका क्षेत्रों में 'नगर प्रमुख' को क्या कहा जाता है?",
+                options: ["महापौर / मेयर (Mayor)", "चेयरमैन", "प्रशासक", "पार्षद"],
+                correctText: "महापौर / मेयर (Mayor)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नगर निगम का प्रथम नागरिक और प्रमुख 'महापौर' या 'मेयर' कहलाता है।"
+            },
+            {
+                q: "संविधान का अनुच्छेद 40 नीति निर्देशक तत्त्वों में पंचायतों के गठन का निर्देश देता है, यह किस महान नेता के विचारों से प्रेरित है?",
+                options: ["महात्मा गांधी (Gandhian Philosophy)", "डॉ. बी.आर. अंबेडकर", "जवाहरलाल नेहरू", "सरदार पटेल"],
+                correctText: "महात्मा गांधी (Gandhian Philosophy)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गांधी जी का सपना था ग्राम स्वराज, जिसे अनुच्छेद 40 में शामिल किया गया था।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय के किस न्यायाधीश पर सबसे पहले महाभियोग की प्रक्रिया (Impeachment Procedure) संसद में चलाई गई थी?",
+                options: ["जस्टिस वी. रामास्वामी (1993 में - लोकसभा में प्रस्ताव गिर गया था)", "जस्टिस सौमित्र सेन", "जस्टिस दीपक मिश्रा", "जस्टिस के.जी. बालकृष्णन"],
+                correctText: "जस्टिस वी. रामास्वामी (1993 में - लोकसभा में प्रस्ताव गिर गया था)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1993 में जस्टिस वी. रामास्वामी के खिलाफ महाभियोग लाया गया था, परंतु मतदान के दौरान कांग्रेस के भाग न लेने से 2/3 बहुमत नहीं मिला।"
+            },
+            {
+                q: "न्यायाधीशों की 'कोलेजियम प्रणाली' (Collegium System) की शुरुआत सर्वोच्च न्यायालय के किस प्रसिद्ध केस से मानी जाती है?",
+                options: ["सेकंड जजेस केस (Second Judges Case - 1993)", "फर्स्ट जजेस केस (1981)", "थर्ड जजेस केस (1998)", "केशवानंद भारती केस"],
+                correctText: "सेकंड जजेस केस (Second Judges Case - 1993)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1993 के सेकंड जजेस केस से CJI और 2 वरिष्ठतम जजों के कोलेजियम का जन्म हुआ (थर्ड जजेस केस 1998 में जजों की संख्या 1+4 हुई)।"
+            },
+            {
+                q: "73वें और 74वें संविधान संशोधन के समय भारत के प्रधानमंत्री कौन थे?",
+                options: ["पी.वी. नरसिम्हा राव (P.V. Narasimha Rao)", "राजीव गांधी", "अटल बिहारी वाजपेयी", "वी.पी. सिंह"],
+                correctText: "पी.वी. नरसिम्हा राव (P.V. Narasimha Rao)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1992 में 73वां व 74वां संशोधन कानून पी.वी. नरसिम्हा राव की सरकार के दौरान पारित हुआ।"
+            },
+            {
+                q: "73वें और 74वें संशोधन विधेयक पारित होते समय भारत के राष्ट्रपति कौन थे?",
+                options: ["डॉ. शंकर दयाल शर्मा", "आर. वेंकटरमन", "डॉ. ए.पी.जे. अब्दुल कलाम", "ज्ञानी जैल सिंह"],
+                correctText: "डॉ. शंकर दयाल शर्मा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिसंबर 1992 में पारित विधेयकों पर अप्रैल 1993 में राष्ट्रपति डॉ. शंकर दयाल शर्मा ने हस्ताक्षर किए।"
+            }
+        ];
+
+        let quizDataPolity5 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity5 = rawQuizDataPolity5.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity5;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp5_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp5_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 5 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 5 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* न्यायपालिका, पंचायती राज एवं नगरपालिकाएँ\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp5.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp5_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
