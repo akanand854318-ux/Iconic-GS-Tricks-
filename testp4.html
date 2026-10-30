@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 4 (राज्य कार्यपालिका, विधानमंडल, केंद्र-राज्य संबंध एवं संघ राज्यक्षेत्र) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 4 (राज्य, केंद्र-राज्य संबंध व केंद्रशासित प्रदेश)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 4)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 4 (राज्य, केंद्र-राज्य संबंध एवं संघ राज्यक्षेत्र)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: भाग VI (राज्य - राज्यपाल, CM, विधानमंडल), केंद्र-राज्य संबंध एवं भाग VIII (UTs) - 100 प्रश्न
+        const rawQuizDataPolity4 = [
+            {
+                q: "संविधान के किस भाग में 'राज्य' (The States - कार्यपालिका, विधानमंडल) का प्रावधान किया गया है?",
+                options: ["भाग VI (अनुच्छेद 152-237)", "भाग V", "भाग VIII", "भाग IX"],
+                correctText: "भाग VI (अनुच्छेद 152-237)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग VI में अनुच्छेद 152 से 237 तक राज्य सरकार के विभिन्न अंगों का वर्णन है।"
+            },
+            {
+                q: "राज्य की कार्यपालिका शक्ति (Executive Power of the State) किसमें निहित होती है?",
+                options: ["राज्यपाल में (अनुच्छेद 154)", "मुख्यमंत्री में", "उच्च न्यायालय के मुख्य न्यायाधीश में", "राज्य विधानमंडल में"],
+                correctText: "राज्यपाल में (अनुच्छेद 154)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 154(1) के तहत राज्य की कार्यपालिका शक्ति राज्यपाल में निहित होती है।"
+            },
+            {
+                q: "राज्य के राज्यपाल (Governor) की नियुक्ति किसके द्वारा की जाती है?",
+                options: ["भारत के राष्ट्रपति द्वारा (अनुच्छेद 155)", "प्रधानमंत्री द्वारा", "राज्य के मुख्यमंत्री द्वारा", "भारत के मुख्य न्यायाधीश द्वारा"],
+                correctText: "भारत के राष्ट्रपति द्वारा (अनुच्छेद 155)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 155 के अनुसार राज्य के राज्यपाल को राष्ट्रपति अपने हस्ताक्षर और मुद्रा सहित अधिपत्र द्वारा नियुक्त करते हैं।"
+            },
+            {
+                q: "राज्यपाल बनने के लिए न्यूनतम आयु सीमा कितनी निर्धारित की गई है?",
+                options: ["35 वर्ष (अनुच्छेद 157)", "30 वर्ष", "25 वर्ष", "21 वर्ष"],
+                correctText: "35 वर्ष (अनुच्छेद 157)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 157 के अनुसार राज्यपाल पद के उम्मीदवार को भारत का नागरिक होना चाहिए और 35 वर्ष की आयु पूरी कर लेनी चाहिए।"
+            },
+            {
+                q: "7वें संविधान संशोधन (1956) के तहत राज्यपाल के संबंध में कौन सा महत्वपूर्ण प्रावधान किया गया?",
+                options: ["एक ही व्यक्ति को दो या दो से अधिक राज्यों का राज्यपाल नियुक्त किया जा सकता है", "राज्यपाल का कार्यकाल 3 वर्ष होगा", "राज्यपाल का चुनाव जनता करेगी", "राज्यपाल को पद से नहीं हटाया जा सकता"],
+                correctText: "एक ही व्यक्ति को दो या दो से अधिक राज्यों का राज्यपाल नियुक्त किया जा सकता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 7वें संशोधन 1956 द्वारा अनुच्छेद 153 में संशोधन कर एक ही व्यक्ति को दो या अधिक राज्यों का राज्यपाल बनाने का प्रावधान किया गया।"
+            },
+            {
+                q: "राज्यपाल राष्ट्रपति के 'प्रसादपर्यंत' (During the pleasure of the President) पद धारण करता है, इसका वर्णन किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 156(1)", "अनुच्छेद 155", "अनुच्छेद 160", "अनुच्छेद 163"],
+                correctText: "अनुच्छेद 156(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सामान्यतः कार्यकाल 5 वर्ष का होता है, परंतु अनुच्छेद 156(1) के अनुसार राज्यपाल राष्ट्रपति के प्रसादपर्यंत पद पर रहता है।"
+            },
+            {
+                q: "राज्य विधानमंडल द्वारा पारित किसी विधेयक को राष्ट्रपति के विचारार्थ सुरक्षित (Reserved for President's Consideration) रखने की शक्ति राज्यपाल को किस अनुच्छेद के तहत है?",
+                options: ["अनुच्छेद 200", "अनुच्छेद 201", "अनुच्छेद 213", "अनुच्छेद 163"],
+                correctText: "अनुच्छेद 200",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 200 के तहत राज्यपाल विधेयक को राष्ट्रपति के विचार हेतु आरक्षित रख सकते हैं।"
+            },
+            {
+                q: "राज्यपाल की 'विवेकाधीन शक्तियाँ' (Discretionary Powers) किस अनुच्छेद में स्पष्ट रूप से निहित हैं?",
+                options: ["अनुच्छेद 163(1)", "अनुच्छेद 164", "अनुच्छेद 167", "अनुच्छेद 174"],
+                correctText: "अनुच्छेद 163(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 163(1) कहता है कि जिन कार्यों में राज्यपाल को स्वविवेक से काम करने की आवश्यकता है, वहाँ वे मंत्रिपरिषद की सलाह मानने के लिए बाध्य नहीं हैं।"
+            },
+            {
+                q: "राज्यपाल को क्षमादान की शक्ति (Pardoning Power) किस अनुच्छेद के तहत प्राप्त है?",
+                options: ["अनुच्छेद 161", "अनुच्छेद 72", "अनुच्छेद 213", "अनुच्छेद 165"],
+                correctText: "अनुच्छेद 161",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 161 के तहत राज्यपाल राज्य सूची व समवर्ती सूची के कानूनों पर क्षमादान दे सकते हैं, परंतु वे मृत्युदंड को पूरी तरह क्षमा नहीं कर सकते।"
+            },
+            {
+                q: "राज्यपाल द्वारा राज्य विधानमंडल के विश्रांतिकाल में अध्यादेश (Ordinance) जारी करने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 213", "अनुच्छेद 123", "अनुच्छेद 200", "अनुच्छेद 168"],
+                correctText: "अनुच्छेद 213",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब राज्य विधानमंडल सत्र में न हो, तो राज्यपाल अनुच्छेद 213 के तहत अध्यादेश जारी कर सकते हैं।"
+            },
+            {
+                q: "राज्य के मुख्यमंत्री की नियुक्ति राज्यपाल द्वारा की जाएगी तथा अन्य मंत्रियों की नियुक्ति मुख्यमंत्री की सलाह पर होगी—यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 164(1)", "अनुच्छेद 163", "अनुच्छेद 167", "अनुच्छेद 165"],
+                correctText: "अनुच्छेद 164(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 164(1) के तहत राज्यपाल विधानसभा में बहुमत प्राप्त दल के नेता को मुख्यमंत्री नियुक्त करते हैं।"
+            },
+            {
+                q: "राज्य मंत्रिपरिषद सामूहिक रूप से (Collectively Responsible) किसके प्रति उत्तरदायी होती है?",
+                options: ["विधानसभा (Legislative Assembly) के प्रति - अनुच्छेद 164(2)", "विधान परिषद के प्रति", "राज्यपाल के प्रति", "उच्च न्यायालय के प्रति"],
+                correctText: "विधानसभा (Legislative Assembly) के प्रति - अनुच्छेद 164(2)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्य की मंत्रिपरिषद सामूहिक रूप से केवल 'विधानसभा' के प्रति जवाबदेह होती है।"
+            },
+            {
+                q: "91वें संविधान संशोधन (2003) के अनुसार किसी राज्य में मुख्यमंत्री सहित मंत्रियों की कुल संख्या विधानसभा की कुल सदस्य संख्या का कितना प्रतिशत हो सकती है?",
+                options: ["अधिकतम 15% (और न्यूनतम 12 मंत्री)", "अधिकतम 10%", "अधिकतम 20%", "कोई सीमा नहीं"],
+                correctText: "अधिकतम 15% (और न्यूनतम 12 मंत्री)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 91वें संशोधन द्वारा अनुच्छेद 164(1क) जोड़कर राज्य मंत्रिपरिषद का आकार विधानसभा के 15% तक सीमित किया गया तथा न्यूनतम संख्या 12 तय की गई।"
+            },
+            {
+                q: "राज्य सरकार के कानूनी सलाहकार के रूप में 'राज्य के महाधिवक्ता' (Advocate General for the State) की नियुक्ति किस अनुच्छेद के तहत होती है?",
+                options: ["अनुच्छेद 165", "अनुच्छेद 76", "अनुच्छेद 177", "अनुच्छेद 168"],
+                correctText: "अनुच्छेद 165",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 165 के तहत राज्य के प्रथम विधि अधिकारी महाधिवक्ता की नियुक्ति राज्यपाल करते हैं।"
+            },
+            {
+                q: "राज्यपाल को राज्य के प्रशासनिक मामलों की जानकारी देने का 'मुख्यमंत्री का कर्तव्य' किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 167", "अनुच्छेद 164", "अनुच्छेद 163", "अनुच्छेद 168"],
+                correctText: "अनुच्छेद 167",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 167 मुख्यमंत्री के उन कर्तव्यों को निर्दिष्ट करता है जो राज्यपाल को शासन संबंधी सूचनाएँ देने से जुड़े हैं।"
+            },
+            {
+                q: "राज्य के विधानमंडल का गठन (Constitution of Legislatures in States) किस अनुच्छेद में दिया गया है?",
+                options: ["अनुच्छेद 168", "अनुच्छेद 169", "अनुच्छेद 170", "अनुच्छेद 171"],
+                correctText: "अनुच्छेद 168",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 168 के अनुसार प्रत्येक राज्य के लिए एक विधानमंडल होगा जो राज्यपाल तथा एक या दो सदनों से मिलकर बनेगा।"
+            },
+            {
+                q: "किसी राज्य में 'विधान परिषद' (Legislative Council) के सृजन (Creation) या उत्सादन (Abolition) की प्रक्रिया किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 169", "अनुच्छेद 171", "अनुच्छेद 170", "अनुच्छेद 168"],
+                correctText: "अनुच्छेद 169",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 169 के अनुसार यदि संबंधित राज्य विधानसभा कुल सदस्यों के बहुमत व उपस्थित-मतदाता सदस्यों के 2/3 बहुमत से प्रस्ताव पारित करे, तो संसद कानून बनाकर विधान परिषद बना या समाप्त कर सकती है।"
+            },
+            {
+                q: "वर्तमान में भारत के कुल कितने राज्यों में द्विसदनात्मक विधानमंडल (Bicameral Legislature - विधानसभा + विधान परिषद) है?",
+                options: ["6 राज्यों में (बिहार, यूपी, महाराष्ट्र, कर्नाटक, आंध्र प्रदेश, तेलंगाना)", "7 राज्यों में", "5 राज्यों में", "8 राज्यों में"],
+                correctText: "6 राज्यों में (बिहार, यूपी, महाराष्ट्र, कर्नाटक, आंध्र प्रदेश, तेलंगाना)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वर्तमान में केवल 6 राज्यों में विधान परिषद अस्तित्व में है: बिहार, उत्तर प्रदेश, महाराष्ट्र, कर्नाटक, आंध्र प्रदेश और तेलंगाना।"
+            },
+            {
+                q: "राज्य की विधानसभा (Legislative Assembly) में अधिकतम और न्यूनतम सीटों की संख्या क्रमशः कितनी निर्धारित है?",
+                options: ["अधिकतम 500 तथा न्यूनतम 60 (कुछ छोटे राज्यों को छोड़कर)", "अधिकतम 400 तथा न्यूनतम 50", "अधिकतम 550 तथा न्यूनतम 75", "अधिकतम 300 तथा न्यूनतम 40"],
+                correctText: "अधिकतम 500 तथा न्यूनतम 60 (कुछ छोटे राज्यों को छोड़कर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 170 के अनुसार विधानसभा में अधिकतम 500 और न्यूनतम 60 सीटें हो सकती हैं (गोवा, सिक्किम, मिजोरम इसके अपवाद हैं)।"
+            },
+            {
+                q: "विधान परिषद (Legislative Council) में सदस्यों की अधिकतम संख्या उस राज्य की विधानसभा की कुल सदस्य संख्या का कितना भाग हो सकती है?",
+                options: ["1/3 भाग से अधिक नहीं (और न्यूनतम 40 सदस्य - अनुच्छेद 171)", "1/2 भाग", "1/4 भाग", "1/5 भाग"],
+                correctText: "1/3 भाग से अधिक नहीं (और न्यूनतम 40 सदस्य - अनुच्छेद 171)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 171 के अनुसार विधान परिषद के सदस्यों की संख्या विधानसभा के 1/3 से अधिक नहीं होगी और 40 से कम नहीं होगी।"
+            },
+            {
+                q: "विधान परिषद के सदस्यों के निर्वाचन में 'राज्यपाल' कितने सदस्यों को मनोनीत (Nominate) करते हैं?",
+                options: ["कुल सदस्यों का 1/6 भाग (साहित्य, कला, विज्ञान, सहकारिता आंदोलन व समाज सेवा से)", "1/12 भाग", "1/3 भाग", "1/10 भाग"],
+                correctText: "कुल सदस्यों का 1/6 भाग (साहित्य, कला, विज्ञान, सहकारिता आंदोलन व समाज सेवा से)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यपाल विधान परिषद के 1/6 सदस्यों को मनोनीत करते हैं (जिसमें सहकारिता आंदोलन भी एक आधार है)।"
+            },
+            {
+                q: "विधान परिषद के शेष सदस्यों का चुनाव किस प्रकार होता है?",
+                options: ["1/3 स्थानीय निकायों द्वारा, 1/3 विधानसभा सदस्यों द्वारा, 1/12 स्नातकों द्वारा तथा 1/12 शिक्षकों द्वारा", "सभी जनता द्वारा सीधे", "केवल विधायकों द्वारा", "केवल निकायों द्वारा"],
+                correctText: "1/3 स्थानीय निकायों द्वारा, 1/3 विधानसभा सदस्यों द्वारा, 1/12 स्नातकों द्वारा तथा 1/12 शिक्षकों द्वारा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विधान परिषद के 5/6 सदस्य अप्रत्यक्ष रूप से विभिन्न निर्वाचक मंडलों द्वारा चुने जाते हैं और 1/6 मनोनीत होते हैं।"
+            },
+            {
+                q: "विधानसभा और विधान परिषद का सदस्य बनने हेतु न्यूनतम आयु सीमा क्रमशः कितनी है?",
+                options: ["25 वर्ष (विधानसभा) और 30 वर्ष (विधान परिषद)", "30 वर्ष और 25 वर्ष", "21 वर्ष और 25 वर्ष", "35 वर्ष और 30 वर्ष"],
+                correctText: "25 वर्ष (विधानसभा) और 30 वर्ष (विधान परिषद)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 173 के अनुसार विधानसभा के लिए 25 वर्ष तथा विधान परिषद के लिए 30 वर्ष आयु आवश्यक है।"
+            },
+            {
+                q: "विधान परिषद के सदस्यों का कार्यकाल कितना होता है?",
+                options: ["6 वर्ष (और 1/3 सदस्य प्रत्येक 2 वर्ष में सेवानिवृत्त होते हैं)", "5 वर्ष", "4 वर्ष", "3 वर्ष"],
+                correctText: "6 वर्ष (और 1/3 सदस्य प्रत्येक 2 वर्ष में सेवानिवृत्त होते हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यसभा की भाँति विधान परिषद भी एक स्थायी सदन है जो कभी भंग नहीं होता; प्रत्येक सदस्य का कार्यकाल 6 वर्ष होता है।"
+            },
+            {
+                q: "विधानसभा के अध्यक्ष (Speaker) और उपाध्यक्ष (Deputy Speaker) का चुनाव कौन करता है?",
+                options: ["विधानसभा के सदस्य अपने सदस्यों में से (अनुच्छेद 178)", "राज्यपाल", "मुख्यमंत्री", "विधान परिषद के सदस्य"],
+                correctText: "विधानसभा के सदस्य अपने सदस्यों में से (अनुच्छेद 178)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 178 के तहत विधानसभा के सदस्य स्वयं में से एक अध्यक्ष और उपाध्यक्ष चुनते हैं।"
+            },
+            {
+                q: "विधान परिषद के सभापति (Chairman) और उप-सभापति का चुनाव किस अनुच्छेद के तहत होता है?",
+                options: ["अनुच्छेद 182", "अनुच्छेद 178", "अनुच्छेद 180", "अनुच्छेद 185"],
+                correctText: "अनुच्छेद 182",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 182 के अनुसार विधान परिषद अपने सदस्यों में से सभापति और उपसभापति चुनती है।"
+            },
+            {
+                q: "राज्य विधानमंडल में 'धन विधेयक' (Money Bill) केवल किस सदन में प्रस्तुत किया जा सकता है?",
+                options: ["केवल विधानसभा में (राज्यपाल की पूर्व सहमति से - अनुच्छेद 198)", "केवल विधान परिषद में", "किसी भी सदन में", "दोनों सदनों की संयुक्त बैठक में"],
+                correctText: "केवल विधानसभा में (राज्यपाल की पूर्व सहमति से - अनुच्छेद 198)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धन विधेयक केवल विधानसभा में ही पेश किया जा सकता है, विधान परिषद में नहीं।"
+            },
+            {
+                q: "विधान परिषद किसी धन विधेयक को अधिकतम कितने समय तक रोक सकती है?",
+                options: ["केवल 14 दिनों तक", "1 महीने तक", "3 महीने तक", "6 महीने तक"],
+                correctText: "केवल 14 दिनों तक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धन विधेयक पर विधान परिषद केवल 14 दिनों तक विचार रोक सकती है, अन्यथा वह पारित मान लिया जाता है।"
+            },
+            {
+                q: "विधान परिषद किसी 'साधारण विधेयक' (Ordinary Bill) को पहली बार में तथा कुल मिलाकर अधिकतम कितने समय तक रोक सकती है?",
+                options: ["पहली बार में 3 महीने और कुल मिलाकर अधिकतम 4 महीने (3+1 माह)", "6 महीने", "14 दिन", "1 वर्ष"],
+                correctText: "पहली बार में 3 महीने और कुल मिलाकर अधिकतम 4 महीने (3+1 माह)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• साधारण विधेयक को विधान परिषद पहली बार में 3 माह और दोबारा भेजे जाने पर 1 माह (कुल 4 माह) ही रोक सकती है।"
+            },
+            {
+                q: "क्या राज्य विधानमंडल में संसद की भाँति सदनों की 'संयुक्त बैठक' (Joint Sitting) का प्रावधान है?",
+                options: ["नहीं, राज्य विधानमंडल में संयुक्त बैठक का कोई प्रावधान नहीं है", "हाँ, अनुच्छेद 108 की तरह", "केवल राज्यपाल बुला सकते हैं", "केवल धन विधेयक पर"],
+                correctText: "नहीं, राज्य विधानमंडल में संयुक्त बैठक का कोई प्रावधान नहीं है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में राज्यों के दोनों सदनों की संयुक्त बैठक का कोई नियम नहीं है; विधानसभा का निर्णय ही अंतिम होता है।"
+            },
+            {
+                q: "दलबदल के आधार पर राज्य विधानमंडल के सदस्यों की अयोग्यता का फैसला कौन करता है?",
+                options: ["संबंधित सदन का पीठासीन अधिकारी (अध्यक्ष या सभापति)", "राज्यपाल", "उच्च न्यायालय", "राज्य निर्वाचन आयोग"],
+                correctText: "संबंधित सदन का पीठासीन अधिकारी (अध्यक्ष या सभापति)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 10वीं अनुसूची के तहत विधानसभा में स्पीकर और विधान परिषद में चेयरमैन फैसला करते हैं।"
+            },
+            {
+                q: "दलबदल के अलावा अन्य अयोग्यताओं पर राज्य विधानमंडल सदस्यों के निष्कासन का फैसला राज्यपाल किसकी सलाह पर करते हैं?",
+                options: ["भारत के निर्वाचन आयोग (Election Commission of India) की सलाह पर (अनुच्छेद 192)", "मुख्यमंत्री की सलाह पर", "उच्च न्यायालय की सलाह पर", "विधानसभा अध्यक्ष की सलाह पर"],
+                correctText: "भारत के निर्वाचन आयोग (Election Commission of India) की सलाह पर (अनुच्छेद 192)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 192 के तहत निर्वाचन आयोग की राय से राज्यपाल सदस्यों की योग्यता/अयोग्यता तय करते हैं।"
+            },
+            {
+                q: "राज्य की 'संचित निधि' (Consolidated Fund of the State) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 266(1)", "अनुच्छेद 267(2)", "अनुच्छेद 202", "अनुच्छेद 204"],
+                correctText: "अनुच्छेद 266(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 266(1) के तहत राज्य की संचित निधि से धन निकालने के लिए विनियोग विधेयक पास करना पड़ता है।"
+            },
+            {
+                q: "राज्य की 'आकस्मिकता निधि' (Contingency Fund of the State) किसके नियंत्रण में होती है?",
+                options: ["राज्य के राज्यपाल के नियंत्रण में (अनुच्छेद 267(2))", "मुख्यमंत्री के", "वित्त मंत्री के", "विधानसभा अध्यक्ष के"],
+                correctText: "राज्य के राज्यपाल के नियंत्रण में (अनुच्छेद 267(2))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 267(2) के तहत राज्य की आकस्मिक निधि राज्यपाल के अधीन रखी जाती है।"
+            },
+            {
+                q: "संविधान की सातवीं अनुसूची (7th Schedule) में संघ और राज्यों के बीच शक्तियों के विभाजन हेतु कितनी सूचियाँ हैं?",
+                options: ["3 सूचियाँ (संघ सूची, राज्य सूची, समवर्ती सूची)", "2 सूचियाँ", "4 सूचियाँ", "1 सूची"],
+                correctText: "3 सूचियाँ (संघ सूची, राज्य सूची, समवर्ती सूची)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवीं अनुसूची में तीन सूचियों के माध्यम से शक्तियों का स्पष्ट विभाजन किया गया है।"
+            },
+            {
+                q: "मूल संविधान तथा वर्तमान में 'संघ सूची' (Union List) में कुल कितने विषय हैं?",
+                options: ["मूल रूप से 97 विषय (वर्तमान में 100 विषय)", "मूल 66, वर्तमान 61", "मूल 47, वर्तमान 52", "मूल 100, वर्तमान 97"],
+                correctText: "मूल रूप से 97 विषय (वर्तमान में 100 विषय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संघ सूची में राष्ट्रीय महत्व के विषय हैं जिन पर कानून बनाने का अधिकार केवल संसद को है।"
+            },
+            {
+                q: "मूल संविधान तथा वर्तमान में 'राज्य सूची' (State List) में विषयों की संख्या कितनी है?",
+                options: ["मूल रूप से 66 विषय (वर्तमान में 61 विषय)", "मूल 97, वर्तमान 100", "मूल 47, वर्तमान 52", "मूल 50, वर्तमान 45"],
+                correctText: "मूल रूप से 66 विषय (वर्तमान में 61 विषय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन (1976) द्वारा राज्य सूची के 5 विषयों को समवर्ती सूची में स्थानांतरित कर दिया गया था।"
+            },
+            {
+                q: "मूल संविधान और वर्तमान में 'समवर्ती सूची' (Concurrent List) में कुल कितने विषय हैं?",
+                options: ["मूल रूप से 47 विषय (वर्तमान में 52 विषय)", "मूल 66, वर्तमान 61", "मूल 97, वर्तमान 100", "मूल 50, वर्तमान 60"],
+                correctText: "मूल रूप से 47 विषय (वर्तमान में 52 विषय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समवर्ती सूची के विषयों पर संसद और राज्य विधानमंडल दोनों कानून बना सकते हैं।"
+            },
+            {
+                q: "42वें संविधान संशोधन (1976) द्वारा राज्य सूची से समवर्ती सूची में स्थानांतरित किए गए 5 विषय कौन से हैं?",
+                options: ["शिक्षा, वन, नाप-तौल, वन्य जीवों व पक्षियों का संरक्षण, और न्याय का प्रशासन", "पुलिस, जेल, कृषि, स्वास्थ्य, न्याय", "सेना, डाक, बैंक, रेल, परमाणु", "कर, चुंगी, पुलिस, भूमि, सिंचाई"],
+                correctText: "शिक्षा, वन, नाप-तौल, वन्य जीवों व पक्षियों का संरक्षण, और न्याय का प्रशासन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1976 के 42वें संशोधन द्वारा शिक्षा, वन आदि 5 विषय समवर्ती सूची में जोड़े गए।"
+            },
+            {
+                q: "'अवशिष्ट शक्तियाँ' (Residuary Powers - जो तीनों सूचियों में नहीं हैं) पर कानून बनाने का अधिकार किसे है और यह किस देश से प्रेरित है?",
+                options: ["केवल संसद को (अनुच्छेद 248 - कनाडा के संविधान से प्रेरित)", "केवल राज्यों को", "संसद और राज्य दोनों को", "राष्ट्रपति को"],
+                correctText: "केवल संसद को (अनुच्छेद 248 - कनाडा के संविधान से प्रेरित)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 248 के तहत अवशिष्ट शक्तियां संसद में निहित हैं।"
+            },
+            {
+                q: "अनुच्छेद 252 के अनुसार संसद राज्य सूची के किसी विषय पर कानून कब बना सकती है?",
+                options: ["जब दो या दो से अधिक राज्यों की विधानसभाएँ ऐसा करने का प्रस्ताव पास करें", "केवल राष्ट्रपति के कहने पर", "केवल आपातकाल में", "कभी नहीं"],
+                correctText: "जब दो या दो से अधिक राज्यों की विधानसभाएँ ऐसा करने का प्रस्ताव पास करें",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 252 के तहत राज्यों के अनुरोध पर संसद केवल उन्हीं राज्यों के लिए कानून बना सकती है।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय समझौतों व संधियों को लागू करने के लिए (अनुच्छेद 253) संसद राज्य सूची के विषय पर कानून कैसे बना सकती है?",
+                options: ["बिना किसी राज्य की सहमति के पूरे भारत या किसी भाग हेतु कानून बना सकती है", "सभी राज्यों की 50% सहमति आवश्यक है", "केवल संबंधित राज्य की मंजूरी से", "सर्वोच्च न्यायालय के आदेश पर"],
+                correctText: "बिना किसी राज्य की सहमति के पूरे भारत या किसी भाग हेतु कानून बना सकती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 253 अंतर्राष्ट्रीय संधियों को लागू करने के लिए संसद को अबाध शक्ति देता है।"
+            },
+            {
+                q: "यदि समवर्ती सूची के किसी विषय पर केंद्र और राज्य दोनों के कानूनों में टकराव (Conflict) हो जाए, तो किसका कानून प्रभावी होगा?",
+                options: ["संसद (केंद्र) का कानून (अनुच्छेद 254)", "राज्य का कानून", "जो पहले बना हो", "दोनों निरस्त हो जाएंगे"],
+                correctText: "संसद (केंद्र) का कानून (अनुच्छेद 254)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 254 के तहत केंद्र का कानून मान्य होगा (अपवाद: यदि राज्य कानून को राष्ट्रपति की मंजूरी मिल चुकी हो)।"
+            },
+            {
+                q: "राज्य में अनुच्छेद 356 के तहत 'राष्ट्रपति शासन' (President's Rule) लागू होने पर उस राज्य के लिए कानून बनाने की शक्ति किसके पास आ जाती है?",
+                options: ["भारतीय संसद (Parliament) के पास", "राज्यपाल के पास", "राष्ट्रपति की घोषणा मात्र से", "सर्वोच्च न्यायालय के पास"],
+                correctText: "भारतीय संसद (Parliament) के पास",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राष्ट्रपति शासन के दौरान राज्य विधानमंडल की विधाई शक्तियां संसद को हस्तांतरित हो जाती हैं।"
+            },
+            {
+                q: "केंद्र और राज्यों के बीच प्रशासनिक संबंधों (Administrative Relations) का वर्णन किस भाग और अनुच्छेद में है?",
+                options: ["भाग XI (अनुच्छेद 256-263)", "भाग XII", "भाग X", "भाग XIV"],
+                correctText: "भाग XI (अनुच्छेद 256-263)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 11 के अध्याय 2 में अनुच्छेद 256 से 263 तक केंद्र-राज्य प्रशासनिक संबंधों का उल्लेख है।"
+            },
+            {
+                q: "अंतर्राज्यीय जल विवादों (Inter-State Water Disputes) के न्यायनिर्णयन हेतु संसद कानून बना सकती है, यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 262", "अनुच्छेद 263", "अनुच्छेद 260", "अनुच्छेद 258"],
+                correctText: "अनुच्छेद 262",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 262 के तहत संसद नदियों या नदी घाटियों के जल के उपयोग व वितरण विवादों हेतु जल न्यायाधिकरण बना सकती है।"
+            },
+            {
+                q: "'अंतर्राज्यीय परिषद' (Inter-State Council) के गठन का प्रावधान किस अनुच्छेद में है और इसका गठन कौन करता है?",
+                options: ["अनुच्छेद 263 (राष्ट्रपति द्वारा गठन)", "अनुच्छेद 262 (संसद)", "अनुच्छेद 280 (वित्त आयोग)", "अनुच्छेद 300 (प्रधानमंत्री)"],
+                correctText: "अनुच्छेद 263 (राष्ट्रपति द्वारा गठन)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 263 के तहत केंद्र-राज्य व अंतर्राज्यीय समन्वय हेतु राष्ट्रपति अंतर्राज्यीय परिषद गठित कर सकते हैं।"
+            },
+            {
+                q: "प्रथम 'अंतर्राज्यीय परिषद' का गठन किस आयोग की सिफारिश पर और किस वर्ष किया गया था?",
+                options: ["सरकारी आयोग की सिफारिश पर (वर्ष 1990 में)", "पुंछी आयोग (2007)", "प्रशासनिक सुधार आयोग (1966)", "शाह आयोग"],
+                correctText: "सरकारी आयोग की सिफारिश पर (वर्ष 1990 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1988 की सरकारी आयोग की रिपोर्ट के आधार पर जून 1990 में पहली बार अंतर्राज्यीय परिषद बनी।"
+            },
+            {
+                q: "अंतर्राज्यीय परिषद (Inter-State Council) का अध्यक्ष कौन होता है?",
+                options: ["भारत के प्रधानमंत्री", "भारत के राष्ट्रपति", "गृह मंत्री", "वित्त मंत्री"],
+                correctText: "भारत के प्रधानमंत्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रधानमंत्री इसके अध्यक्ष होते हैं तथा सभी राज्यों के मुख्यमंत्री इसके सदस्य होते हैं।"
+            },
+            {
+                q: "केंद्र-राज्य संबंधों पर विचार करने के लिए 'सरकारी आयोग' (Sarkaria Commission) का गठन किस वर्ष किया गया था?",
+                options: ["वर्ष 1983 में (अध्यक्ष: जस्टिस रणजीत सिंह सरकारी)", "वर्ष 1970", "वर्ष 1990", "वर्ष 2000"],
+                correctText: "वर्ष 1983 में (अध्यक्ष: जस्टिस रणजीत सिंह सरकारी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जून 1983 में केंद्र-राज्य संबंधों की समीक्षा हेतु जस्टिस आर.एस. सरकारी की अध्यक्षता में आयोग बना।"
+            },
+            {
+                q: "केंद्र-राज्य संबंधों पर ही अप्रैल 2007 में गठित 'पुंछी आयोग' (MM Punchhi Commission) के अध्यक्ष कौन थे?",
+                options: ["जस्टिस मदन मोहन पुंछी (पूर्व CJI)", "जस्टिस आर.एस. सरकारी", "एम.एन. वेंकटचेलैया", "वी.एस. मलीमठ"],
+                correctText: "जस्टिस मदन मोहन पुंछी (पूर्व CJI)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्व मुख्य न्यायाधीश मदन मोहन पुंछी की अध्यक्षता में दूसरा केंद्र-राज्य संबंध आयोग बना।"
+            },
+            {
+                q: "तमिलनाडु सरकार द्वारा केंद्र-राज्य संबंधों में सुधार की समीक्षा हेतु 1969 में कौन सी समिति गठित की गई थी?",
+                options: ["राजमन्नार समिति (Rajamannar Committee)", "आनंदपुर साहिब प्रस्ताव", "पश्चिम बंगाल ज्ञापन", "के. संथानम समिति"],
+                correctText: "राजमन्नार समिति (Rajamannar Committee)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1969 में डॉ. पी.वी. राजमन्नार की अध्यक्षता में तमिलनाडु सरकार ने राजमन्नार समिति बनाई थी।"
+            },
+            {
+                q: "केंद्र और राज्यों के बीच वित्तीय संबंधों (Financial Relations) का उल्लेख किस भाग और अनुच्छेद में है?",
+                options: ["भाग XII (अनुच्छेद 268-293)", "भाग XI", "भाग XIII", "भाग XIV"],
+                correctText: "भाग XII (अनुच्छेद 268-293)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग 12 में केंद्र-राज्य वित्तीय संबंधों और कर राजस्व के वितरण का प्रावधान है।"
+            },
+            {
+                q: "संविधान के अनुच्छेद 280 के तहत 'वित्त आयोग' (Finance Commission) का गठन कौन करता है?",
+                options: ["भारत के राष्ट्रपति (प्रत्येक 5 वर्ष पर)", "संसद", "प्रधानमंत्री", "वित्त मंत्री"],
+                correctText: "भारत के राष्ट्रपति (प्रत्येक 5 वर्ष पर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 280 के तहत राष्ट्रपति हर 5 साल में संघ व राज्यों के बीच करों के बँटवारे की सिफारिश हेतु वित्त आयोग बनाते हैं।"
+            },
+            {
+                q: "GST (वस्तु एवं सेवा कर) परिषद का गठन किस अनुच्छेद के तहत किया गया है?",
+                options: ["अनुच्छेद 279A", "अनुच्छेद 269A", "अनुच्छेद 280", "अनुच्छेद 265"],
+                correctText: "अनुच्छेद 279A",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 101वें संविधान संशोधन 2016 द्वारा अनुच्छेद 279A जोड़कर GST काउंसिल बनाई गई जिसके अध्यक्ष केंद्रीय वित्त मंत्री होते हैं।"
+            },
+            {
+                q: "राज्यों की कराधान शक्ति और कर वितरण के संदर्भ में 'विधि के प्राधिकार के बिना कोई कर न लगाया जाना' किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 265", "अनुच्छेद 266", "अनुच्छेद 267", "अनुच्छेद 300A"],
+                correctText: "अनुच्छेद 265",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 265 स्पष्ट करता है कि कानून (विधि) के प्राधिकार के बिना कोई भी कर न तो रोपित किया जाएगा और न ही एकत्र किया जाएगा।"
+            },
+            {
+                q: "संविधान के किस भाग में 'संघ राज्य क्षेत्रों' (The Union Territories) के प्रशासन का वर्णन है?",
+                options: ["भाग VIII (अनुच्छेद 239-241)", "भाग VI", "भाग IX", "भाग VII"],
+                correctText: "भाग VIII (अनुच्छेद 239-241)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग VIII के तहत केंद्रशासित प्रदेशों के प्रशासन की व्यवस्था दी गई है।"
+            },
+            {
+                q: "संघ राज्य क्षेत्रों (UTs) का प्रशासन किसके द्वारा चलाया जाता है?",
+                options: ["भारत के राष्ट्रपति द्वारा (उपराज्यपाल या प्रशासक के माध्यम से - अनुच्छेद 239)", "गृह मंत्री द्वारा", "संसद के सीधे नियंत्रण में", "निकटतम राज्य के मुख्यमंत्री द्वारा"],
+                correctText: "भारत के राष्ट्रपति द्वारा (उपराज्यपाल या प्रशासक के माध्यम से - अनुच्छेद 239)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 239(1) के तहत राष्ट्रपति प्रत्येक UT का प्रशासन स्वयं या अपने द्वारा नियुक्त उपराज्यपाल/प्रशासक के माध्यम से चलाते हैं।"
+            },
+            {
+                q: "69वें संविधान संशोधन (1991) द्वारा दिल्ली को क्या नाम दिया गया और यहाँ विधानसभा का गठन हुआ?",
+                options: ["राष्ट्रीय राजधानी क्षेत्र दिल्ली (NCT Delhi - अनुच्छेद 239AA)", "दिल्ली राज्य", "केंद्रीय क्षेत्र दिल्ली", "पूर्ण राज्य"],
+                correctText: "राष्ट्रीय राजधानी क्षेत्र दिल्ली (NCT Delhi - अनुच्छेद 239AA)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 69वें संशोधन 1991 द्वारा दिल्ली को NCT घोषित किया गया और अनुच्छेद 239AA के तहत 70 सदस्यीय विधानसभा व 7 सदस्यीय मंत्रिपरिषद बनाई गई।"
+            },
+            {
+                q: "दिल्ली विधानसभा को राज्य सूची और समवर्ती सूची के किन 3 विषयों पर कानून बनाने की शक्ति प्राप्त नहीं है?",
+                options: ["लोक व्यवस्था (Public Order), पुलिस (Police) और भूमि (Land)", "शिक्षा, स्वास्थ्य और कृषि", "कर, चुंगी और परिवहन", "जेल, वन और सिंचाई"],
+                correctText: "लोक व्यवस्था (Public Order), पुलिस (Police) और भूमि (Land)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिल्ली विधानसभा लोक व्यवस्था, पुलिस और भूमि पर कानून नहीं बना सकती; ये विषय केंद्र/LG के अधीन हैं।"
+            },
+            {
+                q: "पुडुचेरी तथा जम्मू और कश्मीर केंद्रशासित प्रदेशों में विधानमंडल का प्रावधान किस अनुच्छेद के तहत है?",
+                options: ["अनुच्छेद 239A तथा पुनर्गठन अधिनियम", "अनुच्छेद 240", "अनुच्छेद 241", "अनुच्छेद 242"],
+                correctText: "अनुच्छेद 239A तथा पुनर्गठन अधिनियम",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 14वें संशोधन द्वारा अनुच्छेद 239A जोड़ा गया जिससे पुडुचेरी में तथा 2019 पुनर्गठन अधिनियम से J&K में विधानमंडल है।"
+            },
+            {
+                q: "किसी संघ राज्य क्षेत्र (UT) के लिए अध्यादेश (Ordinance) जारी करने की प्रशासक/उपराज्यपाल की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 239B", "अनुच्छेद 213", "अनुच्छेद 123", "अनुच्छेद 240"],
+                correctText: "अनुच्छेद 239B",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पुडुचेरी या दिल्ली के प्रशासक विधानमंडल न चलने की स्थिति में अनुच्छेद 239B के तहत अध्यादेश ला सकते हैं।"
+            },
+            {
+                q: "राष्ट्रपति को कुछ केंद्रशासित प्रदेशों (जैसे अंडमान, दादरा-नगर हवेली, लक्षद्वीप) के लिए नियम व नियमन (Regulations) बनाने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 240", "अनुच्छेद 239", "अनुच्छेद 241", "अनुच्छेद 242"],
+                correctText: "अनुच्छेद 240",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 240 राष्ट्रपति को शांत, प्रगति और सुशासन हेतु विनियमन बनाने की शक्ति देता है जो संसद के कानून के समान होते हैं।"
+            },
+            {
+                q: "संसद किसी संघ राज्यक्षेत्र (UT) के लिए 'उच्च न्यायालय' (High Court) की स्थापना कर सकती है, यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 241", "अनुच्छेद 214", "अनुच्छेद 230", "अनुच्छेद 240"],
+                correctText: "अनुच्छेद 241",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 241 संसद को UT के लिए अपना खुद का HC बनाने का अधिकार देता है (जैसे दिल्ली के पास अपना HC है)।"
+            },
+            {
+                q: "भारत के किस केंद्रशासित प्रदेश (UT) के पास अपना स्वयं का स्वतंत्र उच्च न्यायालय (High Court) है?",
+                options: ["राष्ट्रीय राजधानी क्षेत्र दिल्ली (Delhi - 1966 से) तथा जम्मू और कश्मीर", "पुडुचेरी", "अंडमान एवं निकोबार", "चंडीगढ़"],
+                correctText: "राष्ट्रीय राजधानी क्षेत्र दिल्ली (Delhi - 1966 से) तथा जम्मू और कश्मीर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिल्ली एकमात्र UT था जिसका अपना HC (1966) था; 2019 के बाद जम्मू-कश्मीर UT का भी अपना साझा HC है।"
+            },
+            {
+                q: "अंडमान और निकोबार द्वीप समूह किस उच्च न्यायालय के क्षेत्राधिकार के अंतर्गत आता है?",
+                options: ["कलकत्ता उच्च न्यायालय (Calcutta High Court)", "मद्रास उच्च न्यायालय", "ओडिशा उच्च न्यायालय", "आंध्र प्रदेश उच्च न्यायालय"],
+                correctText: "कलकत्ता उच्च न्यायालय (Calcutta High Court)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंडमान और निकोबार द्वीप समूह कलकत्ता हाईकोर्ट की पोर्ट ब्लेयर बेंच के अधिकार क्षेत्र में आता है।"
+            },
+            {
+                q: "लक्षद्वीप किस उच्च न्यायालय के क्षेत्राधिकार में आता है?",
+                options: ["केरल उच्च न्यायालय (Kerala High Court)", "कर्नाटक उच्च न्यायालय", "बॉम्बे उच्च न्यायालय", "तमिलनाडु उच्च न्यायालय"],
+                correctText: "केरल उच्च न्यायालय (Kerala High Court)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लक्षद्वीप केरल उच्च न्यायालय के अधिकार क्षेत्र में है।"
+            },
+            {
+                q: "दादरा और नगर हवेली तथा दमन और दीव किस उच्च न्यायालय के क्षेत्राधिकार में आते हैं?",
+                options: ["बॉम्बे उच्च न्यायालय (Bombay High Court)", "गुजरात उच्च न्यायालय", "राजस्थान उच्च न्यायालय", "दिल्ली उच्च न्यायालय"],
+                correctText: "बॉम्बे उच्च न्यायालय (Bombay High Court)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दमन-दीव और दादरा-नगर हवेली बॉम्बे हाईकोर्ट के क्षेत्राधिकार में आते हैं।"
+            },
+            {
+                q: "पुडुचेरी (Puducherry) किस उच्च न्यायालय के न्यायिक क्षेत्राधिकार के अंतर्गत आता है?",
+                options: ["मद्रास उच्च न्यायालय (Madras High Court)", "केरल उच्च न्यायालय", "आंध्र प्रदेश उच्च न्यायालय", "कर्नाटक उच्च न्यायालय"],
+                correctText: "मद्रास उच्च न्यायालय (Madras High Court)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पुडुचेरी मद्रास हाईकोर्ट के अधिकार क्षेत्र में आता है।"
+            },
+            {
+                q: "चंडीगढ़ केंद्रशासित प्रदेश किस उच्च न्यायालय के अंतर्गत आता है?",
+                options: ["पंजाब एवं हरियाणा उच्च न्यायालय (Punjab and Haryana High Court)", "दिल्ली उच्च न्यायालय", "हिमाचल प्रदेश उच्च न्यायालय", "राजस्थान उच्च न्यायालय"],
+                correctText: "पंजाब एवं हरियाणा उच्च न्यायालय (Punjab and Haryana High Court)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंडीगढ़ पंजाब एवं हरियाणा उच्च न्यायालय के क्षेत्राधिकार में आता है।"
+            },
+            {
+                q: "क्षेत्रीय परिषदों (Zonal Councils) का गठन किस अधिनियम के तहत किया गया है?",
+                options: ["राज्य पुनर्गठन अधिनियम 1956 (यह एक वैधानिक/Statutory निकाय है)", "संविधान के अनुच्छेद 263 के तहत", "42वें संशोधन द्वारा", "73वें संशोधन द्वारा"],
+                correctText: "राज्य पुनर्गठन अधिनियम 1956 (यह एक वैधानिक/Statutory निकाय है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्षेत्रीय परिषदें संवैधानिक निकाय न होकर 'संसदीय अधिनियम' (1956) द्वारा गठित वैधानिक निकाय हैं।"
+            },
+            {
+                q: "भारत में कुल कितनी क्षेत्रीय परिषदें (Zonal Councils) हैं और इनका अध्यक्ष कौन होता है?",
+                options: ["5 क्षेत्रीय परिषदें (अध्यक्ष: केंद्रीय गृह मंत्री)", "6 क्षेत्रीय परिषदें (अध्यक्ष: प्रधानमंत्री)", "4 क्षेत्रीय परिषदें (अध्यक्ष: राष्ट्रपति)", "8 क्षेत्रीय परिषदें (अध्यक्ष: वित्त मंत्री)"],
+                correctText: "5 क्षेत्रीय परिषदें (अध्यक्ष: केंद्रीय गृह मंत्री)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1956 अधिनियम द्वारा 5 क्षेत्रीय परिषदें (उत्तर, दक्षिण, पूर्व, पश्चिम, मध्य) बनीं जिनके पदेन अध्यक्ष केंद्रीय गृह मंत्री होते हैं।"
+            },
+            {
+                q: "पूर्वोत्तर परिषद (North Eastern Council - NEC) का गठन किस वर्ष अलग अधिनियम द्वारा किया गया था?",
+                options: ["पूर्वोत्तर परिषद अधिनियम 1971 के तहत (वर्ष 1972 में)", "1956 में", "1987 में", "2002 में"],
+                correctText: "पूर्वोत्तर परिषद अधिनियम 1971 के तहत (वर्ष 1972 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्वोत्तर के 8 राज्यों (असम, अरुणाचल, मणिपुर, मेघालय, मिजोरम, नागालैंड, त्रिपुरा, सिक्किम) हेतु 1971 अधिनियम से NEC बनी।"
+            },
+            {
+                q: "जम्मू और कश्मीर पुनर्गठन अधिनियम 2019 के लागू होने की तिथि क्या थी?",
+                options: ["31 अक्टूबर 2019 (सुलभता/सरदार पटेल जयंती)", "5 अगस्त 2019", "15 अगस्त 2019", "26 जनवरी 2020"],
+                correctText: "31 अक्टूबर 2019 (सुलभता/सरदार पटेल जयंती)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 31 अक्टूबर 2019 से जम्मू-कश्मीर और लद्दाख दो अलग केंद्रशासित प्रदेश के रूप में प्रभावी हुए।"
+            },
+            {
+                q: "दादरा और नगर हवेली तथा दमन और दीव के विलय का अधिनियम किस वर्ष प्रभावी हुआ?",
+                options: ["26 जनवरी 2020", "31 अक्टूबर 2019", "15 अगस्त 2020", "1 जनवरी 2021"],
+                correctText: "26 जनवरी 2020",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 26 जनवरी 2020 से दोनों UTs को मिलाकर एक एकल UT 'दादरा और नगर हवेली तथा दमन और दीव' बना दिया गया।"
+            },
+            {
+                q: "वर्तमान में भारत में कुल कितने राज्य और केंद्रशासित प्रदेश (UTs) हैं?",
+                options: ["28 राज्य और 8 केंद्रशासित प्रदेश", "29 राज्य और 7 केंद्रशासित प्रदेश", "28 राज्य और 9 केंद्रशासित प्रदेश", "29 राज्य और 8 केंद्रशासित प्रदेश"],
+                correctText: "28 राज्य और 8 केंद्रशासित प्रदेश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वर्तमान में भारत में कुल 28 राज्य और 8 संघ राज्य क्षेत्र (UTs) हैं।"
+            },
+            {
+                q: "राज्यपाल द्वारा विधान परिषद में साहित्य, कला, विज्ञान, समाज सेवा और सहकारिता के अलावा कौन सा क्षेत्र शामिल है?",
+                options: ["सहकारिता आंदोलन (Cooperative Movement)", "खेल", "राजनीति", "पत्रकारिता"],
+                correctText: "सहकारिता आंदोलन (Cooperative Movement)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्यान दें कि राष्ट्रपति द्वारा राज्यसभा में केवल 4 क्षेत्र हैं, जबकि राज्यपाल द्वारा विधान परिषद में 5वाँ क्षेत्र 'सहकारिता आंदोलन' भी शामिल है।"
+            },
+            {
+                q: "विधानसभा का सत्र आहुत करने, सत्रावसान करने तथा विघटित करने की शक्ति किसके पास है?",
+                options: ["राज्य के राज्यपाल के पास (अनुच्छेद 174)", "विधानसभा अध्यक्ष के पास", "मुख्यमंत्री के पास", "उच्च न्यायालय के पास"],
+                correctText: "राज्य के राज्यपाल के पास (अनुच्छेद 174)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 174 के तहत राज्यपाल विधानसभा का सत्र बुलाते हैं, सत्रावसान करते हैं और भंग करते हैं।"
+            },
+            {
+                q: "राज्य विधानमंडल का स्थगन (Adjournment) करने का अधिकार किसके पास होता है?",
+                options: ["सदन के पीठासीन अधिकारी (अध्यक्ष/सभापति)", "राज्यपाल", "मुख्यमंत्री", "गृह मंत्री"],
+                correctText: "सदन के पीठासीन अधिकारी (अध्यक्ष/सभापति)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सत्रावसान राज्यपाल करते हैं, परंतु बैठक का 'स्थगन' स्पीकर/चेयरमैन द्वारा किया जाता है।"
+            },
+            {
+                q: "यदि राज्य का मुख्यमंत्री विधान परिषद का सदस्य हो, तो अविश्वास प्रस्ताव के समय क्या स्थिति होगी?",
+                options: ["वह अविश्वास प्रस्ताव पर अपने पक्ष में वोट नहीं दे सकेगा (क्योंकि वोटिंग केवल विधानसभा में होती है)", "वह वोट दे सकता है", "प्रस्ताव खारिज हो जाएगा", "उसे इस्तीफा देना होगा"],
+                correctText: "वह अविश्वास प्रस्ताव पर अपने पक्ष में वोट नहीं दे सकेगा (क्योंकि वोटिंग केवल विधानसभा में होती है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अविश्वास प्रस्ताव पर मतदान केवल विधानसभा सदस्य ही कर सकते हैं।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत राज्यपाल राज्य विधानसभा में बजट (वार्षिक वित्तीय विवरण) रखवाते हैं?",
+                options: ["अनुच्छेद 202", "अनुच्छेद 112", "अनुच्छेद 203", "अनुच्छेद 204"],
+                correctText: "अनुच्छेद 202",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यों के बजट का उल्लेख अनुच्छेद 202 के अंतर्गत है।"
+            },
+            {
+                q: "राज्य विधानमंडल द्वारा पारित विधेयक को राज्यपाल द्वारा रोकने या पुनर्विचार हेतु भेजने की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 200", "अनुच्छेद 201", "अनुच्छेद 202", "अनुच्छेद 198"],
+                correctText: "अनुच्छेद 200",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 200 में राज्यपाल की वीटो शक्ति और विधेयक को रोकने या आरक्षित करने का प्रावधान है।"
+            },
+            {
+                q: "जब राज्यपाल किसी विधेयक को राष्ट्रपति के विचारार्थ आरक्षित रख लेते हैं, तो राष्ट्रपति की शक्ति किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 201", "अनुच्छेद 200", "अनुच्छेद 111", "अनुच्छेद 213"],
+                correctText: "अनुच्छेद 201",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 201 के तहत राष्ट्रपति राज्य के विधेयक पर स्वीकृति दे सकते हैं या रोक सकते हैं।"
+            },
+            {
+                q: "क्या राष्ट्रपति राज्य विधानमंडल के पुनर्विचार कर वापस भेजे गए विधेयक पर हस्ताक्षर करने के लिए बाध्य हैं?",
+                options: ["नहीं, राष्ट्रपति बाध्य नहीं हैं (वे पुनः रोक सकते हैं)", "हाँ, 44वें संशोधन द्वारा बाध्य हैं", "हाँ, 6 महीने में हस्ताक्षर जरूरी हैं", "केवल धन विधेयक पर बाध्य हैं"],
+                correctText: "नहीं, राष्ट्रपति बाध्य नहीं हैं (वे पुनः रोक सकते हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद के मामलों में राष्ट्रपति बाध्य हैं, परंतु राज्यों के विधेयकों (अनुच्छेद 201) पर वे पुनर्विचार के बाद भी अनुमति रोकने हेतु स्वतंत्र हैं।"
+            },
+            {
+                q: "संसद राज्य सूची के किसी विषय पर कानून बना सकती है यदि 'राज्यसभा' 2/3 बहुमत से संकल्प पारित करे—यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 249", "अनुच्छेद 250", "अनुच्छेद 252", "अनुच्छेद 253"],
+                correctText: "अनुच्छेद 249",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 249 राज्यसभा को राष्ट्रहित में राज्य सूची के विषय पर संसद से कानून बनवाने की शक्ति देता है।"
+            },
+            {
+                q: "राष्ट्रीय आपातकाल (अनुच्छेद 352) लागू होने की स्थिति में संसद राज्य सूची के विषयों पर कानून बना सकती है, किस अनुच्छेद के तहत?",
+                options: ["अनुच्छेद 250", "अनुच्छेद 249", "अनुच्छेद 252", "अनुच्छेद 253"],
+                correctText: "अनुच्छेद 250",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आपातकाल के समय अनुच्छेद 250 संसद को संपूर्ण राज्य सूची पर विधाई शक्ति प्रदान करता है।"
+            },
+            {
+                q: "केंद्र-राज्य संबंधों से संबंधित 'पश्चिम बंगाल ज्ञापन' (West Bengal Memorandum) किस वर्ष जारी किया गया था?",
+                options: ["वर्ष 1977 में (साम्यवादी सरकार द्वारा)", "वर्ष 1983", "वर्ष 1969", "वर्ष 1990"],
+                correctText: "वर्ष 1977 में (साम्यवादी सरकार द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1977 में पश्चिम बंगाल सरकार ने राज्यों को अधिक स्वायत्तता और अनुच्छेद 356 की समाप्ति की माँग की थी।"
+            },
+            {
+                q: "शिरोमणि अकाली दल द्वारा केंद्र-राज्य संबंधों पर प्रस्तुत प्रसिद्ध 'आनंदपुर साहिब प्रस्ताव' किस वर्ष पारित हुआ था?",
+                options: ["वर्ष 1973 में", "वर्ष 1980", "वर्ष 1984", "वर्ष 1968"],
+                correctText: "वर्ष 1973 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1973 में पंजाब के आनंदपुर साहिब में केंद्र को केवल रक्षा, विदेश, संचार और मुद्रा देकर शेष अधिकार राज्यों को देने की माँग की गई थी।"
+            },
+            {
+                q: "केंद्रशासित प्रदेशों के लिए कानून बनाने की सर्वोच्च शक्ति किसके पास निहित है?",
+                options: ["भारतीय संसद (Parliament - अनुच्छेद 246(4))", "केवल राष्ट्रपति के पास", "उपराज्यपाल के पास", "गृह मंत्रालय के पास"],
+                correctText: "भारतीय संसद (Parliament - अनुच्छेद 246(4))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद को किसी भी UT के लिए तीनों सूचियों के किसी भी विषय पर कानून बनाने का सर्वाधिकार है।"
+            },
+            {
+                q: "यदि दिल्ली के मुख्यमंत्री की नियुक्ति की बात हो, तो उनकी नियुक्ति कौन करता है?",
+                options: ["भारत के राष्ट्रपति (उपराज्यपाल की सलाह पर)", "दिल्ली के उपराज्यपाल", "गृह मंत्री", "दिल्ली की जनता"],
+                correctText: "भारत के राष्ट्रपति (उपराज्यपाल की सलाह पर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 239AA(5) के अनुसार दिल्ली के मुख्यमंत्री की नियुक्ति राष्ट्रपति द्वारा की जाती है (राज्यपाल द्वारा नहीं)।"
+            },
+            {
+                q: "दिल्ली के मुख्यमंत्री अपना त्यागपत्र किसे सौंपते हैं?",
+                options: ["भारत के राष्ट्रपति को", "दिल्ली के उपराज्यपाल को", "विधानसभा अध्यक्ष को", "गृह मंत्री को"],
+                correctText: "भारत के राष्ट्रपति को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दिल्ली के मुख्यमंत्री की नियुक्ति और उनका त्यागपत्र राष्ट्रपति के माध्यम से ही होता है।"
+            },
+            {
+                q: "पुडुचेरी के मुख्यमंत्री की नियुक्ति किसके द्वारा की जाती है?",
+                options: ["भारत के राष्ट्रपति द्वारा (अनुच्छेद 239A)", "पुडुचेरी के उपराज्यपाल द्वारा", "संसद द्वारा", "तमिलनाडु के राज्यपाल द्वारा"],
+                correctText: "भारत के राष्ट्रपति द्वारा (अनुच्छेद 239A)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पुडुचेरी संघ राज्यक्षेत्र के मुख्यमंत्री की नियुक्ति भी राष्ट्रपति द्वारा ही की जाती है।"
+            },
+            {
+                q: "क्षेत्रीय परिषदों (Zonal Councils) का मुख्य उद्देश्य क्या है?",
+                options: ["केंद्र और राज्यों के बीच तथा राज्यों के मध्य आपस में सहयोगात्मक संघवाद (Cooperative Federalism) बढ़ाना", "चुनाव कराना", "कर वसूलना", "सेना का संचालन"],
+                correctText: "केंद्र और राज्यों के बीच तथा राज्यों के मध्य आपस में सहयोगात्मक संघवाद (Cooperative Federalism) बढ़ाना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• क्षेत्रीय परिषदें आर्थिक, सामाजिक व सीमा विवादों के समाधान हेतु सलाहकारी मंच प्रदान करती हैं।"
+            },
+            {
+                q: "पूर्वोत्तर परिषद (NEC) का मुख्यालय कहाँ स्थित है?",
+                options: ["शिलांग (मेघालय)", "गुवाहाटी (असम)", "इम्फाल (मणिपुर)", "अगरतला (त्रिपुरा)"],
+                correctText: "शिलांग (मेघालय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पूर्वोत्तर परिषद का सचिवालय शिलांग (मेघालय) में स्थित है।"
+            },
+            {
+                q: "पूर्वोत्तर परिषद में सिक्किम को किस वर्ष 8वें सदस्य के रूप में शामिल किया गया था?",
+                options: ["वर्ष 2002 में", "वर्ष 1972 में", "वर्ष 1975 में", "वर्ष 1990 में"],
+                correctText: "वर्ष 2002 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2002 के संशोधन अधिनियम द्वारा सिक्किम को NEC के 8वें सदस्य के रूप में जोड़ा गया।"
+            },
+            {
+                q: "किस अनुच्छेद के तहत संसद कानून बनाकर दो या अधिक राज्यों के लिए एक ही 'साझा उच्च न्यायालय' (Common High Court) स्थापित कर सकती है?",
+                options: ["अनुच्छेद 231", "अनुच्छेद 214", "अनुच्छेद 226", "अनुच्छेद 241"],
+                correctText: "अनुच्छेद 231",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 231 संसद को दो या अधिक राज्यों व UTs हेतु एक साझा हाईकोर्ट बनाने का अधिकार देता है (जैसे पंजाब-हरियाणा HC, बॉम्बे HC)।"
+            },
+            {
+                q: "किसी राज्य के विधान परिषद को पूरी तरह समाप्त करने के लिए अंतिम कानून कौन बनाता है?",
+                options: ["भारतीय संसद (साधारण बहुमत से - अनुच्छेद 169)", "राज्य विधानसभा", "राष्ट्रपति", "राज्यपाल"],
+                correctText: "भारतीय संसद (साधारण बहुमत से - अनुच्छेद 169)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विधानसभा के विशेष बहुमत से पारित प्रस्ताव के बाद संसद साधारण बहुमत से कानून बनाकर विधान परिषद समाप्त कर सकती है।"
+            },
+            {
+                q: "संवैधानिक तंत्र विफल होने पर राज्य में 'राष्ट्रपति शासन' (President's Rule) किस अनुच्छेद के तहत लगाया जाता है?",
+                options: ["अनुच्छेद 356 (तथा अनुच्छेद 365)", "अनुच्छेद 352", "अनुच्छेद 360", "अनुच्छेद 370"],
+                correctText: "अनुच्छेद 356 (तथा अनुच्छेद 365)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यपाल की रिपोर्ट पर या राष्ट्रपति के समाधान पर अनुच्छेद 356 के तहत राज्य में संवैधानिक आपातकाल लागू होता है।"
+            },
+            {
+                q: "अनुच्छेद 365 के अनुसार राज्य में राष्ट्रपति शासन कब लगाया जा सकता है?",
+                options: ["जब राज्य सरकार केंद्र द्वारा दिए गए संवैधानिक निर्देशों का पालन करने में विफल रहे", "जब राज्य में सूखा पड़े", "जब चुनाव न हों", "जब बजट पास न हो"],
+                correctText: "जब राज्य सरकार केंद्र द्वारा दिए गए संवैधानिक निर्देशों का पालन करने में विफल रहे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 365 स्पष्ट करता है कि केंद्र के वैध निर्देशों की उपेक्षा करना भी संवैधानिक तंत्र की विफलता माना जाएगा।"
+            },
+            {
+                q: "राज्य विधानमंडल के किसी सदस्य को शपथ कौन दिलाता है?",
+                options: ["राज्यपाल या उनके द्वारा अधिकृत व्यक्ति (अनुच्छेद 188)", "विधानसभा अध्यक्ष", "मुख्यमंत्री", "उच्च न्यायालय के न्यायाधीश"],
+                correctText: "राज्यपाल या उनके द्वारा अधिकृत व्यक्ति (अनुच्छेद 188)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 188 के अनुसार विधायकों को शपथ राज्यपाल या उनके प्रतिनिधि दिलाते हैं।"
+            },
+            {
+                q: "क्या राज्य के राज्यपाल को भारत के राष्ट्रपति की भाँति 'सैन्य शक्तियाँ' (Military Powers) और 'आपातकालीन शक्तियाँ' प्राप्त हैं?",
+                options: ["नहीं, राज्यपाल के पास सैन्य और आपातकालीन शक्तियाँ नहीं होतीं", "हाँ, समान शक्तियाँ होती हैं", "केवल सैन्य शक्तियाँ होती हैं", "केवल आपातकालीन शक्तियाँ होती हैं"],
+                correctText: "नहीं, राज्यपाल के पास सैन्य और आपातकालीन शक्तियाँ नहीं होतीं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सैन्य बल का कमान तथा आपातकाल लागू करने का एकाधिकार केवल राष्ट्रपति के पास है।"
+            }
+        ];
+
+        let quizDataPolity4 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity4 = rawQuizDataPolity4.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिले भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity4;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp4_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp4_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 4 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 4 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* राज्य कार्यपालिका, विधानमंडल, केंद्र-राज्य संबंध व UTs\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp4.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp4_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
