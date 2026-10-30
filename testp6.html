@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 6 (संविधान संशोधन, राजभाषा, संवैधानिक एवं गैर-संवैधानिक निकाय) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 6 (संशोधन, राजभाषा व प्रमुख आयोग)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 6)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 6 (संशोधन, राजभाषा व संस्थाएँ)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: संविधान संशोधन, राजभाषा, संवैधानिक एवं गैर-संवैधानिक संस्थाएँ - 100 प्रश्न
+        const rawQuizDataPolity6 = [
+            {
+                q: "भारतीय संविधान में संशोधन करने की शक्ति (Power to amend the Constitution) किस भाग और अनुच्छेद में दी गई है?",
+                options: ["भाग XX, अनुच्छेद 368", "भाग XVIII, अनुच्छेद 356", "भाग XV, अनुच्छेद 324", "भाग XXI, अनुच्छेद 370"],
+                correctText: "भाग XX, अनुच्छेद 368",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग XX में निहित अनुच्छेद 368 संसद को संविधान में संशोधन की शक्ति प्रदान करता है।"
+            },
+            {
+                q: "संविधान संशोधन की प्रक्रिया भारतीय संविधान में किस देश के संविधान से ली गई है?",
+                options: ["दक्षिण अफ्रीका (South Africa)", "संयुक्त राज्य अमेरिका", "आयरलैंड", "कनाडा"],
+                correctText: "दक्षिण अफ्रीका (South Africa)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारतीय संविधान में अनुच्छेद 368 के अंतर्गत संशोधन की प्रक्रिया दक्षिण अफ्रीका के संविधान से प्रेरित है।"
+            },
+            {
+                q: "अनुच्छेद 368 के अंतर्गत संविधान संशोधन विधेयक संसद के किस सदन में प्रस्तुत किया जा सकता है?",
+                options: ["संसद के किसी भी सदन (लोकसभा या राज्यसभा) में", "केवल लोकसभा में", "केवल राज्यसभा में", "केवल राष्ट्रपति की पूर्व सहमति से विधान परिषद में"],
+                correctText: "संसद के किसी भी सदन (लोकसभा या राज्यसभा) में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान संशोधन विधेयक संसद के किसी भी सदन में लाया जा सकता है। इसके लिए राष्ट्रपति की पूर्व अनुमति आवश्यक नहीं है।"
+            },
+            {
+                q: "संविधान संशोधन विधेयक पारित कराने के संदर्भ में संसद के दोनों सदनों में मतभेद होने पर क्या संयुक्त बैठक (Joint Sitting) बुलाई जा सकती है?",
+                options: ["नहीं, संयुक्त बैठक का कोई प्रावधान नहीं है", "हाँ, अनुच्छेद 108 के तहत", "केवल राष्ट्रपति के निर्णय पर", "केवल धन विधेयक जैसा होने पर"],
+                correctText: "नहीं, संयुक्त बैठक का कोई प्रावधान नहीं है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान संशोधन विधेयक को दोनों सदनों द्वारा पृथक-पृथक विशेष बहुमत से पास होना अनिवार्य है; इस पर संयुक्त बैठक नहीं बुलाई जा सकती।"
+            },
+            {
+                q: "24वें संविधान संशोधन अधिनियम 1971 द्वारा राष्ट्रपति के लिए संविधान संशोधन विधेयक पर सहमति देना...",
+                options: ["बाध्यकारी (Obligatory) बना दिया गया", "ऐच्छिक कर दिया गया", "वीटो शक्ति में बदल दिया गया", "पुनर्विचार हेतु भेजने की छूट दी गई"],
+                correctText: "बाध्यकारी (Obligatory) बना दिया गया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 24वें संशोधन 1971 द्वारा अनुच्छेद 368 में संशोधन कर राष्ट्रपति हेतु संशोधन विधेयक पर अनुमति देना अनिवार्य कर दिया गया।"
+            },
+            {
+                q: "प्रसिद्ध केशवानंद भारती बनाम केरल राज्य वाद (1973) में सर्वोच्च न्यायालय ने संसद की संविधान संशोधन शक्ति पर कौन सी सीमा तय की?",
+                options: ["संसद संविधान के 'मूल ढांचे' (Basic Structure) में संशोधन नहीं कर सकती", "संसद मूल अधिकारों में संशोधन नहीं कर सकती", "संसद प्रस्तावना को नहीं बदल सकती", "कोई सीमा नहीं है"],
+                correctText: "संसद संविधान के 'मूल ढांचे' (Basic Structure) में संशोधन नहीं कर सकती",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 13 जजों की पीठ ने ऐतिहासिक निर्णय में 'संविधान का मूल ढांचा सिद्धांत' प्रतिपादित किया।"
+            },
+            {
+                q: "किस संविधान संशोधन को 'मिनी संविधान' (Mini Constitution) के नाम से भी जाना जाता है?",
+                options: ["42वाँ संविधान संशोधन 1976", "44वाँ संशोधन 1978", "1st संशोधन 1951", "86वाँ संशोधन 2002"],
+                correctText: "42वाँ संविधान संशोधन 1976",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन द्वारा संविधान में व्यापक परिवर्तन किए गए थे, इसलिए इसे 'लघु संविधान' कहा जाता है।"
+            },
+            {
+                q: "भारतीय संविधान में प्रथम संविधान संशोधन अधिनियम किस वर्ष पारित किया गया था जिसके द्वारा 9वीं अनुसूची जोड़ी गई?",
+                options: ["वर्ष 1951 में", "वर्ष 1950 में", "वर्ष 1952 में", "वर्ष 1955 में"],
+                correctText: "वर्ष 1951 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम संशोधन 1951 द्वारा भूमि सुधारों के संरक्षण हेतु 9वीं अनुसूची जोड़ी गई थी।"
+            },
+            {
+                q: "संपत्ति के अधिकार को मौलिक अधिकारों की श्रेणी से हटाकर अनुच्छेद 300A के तहत कानूनी अधिकार किस संशोधन से बनाया गया?",
+                options: ["44वाँ संविधान संशोधन 1978", "42वाँ संशोधन 1976", "86वाँ संशोधन", "52वाँ संशोधन"],
+                correctText: "44वाँ संविधान संशोधन 1978",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मोरारजी देसाई सरकार में 44वें संशोधन 1978 द्वारा संपत्ति के मूल अधिकार (अनुच्छेद 31) को समाप्त किया गया।"
+            },
+            {
+                q: "दलबदल विरोधी कानून (Anti-Defection Law) को किस संविधान संशोधन द्वारा 10वीं अनुसूची में शामिल किया गया?",
+                options: ["52वाँ संविधान संशोधन 1985", "61वाँ संशोधन", "91वाँ संशोधन", "44वाँ संशोधन"],
+                correctText: "52वाँ संविधान संशोधन 1985",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राजीव गांधी सरकार के समय 52वें संशोधन 1985 द्वारा 10वीं अनुसूची जोड़कर दलबदल पर रोक लगाई गई।"
+            },
+            {
+                q: "मतदान की न्यूनतम आयु सीमा 21 वर्ष से घटाकर 18 वर्ष किस संविधान संशोधन द्वारा की गई?",
+                options: ["61वाँ संविधान संशोधन 1988 (लागू 1989)", "52वाँ संशोधन", "69वाँ संशोधन", "86वाँ संशोधन"],
+                correctText: "61वाँ संविधान संशोधन 1988 (लागू 1989)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 61वें संशोधन द्वारा अनुच्छेद 326 में संशोधन करके मताधिकार की आयु 21 से घटाकर 18 वर्ष की गई।"
+            },
+            {
+                q: "6 से 14 वर्ष तक के बच्चों के लिए निःशुल्क एवं अनिवार्य शिक्षा को मौलिक अधिकार (अनुच्छेद 21A) किस संशोधन द्वारा बनाया गया?",
+                options: ["86वाँ संविधान संशोधन 2002", "91वाँ संशोधन", "103वाँ संशोधन", "92वाँ संशोधन"],
+                correctText: "86वाँ संविधान संशोधन 2002",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 86वें संशोधन 2002 द्वारा प्राथमिक शिक्षा को अनुच्छेद 21क में मौलिक अधिकार बनाया गया।"
+            },
+            {
+                q: "सामान्य वर्ग के आर्थिक रूप से कमजोर वर्गों (EWS) को 10% आरक्षण किस संविधान संशोधन अधिनियम द्वारा दिया गया?",
+                options: ["103वाँ संविधान संशोधन 2019", "101वाँ संशोधन", "102वाँ संशोधन", "104वाँ संशोधन"],
+                correctText: "103वाँ संविधान संशोधन 2019",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 103वें संशोधन द्वारा अनुच्छेद 15(6) व 16(6) जोड़कर EWS को 10% आरक्षण दिया गया।"
+            },
+            {
+                q: "GST (वस्तु एवं सेवा कर) को लागू करने वाला संविधान संशोधन अधिनियम कौन सा है?",
+                options: ["101वाँ संविधान संशोधन 2016", "100वाँ संशोधन", "102वाँ संशोधन", "103वाँ संशोधन"],
+                correctText: "101वाँ संविधान संशोधन 2016",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 101वें संशोधन 2016 द्वारा 1 जुलाई 2017 से भारत में GST लागू किया गया।"
+            },
+            {
+                q: "महिला आरक्षण विधेयक (नारी शक्ति वंदन अधिनियम) संसद और विधानसभाओं में 33% आरक्षण हेतु कौन सा संविधान संशोधन अधिनियम बना?",
+                options: ["106वाँ संविधान संशोधन अधिनियम 2023", "104वाँ संशोधन", "105वाँ संशोधन", "102वाँ संशोधन"],
+                correctText: "106वाँ संविधान संशोधन अधिनियम 2023",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 128वाँ संशोधन विधेयक पास होकर 106वाँ संविधान संशोधन अधिनियम बना जिसने महिलाओं हेतु 33% सीटें आरक्षित कीं।"
+            },
+            {
+                q: "भारतीय संविधान के किस भाग और अनुच्छेदों में 'राजभाषा' (Official Language) का प्रावधान है?",
+                options: ["भाग XVII, अनुच्छेद 343 से 351", "भाग XV, अनुच्छेद 324-329", "भाग XVI, अनुच्छेद 330-342", "भाग XVIII, अनुच्छेद 352-360"],
+                correctText: "भाग XVII, अनुच्छेद 343 से 351",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग XVII में संघ, राज्य व न्यायपालिका की भाषाओं से संबंधित प्रावधान हैं।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद 'संघ की राजभाषा हिंदी और लिपि देवनागरी' घोषित करता है?",
+                options: ["अनुच्छेद 343(1)", "अनुच्छेद 344", "अनुच्छेद 345", "अनुच्छेद 351"],
+                correctText: "अनुच्छेद 343(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 343(1) में स्पष्ट है कि संघ की राजभाषा हिंदी तथा लिपि देवनागरी होगी।"
+            },
+            {
+                q: "भारतीय संविधान की 8वीं अनुसूची (Eighth Schedule) में मूल रूप से कितनी भाषाएँ थीं और वर्तमान में कितनी हैं?",
+                options: ["मूल रूप से 14 भाषाएँ (वर्तमान में 22 भाषाएँ)", "मूल रूप से 18, वर्तमान में 22", "मूल रूप से 15, वर्तमान में 25", "मूल रूप से 12, वर्तमान में 22"],
+                correctText: "मूल रूप से 14 भाषाएँ (वर्तमान में 22 भाषाएँ)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 8वीं अनुसूची में प्रारंभ में 14 भाषाएँ थीं; संशोधनों द्वारा 8 नई भाषाएँ जोड़कर अब कुल 22 भाषाएँ हैं।"
+            },
+            {
+                q: "21वें संविधान संशोधन 1967 द्वारा 8वीं अनुसूची में जोड़ी जाने वाली 15वीं भाषा कौन सी थी?",
+                options: ["सिंधी (Sindhi)", "कोंकणी", "नेपाली", "मणिपुरी"],
+                correctText: "सिंधी (Sindhi)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 21वें संशोधन 1967 द्वारा सिंधी भाषा को 8वीं अनुसूची में शामिल किया गया था।"
+            },
+            {
+                q: "71वें संविधान संशोधन 1992 द्वारा 8वीं अनुसूची में किन तीन भाषाओं (नमक - NaMaK) को जोड़ा गया?",
+                options: ["नेपाली, मणिपुरी और कोंकणी", "सिंधी, डोगरी, बोडो", "मैथिली, संथाली, डोगरी", "संस्कृत, उर्दू, सिंधी"],
+                correctText: "नेपाली, मणिपुरी और कोंकणी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 71वें संशोधन द्वारा नेपाली, मणिपुरी तथा कोंकणी भाषाएँ शामिल की गईं।"
+            },
+            {
+                q: "92वें संविधान संशोधन 2003 द्वारा 8वीं अनुसूची में कौन सी चार भाषाएँ (BDMS) जोड़ी गईं?",
+                options: ["बोडो, डोगरी, मैथिली और संथाली", "सिंधी, कोंकणी, नेपाली, मणिपुरी", "संस्कृत, मैथिली, बोडो, सिंधी", "संथाली, डोगरी, उर्दू, उडिया"],
+                correctText: "बोडो, डोगरी, मैथिली और संथाली",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 92वें संशोधन द्वारा बोडो, डोगरी, मैथिली और संथाली जोड़ने से भाषाओं की संख्या 22 हो गई।"
+            },
+            {
+                q: "प्राथमिक स्तर पर मातृभाषा में शिक्षा की सुविधाएं उपलब्ध कराने का निर्देश किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 350A (350क)", "अनुच्छेद 350B", "अनुच्छेद 351", "अनुच्छेद 345"],
+                correctText: "अनुच्छेद 350A (350क)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 7वें संशोधन द्वारा जोड़ा गया अनुच्छेद 350क बच्चों को प्राथमिक शिक्षा मातृभाषा में देने का निर्देश देता है।"
+            },
+            {
+                q: "हिंदी भाषा के विकास के लिए निर्देश (Directives for Development of Hindi) किस अनुच्छेद में वर्णित हैं?",
+                options: ["अनुच्छेद 351", "अनुच्छेद 343", "अनुच्छेद 350", "अनुच्छेद 348"],
+                correctText: "अनुच्छेद 351",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 351 केंद्र सरकार को हिंदी भाषा का प्रसार एवं विकास करने का निर्देश देता है।"
+            },
+            {
+                q: "सर्वोच्च न्यायालय और उच्च न्यायालयों की भाषा तथा अधिनियमों व विधेयकों की भाषा किस अनुच्छेद में निर्धारित है?",
+                options: ["अनुच्छेद 348 (अंग्रेजी भाषा का प्रयोग)", "अनुच्छेद 345", "अनुच्छेद 343", "अनुच्छेद 350"],
+                correctText: "अनुच्छेद 348 (अंग्रेजी भाषा का प्रयोग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 348 के अनुसार जब तक संसद कानून न बनाए, तब तक SC/HC की कार्यवाही अंग्रेजी में होगी।"
+            },
+            {
+                q: "प्रथम 'राजभाषा आयोग' (First Official Language Commission) का गठन 1955 में किसकी अध्यक्षता में हुआ था?",
+                options: ["बी.जी. खेर (B.G. Kher)", "जी.बी. पंत", "सुनीति कुमार चटर्जी", "के.एम. मुंशी"],
+                correctText: "बी.जी. खेर (B.G. Kher)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 344 के तहत राष्ट्रपति राजेंद्र प्रसाद ने 1955 में बी.जी. खेर की अध्यक्षता में पहला राजभाषा आयोग बनाया।"
+            },
+            {
+                q: "भारत में किसी भाषा को 'शास्त्रीय भाषा' (Classical Language) का दर्जा सबसे पहले किस भाषा को और किस वर्ष दिया गया?",
+                options: ["तमिल (Tamil - वर्ष 2004 में)", "संस्कृत (2005)", "तेलुगु (2008)", "कन्नड़ (2008)"],
+                correctText: "तमिल (Tamil - वर्ष 2004 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2004 में तमिल को भारत की पहली शास्त्रीय भाषा का दर्जा दिया गया था (अब कुल 11 शास्त्रीय भाषाएँ घोषित हैं)।"
+            },
+            {
+                q: "भारतीय संविधान का भाग XV और अनुच्छेद 324 से 329 किस संवैधानिक संस्था से संबंधित है?",
+                options: ["भारत का निर्वाचन आयोग (Election Commission of India)", "संघ लोक सेवा आयोग", "वित्त आयोग", "कैग (CAG)"],
+                correctText: "भारत का निर्वाचन आयोग (Election Commission of India)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग XV में अनुच्छेद 324-329 स्वतंत्र एवं निष्पक्ष चुनाव कराने हेतु निर्वाचन आयोग का प्रावधान करते हैं।"
+            },
+            {
+                q: "भारत के निर्वाचन आयोग की स्थापना किस तिथि को हुई थी, जिसे प्रतिवर्ष 'राष्ट्रीय मतदाता दिवस' के रूप में मनाया जाता है?",
+                options: ["25 जनवरी 1950", "26 जनवरी 1950", "15 अगस्त 1947", "26 नवंबर 1949"],
+                correctText: "25 जनवरी 1950",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 25 जनवरी 1950 को निर्वाचन आयोग की स्थापना हुई, इसलिए 2011 से हर साल 25 जनवरी को राष्ट्रीय मतदाता दिवस मनाते हैं।"
+            },
+            {
+                q: "मुख्य निर्वाचन आयुक्त (CEC) तथा अन्य निर्वाचन आयुक्तों की नियुक्ति किसके द्वारा की जाती है?",
+                options: ["भारत के राष्ट्रपति द्वारा", "प्रधानमंत्री द्वारा", "संसद द्वारा", "मुख्य न्यायाधीश द्वारा"],
+                correctText: "भारत के राष्ट्रपति द्वारा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 324(2) के अनुसार निर्वाचन आयुक्तों की नियुक्ति राष्ट्रपति द्वारा की जाती है।"
+            },
+            {
+                q: "मुख्य निर्वाचन आयुक्त (CEC) का कार्यकाल कितना होता है?",
+                options: ["6 वर्ष या 65 वर्ष की आयु (जो भी पहले पूरा हो)", "5 वर्ष या 65 वर्ष", "6 वर्ष या 62 वर्ष", "5 वर्ष या 60 वर्ष"],
+                correctText: "6 वर्ष या 65 वर्ष की आयु (जो भी पहले पूरा हो)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मुख्य निर्वाचन आयुक्त का कार्यकाल 6 वर्ष या 65 वर्ष की आयु तक होता है (अन्य आयुक्तों का 6 वर्ष या 62 वर्ष)।"
+            },
+            {
+                q: "मुख्य निर्वाचन आयुक्त (CEC) को उनके पद से किस प्रक्रिया द्वारा हटाया जा सकता है?",
+                options: ["उसी प्रक्रिया द्वारा जिससे सर्वोच्च न्यायालय के न्यायाधीश को हटाया जाता है (अनुच्छेद 324(5))", "राष्ट्रपति द्वारा सीधे आदेश से", "प्रधानमंत्री की सलाह पर", "संसद में साधारण बहुमत से"],
+                correctText: "उसी प्रक्रिया द्वारा जिससे सर्वोच्च न्यायालय के न्यायाधीश को हटाया जाता है (अनुच्छेद 324(5))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मुख्य निर्वाचन आयुक्त को पद की सुरक्षा प्राप्त है; उन्हें केवल सुप्रीम कोर्ट जज की भाँति विशेष बहुमत से संसद द्वारा ही हटाया जा सकता है।"
+            },
+            {
+                q: "निर्वाचन आयोग को 1 अक्टूबर 1993 से स्थायी रूप से कितने सदस्यीय आयोग में बदल दिया गया?",
+                options: ["3 सदस्यीय (1 मुख्य निर्वाचन आयुक्त + 2 अन्य आयुक्त)", "1 सदस्यीय", "5 सदस्यीय", "2 सदस्यीय"],
+                correctText: "3 सदस्यीय (1 मुख्य निर्वाचन आयुक्त + 2 अन्य आयुक्त)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1989 में पहली बार और फिर 1 अक्टूबर 1993 से निर्वाचन आयोग को स्थायी रूप से 3-सदस्यीय बहु-सदस्यीय निकाय बनाया गया।"
+            },
+            {
+                q: "भारत के प्रथम मुख्य निर्वाचन आयुक्त (First Chief Election Commissioner) कौन थे?",
+                options: ["सुकुमार सेन (Sukumar Sen)", "टी.एन. शेषन", "वी.एस. रामादेवी", "के.वी.के. सुंदरम"],
+                correctText: "सुकुमार सेन (Sukumar Sen)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुकुमार सेन 1950 से 1958 तक भारत के पहले मुख्य निर्वाचन आयुक्त रहे।"
+            },
+            {
+                q: "भारत की प्रथम महिला मुख्य निर्वाचन आयुक्त कौन थीं?",
+                options: ["वी.एस. रामादेवी (V.S. Ramadevi - 1990)", "किरण बेदी", "फातिमा बीवी", "सुषमा स्वराज"],
+                correctText: "वी.एस. रामादेवी (V.S. Ramadevi - 1990)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वी.एस. रामादेवी भारत की पहली और एकमात्र महिला मुख्य निर्वाचन आयुक्त थीं।"
+            },
+            {
+                q: "राष्ट्रीय राजनीतिक दल (National Political Party) का दर्जा प्राप्त करने के लिए किसी दल को कम से कम कितने राज्यों में मान्यता प्राप्त होनी चाहिए?",
+                options: ["कम से कम 4 राज्यों में राज्य स्तरीय दल की मान्यता", "2 राज्यों में", "5 राज्यों में", "8 राज्यों में"],
+                correctText: "कम से कम 4 राज्यों में राज्य स्तरीय दल की मान्यता",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यदि कोई दल 4 या अधिक राज्यों में राज्य स्तरीय पार्टी का दर्जा रखता है, तो उसे राष्ट्रीय दल की मान्यता मिलती है।"
+            },
+            {
+                q: "भारत के 'नियंत्रक एवं महालेखापरीक्षक' (CAG) का पद संविधान के किस भाग और अनुच्छेद में है?",
+                options: ["भाग V, अनुच्छेद 148 से 151", "भाग XII, अनुच्छेद 280", "भाग XIV, अनुच्छेद 315", "भाग XV, अनुच्छेद 324"],
+                correctText: "भाग V, अनुच्छेद 148 से 151",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 148 भारत के नियंत्रक-महालेखापरीक्षक (CAG) के स्वतंत्र पद का सृजन करता है।"
+            },
+            {
+                q: "CAG की नियुक्ति किसके द्वारा की जाती है और उनका कार्यकाल कितना होता है?",
+                options: ["राष्ट्रपति द्वारा (कार्यकाल: 6 वर्ष या 65 वर्ष की आयु)", "प्रधानमंत्री द्वारा (5 वर्ष)", "संसद द्वारा (6 वर्ष)", "वित्त मंत्री द्वारा (5 वर्ष)"],
+                correctText: "राष्ट्रपति द्वारा (कार्यकाल: 6 वर्ष या 65 वर्ष की आयु)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• CAG की नियुक्ति राष्ट्रपति करते हैं तथा इनका कार्यकाल 6 वर्ष या 65 वर्ष की आयु तक होता है।"
+            },
+            {
+                q: "CAG भारत सरकार के खातों से संबंधित अपनी लेखापरीक्षा रिपोर्ट (Audit Reports) किसे प्रस्तुत करते हैं?",
+                options: ["भारत के राष्ट्रपति को (अनुच्छेद 151)", "लोकसभा अध्यक्ष को", "वित्त मंत्री को", "लोक लेखा समिति को"],
+                correctText: "भारत के राष्ट्रपति को (अनुच्छेद 151)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 151 के अनुसार CAG अपनी रिपोर्ट राष्ट्रपति को देते हैं जो उसे संसद के पटल पर रखवाते हैं।"
+            },
+            {
+                q: "'सार्वजनिक धन का संरक्षक' (Guardian of the Public Purse) किसे कहा जाता है?",
+                options: ["नियंत्रक एवं महालेखापरीक्षक (CAG)", "वित्त मंत्री", "भारतीय रिजर्व बैंक", "प्रधानमंत्री"],
+                correctText: "नियंत्रक एवं महालेखापरीक्षक (CAG)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बी.आर. अंबेडकर ने कहा था कि CAG संविधान के तहत भारत सरकार का सबसे महत्वपूर्ण अधिकारी है जो जनता के पैसों की रक्षा करता है।"
+            },
+            {
+                q: "संविधान के अनुच्छेद 280 के तहत 'वित्त आयोग' (Finance Commission) किस प्रकार का निकाय है?",
+                options: ["एक संवैधानिक एवं अर्ध-न्यायिक निकाय (Constitutional & Quasi-judicial body)", "एक गैर-संवैधानिक निकाय", "एक वैधानिक निकाय", "केवल निजी संस्था"],
+                correctText: "एक संवैधानिक एवं अर्ध-न्यायिक निकाय (Constitutional & Quasi-judicial body)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वित्त आयोग का वर्णन अनुच्छेद 280 में है, अतः यह एक संवैधानिक व सलाहकार निकाय है।"
+            },
+            {
+                q: "वित्त आयोग में कुल कितने सदस्य होते हैं?",
+                options: ["5 सदस्य (1 अध्यक्ष + 4 अन्य सदस्य)", "3 सदस्य", "7 सदस्य", "10 सदस्य"],
+                correctText: "5 सदस्य (1 अध्यक्ष + 4 अन्य सदस्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वित्त आयोग में राष्ट्रपति द्वारा नियुक्त 1 अध्यक्ष और 4 अन्य सदस्य शामिल होते हैं।"
+            },
+            {
+                q: "प्रथम वित्त आयोग (First Finance Commission - 1951) के अध्यक्ष कौन थे?",
+                options: ["के.सी. नियोगी (K.C. Neogy)", "के. संथानम", "एन.के. सिंह", "वाई.वी. रेडी"],
+                correctText: "के.सी. नियोगी (K.C. Neogy)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1951 में गठित प्रथम वित्त आयोग के अध्यक्ष के.सी. नियोगी थे।"
+            },
+            {
+                q: "15वें वित्त आयोग (15th Finance Commission) के अध्यक्ष कौन हैं/थे?",
+                options: ["एन.के. सिंह (N.K. Singh)", "अरविंद पनगड़िया", "सी. रंगराजन", "विजय केलकर"],
+                correctText: "एन.के. सिंह (N.K. Singh)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 15वें वित्त आयोग (2021-26 अवधि) के अध्यक्ष एन.के. सिंह थे (16वें वित्त आयोग के अध्यक्ष डॉ. अरविंद पनगड़िया हैं)।"
+            },
+            {
+                q: "संघ लोक सेवा आयोग (UPSC) और राज्य लोक सेवा आयोग (SPSC) का गठन संविधान के किस भाग और अनुच्छेदों में है?",
+                options: ["भाग XIV, अनुच्छेद 315 से 323", "भाग XV, अनुच्छेद 324-329", "भाग XIV, अनुच्छेद 308-314", "भाग XII, अनुच्छेद 280-290"],
+                correctText: "भाग XIV, अनुच्छेद 315 से 323",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 315 संघ के लिए UPSC और राज्यों के लिए SPSC के गठन की व्यवस्था करता है।"
+            },
+            {
+                q: "UPSC के अध्यक्ष तथा सदस्यों की नियुक्ति कौन करता है और इनका कार्यकाल कितना होता है?",
+                options: ["राष्ट्रपति (6 वर्ष या 65 वर्ष की आयु)", "राष्ट्रपति (5 वर्ष या 62 वर्ष)", "प्रधानमंत्री (6 वर्ष)", "गृह मंत्री (5 वर्ष)"],
+                correctText: "राष्ट्रपति (6 वर्ष या 65 वर्ष की आयु)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• UPSC अध्यक्ष व सदस्यों की नियुक्ति राष्ट्रपति करते हैं; कार्यकाल 6 वर्ष या 65 वर्ष की आयु तक होता है।"
+            },
+            {
+                q: "राज्य लोक सेवा आयोग (SPSC - जैसे BPSC/UPPSC) के अध्यक्ष और सदस्यों की नियुक्ति कौन करता है और इनकी सेवानिवृत्ति आयु क्या है?",
+                options: ["नियुक्ति राज्यपाल द्वारा, परंतु सेवानिवृत्ति आयु 62 वर्ष (या 6 वर्ष) है", "नियुक्ति राष्ट्रपति द्वारा, आयु 65 वर्ष", "नियुक्ति मुख्यमंत्री द्वारा, आयु 60 वर्ष", "नियुक्ति राज्यपाल द्वारा, आयु 65 वर्ष"],
+                correctText: "नियुक्ति राज्यपाल द्वारा, परंतु सेवानिवृत्ति आयु 62 वर्ष (या 6 वर्ष) है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• SPSC सदस्यों की नियुक्ति राज्यपाल करते हैं, किंतु उनका कार्यकाल 6 वर्ष या 62 वर्ष की आयु तक होता है।"
+            },
+            {
+                q: "राज्य लोक सेवा आयोग (SPSC) के अध्यक्ष या सदस्यों को पद से हटाने (Removal) की शक्ति किसके पास है?",
+                options: ["केवल भारत के राष्ट्रपति के पास (सर्वोच्च न्यायालय की जाँच रिपोर्ट के बाद - अनुच्छेद 317)", "संबंधित राज्य के राज्यपाल के पास", "मुख्यमंत्री के पास", "उच्च न्यायालय के पास"],
+                correctText: "केवल भारत के राष्ट्रपति के पास (सर्वोच्च न्यायालय की जाँच रिपोर्ट के बाद - अनुच्छेद 317)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यद्यपि नियुक्ति राज्यपाल करते हैं, परंतु SPSC जजों/सदस्यों को केवल राष्ट्रपति ही हटा सकते हैं।"
+            },
+            {
+                q: "दो या अधिक राज्यों के लिए एक 'संयुक्त राज्य लोक सेवा आयोग' (JSPSC) की स्थापना किसके द्वारा की जा सकती है?",
+                options: ["संबंधित राज्य विधानसभाओं के अनुरोध पर संसद द्वारा (यह एक वैधानिक निकाय है)", "राष्ट्रपति द्वारा सीधे", "UPSC द्वारा", "राज्यपालों के समझौते से"],
+                correctText: "संबंधित राज्य विधानसभाओं के अनुरोध पर संसद द्वारा (यह एक वैधानिक निकाय है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• JSPSC एक संवैधानिक निकाय न होकर संसदीय अधिनियम द्वारा गठित वैधानिक निकाय होता है।"
+            },
+            {
+                q: "'राष्ट्रीय अनुसूचित जाति आयोग' (NCSC) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 338", "अनुच्छेद 338क", "अनुच्छेद 338ख", "अनुच्छेद 340"],
+                correctText: "अनुच्छेद 338",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 338 राष्ट्रीय अनुसूचित जाति आयोग (NCSC) से संबंधित है।"
+            },
+            {
+                q: "89वें संविधान संशोधन 2003 द्वारा 'राष्ट्रीय अनुसूचित जनजाति आयोग' (NCST) के लिए कौन सा अलग अनुच्छेद जोड़ा गया?",
+                options: ["अनुच्छेद 338क (338A)", "अनुच्छेद 338ख", "अनुच्छेद 339", "अनुच्छेद 341"],
+                correctText: "अनुच्छेद 338क (338A)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 89वें संशोधन 2003 से अनुसूचित जाति और अनुसूचित जनजाति आयोग अलग-अलग किए गए और अनुच्छेद 338A बना।"
+            },
+            {
+                q: "102वें संविधान संशोधन अधिनियम 2018 द्वारा 'राष्ट्रीय पिछड़ा वर्ग आयोग' (NCBC) को संवैधानिक दर्जा देकर किस अनुच्छेद में शामिल किया गया?",
+                options: ["अनुच्छेद 338ख (338B)", "अनुच्छेद 338क", "अनुच्छेद 340", "अनुच्छेद 342A"],
+                correctText: "अनुच्छेद 338ख (338B)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 102वें संशोधन 2018 द्वारा NCBC को संवैधानिक दर्जा देकर अनुच्छेद 338B में जोड़ा गया।"
+            },
+            {
+                q: "NCSC, NCST और NCBC आयोगों के अध्यक्ष, उपाध्यक्ष और सदस्यों की नियुक्ति कौन करता है?",
+                options: ["भारत के राष्ट्रपति", "प्रधानमंत्री", "सामाजिक न्याय मंत्री", "संसद"],
+                correctText: "भारत के राष्ट्रपति",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इन तीनों संवैधानिक आयोगों के अध्यक्ष व सदस्यों की नियुक्ति राष्ट्रपति द्वारा की जाती है।"
+            },
+            {
+                q: "योजना आयोग (Planning Commission) के स्थान पर गठित 'नीति आयोग' (NITI Aayog) का गठन कब किया गया था?",
+                options: ["1 जनवरी 2015 को", "15 अगस्त 2014 को", "26 जनवरी 2015 को", "2 अक्टूबर 2014 को"],
+                correctText: "1 जनवरी 2015 को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• केंद्रीय मंत्रिमंडल के एक संकल्प द्वारा 1 जनवरी 2015 को नीति आयोग (National Institution for Transforming India) बना।"
+            },
+            {
+                q: "नीति आयोग किस प्रकार की संस्था (Body) है?",
+                options: ["गैर-संवैधानिक एवं संविधानेत्तर/सलाहकारी निकाय (Non-constitutional & Extra-constitutional body)", "संवैधानिक निकाय", "संसदीय अधिनियम द्वारा वैधानिक निकाय", "न्यायिक निकाय"],
+                correctText: "गैर-संवैधानिक एवं संविधानेत्तर/सलाहकारी निकाय (Non-constitutional & Extra-constitutional body)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीति आयोग का संविधान में कोई उल्लेख नहीं है; यह सरकार के थिंक-टैंक (Think Tank) के रूप में कार्य करता है।"
+            },
+            {
+                q: "नीति आयोग (NITI Aayog) का पदेन अध्यक्ष (Ex-officio Chairman) कौन होता है?",
+                options: ["भारत के प्रधानमंत्री", "वित्त मंत्री", "राष्ट्रपति", "गृह मंत्री"],
+                correctText: "भारत के प्रधानमंत्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रधानमंत्री नीति आयोग के पदेन अध्यक्ष होते हैं।"
+            },
+            {
+                q: "नीति आयोग की शासी परिषद (Governing Council) में कौन शामिल होते हैं?",
+                options: ["सभी राज्यों के मुख्यमंत्री, UTs के उपराज्यपाल/प्रशासक और प्रधानमंत्री", "केवल केंद्रीय मंत्री", "केवल अर्थशास्त्री", "केवल राज्यों के राज्यपाल"],
+                correctText: "सभी राज्यों के मुख्यमंत्री, UTs के उपराज्यपाल/प्रशासक और प्रधानमंत्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गवर्निंग काउंसिल में सभी राज्यों के मुख्यमंत्री और केंद्रशासित प्रदेशों के प्रशासक शामिल होते हैं।"
+            },
+            {
+                q: "'राष्ट्रीय विकास परिषद' (National Development Council - NDC) की स्थापना कब की गई थी?",
+                options: ["6 अगस्त 1952 को", "15 मार्च 1950 को", "26 जनवरी 1950 को", "2 अक्टूबर 1952 को"],
+                correctText: "6 अगस्त 1952 को",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पंचवर्षीय योजनाओं को अंतिम रूप से अनुमोदित करने हेतु 6 अगस्त 1952 को NDC बनी थी।"
+            },
+            {
+                q: "राष्ट्रीय मानवाधिकार आयोग (NHRC) का गठन किस अधिनियम के तहत वर्ष 1993 में हुआ था?",
+                options: ["मानवाधिकार संरक्षण अधिनियम 1993 (Protection of Human Rights Act)", "संवैधानिक संशोधन", "नागरिक अधिकार अधिनियम", "जनहित अधिनियम"],
+                correctText: "मानवाधिकार संरक्षण अधिनियम 1993 (Protection of Human Rights Act)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• NHRC 12 अक्टूबर 1993 को गठित एक 'वैधानिक निकाय' (Statutory Body) है।"
+            },
+            {
+                q: "मानवाधिकार संरक्षण (संशोधन) अधिनियम 2019 के अनुसार NHRC का अध्यक्ष कौन बन सकता है?",
+                options: ["सर्वोच्च न्यायालय का कोई पूर्व मुख्य न्यायाधीश या कोई पूर्व न्यायाधीश", "केवल पूर्व CJI", "हाई कोर्ट का मुख्य न्यायाधीश", "कोई भी वकील"],
+                correctText: "सर्वोच्च न्यायालय का कोई पूर्व मुख्य न्यायाधीश या कोई पूर्व न्यायाधीश",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2019 संशोधन के बाद अब सुप्रीम कोर्ट का कोई भी पूर्व जज (CJI या जज) NHRC का अध्यक्ष बन सकता है।"
+            },
+            {
+                q: "NHRC के अध्यक्ष और सदस्यों का कार्यकाल (2019 संशोधन के बाद) कितना होता है?",
+                options: ["3 वर्ष या 70 वर्ष की आयु (पुनर्नियुक्ति के पात्र)", "5 वर्ष या 70 वर्ष", "6 वर्ष या 65 वर्ष", "3 वर्ष या 65 वर्ष"],
+                correctText: "3 वर्ष या 70 वर्ष की आयु (पुनर्नियुक्ति के पात्र)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2019 संशोधन से कार्यकाल 5 वर्ष से घटाकर 3 वर्ष या 70 वर्ष की आयु कर दिया गया है।"
+            },
+            {
+                q: "'राष्ट्रीय महिला आयोग' (National Commission for Women - NCW) की स्थापना किस वर्ष हुई थी?",
+                options: ["वर्ष 1992 में (NCW Act 1990 के तहत)", "वर्ष 1975 में", "वर्ष 2000 में", "वर्ष 1985 में"],
+                correctText: "वर्ष 1992 में (NCW Act 1990 के तहत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जनवरी 1992 में राष्ट्रीय महिला आयोग की स्थापना एक संविधिक निकाय के रूप में की गई (प्रथम अध्यक्ष: जयंती पटनायक)।"
+            },
+            {
+                q: "संथानम समिति (K. Santhanam Committee - 1962) की सिफारिश पर 'केंद्रीय सतर्कता आयोग' (CVC) की स्थापना किस वर्ष हुई?",
+                options: ["वर्ष 1964 में (2003 में वैधानिक दर्जा मिला)", "वर्ष 1952 में", "वर्ष 1975 में", "वर्ष 1990 में"],
+                correctText: "वर्ष 1964 में (2003 में वैधानिक दर्जा मिला)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भ्रष्टाचार निवारण हेतु 1964 में CVC का गठन हुआ जिसे CVC Act 2003 द्वारा वैधानिक दर्जा दिया गया।"
+            },
+            {
+                q: "केंद्रीय सतर्कता आयुक्त (CVC) का कार्यकाल कितना होता है?",
+                options: ["4 वर्ष या 65 वर्ष की आयु (जो भी पहले पूरा हो)", "5 वर्ष या 65 वर्ष", "6 वर्ष या 65 वर्ष", "3 वर्ष या 70 वर्ष"],
+                correctText: "4 वर्ष या 65 वर्ष की आयु (जो भी पहले पूरा हो)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्यान दें! CVC का कार्यकाल विशिष्ट रूप से 4 वर्ष या 65 वर्ष की आयु तक होता है।"
+            },
+            {
+                q: "'केंद्रीय सूचना आयोग' (Central Information Commission - CIC) का गठन किस कानून के तहत 2005 में किया गया था?",
+                options: ["सूचना का अधिकार अधिनियम 2005 (RTI Act 2005)", "CVC Act 2003", "IT Act 2000", "प्रशासनिक कानून"],
+                correctText: "सूचना का अधिकार अधिनियम 2005 (RTI Act 2005)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• RTI Act 2005 के तहत 12 अक्टूबर 2005 को एक वैधानिक निकाय के रूप में CIC का गठन हुआ।"
+            },
+            {
+                q: "केंद्रीय सूचना आयोग (CIC) में मुख्य सूचना आयुक्त के अलावा अधिकतम कितने सूचना आयुक्त हो सकते हैं?",
+                options: ["अधिकतम 10 सूचना आयुक्त", "अधिकतम 5", "अधिकतम 7", "अधिकतम 12"],
+                correctText: "अधिकतम 10 सूचना आयुक्त",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• RTI अधिनियम के अनुसार CIC में 1 मुख्य सूचना आयुक्त और अधिकतम 10 सूचना आयुक्त हो सकते हैं।"
+            },
+            {
+                q: "'राष्ट्रीय अल्पसंख्यक आयोग' (NCM) को किस वर्ष वैधानिक दर्जा प्रदान किया गया?",
+                options: ["राष्ट्रीय अल्पसंख्यक आयोग अधिनियम 1992 के तहत (1993 में लागू)", "1950 में", "2005 में", "1980 में"],
+                correctText: "राष्ट्रीय अल्पसंख्यक आयोग अधिनियम 1992 के तहत (1993 में लागू)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1992 के अधिनियम द्वारा 1993 में इसे वैधानिक आयोग बनाया गया; वर्तमान में 6 धार्मिक अल्पसंख्यक (मुस्लिम, ईसाई, सिख, बौद्ध, पारसी और जैन) अधिसूचित हैं।"
+            },
+            {
+                q: "भारत में प्रथम 'विधि आयोग' (First Law Commission) का गठन ब्रिटिश काल में किस अधिनियम के तहत और किसकी अध्यक्षता में हुआ था?",
+                options: ["1833 का चार्टर एक्ट (अध्यक्ष: लॉर्ड मैकाले - 1834)", "1853 चार्टर एक्ट", "1919 अधिनियम", "1861 अधिनियम"],
+                correctText: "1833 का चार्टर एक्ट (अध्यक्ष: लॉर्ड मैकाले - 1834)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1834 में लॉर्ड मैकाले की अध्यक्षता में प्रथम विधि आयोग बना जिसने IPC का ड्राफ्ट तैयार किया।"
+            },
+            {
+                q: "स्वतंत्र भारत का प्रथम विधि आयोग (First Law Commission of Independent India) 1955 में किसकी अध्यक्षता में गठित हुआ था?",
+                options: ["एम.सी. शीतलवाड़ (M.C. Setalvad)", "वी.आर. कृष्ण अय्यर", "के.सी. नियोगी", "बी.एन. राव"],
+                correctText: "एम.सी. शीतलवाड़ (M.C. Setalvad)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1955 में भारत के प्रथम महान्यायवादी एम.सी. शीतलवाड़ की अध्यक्षता में स्वतंत्र भारत का पहला विधि आयोग बना।"
+            },
+            {
+                q: "भारत के विधि आयोग (Law Commission of India) का कार्यकाल कितना होता है?",
+                options: ["3 वर्ष (यह एक गैर-संवैधानिक/परामर्शदात्री निकाय है)", "5 वर्ष", "6 वर्ष", "4 वर्ष"],
+                correctText: "3 वर्ष (यह एक गैर-संवैधानिक/परामर्शदात्री निकाय है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विधि आयोग का पुनर्गठन प्रत्येक 3 वर्ष में कानून मंत्रालय के आदेश से किया जाता है।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत राज्य सूची पर संसद द्वारा कानून बनाने हेतु राज्यसभा विशेष संकल्प पारित करती है?",
+                options: ["अनुच्छेद 249", "अनुच्छेद 312", "अनुच्छेद 252", "अनुच्छेद 368"],
+                correctText: "अनुच्छेद 249",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 249 के तहत राज्यसभा 2/3 बहुमत से राष्ट्रहित में राज्य सूची पर संसद को कानून बनाने हेतु अधिकृत करती है।"
+            },
+            {
+                q: "संवैधानिक संस्थाओं (Constitutional Bodies) और गैर-संवैधानिक/संविधिक संस्थाओं में मुख्य अंतर क्या है?",
+                options: ["संवैधानिक संस्थाओं का उल्लेख संविधान के अनुच्छेदों में होता है, जबकि संविधिक संस्थाएँ संसद के कानून द्वारा बनती हैं", "दोनों समान हैं", "संविधिक संस्थाएँ राष्ट्रपति बनाता है", "संवैधानिक संस्थाएँ निजी होती हैं"],
+                correctText: "संवैधानिक संस्थाओं का उल्लेख संविधान के अनुच्छेदों में होता है, जबकि संविधिक संस्थाएँ संसद के कानून द्वारा बनती हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जिनका उल्लेख मूल/संशोधित अनुच्छेदों में है वे संवैधानिक हैं (जैसे UPSC, CAG); जो एक्ट से बनी हैं वे संविधिक हैं (जैसे NHRC, CVC)।"
+            },
+            {
+                q: "केंद्रीय अन्वेषण ब्यूरो (CBI) की स्थापना किस वर्ष की गई थी?",
+                options: ["वर्ष 1963 में (गृह मंत्रालय के प्रस्ताव द्वारा)", "वर्ष 1950 में", "वर्ष 1975 में", "वर्ष 1990 में"],
+                correctText: "वर्ष 1963 में (गृह मंत्रालय के प्रस्ताव द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1 अप्रैल 1963 को संथानम समिति की सिफारिश पर गृह मंत्रालय के प्रस्ताव से CBI की स्थापना हुई (यह DSPE Act 1946 से शक्तियाँ लेती है)।"
+            },
+            {
+                q: "लोकपाल और लोकायुक्त अधिनियम (Lokal and Lokayuktas Act) किस वर्ष पारित हुआ था?",
+                options: ["वर्ष 2013 में (16 जनवरी 2014 से लागू)", "वर्ष 2010", "वर्ष 2015", "वर्ष 2005"],
+                correctText: "वर्ष 2013 में (16 जनवरी 2014 से लागू)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भ्रष्टाचार विरोधी संस्था लोकपाल के गठन हेतु 2013 में कानून पारित हुआ।"
+            },
+            {
+                q: "भारत के प्रथम 'लोकपाल' (First Lokpal of India) किसे नियुक्त किया गया था?",
+                options: ["पिनाकी चंद्र घोष (Justice Pinaki Chandra Ghose - 2019)", "अन्ना हजारे", "दीपक मिश्रा", "एन.वी. रमणा"],
+                correctText: "पिनाकी चंद्र घोष (Justice Pinaki Chandra Ghose - 2019)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मार्च 2019 में पूर्व सुप्रीम कोर्ट जज न्यायमूर्ति पी.सी. घोष को देश का पहला लोकपाल नियुक्त किया गया।"
+            },
+            {
+                q: "राजभाषा अधिनियम किस वर्ष पारित किया गया था जिसके तहत अंग्रेजी को अनिश्चितकाल के लिए सहायक राजभाषा बनाया गया?",
+                options: ["वर्ष 1963 में (Official Languages Act 1963)", "वर्ष 1955", "वर्ष 1967", "वर्ष 1976"],
+                correctText: "वर्ष 1963 में (Official Languages Act 1963)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1963 के राजभाषा अधिनियम द्वारा 1965 के बाद भी अंग्रेजी का प्रयोग जारी रखने का प्रावधान किया गया।"
+            },
+            {
+                q: "राजभाषा नियम (Official Language Rules) किस वर्ष बनाए गए थे?",
+                options: ["वर्ष 1976 में (1987 में संशोधित)", "वर्ष 1963 में", "वर्ष 1950 में", "वर्ष 1990 में"],
+                correctText: "वर्ष 1976 में (1987 में संशोधित)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1976 में राजभाषा नियम बनाए गए जिसके तहत भारत के राज्यों को क, ख, और ग तीन क्षेत्रों में बांटा गया।"
+            },
+            {
+                q: "अनुच्छेद 340 के तहत प्रथम 'पिछड़ा वर्ग आयोग' (First Backward Classes Commission) 1953 में किसकी अध्यक्षता में गठित हुआ था?",
+                options: ["काका कालेलकर (Kaka Kalelkar)", "बी.पी. मंडल", "आर.एन. प्रसाद", "शिवशंकर"],
+                correctText: "काका कालेलकर (Kaka Kalelkar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1953 में काका कालेलकर की अध्यक्षता में पहला पिछड़ा वर्ग आयोग बना था।"
+            },
+            {
+                q: "द्वितीय पिछड़ा वर्ग आयोग (2nd Backward Classes Commission - 1979) के अध्यक्ष कौन थे जिसने OBC हेतु 27% आरक्षण की सिफारिश की?",
+                options: ["बी.पी. मंडल (B.P. Mandal - मंडल आयोग)", "काका कालेलकर", "राम नंदन प्रसाद", "जस्टिस रोहिणी"],
+                correctText: "बी.पी. मंडल (B.P. Mandal - मंडल आयोग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1979 में मोरारजी देसाई सरकार द्वारा बी.पी. मंडल की अध्यक्षता में मंडल आयोग का गठन हुआ।"
+            },
+            {
+                q: "परिसीमन आयोग (Delimitation Commission) का गठन संसद द्वारा किस अनुच्छेद के तहत किया जाता है?",
+                options: ["अनुच्छेद 82", "अनुच्छेद 170", "अनुच्छेद 324", "अनुच्छेद 329"],
+                correctText: "अनुच्छेद 82",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जनगणना के बाद चुनावी क्षेत्रों की सीमाओं का पुनर्नियोजन हेतु अनुच्छेद 82 के तहत संसद परिसीमन अधिनियम बनाती है।"
+            },
+            {
+                q: "अब तक भारत में कितनी बार परिसीमन आयोगों का गठन किया जा चुका है?",
+                options: ["4 बार (1952, 1963, 1973 और 2002 में)", "5 बार", "3 बार", "6 बार"],
+                correctText: "4 बार (1952, 1963, 1973 और 2002 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में चार बार परिसीमन आयोग गठित हुए हैं (2002 के परिसीमन आयोग के अध्यक्ष जस्टिस कुलदीप सिंह थे)।"
+            },
+            {
+                q: "संवैधानिक प्रावधानों के अनुसार नियंत्रक एवं महालेखापरीक्षक (CAG) को पदमुक्त करने के बाद क्या वे भारत सरकार के अधीन कोई अन्य पद धारण कर सकते हैं?",
+                options: ["नहीं, वे कोई भी अन्य सरकारी पद धारण करने के लिए पात्र नहीं होते (अनुच्छेद 148(4))", "हाँ, केवल राष्ट्रपति की अनुमति से", "हाँ, केवल राज्यों में", "हाँ, वित्त आयोग में"],
+                correctText: "नहीं, वे कोई भी अन्य सरकारी पद धारण करने के लिए पात्र नहीं होते (अनुच्छेद 148(4))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• निष्पक्षता बनाए रखने हेतु सेवानिवृत्ति के बाद CAG भारत या राज्य सरकार के अधीन किसी पद के योग्य नहीं होते।"
+            },
+            {
+                q: "UPSC का अध्यक्ष सेवानिवृत्ति के बाद भारत या राज्य सरकार के अधीन कोई पद धारण कर सकता है?",
+                options: ["नहीं, वे किसी भी पद के पात्र नहीं होते (अनुच्छेद 319)", "हाँ, केवल राज्यपाल बन सकते हैं", "हाँ, केवल CAG बन सकते हैं", "हाँ, BPSC अध्यक्ष बन सकते हैं"],
+                correctText: "नहीं, वे किसी भी पद के पात्र नहीं होते (अनुच्छेद 319)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 319 के तहत UPSC अध्यक्ष रिटायरमेंट के बाद भारत/राज्य सरकार के अधीन किसी पद हेतु पात्र नहीं है।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद में यह व्यवस्था है कि किसी राज्य के लोक सेवा आयोग का अध्यक्ष सेवानिवृत्ति के बाद UPSC का अध्यक्ष या सदस्य बन सकता है?",
+                options: ["अनुच्छेद 319(b)", "अनुच्छेद 318", "अनुच्छेद 320", "अनुच्छेद 322"],
+                correctText: "अनुच्छेद 319(b)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• SPSC का अध्यक्ष UPSC का अध्यक्ष/सदस्य या किसी अन्य SPSC का अध्यक्ष बन सकता है, पर किसी अन्य सरकारी पद पर नहीं।"
+            },
+            {
+                q: "भाषाई अल्पसंख्यकों के लिए विशेष अधिकारी (Special Officer for Linguistic Minorities) की नियुक्ति किस अनुच्छेद के तहत की जाती है?",
+                options: ["अनुच्छेद 350B (350ख)", "अनुच्छेद 350A", "अनुच्छेद 347", "अनुच्छेद 349"],
+                correctText: "अनुच्छेद 350B (350ख)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 7वें संविधान संशोधन 1956 द्वारा अनुच्छेद 350ख जोड़ा गया जिसके तहत राष्ट्रपति भाषाई अल्पसंख्यकों हेतु विशेष आयुक्त नियुक्त करते हैं।"
+            },
+            {
+                q: "केन्द्रीय अन्वेषण ब्यूरो (CBI) किस मंत्रालय के प्रशासनिक नियंत्रण के अंतर्गत कार्य करता है?",
+                options: ["कार्मिक, लोक शिकायत और पेंशन मंत्रालय (Ministry of Personnel)", "गृह मंत्रालय", "विधि एवं न्याय मंत्रालय", "प्रधानमंत्री कार्यालय (PMO)"],
+                correctText: "कार्मिक, लोक शिकायत और पेंशन मंत्रालय (Ministry of Personnel)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• CBI कार्मिक एवं प्रशिक्षण विभाग (DoPT), कार्मिक मंत्रालय के अधीन आती है।"
+            },
+            {
+                q: "राष्ट्रीय आपदा प्रबंधन प्राधिकरण (NDMA) के पदेन अध्यक्ष कौन होते हैं?",
+                options: ["भारत के प्रधानमंत्री", "गृह मंत्री", "पर्यावरण मंत्री", "रक्षा मंत्री"],
+                correctText: "भारत के प्रधानमंत्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आपदा प्रबंधन अधिनियम 2005 के तहत बने NDMA के प्रमुख प्रधानमंत्री होते हैं।"
+            },
+            {
+                q: "संविधान के किस संशोधन द्वारा सहकारी समितियों को संविधान के भाग IV (DPSP) के अनुच्छेद 43B में शामिल किया गया?",
+                options: ["97वाँ संविधान संशोधन 2011", "91वाँ संशोधन", "86वाँ संशोधन", "73वाँ संशोधन"],
+                correctText: "97वाँ संविधान संशोधन 2011",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 97वें संशोधन 2011 द्वारा अनुच्छेद 43B में कुटीर व सहकारी समितियों के संवर्धन का निर्देश जोड़ा गया।"
+            },
+            {
+                q: "संविधान का 104वाँ संविधान संशोधन अधिनियम 2019 किससे संबंधित है?",
+                options: ["लोकसभा और राज्य विधानसभाओं में SC/ST आरक्षण को 10 वर्ष (2030 तक) बढ़ाना तथा एंग्लो-इंडियन मनोनयन समाप्त करना", "GST लागू करना", "EWS आरक्षण", "OBC आयोग"],
+                correctText: "लोकसभा और राज्य विधानसभाओं में SC/ST आरक्षण को 10 वर्ष (2030 तक) बढ़ाना तथा एंग्लो-इंडियन मनोनयन समाप्त करना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 104वें संशोधन ने SC/ST आरक्षण 2030 तक बढ़ाया तथा एंग्लो-इंडियन सीटों का कोटा समाप्त कर दिया।"
+            },
+            {
+                q: "संविधान का 105वाँ संविधान संशोधन अधिनियम 2021 किससे संबंधित है?",
+                options: ["राज्यों को सामाजिक और शैक्षणिक रूप से पिछड़े वर्गों (SEBC/OBC) की पहचान करने व सूची बनाने की शक्ति बहाल करना", "EWS आरक्षण", "महिला आरक्षण", "GST संशोधन"],
+                correctText: "राज्यों को सामाजिक और शैक्षणिक रूप से पिछड़े वर्गों (SEBC/OBC) की पहचान करने व सूची बनाने की शक्ति बहाल करना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 105वें संशोधन 2021 ने राज्यों की अपनी OBC सूची बनाने के अधिकार को स्पष्ट व पुनः स्थापित किया।"
+            },
+            {
+                q: "अनुच्छेद 368 के तहत संविधान में कितने तरीकों/प्रकारों से संशोधन किया जा सकता है?",
+                options: ["2 तरीकों से (विशेष बहुमत तथा विशेष बहुमत + 50% राज्यों का अनुमोदन)", "3 तरीकों से", "1 तरीके से", "4 तरीकों से"],
+                correctText: "2 तरीकों से (विशेष बहुमत तथा विशेष बहुमत + 50% राज्यों का अनुमोदन)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तकनीकी रूप से अनुच्छेद 368 केवल 2 प्रकार के संशोधनों का उल्लेख करता है (यद्यपि साधारण बहुमत वाले संशोधन अनुच्छेद 368 के दायरे से बाहर माने जाते हैं)।"
+            },
+            {
+                q: "संसद के 'साधारण बहुमत' (Simple Majority) द्वारा संशोधित होने वाले प्रावधानों में कौन सा शामिल है?",
+                options: ["नए राज्यों का प्रवेश या गठन (अनुच्छेद 2, 3, 4) तथा नागरिकता संबंधी नियम", "राष्ट्रपति का निर्वाचन", "मूल अधिकार", "सातवीं अनुसूची"],
+                correctText: "नए राज्यों का प्रवेश या गठन (अनुच्छेद 2, 3, 4) तथा नागरिकता संबंधी नियम",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नए राज्यों की सीमा परिवर्तन, नागरिकता, संसद में गणपूर्ति आदि साधारण बहुमत से बदलते हैं (ये अनुच्छेद 368 के तहत नहीं आते)।"
+            },
+            {
+                q: "संविधान के ऐसे प्रावधानों में संशोधन के लिए संसद के विशेष बहुमत के साथ-साथ कम से कम आधे राज्यों के विधानमंडलों के अनुमोदन की आवश्यकता होती है, जैसे—",
+                options: ["राष्ट्रपति का निर्वाचन, संघ व राज्यों की कार्यपालिका शक्ति का विस्तार, और 7वीं अनुसूची", "मूल अधिकार", "नीति निर्देशक तत्व", "संसदीय नियमावली"],
+                correctText: "राष्ट्रपति का निर्वाचन, संघ व राज्यों की कार्यपालिका शक्ति का विस्तार, और 7वीं अनुसूची",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संघीय ढांचे को प्रभावित करने वाले प्रावधानों में कम से कम 50% राज्यों की सहमति आवश्यक है।"
+            },
+            {
+                q: "संघ लोक सेवा आयोग (UPSC) के व्यय (वेतन, भत्ते और पेंशन) किस निधि पर भारित (Charged) होते हैं?",
+                options: ["भारत की संचित निधि (Consolidated Fund of India - अनुच्छेद 322)", "राज्य की संचित निधि", "आकस्मिकता निधि", "संसदीय अनुदान"],
+                correctText: "भारत की संचित निधि (Consolidated Fund of India - अनुच्छेद 322)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 322 के तहत UPSC के सभी खर्चे भारत की संचित निधि पर भारित होते हैं जिस पर संसद में मतदान नहीं होता।"
+            },
+            {
+                q: "लोकसभा का अध्यक्ष या उपाध्यक्ष बनने पर क्या उन्हें अलग से कोई विशेष शपथ लेनी पड़ती है?",
+                options: ["नहीं, वे केवल साधारण संसद सदस्य (MP) के रूप में शपथ लेते हैं", "हाँ, राष्ट्रपति द्वारा", "हाँ, मुख्य न्यायाधीश द्वारा", "हाँ, प्रोटेम स्पीकर द्वारा"],
+                correctText: "नहीं, वे केवल साधारण संसद सदस्य (MP) के रूप में शपथ लेते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लोकसभा अध्यक्ष या उपाध्यक्ष पद के लिए कोई पृथक शपथ नहीं होती; वे सांसद की शपथ लेते हैं।"
+            },
+            {
+                q: "भारत में 'प्रशासनिक सुधार आयोग' (First Administrative Reforms Commission - ARC) का गठन 1966 में किसकी अध्यक्षता में हुआ था?",
+                options: ["मोरारजी देसाई (बाद में के. हनुमानथैया)", "एम.एन. वेंकटचेलैया", "वीरप्पा मोइली", "चरण सिंह"],
+                correctText: "मोरारजी देसाई (बाद में के. हनुमानथैया)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम ARC 1966 में मोरारजी देसाई के नेतृत्व में गठित हुई थी (द्वितीय ARC 2005 में वीरप्पा मोइली के नेतृत्व में बनी)।"
+            },
+            {
+                q: "संविधान समीक्षा हेतु गठित राष्ट्रीय आयोग (NCRWC - 2000) के अध्यक्ष कौन थे?",
+                options: ["जस्टिस एम.एन. वेंकटचेलैया (Justice M.N. Venkatachaliah)", "जस्टिस पुंछी", "जस्टिस सरकारी", "जस्टिस वर्मा"],
+                correctText: "जस्टिस एम.एन. वेंकटचेलैया (Justice M.N. Venkatachaliah)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 2000 में अटल बिहारी वाजपेयी सरकार ने पूर्व CJI एम.एन. वेंकटचेलैया की अध्यक्षता में संविधान कार्यप्रणाली समीक्षा आयोग बनाया था।"
+            },
+            {
+                q: "आपातकाल के दौरान मौलिक अधिकारों के स्थगन संबंधी प्रावधान किस देश के संविधान से लिए गए हैं?",
+                options: ["जर्मनी का वाइमर संविधान (Weimar Constitution of Germany)", "रूस", "अमेरिका", "कनाडा"],
+                correctText: "जर्मनी का वाइमर संविधान (Weimar Constitution of Germany)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आपातकाल के समय अनुच्छेद 20 व 21 को छोड़कर मूल अधिकारों के स्थगन का नियम जर्मनी से प्रेरित है।"
+            },
+            {
+                q: "42वें संविधान संशोधन 1976 द्वारा प्रस्तावना (Preamble) में कौन से तीन शब्द जोड़े गए थे?",
+                options: ["समाजवादी, पंथनिरपेक्ष और अखंडता (Socialist, Secular, Integrity)", "स्वतंत्रता, समता, बंधुता", "गणराज्य, लोकतान्त्रिक, संप्रभु", "न्याय, एकता, अखंडता"],
+                correctText: "समाजवादी, पंथनिरपेक्ष और अखंडता (Socialist, Secular, Integrity)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में अब तक केवल एक बार (42वें संशोधन 1976) संशोधन हुआ है जिससे ये तीन शब्द जुड़े।"
+            },
+            {
+                q: "1st संविधान संशोधन 1951 द्वारा जोड़ी गई 9वीं अनुसूची में शामिल कानूनों को...",
+                options: ["शुरुआत में न्यायिक समीक्षा से छूट प्राप्त थी (परंतु 24 अप्रैल 1973 के बाद के कानूनों की समीक्षा हो सकती है)", "कभी कोर्ट में चुनौती नहीं दी जा सकती", "केवल संसद बदल सकती है", "राष्ट्रपति रद्द कर सकते हैं"],
+                correctText: "शुरुआत में न्यायिक समीक्षा से छूट प्राप्त थी (परंतु 24 अप्रैल 1973 के बाद के कानूनों की समीक्षा हो सकती है)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आई.आर. कोएल्हो केस (2007) में SC ने फैसला दिया कि 24 अप्रैल 1973 (केशवानंद भारती केस तिथि) के बाद 9वीं अनुसूची में डाले गए कानूनों की न्यायिक समीक्षा संभव है।"
+            },
+            {
+                q: "राष्ट्रीय सुरक्षा परिषद (National Security Council - NSC) के अध्यक्ष कौन होते हैं?",
+                options: ["भारत के प्रधानमंत्री", "राष्ट्रीय सुरक्षा सलाहकार (NSA)", "गृह मंत्री", "रक्षा मंत्री"],
+                correctText: "भारत के प्रधानमंत्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1998 में गठित राष्ट्रीय सुरक्षा परिषद के प्रमुख प्रधानमंत्री होते हैं।"
+            },
+            {
+                q: "गंभीर भ्रष्टाचार के मामलों में लोकपाल को किसकी शक्तियों के समतुल्य शक्तियाँ प्राप्त हैं?",
+                options: ["दीवानी अदालत (Civil Court) तथा अन्वेषण एजेंसी को निर्देश देने की शक्तियाँ", "सर्वोच्च न्यायालय", "संसद", "उच्च न्यायालय"],
+                correctText: "दीवानी अदालत (Civil Court) तथा अन्वेषण एजेंसी को निर्देश देने की शक्तियाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लोकपाल के पास सिविल कोर्ट की शक्तियाँ होती हैं और वह CBI जैसी एजेंसियों को जाँच के आदेश दे सकता है।"
+            },
+            {
+                q: "संविधान संशोधन विधेयक पारित करने हेतु दोनों सदनों में किस प्रकार का बहुमत आवश्यक है?",
+                options: ["सदन की कुल सदस्य संख्या का बहुमत तथा उपस्थित व मतदान करने वाले सदस्यों का 2/3 बहुमत (विशेष बहुमत)", "केवल साधारण बहुमत", "3/4 बहुमत", "केवल सर्वसम्मति"],
+                correctText: "सदन की कुल सदस्य संख्या का बहुमत तथा उपस्थित व मतदान करने वाले सदस्यों का 2/3 बहुमत (विशेष बहुमत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 368(2) के तहत विशेष बहुमत (Special Majority) होना अनिवार्य है।"
+            }
+        ];
+
+        let quizDataPolity6 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity6 = rawQuizDataPolity6.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity6;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp6_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp6_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 6 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 6 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* संविधान संशोधन, राजभाषा, संवैधानिक एवं गैर-संवैधानिक संस्थाएँ\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp6.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp6_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
