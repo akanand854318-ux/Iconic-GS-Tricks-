@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 3 (DPSP, मूल कर्तव्य एवं संघ-संसद) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 3 (DPSP, मूल कर्तव्य, कार्यपालिका व संसद)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 3)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 3 (DPSP, मूल कर्तव्य व संघ-संसद)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: भाग IV (DPSP), भाग IVक (मूल कर्तव्य), एवं भाग V (संघ कार्यपालिका व संसद) - 100 प्रश्न
+        const rawQuizDataPolity3 = [
+            {
+                q: "राज्य के नीति निदेशक तत्त्वों (DPSP) का उल्लेख संविधान के किस भाग में किया गया है?",
+                options: ["भाग IV (अनुच्छेद 36-51)", "भाग III (अनुच्छेद 12-35)", "भाग V (अनुच्छेद 52-151)", "भाग IVक (अनुच्छेद 51क)"],
+                correctText: "भाग IV (अनुच्छेद 36-51)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीति निदेशक तत्त्व संविधान के भाग IV में अनुच्छेद 36 से 51 तक वर्णित हैं।"
+            },
+            {
+                q: "नीति निदेशक सिद्धांतों की प्रेरणा भारतीय संविधान निर्माताओं को किस देश के संविधान से मिली थी?",
+                options: ["आयरलैंड (Ireland)", "संयुक्त राज्य अमेरिका", "सोवियत संघ", "कनाडा"],
+                correctText: "आयरलैंड (Ireland)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में नीति निदेशक तत्व आयरलैंड के संविधान से ग्रहण किए गए हैं।"
+            },
+            {
+                q: "क्या नीति निदेशक तत्त्वों को न्यायालय द्वारा लागू (Enforceable/Justiciable) कराया जा सकता है?",
+                options: ["नहीं, ये गैर-न्यायसंगत (Non-justiciable) हैं", "हाँ, अनुच्छेद 32 के तहत", "केवल सर्वोच्च न्यायालय द्वारा", "हाँ, विशेष परिस्थिति में"],
+                correctText: "नहीं, ये गैर-न्यायसंगत (Non-justiciable) हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 37 में स्पष्ट है कि ये तत्त्व देश के शासन में मूलभूत हैं, परंतु इन्हें न्यायालय द्वारा बाध्यकारी नहीं बनाया जा सकता।"
+            },
+            {
+                q: "किस अनुच्छेद के तहत राज्य कल्याणकारी राज्य (Welfare State) की स्थापना हेतु सामाजिक व्यवस्था बनाएगा?",
+                options: ["अनुच्छेद 38", "अनुच्छेद 39", "अनुच्छेद 40", "अनुच्छेद 41"],
+                correctText: "अनुच्छेद 38",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 38 राज्य को लोक कल्याण की अभिवृद्धि के लिए सामाजिक, आर्थिक और राजनीतिक न्याय की व्यवस्था करने का निर्देश देता है।"
+            },
+            {
+                q: "पुरुषों और स्त्रियों दोनों को समान कार्य के लिए समान वेतन (Equal pay for equal work) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 39(d)", "अनुच्छेद 38", "अनुच्छेद 41", "अनुच्छेद 43"],
+                correctText: "अनुच्छेद 39(d)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 39(घ) में समान कार्य के लिए समान वेतन की व्यवस्था राज्य का दायित्व बताई गई है।"
+            },
+            {
+                q: "समान न्याय और निःशुल्क विधिक सहायता (Equal justice and free legal aid) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 39क", "अनुच्छेद 40", "अनुच्छेद 43क", "अनुच्छेद 48क"],
+                correctText: "अनुच्छेद 39क",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन (1976) द्वारा अनुच्छेद 39क जोड़ा गया ताकि गरीबों को मुफ़्त कानूनी सहायता मिल सके।"
+            },
+            {
+                q: "ग्राम पंचायतों के संगठन (Organization of Village Panchayats) का निर्देश संविधान का कौन सा अनुच्छेद देता है?",
+                options: ["अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 48", "अनुच्छेद 50"],
+                correctText: "अनुच्छेद 40",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गांधीवादी विचारधारा से प्रेरित होकर अनुच्छेद 40 में ग्राम पंचायतों के गठन की बात कही गई है।"
+            },
+            {
+                q: "समान नागरिक संहिता (Uniform Civil Code - UCC) का प्रावधान किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 44", "अनुच्छेद 45", "अनुच्छेद 48", "अनुच्छेद 51"],
+                correctText: "अनुच्छेद 44",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 44 भारत के समस्त राज्यक्षेत्र में नागरिकों के लिए 'समान नागरिक संहिता' लागू करने का निर्देश देता है।"
+            },
+            {
+                q: "6 वर्ष से कम आयु के बालकों की देखरेख तथा शिक्षा का प्रावधान किस अनुच्छेद के अंतर्गत है?",
+                options: ["अनुच्छेद 45", "अनुच्छेद 21क", "अनुच्छेद 46", "अनुच्छेद 47"],
+                correctText: "अनुच्छेद 45",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 86वें संशोधन के बाद अनुच्छेद 45 में 6 वर्ष से कम आयु के बच्चों की पूर्व-प्राथमिक शिक्षा व देखरेख का प्रावधान है।"
+            },
+            {
+                q: "पोषाहार स्तर, जीवन स्तर को ऊँचा करने तथा लोक स्वास्थ्य का सुधार करने का राज्य का कर्तव्य किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 47 (मादक पदार्थों पर रोक भी)", "अनुच्छेद 48", "अनुच्छेद 46", "अनुच्छेद 49"],
+                correctText: "अनुच्छेद 47 (मादक पदार्थों पर रोक भी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 47 लोक स्वास्थ्य सुधार तथा हानिकारक नशीले पदार्थों व मदिरा के सेवन पर रोक लगाने से संबंधित है।"
+            },
+            {
+                q: "कृषि और पशुपालन का संगठन तथा दुधारू पशुओं के वध पर रोक किस अनुच्छेद से संबंधित है?",
+                options: ["अनुच्छेद 48", "अनुच्छेद 48क", "अनुच्छेद 47", "अनुच्छेद 49"],
+                correctText: "अनुच्छेद 48",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 48 में आधुनिक आधार पर कृषि व पशुपालन का संगठन तथा गाय-बछड़ों के वध पर प्रतिषेध शामिल है।"
+            },
+            {
+                q: "पर्यावरण का संरक्षण, संवर्धन तथा वन एवं वन्य जीवों की रक्षा किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 48क", "अनुच्छेद 48", "अनुच्छेद 49", "अनुच्छेद 51"],
+                correctText: "अनुच्छेद 48क",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन (1976) द्वारा जोड़े गए अनुच्छेद 48क में पर्यावरण तथा वन्यजीवों के संरक्षण का निर्देश है।"
+            },
+            {
+                q: "राष्ट्रीय महत्व के स्मारक, स्थानों और वस्तुओं के संरक्षण का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 49", "अनुच्छेद 50", "अनुच्छेद 48", "अनुच्छेद 51"],
+                correctText: "अनुच्छेद 49",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 49 में राष्ट्रीय महत्व की ऐतिहासिक धरोहरों व स्मारकों की सुरक्षा का निर्देश राज्य को दिया गया है।"
+            },
+            {
+                q: "कार्यपालिका से न्यायपालिका का पृथक्करण (Separation of Judiciary from Executive) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 50", "अनुच्छेद 51", "अनुच्छेद 49", "अनुच्छेद 45"],
+                correctText: "अनुच्छेद 50",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 50 के अंतर्गत राज्य की लोक सेवाओं में न्यायपालिका को कार्यपालिका से अलग रखने का निर्देश है।"
+            },
+            {
+                q: "अंतर्राष्ट्रीय शांति और सुरक्षा की अभिवृद्धि से संबंधित अनुच्छेद कौन सा है?",
+                options: ["अनुच्छेद 51", "अनुच्छेद 50", "अनुच्छेद 48", "अनुच्छेद 51क"],
+                correctText: "अनुच्छेद 51",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत की विदेश नीति का आधार अनुच्छेद 51 है जो अंतर्राष्ट्रीय शांति और सुरक्षा को प्रोत्साहन देता है।"
+            },
+            {
+                q: "मूल कर्तव्यों (Fundamental Duties) को किस समिति की संस्तुति पर संविधान में जोड़ा गया था?",
+                options: ["स्वर्ण सिंह समिति", "बलवंत राय मेहता समिति", "सरकारी आयोग", "वर्मा समिति"],
+                correctText: "स्वर्ण सिंह समिति",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सरदार स्वर्ण सिंह समिति की सिफारिश पर 42वें संविधान संशोधन 1976 द्वारा मूल कर्तव्य जोड़े गए।"
+            },
+            {
+                q: "मूल कर्तव्य भारतीय संविधान के किस भाग और अनुच्छेद में शामिल किए गए हैं?",
+                options: ["भाग IVक, अनुच्छेद 51क", "भाग III, अनुच्छेद 32", "भाग IV, अनुच्छेद 36", "भाग V, अनुच्छेद 52"],
+                correctText: "भाग IVक, अनुच्छेद 51क",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में एक नया भाग IVक तथा अनुच्छेद 51क जोड़कर मौलिक कर्तव्यों का समावेश किया गया।"
+            },
+            {
+                q: "भारतीय संविधान में मौलिक कर्तव्यों की प्रेरणा किस देश के संविधान से ली गई है?",
+                options: ["पूर्व सोवियत संघ (USSR / रूस)", "अमेरिका", "ब्रिटेन", "ऑस्ट्रेलिया"],
+                correctText: "पूर्व सोवियत संघ (USSR / रूस)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मौलिक कर्तव्य पूर्व सोवियत संघ (USSR) के संविधान से लिए गए हैं।"
+            },
+            {
+                q: "1976 में 42वें संविधान संशोधन द्वारा कुल कितने मौलिक कर्तव्य जोड़े गए थे?",
+                options: ["10 मौलिक कर्तव्य", "11 मौलिक कर्तव्य", "8 मौलिक कर्तव्य", "12 मौलिक कर्तव्य"],
+                correctText: "10 मौलिक कर्तव्य",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन 1976 के तहत 10 मौलिक कर्तव्य जोड़े गए थे।"
+            },
+            {
+                q: "वर्तमान में भारतीय संविधान के अनुच्छेद 51क के अंतर्गत कुल कितने मौलिक कर्तव्य हैं?",
+                options: ["11 मौलिक कर्तव्य", "10 मौलिक कर्तव्य", "12 मौलिक कर्तव्य", "9 मौलिक कर्तव्य"],
+                correctText: "11 मौलिक कर्तव्य",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 86वें संशोधन (2002) द्वारा 11वाँ मौलिक कर्तव्य (6-14 वर्ष के बच्चों को शिक्षा का अवसर देना) जोड़ा गया।"
+            },
+            {
+                q: "संविधान का भाग V किस विषय से संबंधित है?",
+                options: ["संघ (The Union - अनुच्छेद 52 से 151)", "राज्य (The States)", "नागरिकता", "मूल अधिकार"],
+                correctText: "संघ (The Union - अनुच्छेद 52 से 151)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग V संविधान का सबसे बड़ा भाग है जिसमें अनुच्छेद 52 से 151 तक संघ (केंद्र सरकार) का प्रावधान है।"
+            },
+            {
+                q: "भारतीय संघ की कार्यपालिका शक्ति (Executive Power of the Union) किसमें निहित होती है?",
+                options: ["भारत के राष्ट्रपति में (अनुच्छेद 53)", "प्रधानमंत्री में", "संसद में", "मन्त्रिपरिषद में"],
+                correctText: "भारत के राष्ट्रपति में (अनुच्छेद 53)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 53(1) के अनुसार संघ की कार्यपालिका शक्ति राष्ट्रपति में निहित होगी, जिसका प्रयोग वे स्वयं या अधीनस्थों के माध्यम से करेंगे।"
+            },
+            {
+                q: "भारत के राष्ट्रपति के निर्वाचक मंडल (Electoral College) में कौन शामिल होते हैं?",
+                options: ["संसद के दोनों सदनों तथा राज्य विधानसभाओं के केवल निर्वाचित सदस्य (और दिल्ली/पुडुचेरी के निर्वाचित सदस्य)", "संसद के सभी सदस्य", "विधान परिषदों के सदस्य भी", "केवल लोकसभा के सदस्य"],
+                correctText: "संसद के दोनों सदनों तथा राज्य विधानसभाओं के केवल निर्वाचित सदस्य (और दिल्ली/पुडुचेरी के निर्वाचित सदस्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 54 के अनुसार राष्ट्रपति चुनाव में संसद व राज्यों/UTs की विधानसभाओं के केवल निर्वाचित (Elected) सदस्य ही भाग लेते हैं; मनोनीत सदस्य भाग नहीं लेते।"
+            },
+            {
+                q: "राष्ट्रपति के निर्वाचन की पद्धति (Single Transferable Vote) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 55", "अनुच्छेद 54", "अनुच्छेद 56", "अनुच्छेद 58"],
+                correctText: "अनुच्छेद 55",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 55 के तहत राष्ट्रपति का चुनाव आनुपातिक प्रतिनिधित्व प्रणाली के अनुसार एकल संक्रमणीय मत पद्धति द्वारा होता है।"
+            },
+            {
+                q: "राष्ट्रपति पर 'महाभियोग' (Impeachment) चलाने की प्रक्रिया किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 61", "अनुच्छेद 60", "अनुच्छेद 56", "अनुच्छेद 72"],
+                correctText: "अनुच्छेद 61",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के उल्लंघन (Violation of Constitution) के आधार पर अनुच्छेद 61 के तहत राष्ट्रपति पर महाभियोग चलाया जा सकता है।"
+            },
+            {
+                q: "राष्ट्रपति पर महाभियोग की प्रक्रिया संसद के किस सदन में शुरू की जा सकती है?",
+                options: ["संसद के किसी भी सदन में (लोकसभा या राज्यसभा)", "केवल लोकसभा में", "केवल राज्यसभा में", "केवल सर्वोच्च न्यायालय में"],
+                correctText: "संसद के किसी भी सदन में (लोकसभा या राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाभियोग का प्रस्ताव संसद के किसी भी सदन में लाया जा सकता है, जिसके लिए 14 दिन पूर्व लिखित सूचना अनिवार्य है।"
+            },
+            {
+                q: "राष्ट्रपति को क्षमादान की शक्ति (Pardoning Power) किस अनुच्छेद के तहत प्राप्त है?",
+                options: ["अनुच्छेद 72", "अनुच्छेद 71", "अनुच्छेद 161", "अनुच्छेद 123"],
+                correctText: "अनुच्छेद 72",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 72 राष्ट्रपति को किसी भी अपराध के लिए दोषी ठहराए गए व्यक्ति के दंड को क्षमा, उसका प्रविलंबन, विराम या परिहार करने की शक्ति देता है।"
+            },
+            {
+                q: "भारत के उपराष्ट्रपति (Vice-President) का पद किस अनुच्छेद के अंतर्गत आता है?",
+                options: ["अनुच्छेद 63", "अनुच्छेद 64", "अनुच्छेद 65", "अनुच्छेद 66"],
+                correctText: "अनुच्छेद 63",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 63 के अनुसार 'भारत का एक उपराष्ट्रपति होगा'।"
+            },
+            {
+                q: "भारत का उपराष्ट्रपति किस सदन का पदेन सभापति (Ex-officio Chairman) होता है?",
+                options: ["राज्यसभा (अनुच्छेद 64)", "लोकसभा", "नीति आयोग", "वित्त आयोग"],
+                correctText: "राज्यसभा (अनुच्छेद 64)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उपराष्ट्रपति राज्यसभा का पदेन अध्यक्ष होता है, परंतु वह राज्यसभा का सदस्य नहीं होता।"
+            },
+            {
+                q: "उपराष्ट्रपति के निर्वाचन मंडल में कौन-कौन शामिल होते हैं?",
+                options: ["संसद के दोनों सदनों के सभी सदस्य (निर्वाचित और मनोनीत दोनों)", "केवल निर्वाचित सदस्य", "राज्य विधानसभाओं के सदस्य", "केवल लोकसभा के सदस्य"],
+                correctText: "संसद के दोनों सदनों के सभी सदस्य (निर्वाचित और मनोनीत दोनों)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 66 के अनुसार उपराष्ट्रपति के चुनाव में केवल संसद के दोनों सदनों के सभी सदस्य भाग लेते हैं (राज्यों की विधानसभाएँ इसमें भाग नहीं लेतीं)।"
+            },
+            {
+                q: "राष्ट्रपति को सहायता और सलाह देने के लिए एक मन्त्रिपरिषद होगी, जिसका प्रधान 'प्रधानमंत्री' होगा। यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 74", "अनुच्छेद 75", "अनुच्छेद 78", "अनुच्छेद 77"],
+                correctText: "अनुच्छेद 74",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 74(1) के अनुसार राष्ट्रपति अपनी शक्तियों का प्रयोग मन्त्रिपरिषद की सलाह से करेंगे।"
+            },
+            {
+                q: "प्रधानमंत्री की नियुक्ति राष्ट्रपति करेंगे तथा अन्य मंत्रियों की नियुक्ति राष्ट्रपति, प्रधानमंत्री की सलाह पर करेंगे—यह किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 75(1)", "अनुच्छेद 74", "अनुच्छेद 78", "अनुच्छेद 76"],
+                correctText: "अनुच्छेद 75(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 75(1) में प्रधानमंत्री व मंत्रियों की नियुक्ति का प्रावधान है।"
+            },
+            {
+                q: "संघीय मन्त्रिपरिषद सामूहिक रूप से (Collectively Responsible) किसके प्रति उत्तरदायी होती है?",
+                options: ["लोकसभा के प्रति (अनुच्छेद 75(3))", "संसद के प्रति", "राष्ट्रपति के प्रति", "राज्यसभा के प्रति"],
+                correctText: "लोकसभा के प्रति (अनुच्छेद 75(3))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मन्त्रिपरिषद सामूहिक रूप से केवल 'लोकसभा' के प्रति उत्तरदायी होती है।"
+            },
+            {
+                q: "मंत्रियों की कुल संख्या (प्रधानमंत्री सहित) लोकसभा की कुल सदस्य संख्या के 15% से अधिक नहीं होगी, यह सीमा किस संशोधन द्वारा जोड़ी गई?",
+                options: ["91वाँ संविधान संशोधन 2003", "86वाँ संशोधन", "44वाँ संशोधन", "92वाँ संशोधन"],
+                correctText: "91वाँ संविधान संशोधन 2003",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 91वें संशोधन (2003) द्वारा अनुच्छेद 75(1क) जोड़कर मंत्रिपरिषद का आकार लोकसभा के 15% तक सीमित किया गया।"
+            },
+            {
+                q: "भारत के महान्यायवादी (Attorney General for India) के पद का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 76", "अनुच्छेद 148", "अनुच्छेद 165", "अनुच्छेद 78"],
+                correctText: "अनुच्छेद 76",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 76 के तहत राष्ट्रपति भारत के प्रथम विधि अधिकारी (Attorney General) की नियुक्ति करते हैं।"
+            },
+            {
+                q: "भारत का महान्यायवादी संसद के किसी भी सदन का सदस्य न होते हुए भी उसमें बोल सकता है और कार्यवाही में भाग ले सकता है, किस अनुच्छेद के तहत?",
+                options: ["अनुच्छेद 88", "अनुच्छेद 76", "अनुच्छेद 105", "अनुच्छेद 78"],
+                correctText: "अनुच्छेद 88",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 88 महान्यायवादी को संसद के किसी भी सदन में बोलने व भाग लेने का अधिकार देता है, किंतु उन्हें मतदान का अधिकार नहीं होता।"
+            },
+            {
+                q: "राष्ट्रपति को जानकारी देने आदि के संबंध में 'प्रधानमंत्री के कर्तव्यों' का उल्लेख किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 78", "अनुच्छेद 77", "अनुच्छेद 75", "अनुच्छेद 74"],
+                correctText: "अनुच्छेद 78",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 78 प्रधानमंत्री का यह कर्तव्य तय करता है कि वे संघ के प्रशासन से जुड़े सभी निर्णय राष्ट्रपति तक पहुँचाएँ।"
+            },
+            {
+                q: "भारतीय संसद (Parliament) किन तीनों से मिलकर बनती है?",
+                options: ["राष्ट्रपति, राज्यसभा तथा लोकसभा (अनुच्छेद 79)", "केवल लोकसभा तथा राज्यसभा", "प्रधानमंत्री, लोकसभा तथा राज्यसभा", "उपराष्ट्रपति, लोकसभा तथा राज्यसभा"],
+                correctText: "राष्ट्रपति, राज्यसभा तथा लोकसभा (अनुच्छेद 79)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 79 के अनुसार भारत की संसद के तीन अंग हैं: राष्ट्रपति, राज्यसभा (उच्च सदन) और लोकसभा (निम्न सदन)।"
+            },
+            {
+                q: "राज्यसभा (Council of States) की संरचना किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 80", "अनुच्छेद 81", "अनुच्छेद 79", "अनुच्छेद 82"],
+                correctText: "अनुच्छेद 80",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 80 राज्यसभा के गठन और उसकी सदस्य संख्या से संबंधित है।"
+            },
+            {
+                q: "राज्यसभा में अधिकतम सदस्यों की संख्या कितनी हो सकती है और इनमें कितने राष्ट्रपति द्वारा मनोनीत होते हैं?",
+                options: ["250 अधिकतम (12 मनोनीत)", "245 अधिकतम (10 मनोनीत)", "252 अधिकतम (12 मनोनीत)", "238 अधिकतम (15 मनोनीत)"],
+                correctText: "250 अधिकतम (12 मनोनीत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अधिकतम 250 सदस्य हो सकते हैं जिनमें 238 राज्यों व UTs से चुने जाते हैं तथा 12 साहित्य, विज्ञान, कला व समाज सेवा के क्षेत्र से राष्ट्रपति मनोनीत करते हैं।"
+            },
+            {
+                q: "लोकसभा (House of the People) की संरचना से संबंधित अनुच्छेद कौन सा है?",
+                options: ["अनुच्छेद 81", "अनुच्छेद 80", "अनुच्छेद 79", "अनुच्छेद 83"],
+                correctText: "अनुच्छेद 81",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 81 लोकसभा की संरचना का उल्लेख करता है।"
+            },
+            {
+                q: "104वें संविधान संशोधन (2019) द्वारा लोकसभा तथा राज्य विधानसभाओं में किनके मनोनयन के प्रावधान को समाप्त कर दिया गया?",
+                options: ["आंग्ल-भारतीय (Anglo-Indian) समुदाय", "अनुसूचित जनजाति", "महिलाओं", "अल्पसंख्यकों"],
+                correctText: "आंग्ल-भारतीय (Anglo-Indian) समुदाय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 104वें संशोधन द्वारा लोकसभा में राष्ट्रपति द्वारा मनोनीत किए जाने वाले 2 आंग्ल-भारतीयों की सीट को आगे नहीं बढ़ाया गया।"
+            },
+            {
+                q: "प्रत्येक जनगणना के पश्चात् सीटों का समायोजन (परिसीमन - Delimitation) किस अनुच्छेद के तहत किया जाता है?",
+                options: ["अनुच्छेद 82", "अनुच्छेद 81", "अनुच्छेद 83", "अनुच्छेद 84"],
+                correctText: "अनुच्छेद 82",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 82 संसद को हर जनगणना के बाद परिसीमन आयोग अधिनियम पारित कर क्षेत्रों के परिसीमन की शक्ति देता है।"
+            },
+            {
+                q: "84वें संविधान संशोधन (2001) के तहत लोकसभा सीटों की कुल संख्या किस वर्ष तक स्थिर कर दी गई है?",
+                options: ["वर्ष 2026 तक (1971 की जनगणना के आधार पर)", "वर्ष 2031 तक", "वर्ष 2021 तक", "वर्ष 2050 तक"],
+                correctText: "वर्ष 2026 तक (1971 की जनगणना के आधार पर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 84वें संशोधन द्वारा लोकसभा सीटों की संख्या को 2026 तक अपरिवर्तित रखने का निर्णय लिया गया।"
+            },
+            {
+                q: "राज्यसभा एक स्थाई सदन है जिसके एक-तिहाई (1/3) सदस्य कितने समय बाद सेवानिवृत्त हो जाते हैं?",
+                options: ["प्रत्येक 2 वर्ष में", "प्रत्येक 3 वर्ष में", "प्रत्येक 5 वर्ष में", "प्रत्येक 6 वर्ष में"],
+                correctText: "प्रत्येक 2 वर्ष में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यसभा कभी भंग नहीं होती; इसके 1/3 सदस्य हर 2 वर्ष में रिटायर होते हैं तथा प्रत्येक सदस्य का कार्यकाल 6 वर्ष होता है।"
+            },
+            {
+                q: "लोकसभा और राज्यसभा का सदस्य बनने के लिए न्यूनतम आयु क्रमशः कितनी होनी चाहिए?",
+                options: ["25 वर्ष (लोकसभा) तथा 30 वर्ष (राज्यसभा)", "30 वर्ष तथा 25 वर्ष", "21 वर्ष तथा 25 वर्ष", "35 वर्ष तथा 30 वर्ष"],
+                correctText: "25 वर्ष (लोकसभा) तथा 30 वर्ष (राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 84 के तहत लोकसभा के लिए न्यूनतम आयु 25 वर्ष तथा राज्यसभा के लिए 30 वर्ष है।"
+            },
+            {
+                q: "संसद के सत्र को आहूत करने, सत्रावसान (Prorogation) करने तथा लोकसभा को विघटित (Dissolve) करने की शक्ति किसमें निहित है?",
+                options: ["भारत के राष्ट्रपति में (अनुच्छेद 85)", "लोकसभा अध्यक्ष में", "प्रधानमंत्री में", "उपराष्ट्रपति में"],
+                correctText: "भारत के राष्ट्रपति में (अनुच्छेद 85)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 85 के तहत राष्ट्रपति संसद का सत्र बुलाते हैं, सत्रावसान करते हैं और प्रधानमंत्री की सलाह पर लोकसभा भंग करते हैं।"
+            },
+            {
+                q: "संसद के दो क्रमिक सत्रों के बीच अधिकतम कितना समयांतर हो सकता है?",
+                options: ["6 माह से अधिक नहीं", "3 माह", "1 वर्ष", "9 माह"],
+                correctText: "6 माह से अधिक नहीं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एक वर्ष में कम से कम दो बार संसद का सत्र मिलना अनिवार्य है; दो सत्रों में 6 महीने से अधिक का गैप नहीं हो सकता।"
+            },
+            {
+                q: "संसद में प्रश्नों के प्रकार के संदर्भ में 'तारांकित प्रश्न' (Starred Questions) की मुख्य विशेषता क्या होती है?",
+                options: ["इनका उत्तर मौखिक (Oral) दिया जाता है और पूरक प्रश्न (Supplementary Questions) पूछे जा सकते हैं", "इनका उत्तर लिखित दिया जाता है", "इन पर मतदान होता है", "इन पर कोई चर्चा नहीं होती"],
+                correctText: "इनका उत्तर मौखिक (Oral) दिया जाता है और पूरक प्रश्न (Supplementary Questions) पूछे जा सकते हैं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तारांकित प्रश्नों पर हरे रंग का निशान (Star) होता है जिनका उत्तर संबंधित मंत्री मौखिक देते हैं और क्रॉस प्रश्न पूछे जा सकते हैं।"
+            },
+            {
+                q: "'अतारांकित प्रश्न' (Unstarred Questions) के उत्तर किस रूप में दिए जाते हैं?",
+                options: ["लिखित रूप में (Written form)", "मौखिक रूप में", "वीडियो कॉन्फ्रेंसिंग द्वारा", "केवल पटल पर रखकर"],
+                correctText: "लिखित रूप में (Written form)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अतारांकित प्रश्नों के उत्तर लिखित दिए जाते हैं, अतः इन पर पूरक प्रश्न नहीं पूछे जा सकते।"
+            },
+            {
+                q: "संसद के दैनिक कामकाज में 'प्रश्नकाल' (Question Hour) का समय सामान्यतः कब होता है?",
+                options: ["सदन की बैठक का पहला घंटा (11:00 AM से 12:00 Noon)", "दोपहर 12:00 बजे से 1:00 बजे तक", "सदन का अंतिम घंटा", "शाम 4:00 बजे"],
+                correctText: "सदन की बैठक का पहला घंटा (11:00 AM से 12:00 Noon)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद के सत्र में रोज बैठक की शुरुआत का पहला घंटा (11-12 बजे) प्रश्नकाल कहलाता है।"
+            },
+            {
+                q: "संसदीय व्यवस्था में 'शून्यकाल' (Zero Hour) किस देश की देन माना जाता है?",
+                options: ["भारत (India)", "ब्रिटेन", "अमेरिका", "संसदीय परंपरा (स्विस)"],
+                correctText: "भारत (India)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'शून्यकाल' (12:00 बजे से) भारतीय मीडिया व संसदीय व्यवस्था की देन है, जो नियम पुस्तिका में लिखित नहीं है।"
+            },
+            {
+                q: "संसद का कोई सदस्य यदि सदन की अनुमति के बिना लगातार कितने दिनों तक अनुपस्थित रहता है, तो उसका स्थान रिक्त घोषित कर दिया जाता है?",
+                options: ["60 दिन (अनुच्छेद 101(4))", "90 दिन", "30 दिन", "180 दिन"],
+                correctText: "60 दिन (अनुच्छेद 101(4))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 60 दिनों तक बिना सूचना के अनुपस्थित रहने पर सदस्यता समाप्त की जा सकती है।"
+            },
+            {
+                q: "संसद सदस्यों की अयोग्यता (Disqualifications) से संबंधित प्रश्नों पर अंतिम निर्णय कौन लेता है?",
+                options: ["राष्ट्रपति (निर्वाचन आयोग की सलाह पर - अनुच्छेद 103)", "लोकसभा अध्यक्ष", "सर्वोच्च न्यायालय", "संसदीय समिति"],
+                correctText: "राष्ट्रपति (निर्वाचन आयोग की सलाह पर - अनुच्छेद 103)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दलबदल को छोड़कर अन्य योग्यताओं/अयोग्यताओं का फैसला निर्वाचन आयोग की सलाह से राष्ट्रपति करते हैं।"
+            },
+            {
+                q: "दलबदल के आधार पर अयोग्यता का निर्णय कौन करता है?",
+                options: ["संबद्ध सदन का अध्यक्ष या सभापति (Speaker/Chairman)", "राष्ट्रपति", "सर्वोच्च न्यायालय", "निर्वाचन आयोग"],
+                correctText: "संबद्ध सदन का अध्यक्ष या सभापति (Speaker/Chairman)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दसवीं अनुसूची के तहत दलबदल का फैसला लोकसभा में अध्यक्ष और राज्यसभा में सभापति करते हैं।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद में संसद और उसके सदस्यों के विशेषाधिकार (Parliamentary Privileges) दिए गए हैं?",
+                options: ["अनुच्छेद 105", "अनुच्छेद 194", "अनुच्छेद 108", "अनुच्छेद 100"],
+                correctText: "अनुच्छेद 105",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 105 में सांसदों के विशेषाधिकार व वाक् स्वातंत्र्य का उल्लेख है (राज्य विधायकों हेतु 194)।"
+            },
+            {
+                q: "संसद के दोनों सदनों की 'संयुक्त बैठक' (Joint Sitting) किस अनुच्छेद के तहत बुलाई जाती है?",
+                options: ["अनुच्छेद 108", "अनुच्छेद 110", "अनुच्छेद 112", "अनुच्छेद 123"],
+                correctText: "अनुच्छेद 108",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• साधारण विधेयक पर गतिरोध दूर करने के लिए अनुच्छेद 108 के तहत राष्ट्रपति संयुक्त बैठक बुलाते हैं।"
+            },
+            {
+                q: "संसद की संयुक्त बैठक (Joint Sitting) की अध्यक्षता कौन करता है?",
+                options: ["लोकसभा अध्यक्ष (Speaker of Lok Sabha)", "भारत के राष्ट्रपति", "राज्यसभा का सभापति", "प्रधानमंत्री"],
+                correctText: "लोकसभा अध्यक्ष (Speaker of Lok Sabha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 118(4) के अनुसार संयुक्त बैठक की अध्यक्षता हमेशा 'लोकसभा अध्यक्ष' करते हैं (उनकी अनुपस्थिति में उपाध्यक्ष)।"
+            },
+            {
+                q: "धन विधेयक (Money Bill) की परिभाषा किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 110", "अनुच्छेद 109", "अनुच्छेद 112", "अनुच्छेद 117"],
+                correctText: "अनुच्छेद 110",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 110 में धन विधेयक की परिभाषा है, जिसे केवल लोकसभा में ही पहले पेश किया जा सकता है।"
+            },
+            {
+                q: "कोई विधेयक धन विधेयक है या नहीं, इसका अंतिम निर्णय कौन करता है?",
+                options: ["लोकसभा अध्यक्ष (Speaker)", "राष्ट्रपति", "वित्त मंत्री", "प्रधानमंत्री"],
+                correctText: "लोकसभा अध्यक्ष (Speaker)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धन विधेयक होने का अंतिम निर्णय और प्रमाणन लोकसभा अध्यक्ष द्वारा किया जाता है।"
+            },
+            {
+                q: "राज्यसभा धन विधेयक को अधिकतम कितने दिनों तक अपने पास रोक कर रख सकती है?",
+                options: ["14 दिनों तक", "30 दिनों तक", "6 महीने तक", "60 दिनों तक"],
+                correctText: "14 दिनों तक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धन विधेयक पर राज्यसभा को केवल 14 दिनों की देरी करने का अधिकार है; यदि 14 दिन में पास न करे तो स्वतः पास मान लिया जाता है।"
+            },
+            {
+                q: "वार्षिक वित्तीय विवरण (Annual Financial Statement - जिसे बजट कहते हैं) किस अनुच्छेद में वर्णित है?",
+                options: ["अनुच्छेद 112", "अनुच्छेद 110", "अनुच्छेद 114", "अनुच्छेद 116"],
+                correctText: "अनुच्छेद 112",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान में 'बजट' शब्द का उल्लेख नहीं है; इसके स्थान पर अनुच्छेद 112 में 'वार्षिक वित्तीय विवरण' शब्द प्रयुक्त है।"
+            },
+            {
+                q: "संसद द्वारा भारत की संचित निधि (Consolidated Fund of India) से धन निकालने के लिए कौन सा विधेयक पारित किया जाना आवश्यक है?",
+                options: ["विनियोग विधेयक (Appropriation Bill - अनुच्छेद 114)", "वित्त विधेयक", "अनुपूरक विधेयक", "अध्यादेश"],
+                correctText: "विनियोग विधेयक (Appropriation Bill - अनुच्छेद 114)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संचित निधि से बिना विनियोग विधेयक (अनुच्छेद 114) पास कराए कोई राशि नहीं निकाली जा सकती।"
+            },
+            {
+                q: "संसद द्वारा पारित विधेयक पर राष्ट्रपति की वीटो शक्ति (Veto Power / असहमति) किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 111", "अनुच्छेद 108", "अनुच्छेद 123", "अनुच्छेद 110"],
+                correctText: "अनुच्छेद 111",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 111 के तहत राष्ट्रपति विधेयक पर अपनी स्वीकृति दे सकते हैं, रोक सकते हैं या पुनर्विचार हेतु लौटा सकते हैं।"
+            },
+            {
+                q: "राष्ट्रपति द्वारा अध्यादेश (Ordinance) जारी करने की शक्ति किस अनुच्छेद में दी गई है?",
+                options: ["अनुच्छेद 123", "अनुच्छेद 213", "अनुच्छेद 143", "अनुच्छेद 72"],
+                correctText: "अनुच्छेद 123",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद के विश्रांतिकाल (जब सत्र न चल रहा हो) में राष्ट्रपति अनुच्छेद 123 के तहत अध्यादेश जारी कर सकते हैं।"
+            },
+            {
+                q: "राष्ट्रपति द्वारा जारी अध्यादेश की अधिकतम समयावधि संसद सत्र शुरू होने के बाद कितनी होती है?",
+                options: ["6 सप्ताह (6 Weeks)", "6 महीने", "14 दिन", "1 महीना"],
+                correctText: "6 सप्ताह (6 Weeks)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद का सत्र शुरू होने के 6 सप्ताह के भीतर यदि अध्यादेश अनुमोदित नहीं होता, तो वह निष्प्रभावी हो जाता है।"
+            },
+            {
+                q: "भारत की संचित निधि (Consolidated Fund of India) का प्रावधान किस अनुच्छेद में है?",
+                options: ["अनुच्छेद 266(1)", "अनुच्छेद 267", "अनुच्छेद 112", "अनुच्छेद 265"],
+                correctText: "अनुच्छेद 266(1)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 266(1) में भारत की संचित निधि का वर्णन है जिससे सरकार के सभी खर्चे संसद की स्वीकृति से होते हैं।"
+            },
+            {
+                q: "भारत की आकस्मिकता निधि (Contingency Fund of India) का गठन किस अनुच्छेद के तहत किया जाता है और यह किसके नियंत्रण में होती है?",
+                options: ["अनुच्छेद 267 (राष्ट्रपति के नियंत्रण में)", "अनुच्छेद 266 (प्रधानमंत्री)", "अनुच्छेद 115 (वित्त मंत्री)", "अनुच्छेद 265 (लोकसभा अध्यक्ष)"],
+                correctText: "अनुच्छेद 267 (राष्ट्रपति के नियंत्रण में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 267 के तहत आकस्मिक निधि राष्ट्रपति की कार्यपालिका की ओर से अग्रिम धन देने हेतु रखी जाती है।"
+            },
+            {
+                q: "संसदीय प्रक्रिया में 'कटौती प्रस्ताव' (Cut Motion) का प्रयोग किस समय किया जाता है?",
+                options: ["बजट की अनुदान माँगों पर चर्चा के दौरान", "संविधान संशोधन के समय", "राष्ट्रपति चुनाव में", "प्रश्नकाल में"],
+                correctText: "बजट की अनुदान माँगों पर चर्चा के दौरान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बजट सत्र के दौरान विपक्ष अनुदान माँगों में कमी करने हेतु तीन प्रकार के कटौती प्रस्ताव (नीतिगत, आर्थिक व सांकेतिक) लाता है।"
+            },
+            {
+                q: "यदि सरकार द्वारा प्रस्तुत 'अनुदान की माँग' या बजट प्रस्ताव लोकसभा में गिर जाए, तो क्या होगा?",
+                options: ["मंत्रिपरिषद/सरकार को त्यागपत्र देना पड़ता है", "केवल वित्त मंत्री का पद जाता है", "पुनः मतदान कराया जाता है", "कुछ नहीं होता"],
+                correctText: "मंत्रिपरिषद/सरकार को त्यागपत्र देना पड़ता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बजट पास न होना सरकार के बहुमत खोने का संकेत है, अतः सरकार गिर जाती है।"
+            },
+            {
+                q: "संसद में 'अविश्वास प्रस्ताव' (No-Confidence Motion) किस सदन में प्रस्तुत किया जा सकता है?",
+                options: ["केवल लोकसभा में (कम से कम 50 सदस्यों के समर्थन से)", "केवल राज्यसभा में", "दोनों सदनों में", "संसदीय समिति में"],
+                correctText: "केवल लोकसभा में (कम से कम 50 सदस्यों के समर्थन से)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अविश्वास प्रस्ताव केवल लोकसभा में ही लाया जा सकता है; इसके पास होने पर पूरी सरकार को इस्तीफा देना पड़ता है।"
+            },
+            {
+                q: "संसद में 'ध्यानाकर्षण प्रस्ताव' (Calling Attention Motion) का मुख्य उद्देश्य क्या होता है?",
+                options: ["किसी अभिलंबनीय लोक महत्व के मामले पर मंत्री का ध्यान आकर्षित करना", "सरकार गिराना", "बजट रोकना", "विधेयक पारित करना"],
+                correctText: "किसी अभिलंबनीय लोक महत्व के मामले पर मंत्री का ध्यान आकर्षित करना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ध्यानाकर्षण प्रस्ताव भी भारतीय संसदीय व्यवस्था की मौलिक देन है।"
+            },
+            {
+                q: "संसदीय नियमों में 'नियम 377' (Rule 377) का उपयोग किस सदन में किया जाता है?",
+                options: ["लोकसभा में (उन मामलों को उठाने के लिए जो औचित्य प्रश्न नहीं हैं)", "राज्यसभा में", "विधानसभा में", "संयुक्त बैठक में"],
+                correctText: "लोकसभा में (उन मामलों को उठाने के लिए जो औचित्य प्रश्न नहीं हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लोकसभा में जो मामले अन्य नियमों के तहत नहीं उठ पाते, उन्हें नियम 377 के तहत उठाया जाता है।"
+            },
+            {
+                q: "राज्यसभा में नियम 377 के समतुल्य व्यवस्था को क्या कहा जाता है?",
+                options: ["विशेष उल्लेख (Special Mention)", "औचित्य प्रश्न", "ध्यानाकर्षण", "शून्यकाल"],
+                correctText: "विशेष उल्लेख (Special Mention)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यसभा में लोक महत्व के ऐसे मुद्दों को 'विशेष उल्लेख' (Special Mention) के तहत उठाया जाता है।"
+            },
+            {
+                q: "भारतीय संसद की 'लोक लेखा समिति' (Public Accounts Committee - PAC) में कुल कितने सदस्य होते हैं?",
+                options: ["22 सदस्य (15 लोकसभा + 7 राज्यसभा)", "30 सदस्य (केवल लोकसभा)", "15 सदस्य", "25 सदस्य"],
+                correctText: "22 सदस्य (15 लोकसभा + 7 राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• PAC में 22 सदस्य होते हैं और इसका अध्यक्ष परंपरानुरूप 'विपक्षी दल का नेता' बनाया जाता है जो CAG की रिपोर्ट जाँचता है।"
+            },
+            {
+                q: "संसद की सबसे बड़ी स्थायी समिति कौन सी है जिसमें केवल लोकसभा के 30 सदस्य होते हैं?",
+                options: ["प्राक्कलन समिति (Estimates Committee)", "लोक लेखा समिति", "सरकारी उपक्रम समिति", "कार्य मंत्रणा समिति"],
+                correctText: "प्राक्कलन समिति (Estimates Committee)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्राक्कलन समिति (Estimates Committee) में केवल लोकसभा से 30 सदस्य होते हैं (राज्यसभा का कोई प्रतिनिधि नहीं)।"
+            },
+            {
+                q: "सरकारी उपक्रम समिति (Committee on Public Undertakings) में कितने सदस्य होते हैं?",
+                options: ["22 सदस्य (15 लोकसभा + 7 राज्यसभा)", "30 सदस्य", "15 सदस्य", "10 सदस्य"],
+                correctText: "22 सदस्य (15 लोकसभा + 7 राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कृष्णा मेनन समिति की सिफारिश पर बनी इस समिति में 22 सदस्य होते हैं।"
+            },
+            {
+                q: "संसद की वित्तीय समितियों का 'मार्गदर्शक, मित्र एवं दार्शनिक' (Friend, Philosopher & Guide) किसे कहा जाता है?",
+                options: ["भारत के नियंत्रक एवं महालेखा परीक्षक (CAG)", "महान्यायवादी", "वित्त मंत्री", "लोकसभा अध्यक्ष"],
+                correctText: "भारत के नियंत्रक एवं महालेखा परीक्षक (CAG)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• CAG लोक लेखा समिति (PAC) की बैठकों में भाग लेकर उसकी सहायता करते हैं।"
+            },
+            {
+                q: "लोकसभा का पहला आम चुनाव (First General Elections) किस वर्ष संपन्न हुआ था?",
+                options: ["1951-1952 में", "1947 में", "1950 में", "1955 में"],
+                correctText: "1951-1952 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में प्रथम आम चुनाव 25 अक्टूबर 1951 से 21 फरवरी 1952 तक हुए।"
+            },
+            {
+                q: "प्रथम लोकसभा का गठन कब किया गया था?",
+                options: ["17 अप्रैल 1952", "26 जनवरी 1950", "15 अगस्त 1947", "13 मई 1952"],
+                correctText: "17 अप्रैल 1952",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम लोकसभा का गठन 17 अप्रैल 1952 को हुआ और प्रथम बैठक 13 मई 1952 को आयोजित हुई।"
+            },
+            {
+                q: "भारत के प्रथम लोकसभा अध्यक्ष (First Speaker of Lok Sabha) कौन थे?",
+                options: ["गणेश वासुदेव मावलंकर (G.V. Mavalankar)", "एम.ए. अयंगर", "हुकम सिंह", "नीलम संजीव रेड्डी"],
+                correctText: "गणेश वासुदेव मावलंकर (G.V. Mavalankar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जी.वी. मावलंकर (दादासाहेब) भारत की प्रथम लोकसभा के पहले अध्यक्ष बने थे।"
+            },
+            {
+                q: "प्रथम लोकसभा उपाध्यक्ष (First Deputy Speaker) कौन थे?",
+                options: ["एम. अनंतशयनम अयंगर", "जी.वी. मावलंकर", "के.एस. हेगड़े", "बलराम जाखड़"],
+                correctText: "एम. अनंतशयनम अयंगर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एम. ए. अयंगर प्रथम लोकसभा के उपाध्यक्ष चुने गए थे।"
+            },
+            {
+                q: "राज्यसभा के प्रथम उप-सभापति (First Deputy Chairman of Rajya Sabha) कौन थे?",
+                options: ["एस.वी. कृष्णमूर्ति राव", "डॉ. सर्वपल्ली राधाकृष्णन", "नजमुल हेपतुल्ला", "देशमुख"],
+                correctText: "एस.वी. कृष्णमूर्ति राव",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर्वपल्ली राधाकृष्णन प्रथम सभापति (उपराष्ट्रपति) थे, जबकि एस.वी. कृष्णमूर्ति राव प्रथम उप-सभापति बने।"
+            },
+            {
+                q: "लोकसभा में नेता प्रतिपक्ष (Leader of Opposition) को किस वर्ष वैधानिक दर्जा (Statutory Recognition) दिया गया?",
+                options: ["वर्ष 1977 में", "वर्ष 1952 में", "वर्ष 1969 में", "वर्ष 1989 में"],
+                correctText: "वर्ष 1977 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1977 के अधिनियम द्वारा विपक्ष के नेता को कैबिनेट मंत्री के समकक्ष वेतन व दर्जा प्रदान किया गया।"
+            },
+            {
+                q: "संसदीय परंपरा में 'सचेतक' (Whip) की क्या भूमिका होती है?",
+                options: ["अपनी पार्टी के सदस्यों को सदन में उपस्थित रहने और पार्टी लाइन पर मतदान कराने का निर्देश देना", "सदन स्थगित करना", "विधेयक प्रस्तुत करना", "अध्यक्ष की सहायता करना"],
+                correctText: "अपनी पार्टी के सदस्यों को सदन में उपस्थित रहने और पार्टी लाइन पर मतदान कराने का निर्देश देना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• व्हिप (Whip) प्रत्येक राजनीतिक दल का अधिकारी होता है जो दलीय अनुशासन सुनिश्चित करता है।"
+            },
+            {
+                q: "यदि लोकसभा के अध्यक्ष और उपाध्यक्ष दोनों का पद रिक्त हो, तो सदन के संचालन हेतु राष्ट्रपति द्वारा गठित मंडल को क्या कहते हैं?",
+                options: ["सामयिक अध्यक्ष (Protem Speaker)", "अध्यक्षपीठ", "कार्यवाहक अध्यक्ष", "महासचिव"],
+                correctText: "सामयिक अध्यक्ष (Protem Speaker)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नई लोकसभा के गठन पर राष्ट्रपति वरिष्ठतम सदस्य को प्रोटेम स्पीकर नियुक्त करते हैं जो नए सदस्यों को शपथ दिलाते हैं।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के अनुसार राष्ट्रपति संसद के सत्र में न होने पर अध्यादेश जारी कर सकते हैं?",
+                options: ["अनुच्छेद 123", "अनुच्छेद 213", "अनुच्छेद 143", "अनुच्छेद 356"],
+                correctText: "अनुच्छेद 123",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 123 राष्ट्रपति की अध्यादेश जारी करने की विधाई शक्ति है।"
+            },
+            {
+                q: "संसद द्वारा पारित किस प्रकार के विधेयक को राष्ट्रपति पुनर्विचार के लिए वापस नहीं भेज सकते?",
+                options: ["धन विधेयक (Money Bill) तथा संविधान संशोधन विधेयक", "साधारण विधेयक", "वित्त विधेयक प्रकार-II", "गैर-सरकारी विधेयक"],
+                correctText: "धन विधेयक (Money Bill) तथा संविधान संशोधन विधेयक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धन विधेयक राष्ट्रपति की पूर्व अनुमति से ही आता है, अतः इसे पुनर्विचार हेतु नहीं लौटाया जा सकता।"
+            },
+            {
+                q: "संसद के किसी भी सदन की गणपूर्ति (Quorum) सदन की कुल सदस्य संख्या का कितना भाग होती है?",
+                options: ["1/10 भाग (अनुच्छेद 100(3))", "1/5 भाग", "1/3 भाग", "1/2 भाग"],
+                correctText: "1/10 भाग (अनुच्छेद 100(3))",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बैठक चलाने के लिए न्यूनतम 1/10 सदस्यों (लोकसभा में 55, राज्यसभा में 25) की उपस्थिति अनिवार्य है।"
+            },
+            {
+                q: "संसदीय व्यवस्था में 'गिलोटीन' (Guillotine) का क्या अर्थ है?",
+                options: ["समय की कमी के कारण बिना चर्चा के ही शेष सभी अनुदान माँगों को मतदान के लिए एक साथ रख देना", "सदन को स्थगित करना", "विधेयक रद्द करना", "सदस्य को निष्कासित करना"],
+                correctText: "समय की कमी के कारण बिना चर्चा के ही शेष सभी अनुदान माँगों को मतदान के लिए एक साथ रख देना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बजट सत्र के अंतिम दिन समय समाप्त होने पर बिना बहस बची मांगों को सीधे वोटिंग में रखना गिलोटीन कहलाता है।"
+            },
+            {
+                q: "भारत के नियंत्रक एवं महालेखा परीक्षक (CAG) का पद किस अनुच्छेद के तहत आता है?",
+                options: ["अनुच्छेद 148", "अनुच्छेद 149", "अनुच्छेद 150", "अनुच्छेद 280"],
+                correctText: "अनुच्छेद 148",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 148 के तहत राष्ट्रपति CAG की नियुक्ति करते हैं जो भारत के लोक वित्त के संरक्षक होते हैं।"
+            },
+            {
+                q: "संविधान के अनुच्छेद 36 से 51 तक शामिल नीति निदेशक तत्वों में से गांधीवादी सिद्धांत पर आधारित अनुच्छेद कौन सा है?",
+                options: ["अनुच्छेद 40 (ग्राम पंचायत), अनुच्छेद 43 (कुटीर उद्योग) और अनुच्छेद 47 (मद्यपान निषेध)", "अनुच्छेद 44", "अनुच्छेद 39क", "अनुच्छेद 50"],
+                correctText: "अनुच्छेद 40 (ग्राम पंचायत), अनुच्छेद 43 (कुटीर उद्योग) और अनुच्छेद 47 (मद्यपान निषेध)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महात्मा गांधी के सपनों के भारत को साकार करने वाले ये अनुच्छेद गांधीवादी तत्त्व कहलाते हैं।"
+            },
+            {
+                q: "राष्ट्रपति के त्यागपत्र की सूचना उपराष्ट्रपति तुरंत किसे देते हैं?",
+                options: ["लोकसभा अध्यक्ष (Speaker of Lok Sabha)", "भारत के मुख्य न्यायाधीश", "प्रधानमंत्री को", "मुख्य निर्वाचन आयुक्त को"],
+                correctText: "लोकसभा अध्यक्ष (Speaker of Lok Sabha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 56(2) के अनुसार उपराष्ट्रपति राष्ट्रपति के इस्तीफे की खबर तुरंत लोकसभा स्पीकर को देते हैं।"
+            },
+            {
+                q: "राष्ट्रपति की मृत्यु या त्यागपत्र के कारण पद रिक्त होने पर कार्यवाहक राष्ट्रपति का कार्यभार अधिकतम कितने समय तक रह सकता है?",
+                options: ["6 माह तक (6 माह में चुनाव अनिवार्य)", "1 वर्ष तक", "3 माह तक", "अनिश्चितकाल तक"],
+                correctText: "6 माह तक (6 माह में चुनाव अनिवार्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 62(2) के अनुसार 6 माह के अंदर नए राष्ट्रपति का चुनाव कराना अनिवार्य है।"
+            },
+            {
+                q: "यदि राष्ट्रपति और उपराष्ट्रपति दोनों का पद एक साथ रिक्त हो जाए, तो राष्ट्रपति के रूप में कौन कार्य करता है?",
+                options: ["भारत के मुख्य न्यायाधीश (Chief Justice of India)", "लोकसभा अध्यक्ष", "वरिष्ठतम राज्यपाल", "प्रधानमंत्री"],
+                correctText: "भारत के मुख्य न्यायाधीश (Chief Justice of India)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1969 में एम. हिदायतुल्ला (CJI) ने राष्ट्रपति पद का कार्यभार संभाला था।"
+            },
+            {
+                q: "संविधान के किस अनुच्छेद के तहत राष्ट्रपति को सर्वोच्च न्यायालय से परामर्श लेने की शक्ति प्राप्त है?",
+                options: ["अनुच्छेद 143", "अनुच्छेद 136", "अनुच्छेद 131", "अनुच्छेद 124"],
+                correctText: "अनुच्छेद 143",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 143 के तहत राष्ट्रपति विधि या तथ्य के प्रश्न पर सुप्रीम कोर्ट से राय माँग सकते हैं।"
+            },
+            {
+                q: "संविधान के किस संशोधन द्वारा यह तय किया गया कि राष्ट्रपति मन्त्रिपरिषद द्वारा दी गई सलाह को एक बार पुनर्विचार के लिए भेज सकते हैं?",
+                options: ["44वाँ संविधान संशोधन 1978", "42वाँ संशोधन 1976", "91वाँ संशोधन", "86वाँ संशोधन"],
+                correctText: "44वाँ संविधान संशोधन 1978",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 44वें संशोधन ने राष्ट्रपति को सलाह पुनर्विचार हेतु वापस भेजने का अधिकार दिया, परंतु दोबारा सलाह देने पर मानना बाध्यकारी है।"
+            },
+            {
+                q: "राज्यसभा का पहली बार गठन कब हुआ था?",
+                options: ["3 अप्रैल 1952", "15 अगस्त 1947", "26 जनवरी 1950", "13 मई 1952"],
+                correctText: "3 अप्रैल 1952",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राज्यसभा का सर्वप्रथम गठन 3 अप्रैल 1952 को हुआ तथा पहली बैठक 13 मई 1952 को हुई।"
+            },
+            {
+                q: "संसद के किसी सदन के सदस्य की योग्यता/अयोग्यता संबंधी विवादों का निपटारा दलबदल के मामले में कौन करता है?",
+                options: ["संबंधित सदन का पीठासीन अधिकारी (अध्यक्ष या सभापति)", "सर्वोच्च न्यायालय", "राष्ट्रपति", "निर्वाचन आयोग"],
+                correctText: "संबंधित सदन का पीठासीन अधिकारी (अध्यक्ष या सभापति)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दलबदल (10वीं अनुसूची) का फैसला स्पीकर/चेयरमैन करते हैं।"
+            },
+            {
+                q: "लोकसभा का विघटन होने पर कौन सा विधेयक व्यपगत (Lapse) नहीं होता?",
+                options: ["राज्यसभा में लंबित विधेयक जो लोकसभा द्वारा पारित न किया गया हो", "लोकसभा में लंबित सभी विधेयक", "लोकसभा से पारित परंतु राज्यसभा में लंबित विधेयक", "राष्ट्रपति के पास लंबित विधेयक"],
+                correctText: "राज्यसभा में लंबित विधेयक जो लोकसभा द्वारा पारित न किया गया हो",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जो विधेयक राज्यसभा में ही उत्पन्न हुआ और अभी लोकसभा नहीं गया, वह लोकसभा भंग होने पर समाप्त नहीं होता।"
+            },
+            {
+                q: "संसद में बजट प्रस्तुत किए जाने के बाद 'लेखा अनुदान' (Vote on Account) क्यों पास कराया जाता है?",
+                options: ["बजट पारित होने तक के अस्थायी व्यय हेतु (अनुच्छेद 116)", "आकस्मिक संकट हेतु", "ऋण चुकाने हेतु", "कर वसूलने हेतु"],
+                correctText: "बजट पारित होने तक के अस्थायी व्यय हेतु (अनुच्छेद 116)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बजट पास होने में समय लगता है; अतः 2 महीने के खर्च के लिए एडवांस वोट ऑन एकाउंट पास किया जाता है।"
+            },
+            {
+                q: "संविधान के अनुच्छेद 249 के तहत यदि राज्यसभा राष्ट्रहित में राज्य सूची के विषय पर कानून बनाने का संकल्प पारित करती है, तो उसकी वैधता कितने समय तक होती है?",
+                options: ["1 वर्ष तक (एक बार में)", "6 महीने तक", "2 वर्ष तक", "अनिश्चितकाल तक"],
+                correctText: "1 वर्ष तक (एक बार में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 249 के तहत पास संकल्प 1 वर्ष के लिए मान्य होता है जिसे राज्यसभा आगे बढ़ा सकती है।"
+            },
+            {
+                q: "अखिल भारतीय सेवाओं (All India Services - जैसे IAS, IPS, IFS) के सृजन का विशेष अधिकार किसे प्राप्त है?",
+                options: ["राज्यसभा को (अनुच्छेद 312 के तहत 2/3 बहुमत से)", "लोकसभा को", "राष्ट्रपति को", "संघ लोक सेवा आयोग को"],
+                correctText: "राज्यसभा को (अनुच्छेद 312 के तहत 2/3 बहुमत से)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नई ऑल इंडिया सेवा शुरू करने का अनन्य अधिकार केवल राज्यसभा के पास (अनुच्छेद 312) है।"
+            }
+        ];
+
+        let quizDataPolity3 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity3 = rawQuizDataPolity3.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // तुरंत जिले भरने के लिए
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity3;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp3_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp3_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 3 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 3 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* नीति निदेशक तत्त्व, मूल कर्तव्य, कार्यपालिका एवं संसद\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp3.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp3_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
