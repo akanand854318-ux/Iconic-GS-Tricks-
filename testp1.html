@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Polity - Mock Test 1 (संविधान सभा, उद्देशिका एवं विदेशी स्रोत) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">भारतीय राजव्यवस्था - मॉक टेस्ट 1 (संविधान सभा, उद्देशिका एवं स्रोत)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Polity Test 1)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Indian Polity - Test 1 (संविधान सभा, उद्देशिका एवं विदेशी स्रोत)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // भारतीय राजव्यवस्था: संविधान सभा, विशेषताएँ, उद्देशिका, समितियाँ, विदेशी स्रोत, कथन व मंत्रिमंडल (100 अति-महत्वपूर्ण प्रश्न)
+        const rawQuizDataPolity1 = [
+            {
+                q: "भारतीय संविधान सभा (Constituent Assembly) का गठन किस योजना के प्रस्तावों के तहत किया गया था?",
+                options: ["कैबिनेट मिशन योजना (1946)", "क्रिप्स मिशन (1942)", "वेवेल योजना (1945)", "माउंटबेटन योजना (1947)"],
+                correctText: "कैबिनेट मिशन योजना (1946)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत की संविधान सभा का गठन कैबिनेट मिशन (1946) की संस्तुतियों के आधार पर किया गया था, जिसमें कुल 389 सदस्य निर्धारित किए गए थे।"
+            },
+            {
+                q: "संविधान सभा की प्रथम बैठक कब आयोजित की गई थी?",
+                options: ["9 दिसंबर 1946", "11 दिसंबर 1946", "13 दिसंबर 1946", "26 जनवरी 1950"],
+                correctText: "9 दिसंबर 1946",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा की पहली बैठक 9 दिसंबर 1946 को हुई जिसमें डॉ. सच्चिदानंद सिन्हा को अस्थायी अध्यक्ष चुना गया।"
+            },
+            {
+                q: "संविधान सभा के स्थायी अध्यक्ष (Permanent Chairman) किसे चुना गया था?",
+                options: ["डॉ. राजेन्द्र प्रसाद", "डॉ. भीमराव अंबेडकर", "जवाहरलाल नेहरू", "सच्चिदानंद सिन्हा"],
+                correctText: "डॉ. राजेन्द्र प्रसाद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 11 दिसंबर 1946 को हुई दूसरी बैठक में डॉ. राजेन्द्र प्रसाद को संविधान सभा का स्थायी अध्यक्ष चुना गया।"
+            },
+            {
+                q: "संविधान सभा में 'उद्देश्य प्रस्ताव' (Objectives Resolution) किसने प्रस्तुत किया था?",
+                options: ["पं. जवाहरलाल नेहरू", "सरदार वल्लभभाई पटेल", "डॉ. बी.आर. अंबेडकर", "बी.एन. राऊ"],
+                correctText: "पं. जवाहरलाल नेहरू",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जवाहरलाल नेहरू ने 13 दिसंबर 1946 को ऐतिहासिक 'उद्देश्य प्रस्ताव' पेश किया, जो आगे चलकर संविधान की प्रस्तावना बना।"
+            },
+            {
+                q: "भारतीय संविधान के निर्माण में कुल कितना समय लगा था?",
+                options: ["2 वर्ष 11 महीने 18 दिन", "3 वर्ष 2 महीने 15 दिन", "2 वर्ष 5 महीने 5 दिन", "1 वर्ष 10 महीने 10 दिन"],
+                correctText: "2 वर्ष 11 महीने 18 दिन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान को तैयार करने में 2 वर्ष 11 महीने और 18 दिन का समय लगा था।"
+            },
+            {
+                q: "संविधान सभा की 'प्रारूप समिति' (Drafting Committee) के अध्यक्ष कौन थे?",
+                options: ["डॉ. भीमराव अंबेडकर", "अल्लादी कृष्णस्वामी अय्यर", "के.एम. मुंशी", "एन. गोपालस्वामी आयंगर"],
+                correctText: "डॉ. भीमराव अंबेडकर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 29 अगस्त 1947 को गठित सबसे महत्वपूर्ण प्रारूप (ड्राफ्टिंग) समिति के अध्यक्ष डॉ. बी.आर. अंबेडकर थे, जिसमें कुल 7 सदस्य थे।"
+            },
+            {
+                q: "संघीय संविधान समिति (Union Constitution Committee) के अध्यक्ष कौन थे?",
+                options: ["जवाहरलाल नेहरू", "सरदार वल्लभभाई पटेल", "जे.बी. कृपलानी", "डॉ. राजेन्द्र प्रसाद"],
+                correctText: "जवाहरलाल नेहरू",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संघ शक्ति समिति और संघीय संविधान समिति दोनों के अध्यक्ष पं. जवाहरलाल नेहरू थे।"
+            },
+            {
+                q: "प्रांतीय संविधान समिति (Provincial Constitution Committee) के अध्यक्ष कौन थे?",
+                options: ["सरदार वल्लभभाई पटेल", "डॉ. राजेन्द्र प्रसाद", "अंबेडकर जी", "पट्टाभि सीतारमैया"],
+                correctText: "सरदार वल्लभभाई पटेल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रांतीय संविधान समिति तथा मौलिक अधिकार एवं अल्पसंख्यक समिति के अध्यक्ष सरदार वल्लभभाई पटेल थे।"
+            },
+            {
+                q: "संचालन समिति (Steering Committee) के अध्यक्ष कौन थे?",
+                options: ["डॉ. राजेन्द्र प्रसाद", "जवाहरलाल नेहरू", "के.एम. मुंशी", "गोपीनाथ बर्दलोई"],
+                correctText: "डॉ. राजेन्द्र प्रसाद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संचालन समिति, प्रक्रिया नियम समिति और झंडा समिति के अध्यक्ष डॉ. राजेन्द्र प्रसाद थे।"
+            },
+            {
+                q: "भारतीय संविधान को अंगीकृत (Adopt) कब किया गया था?",
+                options: ["26 नवंबर 1949", "26 जनवरी 1950", "15 अगस्त 1947", "26 जनवरी 1949"],
+                correctText: "26 नवंबर 1949",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान को 26 नवंबर 1949 को अंगीकृत, अधिनियमित और आत्मार्पित किया गया था, जिस दिन इसके कुछ अनुच्छेद लागू हुए थे।"
+            },
+            {
+                q: "संपूर्ण भारतीय संविधान कब पूर्ण रूप से लागू हुआ?",
+                options: ["26 जनवरी 1950", "26 नवंबर 1949", "15 अगस्त 1947", "26 जनवरी 1948"],
+                correctText: "26 जनवरी 1950",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऐतिहासिक महत्व (1930 पूर्ण स्वराज दिवस) के कारण 26 जनवरी 1950 को पूरा संविधान लागू किया गया और गणतंत्र दिवस घोषित हुआ।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में अब तक कुल कितनी बार संशोधन किया गया है?",
+                options: ["केवल एक बार (42वाँ संविधान संशोधन 1976)", "दो बार", "तीन बार", "एक बार भी नहीं"],
+                correctText: "केवल एक बार (42वाँ संविधान संशोधन 1976)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में 1976 के 42वें संशोधन द्वारा 'समाजवादी', 'पंथनिरपेक्ष' और 'अखंडता' शब्द जोड़े गए थे।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में स्वतंत्रता, समानता और बंधुत्व के आदर्श किस देश के संविधान से लिए गए हैं?",
+                options: ["फ्रांसीसी क्रांति (France)", "रूसी क्रांति", "अमेरिकी स्वतंत्रता", "आयरिश संविधान"],
+                correctText: "फ्रांसीसी क्रांति (France)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में स्वतंत्रता, समानता और बंधुत्व (Liberty, Equality, Fraternity) के आदर्श फ्रांस की क्रांति से प्रेरित हैं।"
+            },
+            {
+                q: "भारतीय संविधान में 'मौलिक अधिकार' (Fundamental Rights) किस देश के संविधान से लिए गए हैं?",
+                options: ["संयुक्त राज्य अमेरिका (USA)", "ब्रिटेन", "सोवियत संघ (USSR)", "कनाडा"],
+                correctText: "संयुक्त राज्य अमेरिका (USA)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग-III में वर्णित मौलिक अधिकार अमेरिकी संविधान (Bill of Rights) से लिए गए हैं।"
+            },
+            {
+                q: "राज्य के नीति निर्देशक तत्व (Directive Principles of State Policy - DPSP) किस देश से लिए गए हैं?",
+                options: ["आयरलैंड (Ireland)", "ऑस्ट्रेलिया", "जर्मनी", "दक्षिण अफ्रीका"],
+                correctText: "आयरलैंड (Ireland)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीति निर्देशक तत्व आयरलैंड के संविधान से लिए गए हैं (जिन्हें आयरलैंड ने स्पेन से लिया था)।"
+            },
+            {
+                q: "भारतीय संविधान में 'संशोधन की प्रक्रिया' (Constitutional Amendment) का प्रावधान किस देश से लिया गया है?",
+                options: ["दक्षिण अफ्रीका (South Africa)", "कनाडा", "ब्रिटेन", "ऑस्ट्रेलिया"],
+                correctText: "दक्षिण अफ्रीका (South Africa)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग XX के अनुच्छेद 368 में वर्णित संविधान संशोधन की प्रक्रिया दक्षिण अफ्रीका के संविधान से ली गई है।"
+            },
+            {
+                q: "समवर्ती सूची (Concurrent List) का प्रावधान किस देश के संविधान से लिया गया है?",
+                options: ["ऑस्ट्रेलिया (Australia)", "कनाडा", "जर्मनी", "रूस"],
+                correctText: "ऑस्ट्रेलिया (Australia)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समवर्ती सूची तथा संसद के दोनों सदनों की संयुक्त बैठक का प्रावधान ऑस्ट्रेलिया के संविधान से लिया गया है।"
+            },
+            {
+                q: "भारतीय संविधान में 'आपातकालीन उपबंध' (Emergency Provisions) मुख्य रूप से कहाँ से प्रभावित हैं?",
+                options: ["जर्मनी का वाइमर संविधान (Weimar Constitution)", "अमेरिका", "ब्रिटेन", "कनाडा"],
+                correctText: "जर्मनी का वाइमर संविधान (Weimar Constitution)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आपातकाल के दौरान मौलिक अधिकारों के स्थगन जैसे प्रावधान जर्मनी के वाइमर संविधान से लिए गए हैं।"
+            },
+            {
+                q: "भारतीय संविधान में 'मौलिक कर्तव्यों' (Fundamental Duties) को किस समिति की सिफारिश पर जोड़ा गया था?",
+                options: ["स्वर्ण सिंह समिति (Swaran Singh Committee)", "सरकारी आयोग", "बलवंत राय मेहता समिति", "पुंछी आयोग"],
+                correctText: "स्वर्ण सिंह समिति (Swaran Singh Committee)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन (1976) द्वारा स्वर्ण सिंह समिति की सिफारिश पर भाग-IVक में मौलिक कर्तव्यों (रूस से प्रेरित) को जोड़ा गया।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना को 'संविधान की राजनीतिक जन्मकुंडली' (Political Horoscope) किसने कहा था?",
+                options: ["के.एम. मुंशी (K.M. Munshi)", "ठाकुर दास भार्गव", "एन.ए. पालखीवाला", "सर अल्लादी कृष्णस्वामी अय्यर"],
+                correctText: "के.एम. मुंशी (K.M. Munshi)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• के.एम. मुंशी ने प्रस्तावना को 'राजनीतिक जन्मकुंडली' कहा था, जबकि पालखीवाला ने 'परिचय पत्र'। यहाँ ठाकुर दास भार्गव ने इसे 'आत्मा' कहा था।"
+            },
+            {
+                q: "डॉ. बी.आर. अंबेडकर ने भारतीय संविधान के किस अनुच्छेद को 'संविधान का हृदय और आत्मा' (Heart and Soul of the Constitution) कहा था?",
+                options: ["अनुच्छेद 32 (संवैधानिक उपचारों का अधिकार)", "अनुच्छेद 21", "अनुच्छेद 19", "प्रस्तावना"],
+                correctText: "अनुच्छेद 32 (संवैधानिक उपचारों का अधिकार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डॉ. अंबेडकर के अनुसार अनुच्छेद 32 संविधान का सबसे महत्वपूर्ण अनुच्छेद है क्योंकि इसके बिना संविधान अर्थहीन है।"
+            },
+            {
+                q: "स्वतंत्र भारत का पहला मंत्रिमंडल (1947) में गृह, सूचना एवं प्रसारण मंत्री किसे बनाया गया था?",
+                options: ["सरदार वल्लभभाई पटेल", "जवाहरलाल नेहरू", "डॉ. राजेंद्र प्रसाद", "मौलाना अब्दुल कलाम आज़ाद"],
+                correctText: "सरदार वल्लभभाई पटेल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1947 के पहले मंत्रिमंडल में सरदार पटेल देश के पहले गृह, सूचना एवं प्रसारण और रियासत विभाग के मंत्री बने थे।"
+            },
+            {
+                q: "स्वतंत्र भारत के पहले मंत्रिमंडल (1947) में रक्षा मंत्री (Defense Minister) कौन थे?",
+                options: ["बलदेव सिंह", "जॉन मथाई", "आर.के. षण्मुखम चेट्टी", "जगजीवन राम"],
+                correctText: "बलदेव सिंह",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्वतंत्र भारत के पहले रक्षा मंत्री सरदार बलदेव सिंह थे।"
+            },
+            {
+                q: "स्वतंत्र भारत के पहले वित्त मंत्री (Finance Minister) कौन थे?",
+                options: ["आर.के. षण्मुखम चेट्टी", "जॉन मथाई", "सी. राजगोपालाचारी", "लियाकत अली खान"],
+                correctText: "आर.के. षण्मुखम चेट्टी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्वतंत्र भारत का पहला केंद्रीय बजट आर.के. षण्मुखम चेट्टी ने प्रस्तुत किया था।"
+            },
+            {
+                q: "स्वतंत्रता से पूर्व गठित 'अंतरिम मंत्रिमंडल (1946)' में वित्त विभाग (Finance Department) किसके पास था?",
+                options: ["लियाकत अली खान (मुस्लिम लीग)", "आर.के. षण्मुखम चेट्टी", "जवाहरलाल नेहरू", "वल्लभभाई पटेल"],
+                correctText: "लियाकत अली खान (मुस्लिम लीग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1946 की अंतरिम सरकार में मुस्लिम लीग के शामिल होने पर लियाकत अली खान को वित्त विभाग सौंपा गया था।"
+            },
+            {
+                q: "भारतीय संविधान की 'संशोधन की शक्ति' और प्रक्रिया का वर्णन किस भाग में है?",
+                options: ["भाग XX (अनुच्छेद 368)", "भाग III", "भाग XVIII", "भाग IX"],
+                correctText: "भाग XX (अनुच्छेद 368)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग 20 के अनुच्छेद 368 में संविधान संशोधन की प्रक्रिया का उल्लेख है।"
+            },
+            {
+                q: "संविधान सभा के संवैधानिक सलाहकार (Constitutional Advisor) कौन थे?",
+                options: ["बी.एन. राऊ (B.N. Rau)", "एस.एन. मुखर्जी", "एच.वी.आर. अयंगर", "प्रेम बिहारी रायजादा"],
+                correctText: "बी.एन. राऊ (B.N. Rau)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर बेनेगल नरसिंह राव (बी.एन. राऊ) संविधान सभा के कानूनी/संवैधानिक सलाहकार थे।"
+            },
+            {
+                q: "मूल संविधान में कुल कितने अनुच्छेद और अनुसूचियाँ थीं?",
+                options: ["395 अनुच्छेद, 8 अनुसूचियाँ (22 भाग)", "448 अनुच्छेद, 12 अनुसूचियाँ", "395 अनुच्छेद, 12 अनुसूचियाँ", "500 अनुच्छेद, 10 अनुसूचियाँ"],
+                correctText: "395 अनुच्छेद, 8 अनुसूचियाँ (22 भाग)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल संविधान में 395 अनुच्छेद, 22 भाग और 8 अनुसूचियाँ थीं, जो वर्तमान में बढ़कर 12 अनुसूचियाँ हो गई हैं।"
+            },
+            {
+                q: "भारतीय संविधान की कौन सी अनुसूची विभिन्न राज्यों तथा संघ राज्यक्षेत्रों के राज्यसभा में स्थानों के आवंटन से संबंधित है?",
+                options: ["चौथी अनुसूची (4th Schedule)", "दूसरी अनुसूची", "तीसरी अनुसूची", "छठी अनुसूची"],
+                correctText: "चौथी अनुसूची (4th Schedule)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान की चौथी अनुसूची में राज्यसभा की सीटों का राज्यों व संघ क्षेत्रों में आबंटन दिया गया है।"
+            },
+            {
+                q: "संविधान की कौन सी अनुसूची 'ददल बदल विरोधी कानून' (Anti-Defection Law) से संबंधित है?",
+                options: ["दसवीं अनुसूची (10th Schedule - 52वाँ संशोधन 1985)", "नौवीं अनुसूची", "ग्यारहवीं अनुसूची", "आठवीं अनुसूची"],
+                correctText: "दसवीं अनुसूची (10th Schedule - 52वाँ संशोधन 1985)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1985 के 52वें संशोधन द्वारा जोड़ी गई दसवीं अनुसूची दल-बदल के आधार पर अयोग्यता से संबंधित है।"
+            },
+            {
+                q: "भारतीय संविधान की आठवीं अनुसूची में कुल कितनी भाषाओं को मान्यता दी गई है?",
+                options: ["22 भाषाएँ", "14 भाषाएँ", "18 भाषाएँ", "25 भाषाएँ"],
+                correctText: "22 भाषाएँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल रूप से 8वीं अनुसूची में 14 भाषाएँ थीं, जिन्हें संशोधनों द्वारा बढ़ाकर वर्तमान में 22 कर दिया गया है।"
+            },
+            {
+                q: "पंचायती राज संस्थाओं को संवैधानिक दर्जा किस संविधान संशोधन द्वारा प्रदान किया गया?",
+                options: ["73वाँ संविधान संशोधन (1992)", "74वाँ संविधान संशोधन", "42वाँ संशोधन", "86वाँ संशोधन"],
+                correctText: "73वाँ संविधान संशोधन (1992)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 73वें संशोधन द्वारा ग्यारहवीं अनुसूची जोड़ी गई जिसमें पंचायतों के लिए 29 कार्यक्षेत्र हैं।"
+            },
+            {
+                q: "नगरपालिकाओं (Urban Local Governments) को किस संविधान संशोधन द्वारा जोड़ा गया?",
+                options: ["74वाँ संविधान संशोधन (1992 - बारहवीं अनुसूची)", "73वाँ संशोधन", "61वाँ संशोधन", "44वाँ संशोधन"],
+                correctText: "74वाँ संविधान संशोधन (1992 - बारहवीं अनुसूची)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 74वें संशोधन के तहत बारहवीं अनुसूची जोड़ी गई जिसमें नगरपालिकाओं के 18 विषय हैं।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद 'भारत को राज्यों का संघ' (Union of States) घोषित करता है?",
+                options: ["अनुच्छेद 1", "अनुच्छेद 2", "अनुच्छेद 3", "अनुच्छेद 5"],
+                correctText: "अनुच्छेद 1",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भाग-1 के अंतर्गत अनुच्छेद 1 कहता है कि 'इंडिया, अर्थात भारत, राज्यों का एक संघ होगा' (Union of States)।"
+            },
+            {
+                q: "नए राज्यों का निर्माण या उनके क्षेत्रों/नामों में परिवर्तन करने की शक्ति किसमें निहित है?",
+                options: ["भारतीय संसद (Parliament)", "केवल राष्ट्रपति", "संबंधित राज्य की विधानसभा", "सर्वोच्च न्यायालय"],
+                correctText: "भारतीय संसद (Parliament)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 3 के तहत संसद साधारण बहुमत से नए राज्यों का गठन या सीमा परिवर्तन कर सकती है।"
+            },
+            {
+                q: "भारतीय संविधान में 'एकल नागरिकता' (Single Citizenship) की अवधारणा किस देश से ली गई है?",
+                options: ["ब्रिटेन (Britain)", "अमेरिका", "कनाडा", "ऑस्ट्रेलिया"],
+                correctText: "ब्रिटेन (Britain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अमेरिका में दोहरी नागरिकता है, जबकि भारत में ब्रिटेन की तरह पूरे देश के लिए 'एकल नागरिकता' का प्रावधान है।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में निम्नलिखित में से किस न्याय (Justice) का उल्लेख नहीं किया गया है?",
+                options: ["धार्मिक न्याय (Religious Justice)", "सामाजिक न्याय", "आर्थिक न्याय", "राजनीतिक न्याय"],
+                correctText: "धार्मिक न्याय (Religious Justice)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में तीन प्रकार के न्याय की बात की गई है: सामाजिक, आर्थिक और राजनीतिक (धार्मिक न्याय नहीं)।"
+            },
+            {
+                q: "भारतीय संविधान में 'विधि के समक्ष समानता' (Rule of Law / Equality before Law) का विचार कहाँ से लिया गया है?",
+                options: ["ब्रिटेन (British Constitution)", "अमेरिका", "आयरलैंड", "फ्रांस"],
+                correctText: "ब्रिटेन (British Constitution)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 14 में वर्णित 'विधि के समता' का विचार ब्रिटिश संविधान से, जबकि 'विधियों का समान संरक्षण' अमेरिका से लिया गया है।"
+            },
+            {
+                q: "संविधान सभा के कुल कितने सत्र (Sessions) आयोजित हुए थे?",
+                options: ["11 सत्र (165 दिन बैठकें)", "12 सत्र", "9 सत्र", "15 सत्र"],
+                correctText: "11 सत्र (165 दिन बैठकें)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान निर्माण के दौरान संविधान सभा के कुल 11 सत्र हुए थे और लगभग 2 वर्ष 11 महीने 18 दिन लगे।"
+            },
+            {
+                q: "संविधान सभा द्वारा राष्ट्रीय ध्वज (Tricolor) को कब अपनाया गया था?",
+                options: ["22 जुलाई 1947", "15 अगस्त 1947", "26 जनवरी 1950", "24 जनवरी 1950"],
+                correctText: "22 जुलाई 1947",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा ने 22 जुलाई 1947 को राष्ट्रीय ध्वज को आधिकारिक रूप से अपनाया था।"
+            },
+            {
+                q: "संविधान सभा द्वारा राष्ट्रगान (Jana Gana Mana) कब अपनाया गया था?",
+                options: ["24 जनवरी 1950", "26 जनवरी 1950", "22 जुलाई 1947", "15 अगस्त 1947"],
+                correctText: "24 जनवरी 1950",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा की अंतिम बैठक 24 जनवरी 1950 को हुई, जिसमें 'जन गण मन' को राष्ट्रगान और 'वंदे मातरम्' को राष्ट्रगीत के रूप में अपनाया गया।"
+            },
+            {
+                q: "भारतीय संविधान को 'वकीलों का स्वर्ग' (Paradise of Lawyers) किसने कहा था?",
+                options: ["सर आइवर जेनिंग्स (Sir Ivor Jennings)", "के.सी. व्हेयर", "ग्रैनویل ऑस्टिन", "विंस्टन चर्चिल"],
+                correctText: "सर आइवर जेनिंग्स (Sir Ivor Jennings)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ब्रिटिश संविधान विशेषज्ञ आइवर जेनिंग्स ने भारतीय संविधान की जटिलता और विशालता को देखकर इसे 'वकीलों का स्वर्ग' कहा था।"
+            },
+            {
+                q: "के.सी. व्हेयर (K.C. Wheare) ने भारतीय संविधान को किस प्रकार का संविधान बताया है?",
+                options: ["अर्ध-संघीय (Quasi-Federal)", "पूर्ण संघीय", "एकात्मक", "परिवर्तनशील"],
+                correctText: "अर्ध-संघीय (Quasi-Federal)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• के.सी. व्हेयर ने भारतीय संविधान की प्रकृति को अर्ध-संघीय (Federal in form, unitary in spirit) कहा है।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा भाग 'संविधान की आत्मा' कहलाता है जब समग्र रूप से देखा जाए?",
+                options: ["प्रस्तावना (Preamble)", "भाग III", "भाग IV", "अनुच्छेद 32"],
+                correctText: "प्रस्तावना (Preamble)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ठाकुर दास भार्गव और सुप्रीम कोर्ट के कई निर्णयों में प्रस्तावना को संविधान की आत्मा माना गया है।"
+            },
+            {
+                q: "संविधान की प्रस्तावना में प्रयुक्त शब्द 'हम, भारत के लोग' (We, the people of India) क्या दर्शाता है?",
+                options: ["संविधान की सर्वोच्च शक्ति भारत की जनता में निहित है (Popular Sovereignty)", "संविधान ब्रिटिश संसद ने बनाया है", "राष्ट्रपति सर्वोच्च है", "न्यायपालिका सर्वोपरि है"],
+                correctText: "संविधान की सर्वोच्च शक्ति भारत की जनता में निहित है (Popular Sovereignty)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'हम भारत के लोग' यह स्पष्ट करता है कि संविधान का स्त्रोत भारत की जनता है और अंतिम शक्ति जनता के पास है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सी विशेषता भारतीय संविधान की नहीं है?",
+                options: ["अध्यक्षीय शासन प्रणाली (Presidential System)", "संंसदीय शासन प्रणाली", "स्वतंत्र न्यायपालिका", "लचीला एवं कठोर का मिश्रण"],
+                correctText: "अध्यक्षीय शासन प्रणाली (Presidential System)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में संसदीय शासन प्रणाली (Parliamentary System) अपनाई गई है, न कि अमेरिका जैसी अध्यक्षीय प्रणाली।"
+            },
+            {
+                q: "भारतीय संविधान के निर्माण के समय कुल कितनी रियासतें और ब्रिटिश प्रांत थे?",
+                options: ["ब्रिटिश भारत के प्रांत और देशी रियासतें", "292 ब्रिटिश प्रांत + 93 रियासतें (प्रारंभिक आंकड़े)", "500 रियासतें", "केवल ब्रिटिश प्रांत"],
+                correctText: "292 ब्रिटिश प्रांत + 93 रियासतें (प्रारंभिक आंकड़े)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल रूप से कैबिनेट मिशन योजना के तहत 293 ब्रिटिश प्रांत और 93 देशी रियासतों के प्रतिनिधियों का प्रावधान था।"
+            },
+            {
+                q: "संविधान सभा की प्रारूप समिति में डॉ. अंबेडकर के अलावा कुल कितने अन्य सदस्य थे?",
+                options: ["6 सदस्य (कुल 7)", "5 सदस्य", "8 सदस्य", "10 सदस्य"],
+                correctText: "6 सदस्य (कुल 7)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रारूप समिति में अध्यक्ष डॉ. अंबेडकर सहित कुल 7 सदस्य थे (एन. गोपालस्वामी, अल्लादी कृष्णस्वामी, के.एम. मुंशी, सैद मोहम्मद सादुल्लाह, एन. माधव राव, टी.टी. कृष्णमाचारी)।"
+            },
+            {
+                q: "मूल संविधान में कितनी अनुसूचियाँ थीं?",
+                options: ["8 अनुसूचियाँ", "12 अनुसूचियाँ", "10 अनुसूचियाँ", "6 अनुसूचियाँ"],
+                correctText: "8 अनुसूचियाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल संविधान में 8 अनुसूचियाँ थीं जो बाद में संविधान संशोधनों द्वारा बढ़कर 12 हो गईं।"
+            },
+            {
+                q: "भारतीय संविधान की नौवीं अनुसूची (9th Schedule) किस प्रधानमंत्री के कार्यकाल में जोड़ी गई थी?",
+                options: ["जवाहरलाल नेहरू (प्रथम संविधान संशोधन 1951)", "लाल बहादुर शास्त्री", "इंदिरा गांधी", "मोरारजी देसाई"],
+                correctText: "जवाहरलाल नेहरू (प्रथम संविधान संशोधन 1951)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रथम संविधान संशोधन 1951 द्वारा जोड़ी गई नौवीं अनुसूची भूमि सुधारों से संबंधित है जिसे न्यायिक समीक्षा से बाहर रखने का प्रयास किया गया था।"
+            },
+            {
+                q: "दल-बदल विरोधी कानून (Anti-Defection) किस संशोधन द्वारा और कौन सी अनुसूची में जोड़ा गया?",
+                options: ["52वाँ संशोधन 1985 (दसवीं अनुसूची)", "52वाँ संशोधन (नौवीं अनुसूची)", "61वाँ संशोधन", "73वाँ संशोधन"],
+                correctText: "52वाँ संशोधन 1985 (दसवीं अनुसूची)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राजीव गांधी सरकार के समय 52वें संशोधन (1985) द्वारा दसवीं अनुसूची जोड़ी गई।"
+            },
+            {
+                q: "भारतीय संविधान में न्यायिक पुनरावलोकन (Judicial Review) का सिद्धांत किस देश के संविधान से लिया गया है?",
+                options: ["संयुक्त राज्य अमेरिका (USA)", "ब्रिटेन", "ऑस्ट्रेलिया", "कनाडा"],
+                correctText: "संयुक्त राज्य अमेरिका (USA)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• न्यायिक पुनरावलोकन और मौलिक अधिकार अमेरिकी संविधान से लिए गए हैं।"
+            },
+            {
+                q: "भारतीय संविधान में राज्यपाल के पद की नियुक्ति (Governor's Appointment) की व्यवस्था किस देश से ली गई है?",
+                options: ["कनाडा (Canada)", "आयरलैंड", "ब्रिटेन", "ऑस्ट्रेलिया"],
+                correctText: "कनाडा (Canada)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मजबूत केंद्र के साथ संघीय व्यवस्था और राज्यपाल की नियुक्ति कनाडा के संविधान से ली गई है।"
+            },
+            {
+                q: "संविधान सभा के चुनाव में किस पार्टी को सबसे अधिक सीटें प्राप्त हुई थीं?",
+                options: ["भारतीय राष्ट्रीय कांग्रेस (Congress - 208 सीटें)", "मुलिम लीग", "निर्दलीय", "कम्युनिस्ट पार्टी"],
+                correctText: "भारतीय राष्ट्रीय कांग्रेस (Congress - 208 सीटें)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1946 के चुनाव में कांग्रेस ने 208 और मुस्लिम लीग ने 73 सीटें जीती थीं।"
+            },
+            {
+                q: "संविधान सभा की बैठकों में कुल कितनी महिला सदस्य शामिल थीं?",
+                options: ["15 महिला सदस्य", "10 महिला सदस्य", "25 महिला सदस्य", "5 महिला सदस्य"],
+                correctText: "15 महिला सदस्य",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा में कुल 15 महिला सदस्य थीं (जैसे सरोजिनी नायडू, हंसा मेहता, अम्मू स्वामीनाथन आदि)।"
+            },
+            {
+                q: "संविधान सभा के कामकाज के लिए कितनी मुख्य समितियाँ (Major Committees) बनाई गई थीं?",
+                options: ["8 मुख्य समितियाँ", "13 समितियाँ", "15 समितियाँ", "22 समितियाँ"],
+                correctText: "8 मुख्य समितियाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा ने कार्यों के संचालन के लिए 8 बड़ी (मुख्य) और कई छोटी समितियाँ बनाई थीं।"
+            },
+            {
+                q: "संसद के दोनों सदनों की संयुक्त बैठक (Joint Sitting) का प्रावधान किस अनुच्छेद के तहत है और यह किस देश से प्रेरित है?",
+                options: ["अनुच्छेद 108 (ऑस्ट्रेलिया से प्रेरित)", "अनुच्छेद 112", "अनुच्छेद 356", "अनुच्छेद 75"],
+                correctText: "अनुच्छेद 108 (ऑस्ट्रेलिया से प्रेरित)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 108 के तहत संयुक्त बैठक बुलाई जाती है जिसकी अध्यक्षता लोकसभा अध्यक्ष करते हैं और इसका स्रोत ऑस्ट्रेलिया है।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में स्वतंत्रता, समता और बंधुत्व का नारा किससे प्रभावित था?",
+                options: ["फ्रांसीसी क्रांति (1789)", "रूसी क्रांति (1917)", "अमेरिकी क्रांति (1776)", "औद्योगिक क्रांति"],
+                correctText: "फ्रांसीसी क्रांति (1789)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फ्रांसीसी क्रांति के ये तीन मुख्य आदर्श भारतीय प्रस्तावना की शोभा बढ़ाते हैं।"
+            },
+            {
+                q: "किस वाद में सुप्रीम कोर्ट ने यह स्पष्ट किया कि 'प्रस्तावना संविधान का मूल भाग है' (Preamble is an integral part of the Constitution)?",
+                options: ["केशवानंद भारती वाद (1973)", "बेरुबारी यूनियन वाद (1960)", "गोलकनाथ वाद", "मेनका गांधी वाद"],
+                correctText: "केशवानंद भारती वाद (1973)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1973 के ऐतिहासिक केशवानंद भारती मामले में सुप्रीम कोर्ट ने माना कि प्रस्तावना संविधान का अभिन्न अंग है।"
+            },
+            {
+                q: "बेरुबारी वाद (1960) में सुप्रीम कोर्ट ने प्रस्तावना के संबंध में क्या निर्णय दिया था?",
+                options: ["प्रस्तावना संविधान का भाग नहीं है", "प्रस्तावना में संशोधन हो सकता है", "प्रस्तावना सर्वोच्च है", "प्रस्तावना कानूनन बाध्‍य है"],
+                correctText: "प्रस्तावना संविधान का भाग नहीं है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1960 के बेरुबारी संघ मामले में सर्वोच्च न्यायालय ने कहा था कि प्रस्तावना संविधान का अंग नहीं है (जिसे 1973 में पलट दिया गया)।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में 'समाजवादी' (Socialist) और 'पंथनिरपेक्ष' (Secular) शब्द किस संशोधन द्वारा जोड़े गए?",
+                options: ["42वाँ संविधान संशोधन 1976", "44वाँ संविधान संशोधन 1978", "86वाँ संशोधन 2002", "103वाँ संशोधन"],
+                correctText: "42वाँ संविधान संशोधन 1976",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 42वें संशोधन (1976) द्वारा प्रस्तावना में समाजवादी, पंथनिरपेक्ष और अखंडता शब्द जोड़े गए।"
+            },
+            {
+                q: "स्वतंत्र भारत के प्रथम मंत्रिमंडल (1947) में शिक्षा मंत्री (Education Minister) कौन थे?",
+                options: ["मौलाना अबुल कलाम आजाद", "डॉ. राजेंद्र प्रसाद", "सरदार पटेल", "जॉन मथाई"],
+                correctText: "मौलाना अबुल कलाम आजाद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मौलाना अबुल कलाम आजाद स्वतंत्र भारत के पहले शिक्षा मंत्री थे।"
+            },
+            {
+                q: "स्वतंत्र भारत के प्रथम कानून मंत्री (Law Minister) कौन थे?",
+                options: ["डॉ. बी.आर. अंबेडकर", "अल्लादी कृष्णस्वामी", "जवाहरलाल नेहरू", "राजगोपालाचारी"],
+                correctText: "डॉ. बी.आर. अंबेडकर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डॉ. भीमराव अंबेडकर स्वतंत्र भारत के पहले कानून (विधि) मंत्री थे।"
+            },
+            {
+                q: "स्वतंत्र भारत के प्रथम रेल एवं परिवहन मंत्री कौन थे?",
+                options: ["जॉन मथाई", "बलदेव सिंह", "जगजीवन ram", "आर.के. चेट्टी"],
+                correctText: "जॉन मथाई",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डॉ. जॉन मथाई स्वतंत्र भारत के पहले रेलवे एवं परिवहन मंत्री थे।"
+            },
+            {
+                q: "स्वतंत्र भारत के पहले श्रम मंत्री (Labor Minister) कौन थे?",
+                options: ["जगजीवन राम", "आर.के. चेट्टी", "श्यामा प्रसाद मुखर्जी", "सी.एच. भाभा"],
+                correctText: "जगजीवन राम",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बाबू जगजीवन राम स्वतंत्र भारत के पहले श्रम मंत्री बने थे।"
+            },
+            {
+                q: "स्वतंत्रता से पूर्व 1946 की अंतरिम सरकार में रेल मंत्री का कार्यभार किसके पास था?",
+                options: ["आसफ अली", "जॉन मथाई", "बलदेव सिंह", "राजगोपालाचारी"],
+                correctText: "आसफ अली",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1946 की अंतरिम कैबिनेट में आसफ अली रेलवे और परिवहन विभाग संभाल रहे थे।"
+            },
+            {
+                q: "स्वतंत्रता पूर्व 1946 की अंतरिम सरकार में खाद्य एवं कृषि मंत्री कौन थे?",
+                options: ["डॉ. राजेंद्र प्रसाद", "सरदार पटेल", "सी. राजगोपालाचारी", "जगजीवन राम"],
+                correctText: "डॉ. राजेंद्र प्रसाद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतरिम मंत्रिमंडल में डॉ. राजेंद्र प्रसाद के पास खाद्य एवं कृषि विभाग था।"
+            },
+            {
+                q: "भारतीय संविधान को 'उधार का थैला' (Bag of Borrowings) कहने वाले आलोचक किस प्रकार देखते हैं?",
+                options: ["चूँकि इसमें दुनिया के विभिन्न संविधानों के श्रेष्ठ प्रावधानों को शामिल किया गया है", "चूँकि इसमें मौलिकता नहीं है", "चूँकि यह बहुत छोटा है", "चूँकि यह अंग्रेजी में है"],
+                correctText: "चूँकि इसमें दुनिया के विभिन्न संविधानों के श्रेष्ठ प्रावधानों को शामिल किया गया है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आलोचकों ने इसे 'उधार का थैला' कहा, हालांकि अंबेडकर जी ने कहा था कि दुनिया के संविधानों को छानकर हमने इसे बनाया है।"
+            },
+            {
+                q: "भारतीय संविधान का अधिकांश ढांचा (Structural Part) किस अधिनियम से लिया गया है?",
+                options: ["भारत शासन अधिनियम 1935 (Government of India Act 1935)", "1919 का अधिनियम", "1909 का मार्ley-मिंटो", "1858 का अधिनियम"],
+                correctText: "भारत शासन अधिनियम 1935 (Government of India Act 1935)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारतीय संविधान का लगभग दो-तिहाई हिस्सा 1935 के अधिनियम पर आधारित है (जैसे संघीय तंत्र, राज्यपाल का कार्यालय आदि)।"
+            },
+            {
+                q: "संविधान सभा की 'झंडा समिति' (Ad hoc Committee on National Flag) के अध्यक्ष कौन थे?",
+                options: ["डॉ. राजेन्द्र प्रसाद", "जे.बी. कृपलानी", "अंबेडकर जी", "के.एम. मुंशी"],
+                correctText: "डॉ. राजेन्द्र प्रसाद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तदर्थ झंडा समिति के अध्यक्ष डॉ. राजेन्द्र प्रसाद थे।"
+            },
+            {
+                q: "संविधान सभा द्वारा संविधान को कब पारित किया गया था जिससे संबंधित कार्यों की समाप्ति हुई?",
+                options: ["26 नवंबर 1949", "26 जनवरी 1950", "15 अगस्त 1947", "11 दिसंबर 1946"],
+                correctText: "26 नवंबर 1949",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 26 नवंबर 1949 को संविधान पारित और अंगीकृत हुआ।"
+            },
+            {
+                q: "भारतीय संविधान की कौन सी अनुसूची शपथ और प्रतिज्ञान (Oaths and Affirmations) के प्रारूप से संबंधित है?",
+                options: ["तीसरी अनुसूची (3rd Schedule)", "दूसरी अनुसूची", "चौथी अनुसूची", "पाँचवी अनुसूची"],
+                correctText: "तीसरी अनुसूची (3rd Schedule)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान की तीसरी अनुसूची में मंत्रियों, न्यायाधीशों और सांसदों आदि की शपथ के प्रारूप दिए गए हैं।"
+            },
+            {
+                q: "भारतीय संविधान की दूसरी अनुसूची किससे संबंधित है?",
+                options: ["प्रमुख पदाधिकारियों के वेतन, भत्ते और पेंशन", "शपथ", "राज्यसभा सीटें", "भाषाएँ"],
+                correctText: "प्रमुख पदाधिकारियों के वेतन, भत्ते और पेंशन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दूसरी अनुसूची राष्ट्रपति, राज्यपाल, सुप्रीम कोर्ट के जजों आदि के वेतन-भत्तों से जुड़ी है।"
+            },
+            {
+                q: "असम, मेघालय, त्रिपुरा और मिजोरम के जनजातीय क्षेत्रों के प्रशासन का प्रावधान किस अनुसूची में है?",
+                options: ["छठी अनुसूची (6th Schedule)", "पाँचवी अनुसूची", "ग्यारहवीं अनुसूची", "सातवीं अनुसूची"],
+                correctText: "छठी अनुसूची (6th Schedule)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• छठी अनुसूची पूर्वोत्तर के चार राज्यों (असम, मेघालय, त्रिपुरा, मिजोरम - AMTM) के जनजातीय क्षेत्रों के प्रशासन से संबंधित है।"
+            },
+            {
+                q: "संघ सूची, राज्य सूची और समवर्ती सूची का प्रावधान संविधान की किस अनुसूची में है?",
+                options: ["सातवीं अनुसूची (7th Schedule - Division of Powers)", "आठवीं अनुसूची", "नौवीं अनुसूची", "छठी अनुसूची"],
+                correctText: "सातवीं अनुसूची (7th Schedule - Division of Powers)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवीं अनुसूची केंद्र और राज्यों के बीच शक्तियों का बँटवारा करती है जिसमें तीन सूचियाँ हैं।"
+            },
+            {
+                q: "मूल संविधान में संघ सूची, राज्य सूची और समवर्ती सूची में क्रमशः कितने विषय थे?",
+                options: ["97, 66 और 47 विषय", "100, 61 और 52", "88, 50 और 30", "90, 70 और 40"],
+                correctText: "97, 66 और 47 विषय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल रूप से संघ सूची में 97, राज्य में 66 और समवर्ती में 47 विषय थे (वर्तमान में 100, 61 और 52 हैं)।"
+            },
+            {
+                q: "भारतीय संविधान की प्रस्तावना में स्वतंत्रता के कितने प्रकार बताए गए हैं?",
+                options: ["पाँच प्रकार (विचार, अभिव्यक्ति, विश्वास, धर्म और उपासना)", "तीन प्रकार", "चार प्रकार", "दो प्रकार"],
+                correctText: "पाँच प्रकार (विचार, अभिव्यक्ति, विश्वास, धर्म और उपासना)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में पाँच प्रकार की स्वतंत्रता (Liberty of thought, expression, belief, faith and worship) का उल्लेख है।"
+            },
+            {
+                q: "प्रस्तावना में कितने प्रकार की समता (Equality) का उल्लेख है?",
+                options: ["दो प्रकार (प्रतिष्ठा और अवसर की समता)", "तीन प्रकार", "एक प्रकार", "चार प्रकार"],
+                correctText: "दो प्रकार (प्रतिष्ठा और अवसर की समता)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में प्रतिष्ठा (Status) और अवसर (Opportunity) की समता का प्रावधान है।"
+            },
+            {
+                q: "निम्नलिखित में से कौन सा देश 'लिखित संविधान' (Written Constitution) का सबसे पहला उदाहरण माना जाता है?",
+                options: ["संयुक्त राज्य अमेरिका (USA)", "ब्रिटेन", "भारत", "रूस"],
+                correctText: "संयुक्त राज्य अमेरिका (USA)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अमेरिका का संविधान विश्व का सबसे पहला आधुनिक लिखित संविधान है, जबकि ब्रिटेन का संविधान अलिखित है।"
+            },
+            {
+                q: "विश्व का सबसे बड़ा लिखित संविधान किस देश का है?",
+                options: ["भारत (India)", "अमेरिका", "चीन", "कनाडा"],
+                correctText: "भारत (India)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का संविधान विश्व का सबसे विस्तृत और बड़ा लिखित संविधान है।"
+            },
+            {
+                q: "संविधान सभा की 'सलाहकार समिति' (Advisory Committee on Fundamental Rights, Minorities etc.) के अध्यक्ष कौन थे?",
+                options: ["सरदार वल्लभभाई पटेल", "जवाहरलाल नेहरू", "जे.बी. कृपलानी", "डॉ. राजेन्द्र प्रसाद"],
+                correctText: "सरदार वल्लभभाई पटेल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मौलिक अधिकारों और अल्पसंख्यकों से जुड़ी सलाहकार समिति के अध्यक्ष सरदार पटेल थे, जिनके अंतर्गत उप-समितियाँ थीं।"
+            },
+            {
+                q: "मौलिक अधिकार उपसमिति (Fundamental Rights Sub-Committee) के अध्यक्ष कौन थे?",
+                options: ["जे.बी. कृपलानी (J.B. Kripalani)", "एच.सी. मुखर्जी", "गोपीनाथ बर्दलोई", "अल्लादी कृष्णस्वामी"],
+                correctText: "जे.बी. कृपलानी (J.B. Kripalani)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जे.बी. कृपलानी मौलिक अधिकार उपसमिति के अध्यक्ष थे, जबकि अल्पसंख्यक उपसमिति के अध्यक्ष एच.सी. मुखर्जी थे।"
+            },
+            {
+                q: "संविधान के निर्माण के समय कुल कितनी रियासतें और ब्रिटिश प्रांत थे?",
+                options: ["ब्रिटिश भारत के प्रांत और देशी रियासतें", "292 ब्रिटिश प्रांत + 93 रियासतें (प्रारंभिक आंकड़े)", "500 रियासतें", "केवल ब्रिटिश प्रांत"],
+                correctText: "292 ब्रिटिश प्रांत + 93 रियासतें (प्रारंभिक आंकड़े)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मूल रूप से कैबिनेट मिशन योजना के तहत 293 ब्रिटिश प्रांत और 93 देशी रियासतों के प्रतिनिधियों का प्रावधान था।"
+            },
+            {
+                q: "संविधान सभा के कुल सदस्यों में से कितने सदस्य रियासतों से चुनकर आए थे?",
+                options: ["70 सदस्य (देशी रियासतें)", "296 सदस्य", "389 कुल", "93 सदस्य"],
+                correctText: "70 सदस्य (देशी रियासतें)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 389 सदस्यों में 292 ब्रिटिश प्रांतों से, 4 कमिश्नरी क्षेत्रों से और 93 (बाद में 70) रियासतों से थे।"
+            },
+            {
+                q: "कैबिनेट मिशन 1946 में कुल कितने सदस्य थे?",
+                options: ["3 सदस्य (पैंथिक लॉरेंस, स्टेफर्ड क्रिप्स, ए.वी. अलेक्जेंडर)", "4 सदस्य", "2 सदस्य", "5 सदस्य"],
+                correctText: "3 सदस्य (पैंथिक लॉरेंस, स्टेफर्ड क्रिप्स, ए.वी. अलेक्जेंडर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कैबिनेट मिशन में तीन कैबिनेट मंत्री थे: लॉर्ड पैंथिक लॉरेंस (अध्यक्ष), सर स्टेफर्ड क्रिप्स और ए.वी. अलेक्जेंडर।"
+            },
+            {
+                q: "संविधान सभा की कुल बैठकों में प्रारूप पर विचार करने के लिए कितना समय लगा?",
+                options: ["114 दिन", "100 दिन", "150 दिन", "60 दिन"],
+                correctText: "114 दिन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के प्रारूप (Draft) पर संविधान सभा में कुल 114 दिन बहस और विचार हुआ था।"
+            },
+            {
+                q: "संविधान सभा के कितने उपस्थित सदस्यों ने अंततः 26 नवंबर 1949 को संविधान पर हस्ताक्षर किए?",
+                options: ["284 सदस्य", "299 सदस्य", "389 सदस्य", "250 सदस्य"],
+                correctText: "284 सदस्य",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान सभा की अंतिम अवस्था में 299 सदस्य थे, जिनमें से 284 सदस्यों ने उपस्थित होकर संविधान पर हस्ताक्षर किए।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद सर्वोच्च न्यायालय को अभिलेख न्यायालय (Court of Record) घोषित करता है?",
+                options: ["अनुच्छेद 129", "अनुच्छेद 131", "अनुच्छेद 143", "अनुच्छेद 124"],
+                correctText: "अनुच्छेद 129",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अनुच्छेद 129 के तहत सुप्रीम कोर्ट एक 'अभिलेख न्यायालय' है जिसके फैसले दृष्टांत के रूप में माने जाते हैं और अवमानना पर सजा की शक्ति है।"
+            },
+            {
+                q: "भारतीय संविधान में संशोधन करने की पहल संसद के किस सदन में की जा सकती है?",
+                options: ["संसद के किसी भी सदन में (लोकसभा या राज्यसभा)", "केवल लोकसभा में", "केवल राज्यसभा में", "राज्य विधानसभाओं में"],
+                correctText: "संसद के किसी भी सदन में (लोकसभा या राज्यसभा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान संशोधन विधेयक संसद के किसी भी सदन (लोकसभा या राज्यसभा) में प्रस्तुत किया जा सकता है।"
+            },
+            {
+                q: "संविधान संशोधन विधेयक पर राष्ट्रपति की पूर्व अनुमति आवश्यक है?",
+                options: ["नहीं (राष्ट्रपति इसे पुनर्विचार के लिए नहीं लौटा सकते, 24वें संशोधन द्वारा अनिवार्य)", "हाँ, पहले लेनी पड़ती है", "केवल प्रधानमंत्री की अनुमति चाहिए", "सुप्रीम कोर्ट की अनुमति चाहिए"],
+                correctText: "नहीं (राष्ट्रपति इसे पुनर्विचार के लिए नहीं लौटा सकते, 24वें संशोधन द्वारा अनिवार्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान संशोधन विधेयक के लिए राष्ट्रपति की पूर्व अनुमति जरूरी नहीं होती, और 24वें संशोधन द्वारा राष्ट्रपति को हस्ताक्षर करना बाध्यकारी कर दिया गया है।"
+            },
+            {
+                q: "संसद द्वारा पारित संविधान संशोधन विधेयक पर राष्ट्रपति की क्या भूमिका होती है?",
+                options: ["हस्ताक्षर करना अनिवार्य है (वीटो पावर का प्रयोग नहीं कर सकते)", "वे इसे अनिश्चितकाल के लिए रोक सकते हैं", "वे लोकसभा भंग कर सकते हैं", "वे इसे जनमत संग्रह के लिए भेज सकते हैं"],
+                correctText: "हस्ताक्षर करना अनिवार्य है (वीटो पावर का प्रयोग नहीं कर सकते)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1971 के 24वें संशोधन के बाद से राष्ट्रपति संविधान संशोधन विधेयक पर अपनी स्वीकृति देने के लिए बाध्य हैं।"
+            },
+            {
+                q: "संविधान की प्रस्तावना में उल्लिखित 'बंधुत्व' (Fraternity) का मुख्य उद्देश्य क्या सुनिश्चित करना है?",
+                options: ["व्यक्ति की गरिमा और राष्ट्र की एकता एवं अखंडता", "केवल आर्थिक विकास", "सैन्य शक्ति बढ़ाना", "अंतर्राष्ट्रीय व्यापार"],
+                correctText: "व्यक्ति की गरिमा और राष्ट्र की एकता एवं अखंडता",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रस्तावना में बंधुत्व शब्द 'व्यक्ति की गरिमा (Dignity of the individual) और राष्ट्र की एकता व अखंडता (Unity and integrity of the Nation)' को सुनिश्चित करता है।"
+            },
+            {
+                q: "संविधान सभा के उद्घाटन सत्र में सबसे पहले भाषण किसने दिया था?",
+                options: ["जे.बी. कृपलानी", "जवाहरलाल नेहरू", "डॉ. सच्चिदानंद सिन्हा", "डॉ. राजेन्द्र प्रसाद"],
+                correctText: "जे.बी. कृपलानी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 9 दिसंबर 1946 को संविधान सभा की शुरुआत में आचार्य जे.बी. कृपलानी ने सबसे पहले स्वागत भाषण दिया था।"
+            },
+            {
+                q: "संविधान सभा के अस्थाई अध्यक्ष डॉ. सच्चिदानंद सिन्हा को किस आधार पर चुना गया था?",
+                options: ["सभा के सबसे वरिष्ठ (Senior-most) सदस्य होने के नाते (फ्रेंच परंपरा पर)", "सबसे कम उम्र के होने पर", "चुनाव जीतकर", "ब्रिटिश प्रधानमंत्री के आदेश पर"],
+                correctText: "सभा के सबसे वरिष्ठ (Senior-most) सदस्य होने के नाते (फ्रेंच परंपरा पर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फ्रांस की संसदीय परंपरा का पालन करते हुए सभा के सबसे बुजुर्ग सदस्य डॉ. सच्चिदानंद सिन्हा को अस्थायी अध्यक्ष बनाया गया था।"
+            },
+            {
+                q: "संविधान के किस भाग में संघ और राज्यों के बीच विधाई संबंधों (Legislative Relations) का वर्णन है?",
+                options: ["भाग XI (अनुच्छेद 245-255)", "भाग XII", "भाग XV", "भाग XVIII"],
+                correctText: "भाग XI (अनुच्छेद 245-255)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संविधान के भाग 11 (अनुच्छेद 245 से 255) में केंद्र और राज्यों के बीच विधाई संबंधों का विस्तार से उल्लेख है।"
+            },
+            {
+                q: "भारतीय संविधान में 'संसदीय विशेषाधिकार' (Parliamentary Privileges) की प्रेरणा किस देश से ली गई है?",
+                options: ["ब्रिटेन (Britain)", "अमेरिका", "ऑस्ट्रेलिया", "आयरलैंड"],
+                correctText: "ब्रिटेन (Britain)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• संसद और उसके सदस्यों के विशेषाधिकार ब्रिटिश संविधान और संसदीय परंपराओं से लिए गए हैं।"
+            },
+            {
+                q: "भारतीय संविधान का कौन सा अनुच्छेद सर्वोच्च न्यायालय को संविधान का 'रक्षक' (Guardian of the Constitution) बनाता है?",
+                options: ["अनुच्छेद 32 और अनुच्छेद 226", "अनुच्छेद 356", "अनुच्छेद 72", "अनुच्छेद 360"],
+                correctText: "अनुच्छेद 32 और अनुच्छेद 226",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सुप्रीम कोर्ट (अनुच्छेद 32) और हाईकोर्ट (अनुच्छेद 226) रिट जारी कर मौलिक अधिकारों और संविधान की रक्षा करते हैं।"
+            }
+        ];
+
+        let quizDataPolity1 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataPolity1 = rawQuizDataPolity1.map(item => {
+                let options = [...item.options];
+                // Shuffle options properly and track the new correct index
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataPolity1;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('testp1_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('testp1_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने पॉलिटी टेस्ट 1 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Indian Polity Test 1 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* संविधान सभा, उद्देशिका एवं विदेशी स्रोत\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/testp1.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('testp1_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
