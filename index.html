@@ -106,7 +106,1131 @@
     </a>
 </div>
 
+   <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Mock Test 4 (धार्मिक आंदोलन, महाजनपद, मौर्य, मौर्योत्तर व गुप्त साम्राज्य) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">प्राचीन इतिहास - मॉक टेस्ट 4 (धार्मिक आंदोलन, मौर्य, मौर्योत्तर व गुप्त साम्राज्य)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
                 </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (History Test 4)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Ancient History - Test 4 (धार्मिक आंदोलन, मौर्य, मौर्योत्तर व गुप्त)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // प्राचीन इतिहास - मॉक टेस्ट 4 (धार्मिक आंदोलन, महाजनपद, मौर्य, मौर्योत्तर व गुप्त साम्राज्य) - 100 प्रश्न
+        const rawQuizDataHistory4 = [
+            // --- छठी सदी ई.पू. के धार्मिक आंदोलन (जैन व बौद्ध धर्म, संगीतियाँ) (1-25) ---
+            {
+                q: "छठी शताब्दी ई.पू. में धार्मिक आंदोलनों के उदय का प्रमुख कारण क्या था?",
+                options: ["वैदिक कर्मकांडों की जटिलता, जटिल यज्ञ और शूद्रों की दयनीय स्थिति", "विदेशी व्यापार का पतन", "राजाओं का कमजोर होना", "संस्कृत भाषा का प्रसार"],
+                correctText: "वैदिक कर्मकांडों की जटिलता, जटिल यज्ञ और शूद्रों की दयनीय स्थिति",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर वैदिक काल के जटिल कर्मकांडों, पशुबलि और वर्ण व्यवस्था के विरुद्ध छठी सदी ई.पू. में जैन और बौद्ध जैसे सुधारवादी धर्म उभरे।"
+            },
+            {
+                q: "जैन धर्म के संस्थापक और प्रथम तीर्थंकर किन्हें माना जाता है?",
+                options: ["ऋषभदेव (आदिनाथ)", "महावीर स्वामी", "पार्श्वनाथ", "रिष्टनेमि"],
+                correctText: "ऋषभदेव (आदिनाथ)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जैन धर्म के प्रथम तीर्थंकर ऋषभदेव (आदिनाथ) थे, जबकि 24वें और अंतिम तीर्थंकर महावीर स्वामी थे।"
+            },
+            {
+                q: "जैन धर्म के 23वें तीर्थंकर कौन थे जिनका संबंध काशी से था?",
+                options: ["पार्श्वनाथ", "महावीर स्वामी", "अरिष्टनेमि", "संभवनाथ"],
+                correctText: "पार्श्वनाथ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पार्श्वनाथ जैन धर्म के 23वें तीर्थंकर थे जिन्होंने चार महाव्रत (अहिंसा, सत्य, अस्तेय, अपरिग्रह) दिए।"
+            },
+            {
+                q: "महावीर स्वामी का जन्म कहाँ हुआ था और उनका बचपन का नाम क्या था?",
+                options: ["कुण्डग्राम (वैशाली), बचपन का नाम वर्धमान था", "लुंबिनी, बचपन का नाम सिद्धार्थ", "सारनाथ, नाम गोतम", "पावापुरी, नाम ऋषभ"],
+                correctText: "कुण्डग्राम (वैशाली), बचपन का नाम वर्धमान था",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महावीर स्वामी का जन्म 540 ई.पू. में कुण्डग्राम (वैशाली) में ज्ञात्रिक क्षत्रिय कुल में हुआ था।"
+            },
+            {
+                q: "महावीर स्वामी को किस नदी के तट पर ज्ञान (कैवल्य) प्राप्त हुआ था?",
+                options: ["ऋजुपालिका नदी (سال नदी / Sal tree के नीचे)", "निरंजन नदी", "गंगा नदी", "यमुना नदी"],
+                correctText: "ऋजुपालिका नदी (سال नदी / Sal tree के नीचे)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जृंभिकग्राम के समीप ऋजुपालिका नदी के तट पर साल वृक्ष के नीचे महावीर जी को ज्ञान प्राप्त हुआ।"
+            },
+            {
+                q: "महावीर स्वामी ने जैन धर्म में कौन सा पाँचवाँ महाव्रत जोड़ा था?",
+                options: ["ब्रह्मचर्य", "सत्य", "अहिंसा", "अपरिग्रह"],
+                correctText: "ब्रह्मचर्य",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पार्श्वनाथ के चार व्रतों में महावीर स्वामी ने 'ब्रह्मचर्य' को पाँचवें महाव्रत के रूप में जोड़ा।"
+            },
+            {
+                q: "महावीर स्वामी का महापरिनिर्वाण (मृत्यु) किस स्थान पर हुआ था?",
+                options: ["पावापुरी (राजगीर के पास)", "कुशीनगर", "सारनाथ", "वैशाली"],
+                correctText: "पावापुरी (राजगीर के पास)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 468 ई.पू. में 72 वर्ष की आयु में पावापुरी (बिहार) में महावीर स्वामी को निर्वाण प्राप्त हुआ।"
+            },
+            {
+                q: "प्रथम जैन संगीति (Council) का आयोजन कहाँ हुआ था और इसके अध्यक्ष कौन थे?",
+                options: ["पाटलिपुत्र में (अध्यक्ष: स्थूलभद्र)", "वैशाली में", "वलभी में", "कुंडलवन में"],
+                correctText: "पाटलिपुत्र में (अध्यक्ष: स्थूलभद्र)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तीसरी शताब्दी ई.पू. में पाटलिपुत्र में स्थूलभद्र की अध्यक्षता में प्रथम जैन संगीति हुई जिसमें 12 अंगों का संकलन हुआ।"
+            },
+            {
+                q: "द्वितीय जैन संगीति का आयोजन वल्लभी (गुजरात) में किसकी अध्यक्षता में हुई थी?",
+                options: ["क्षमाश्रमण (देवर्षि क्षमाश्रमण)", "स्थूलभद्र", "भद्रबाहु", "संप्रति"],
+                correctText: "क्षमाश्रमण (देवर्षि क्षमाश्रमण)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• छठी शताब्दी ईस्वी में वल्लभी में द्वितीय जैन संगीति हुई जिसमें बचे हुए जैन ग्रंथों को अंतिम रूप दिया गया।"
+            },
+            {
+                q: "महात्मा बुद्ध का जन्म कब और कहाँ हुआ था?",
+                options: ["563 ई.पू. में लुंबिनी (कपिलवस्तु) में", "540 ई.पू. कुण्डग्राम", "483 ई.पू. कुशीनगर", "500 ई.पू. सारनाथ"],
+                correctText: "563 ई.पू. में लुंबिनी (कपिलवस्तु) में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गौतम बुद्ध का जन्म शाक्य वंश के क्षत्रिय कुल में लुंबिनी वन में हुआ था।"
+            },
+            {
+                q: "महात्मा बुद्ध को ज्ञान की प्राप्ति (संबाधि) किस नदी के तट पर और किस वृक्ष के नीचे हुई थी?",
+                options: ["निरंजना (फलता) नदी के तट पर पीपल वृक्ष (बोधि वृक्ष) के नीचे", "ऋजुपालिका नदी", "गंगा नदी", "सरयू नदी"],
+                correctText: "निरंजना (फलता) नदी के तट पर पीपल वृक्ष (बोधि वृक्ष) के नीचे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उरुवेला (बोधगया) में निरंजना नदी के तट पर पीपल वृक्ष के नीचे बुद्ध को ज्ञान प्राप्त हुआ।"
+            },
+            {
+                q: "महात्मा बुद्ध ने अपना प्रथम उपदेश (धर्मचक्रप्रवर्तन) कहाँ दिया था?",
+                options: ["सारनाथ (ऋषिपत्तनम / मृगदाव)", "बोधगया", "कुशीनगर", "श्रावस्ती"],
+                correctText: "सारनाथ (ऋषिपत्तनम / मृगदाव)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुद्ध ने अपने 5 साथियों को सारनाथ में पहला उपदेश दिया जिसे धर्मचक्रप्रवर्तन कहा गया।"
+            },
+            {
+                q: "बौद्ध धर्म की प्रथम संगीति (First Buddhist Council) का आयोजन किसके संरक्षण में हुआ था?",
+                options: ["अजातशत्रु (स्थान: सप्तपर्णी गुफा, राजगृह)", "कालाशोक", "अशोक", "कनिष्क"],
+                correctText: "अजातशत्रु (स्थान: सप्तपर्णी गुफा, राजगृह)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुद्ध की मृत्यु (483 ई.पू.) के तुरंत बाद राजगृह में अजातशत्रु के संरक्षण में महाकस्सप की अध्यक्षता में प्रथम संगीति हुई।"
+            },
+            {
+                q: "द्वितीय बौद्ध संगीति का आयोजन वैशाली में किसके शासनकाल में हुआ था?",
+                options: ["कालाशोक (शाशिका काल)", "अजातशत्रु", "अशोक", "कनिष्क"],
+                correctText: "कालाशोक (शाशिका काल)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 383 ई.पू. में वैशाली में शिशुनाग वंश के राजा कालाशोक के समय द्वितीय बौद्ध संगीति हुई।"
+            },
+            {
+                q: "तृतीय बौद्ध संगीति पाटलिपुत्र में किसके संरक्षण में आयोजित की गई थी?",
+                options: ["सम्राट अशोक (अध्यक्ष: मोग्गालिपुत्त तिस्स)", "अजातशत्रु", "कनिष्क", "बिम्बिसार"],
+                correctText: "सम्राट अशोक (अध्यक्ष: मोग्गालिपुत्त तिस्स)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 250 ई.पू. के लगभग पाटलिपुत्र में अशोक के समय तीसरी बौद्ध संगीति हुई जिसमें अभिधम्म पिटक जोड़ा गया।"
+            },
+            {
+                q: "चतुर्थ बौद्ध संगीति (Fourth Buddhist Council) कहाँ हुई थी और इसके अध्यक्ष कौन थे?",
+                options: ["कुंडलवन (कश्मीर), अध्यक्ष: वसुमित्र (उपाध्यक्ष: अश्वघोष)", "पाटलिपुत्र, अध्यक्ष: मोग्गालिपुत्त", "राजगृह, अध्यक्ष: महाकस्सप", "वैशाली, अध्यक्ष: सबाकामी"],
+                correctText: "कुंडलवन (कश्मीर), अध्यक्ष: वसुमित्र (उपाध्यक्ष: अश्वघोष)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुषाण राजा कनिष्क के शासनकाल में कुंडलवन (कश्मीर) में चतुर्थ बौद्ध संगीति हुई जिसमें बौद्ध धर्म हीनयान और महायान में बँट गया।"
+            },
+            {
+                q: "त्रिपिटक (Tripitaka) किस धर्म के प्रमुख ग्रंथ हैं और इनमें कौन शामिल नहीं है?",
+                options: ["बौद्ध धर्म (सुत्तपिटक, विनयपिटक, अभिधम्मपिटक - अंग इसमें शामिल नहीं)", "जैन धर्म", "वैदिक धर्म", "भागवत धर्म"],
+                correctText: "बौद्ध धर्म (सुत्तपिटक, विनयपिटक, अभिधम्मपिटक - अंग इसमें शामिल नहीं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• त्रिपिटक बौद्ध धर्म के तीन मुख्य ग्रंथ हैं। 'अंग' जैन साहित्य से संबंधित है।"
+            },
+            {
+                q: "महात्मा बुद्ध ने अपने सर्वाधिक उपदेश किस स्थान पर दिए थे?",
+                options: ["श्रावस्ती (कोशल की राजधानी)", "वैशाली", "राजगीर", "काशी"],
+                correctText: "श्रावस्ती (कोशल की राजधानी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुद्ध ने अपने जीवन के सबसे अधिक वर्षाकाल श्रावस्ती में बिताए और सर्वाधिक उपदेश वहीं दिए।"
+            },
+            {
+                q: "महापरिनिर्वाण (बुद्ध की मृत्यु) 483 ई.पू. में किस मल्लगढ़ राज्य में हुई थी?",
+                options: ["कुशीनगर (कुशीनारा)", "पावापुरी", "वैशाली", "कौशाम्बी"],
+                correctText: "कुशीनगर (कुशीनारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 80 वर्ष की आयु में मल्लों की राजधानी कुशीनगर में बुद्ध का महापरिनिर्वाण हुआ।"
+            },
+            {
+                q: "जैन धर्म के दो प्रमुख संप्रदाय कौन से हैं?",
+                options: ["श्वेतांबर और दिगंबर", "हीनयान और महायान", "स्थाविर और महासंघिक", "हीनयान और वज्रयान"],
+                correctText: "श्वेतांबर और दिगंबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्थूलभद्र के अनुयायी श्वेतांबर (श्वेत वस्त्र पहनने वाले) और भद्रबाहु के अनुयायी दिगंबर (नग्न रहने वाले) कहलाए।"
+            },
+            {
+                q: "बौद्ध धर्म के दो प्रमुख संप्रदाय कौन से हैं जो चतुर्थ संगीति के बाद स्पष्ट रूप से अलग हुए?",
+                options: ["हीनयान और महायान", "श्वेतांबर और दिगंबर", "महीशासक और चौरिक", "सर्वास्तिवाद और सौत्रान्तिक"],
+                correctText: "हीनयान और महायान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कनिष्क के समय बौद्ध धर्म रूढ़िवादी हीनयान और सुधारवादी महायान दो शाखाओं में विभाजित हो गया।"
+            },
+            {
+                q: "जैन धर्म के त्रिरत्नों (Three Jewels) में निम्नलिखित में से क्या शामिल नहीं है?",
+                options: ["सम्यक् दृष्टि (यह बौद्ध का है, जैन के त्रिरत्न: सम्यक् दर्शन, सम्यक् ज्ञान, सम्यक् चरित्र हैं)", "सम्यक् दर्शन", "सम्यक् ज्ञान", "सम्यक् चरित्र"],
+                correctText: "सम्यक् दृष्टि (यह बौद्ध का है, जैन के त्रिरत्न: सम्यक् दर्शन, सम्यक् ज्ञान, सम्यक् चरित्र हैं)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जैन त्रिरत्न हैं: सम्यक् दर्शन, सम्यक् ज्ञान और सम्यक् चरित्र। जबकि बौद्ध धर्म के त्रिरत्न हैं: बुद्ध, धम्म, संघ।"
+            },
+            {
+                q: "बौद्ध धर्म के अष्टांगिक मार्ग (Eightfold Path) का मुख्य उद्देश्य क्या था?",
+                options: ["मध्यम प्रतिपद् (Madhyama Pratipada) का पालन कर दुखों से मुक्ति पाना", "कठोर तपस्या करना", "जाति व्यवस्था मजबूत करना", "यज्ञ करना"],
+                correctText: "मध्यम प्रतिपद् (Madhyama Pratipada) का पालन कर दुखों से मुक्ति पाना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुद्ध ने अष्टमार्क (अष्टांगिक मार्ग) को मध्यम मार्ग बताया जिसके पालन से निर्वाण की प्राप्ति होती है।"
+            },
+            {
+                q: "आजीविका संप्रदाय (Ajivika Sect) के संस्थापक कौन थे?",
+                options: ["मक्खलि गोशाल (Makkhali Gosala)", "गोमटेश्वर", "पूर्ण कश्यप", "अजित केसकंपली"],
+                correctText: "मक्खलि गोशाल (Makkhali Gosala)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मक्खलि गोशाल ने 'नियतिवाद' (भाग्य ही सब कुछ है) पर आधारित आजीविका संप्रदाय की स्थापना की थी।"
+            },
+            {
+                q: "किस जैन तीर्थंकर को जैन परंपरा में 'स्त्री तीर्थंकर' (महिला तीर्थंकर) माना जाता है?",
+                options: ["मल्लिनाथ (Mallinath)", "सुमतिनाथ", "अजितनाथ", "शान्तिनाथ"],
+                correctText: "मल्लिनाथ (Mallinath)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• श्वेतांबर परंपरा के अनुसार 19वें तीर्थंकर मल्लिनाथ महिला थीं।"
+            },
+
+            // --- महाजनपद काल एवं मगध साम्राज्य (26-45) ---
+            {
+                q: "बौद्ध ग्रंथ 'अंगुत्तर निकाय' और जैन ग्रंथ 'भगवती सूत्र' में कुल कितने महाजनपदों का उल्लेख मिलता है?",
+                options: ["16 महाजनपद", "12 महाजनपद", "18 महाजनपद", "20 महाजनपद"],
+                correctText: "16 महाजनपद",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• छठी सदी ई.पू. के उत्तर भारत में 16 महाजनपदों का उदय हुआ जिनका उल्लेख अंगुत्तर निकाय में है।"
+            },
+            {
+                q: "16 महाजनपदों में से एकमात्र महाजनपद जो दक्षिण भारत (गोदावरी नदी घाटी) में स्थित था, उसका क्या नाम था?",
+                options: ["अश्मक (Assaka)", "अवंती", "चेदि", "वत्स"],
+                correctText: "अश्मक (Assaka)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गोदावरी नदी के तट पर स्थित 'अश्मक' एकमात्र महाजनपद था जो दक्षिण भारत में था (राजधानी: पोटली/पोतना)।"
+            },
+            {
+                q: "मगध महाजनपद की प्रारंभिक राजधानी कौन सी थी?",
+                options: ["राजगृह / गिरिव्रज (Rajagriha)", "पाटलिपुत्र", "वैशाली", "चंपा"],
+                correctText: "राजगृह / गिरिव्रज (Rajagriha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मगध की पहली राजधानी राजगृह थी जो पाँच पहाड़ियों से घिरी एक सुरक्षित जगह थी।"
+            },
+            {
+                q: "मगध साम्राज्य का वास्तविक संस्थापक और हर्यक वंश का राजा कौन था?",
+                options: ["बिम्बिसार (Bimbisara)", "अजातशत्रु", "उदयन", "शिशुनाग"],
+                correctText: "बिम्बिसार (Bimbisara)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बिम्बिसार ने हर्यक वंश की नींव रखी और वैवाहिक संबंधों तथा विजयों से मगध को शक्तिशाली बनाया।"
+            },
+            {
+                q: "किस मगध शासक को 'कुणिक' (Kunika) उपनाम से जाना जाता है जिसने अपने पिता बिम्बिसार की हत्या की थी?",
+                options: ["अजातशत्रु (Ajatashatru)", "उदयन", "कालशोक", "नंदिवर्धन"],
+                correctText: "अजातशत्रु (Ajatashatru)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अजातशत्रु ने अपने पिता बिम्बिसार को मारकर गद्दी हथियाई थी, इसलिए इसे कुणिक कहा गया।"
+            },
+            {
+                q: "गंगा और सोन नदियों के संगम पर 'पाटलिपुत्र' (Pataliputra) नगर की स्थापना किसने की थी?",
+                options: ["उदयन (Udayin / Udayabhadra)", "अजातशत्रु", "बिम्बिसार", "कनिष्क"],
+                correctText: "उदयन (Udayin / Udayabhadra)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उदयन ने अपनी राजधानी राजगृह से पाटलिपुत्र स्थानांतरित की जो जलदुर्ग के रूप में सुरक्षित थी।"
+            },
+            {
+                q: "शिशुनाग वंश के किस शासक ने वैशाली से राजधानी पुनः राजगृह स्थानांतरित की और अवंती को मगध में मिलाया?",
+                options: ["शिशुनाग (Shishunaga)", "कालाशोक", "नंदीवर्धन", "महापद्म नंद"],
+                correctText: "शिशुनाग (Shishunaga)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शिशुनाग ने अवंती को जीतकर मगध साम्राज्य का हिस्सा बनाया।"
+            },
+            {
+                q: "मगध के किस शासक को 'सर्वक्षत्रान्तक' (क्षत्रों का नाश करने वाला) और 'एकराट' कहा गया है?",
+                options: ["महापद्म नंद (Mahapadma Nanda - नंद वंश के संस्थापक)", "धनानंद", "बिम्बिसार", "चंद्रगुप्त मौर्य"],
+                correctText: "महापद्म नंद (Mahapadma Nanda - नंद वंश के संस्थापक)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पुराणों में महापद्म नंद को सर्वक्षत्रान्तक और एकराट (एकमात्र सम्राट) कहा गया है।"
+            },
+            {
+                q: "सिकंदर के आक्रमण के समय मगध का सम्राट कौन था?",
+                options: ["धनानंद (Dhana Nanda)", "महापद्म नंद", "अजातशत्रु", "चंद्रगुप्त मौर्य"],
+                correctText: "धनानंद (Dhana Nanda)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 326 ई.पू. में जब सिकंदर ने पंजाब पर आक्रमण किया, तब मगध की गद्दी पर नंद वंश का अंतिम शासक धनानंद था।"
+            },
+            {
+                q: "वज्जी संघ (Vajji Confederacy) की राजधानी क्या थी जो विश्व का पहला गणतंत्र (Republic) मानी जाती है?",
+                options: ["वैशाली (Vaishali)", "मिथिला", "कुण्डग्राम", "पावा"],
+                correctText: "वैशाली (Vaishali)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लिच्छवियों का संघ वजजी महाजनपद की राजधानी वैशाली थी जो प्राचीन विश्व का महान गणराज्य था।"
+            },
+            {
+                q: "अवंती महाजनपद की राजधानी कहाँ थी?",
+                options: ["उज्जैन और माहिष्मती", "वैशाली", "कौशाम्बी", "इंद्रप्रस्थ"],
+                correctText: "उज्जैन और माहिष्मती",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अवंती के दो भाग थे- उत्तरी अवंती की राजधानी उज्जैन और दक्षिणी अवंती की माहिष्मती थी।"
+            },
+            {
+                q: "कुरु महाजनपद की राजधानी का क्या नाम था?",
+                options: ["इंद्रप्रस्थ (Indraprastha)", "हस्तिनापुर", "मथुरा", "वाराणसी"],
+                correctText: "इंद्रप्रस्थ (Indraprastha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुरु महाजनपद आधुनिक दिल्ली-मेरठ क्षेत्र में था जिसकी राजधानी इंद्रप्रस्थ थी।"
+            },
+            {
+                q: "अंग महाजनपद की राजधानी कौन सी थी?",
+                options: ["चंपा (Champa)", "राजगृह", "कौशाम्बी", "मथुर"],
+                correctText: "चंपा (Champa)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आधुनिक भागलपुर और मुंगेर का क्षेत्र अंग महाजनपद था जिसकी राजधानी चंपा थी।"
+            },
+            {
+                q: "मल्ल महाजनपद की राजधानी किस स्थान पर थी?",
+                options: ["कुशीनगर और पावा", "वैशाली", "विराटनगर", "उज्जैन"],
+                correctText: "कुशीनगर और पावा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मल्ल गणराज्य के दो मुख्य भाग थे जिनकी राजधानियाँ कुशीनगर और पावा थीं।"
+            },
+            {
+                q: "वत्स महाजनपद की राजधानी क्या थी?",
+                options: ["कौशाम्बी (Kaushambi)", "वाराणसी", "मथुरा", "इंद्रप्रस्थ"],
+                correctText: "कौशाम्बी (Kaushambi)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वत्स महाजनपद की राजधानी कौशाम्बी थी जो व्यापार का एक प्रमुख केंद्र था।"
+            },
+            {
+                q: "प्राचीन काल में 'मगध' के उत्कर्ष के कौन से कारण सबसे मुख्य थे?",
+                options: ["उपजाऊ भूमि, प्रचुर लोहे की खानें, रणनीतिक राजधानियाँ और हाथी की उपलब्धता", "विशाल रेगिस्तान", "समुद्री तट", "पहाड़ी दुर्ग"],
+                correctText: "उपजाऊ भूमि, प्रचुर लोहे की खानें, रणनीतिक राजधानियाँ और हाथी की उपलब्धता",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लोहे की खानों से बेहतरीन हथियार बने और उपजाऊ गंगा घाटी ने आर्थिक संपन्नता दी जिससे मगध सबसे शक्तिशाली बना।"
+            },
+            {
+                q: "छठी सदी ई.पू. में भारत आने वाले विदेशी आक्रमणकारियों में पहला आक्रमण किसका था?",
+                options: ["ईरानी (फारसी) हखमनी वंश के राजा डेरियस (दारा प्रथम) का", "यूनानी सिकंदर का", "हुणों का", "कुषाणों का"],
+                correctText: "ईरानी (फारसी) हखमनी वंश के राजा डेरियस (दारा प्रथम) का",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिकंदर से पहले फारस (ईरान) के राजा डेरियस प्रथम ने 516 ई.पू. में भारतीय सीमा पर आक्रमण किया था।"
+            },
+            {
+                q: "सिकंदर (Alexander) महान का जन्म कब और कहाँ हुआ था?",
+                options: ["356 ई.पू. में मकदूनिया (Macedonia) में", "326 ई.पू. ग्रीस में", "400 ई.पू. ईरान में", "300 ई.पू. रोम में"],
+                correctText: "356 ई.पू. में मकदूनिया (Macedonia) में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिकंदर मकदूनिया के राजा फिलिप द्वितीय का पुत्र था।"
+            },
+            {
+                q: "सिकंदर और पंजाब के राजा पोरस के बीच प्रसिद्ध 'विदिता / झेलम का युद्ध' (Battle of Hydaspes) किस वर्ष लड़ा गया था?",
+                options: ["326 ई.पू. में", "330 ई.पू.", "320 ई.पू.", "312 ई.पू."],
+                correctText: "326 ई.पू. में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• झेलम (हाइडस्पेस) नदी के तट पर सिकंदर और पोरस के बीच भीषण युद्ध हुआ था जिसमें पोरस की वीरता से प्रभावित होकर सिकंदर ने उसका राज्य लौटा दिया था।"
+            },
+            {
+                q: "सिकंदर की सेना ने किस नदी को पार करने से इनकार कर दिया था जिससे उसे भारत से वापस लौटना पड़ा?",
+                options: ["ब्यास नदी (Hyphasis)", "सतलज नदी", "रावी नदी", "चिनाब नदी"],
+                correctText: "ब्यास नदी (Hyphasis)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लगातार युद्धों से थक चुकी और मगध की विशाल सेना से भयभीत सिकंदर की सेना ने व्यास नदी पार करने से मना कर दिया।"
+            },
+
+            // --- मौर्य साम्राज्य (चंद्रगुप्त, बिंदुसार, अशोक, अभिलेख, प्रशासन) (46-75) ---
+            {
+                q: "मौर्य वंश की स्थापना किसने और किसकी सहायता से की थी?",
+                options: ["चंद्रगुप्त मौर्य ने चाणक्य (कौटिल्य) की सहायता से धनानंद को हराकर", "अशोक ने", "बिंदुसार ने", "पुष्यमित्र शुंग ने"],
+                correctText: "चंद्रगुप्त मौर्य ने चाणक्य (कौटिल्य) की सहायता से धनानंद को हराकर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 322 ई.पू. में चाणक्य की कूटनीति से चंद्रगुप्त मौर्य ने नंद वंश का अंत कर मौर्य साम्राज्य की स्थापना की।"
+            },
+            {
+                q: "मेगस्थनीज किसके दरबार में राजदूत के रूप में आया था और उसने कौन सी पुस्तक लिखी?",
+                options: ["चंद्रगुप्त मौर्य के दरबार में (पुस्तक: इंडिका)", "अशोक के दरबार में", "बिंदुसार के दरबार में", "कनिष्क के दरबार में"],
+                correctText: "चंद्रगुप्त मौर्य के दरबार में (पुस्तक: इंडिका)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सेलुकस निकेटर का राजदूत मेगस्थनीज चंद्रगुप्त मौर्य के दरबार में पाटलिपुत्र आया था।"
+            },
+            {
+                q: "चंद्रगुप्त मौर्य ने अपने जीवन के अंतिम समय में किस जैन संत से दीक्षा ली थी और प्राण त्यागे थे?",
+                options: ["भद्रबाहु से (श्रवणबेलगोला में संलेखना द्वारा)", "स्थूलभद्र से", "मक्खलि गोशाल", "उपगुप्त"],
+                correctText: "भद्रबाहु से (श्रवणबेलगोला में संलेखना द्वारा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जैन मुनि भद्रबाहु के साथ चंद्रगुप्त कर्नाटक के श्रवणबेलगोला गए और उपवास (संलेखना) से प्राण त्यागे।"
+            },
+            {
+                q: "बिंदुसार को यूनानी लेखकों द्वारा किस नाम से पुकारा गया है?",
+                options: ["अमित्रोचेट्स (Amitrochates / अमित्रघात - शत्रुओं का नाश करने वाला)", "संद्राकोट्टस", "प्रियदर्शी", "देवनामप्रिय"],
+                correctText: "अमित्रोचेट्स (Amitrochates / अमित्रघात - शत्रुओं का नाश करने वाला)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रीक ग्रंथों में बिंदुसार को 'अमित्रोचेट्स' (अमित्रघात) कहा गया है।"
+            },
+            {
+                q: "सम्राट अशोक ने कलिंग पर किस वर्ष आक्रमण किया था?",
+                options: ["लगभग 261 ई.पू. (अपने राज्याभिषेक के 8वें वर्ष)", "273 ई.पू.", "250 ई.पू.", "232 ई.पू."],
+                correctText: "लगभग 261 ई.पू. (अपने राज्याभिषेक के 8वें वर्ष)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कलिंग युद्ध की भीषण हिंसा को देखकर अशोक का हृदय परिवर्तन हुआ और उसने भारी घोष की जगह धम्मघोष अपनाया।"
+            },
+            {
+                q: "सम्राट अशोक को बौद्ध धर्म की दीक्षा किसने दी थी?",
+                options: ["उपगुप्त (Upagupta)", "मोग्गालिपुत्त तिस्स", "निग्रोध", "राधागुप्त"],
+                correctText: "उपगुप्त (Upagupta)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बौद्ध भिक्षु उपगुप्त के प्रभाव से अशोक ने बौद्ध धर्म स्वीकार किया।"
+            },
+            {
+                q: "अशोक के शिलालेखों को सर्वप्रथम किसने पढ़ा था?",
+                options: ["जेम्स प्रिंसेप (1837 में)", "अलेक्जेंडर कनिंघम", "जॉन मार्शल", "आर.ए. शर्मा"],
+                correctText: "जेम्स प्रिंसेप (1837 में)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जेम्स प्रिंसेप ने ब्राह्मी लिपि में लिखे अशोक के अभिलेखों को सबसे पहले पढ़ा था।"
+            },
+            {
+                q: "अशोक के शिलालेखों में कुल कितनी लिपियों का प्रयोग हुआ है?",
+                options: ["चार लिपियाँ (ब्राह्मी, खरोष्ठी, ग्रीक और आर्मामेक)", "केवल ब्राह्मी", "दो लिपियाँ", "पाँच लिपियाँ"],
+                correctText: "चार लिपियाँ (ब्राह्मी, खरोष्ठी, ग्रीक और आर्मामेक)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में ब्राह्मी और खरोष्ठी, तथा उत्तर-पश्चिम में ग्रीक और आर्मामेक लिपियों का प्रयोग हुआ है।"
+            },
+            {
+                q: "अशोक के किस शिलालेख में पशुबलि की निंदा तथा समाज सुधार के कार्यों का वर्णन है?",
+                options: ["प्रथम शिलालेख", "द्वितीय शिलालेख", "तृतीय शिलालेख", "13वाँ शिलालेख"],
+                correctText: "प्रथम शिलालेख",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अशोक के पहले शिलालेख में लिखा है कि 'किसी भी जीव की हत्या न की जाए और न ही बलि दी जाए'।"
+            },
+            {
+                q: "अशोक के किस स्तंभ लेख में उसकी 'धम्म यात्राओं' (Dhamma Tours) का उल्लेख है और लुंबिनी यात्रा पर कर छूट का वर्णन है?",
+                options: ["रुम्मिंदेई स्तंभ लेख (Rummindei Pillar Inscription)", "मेहरौली स्तंभ", "प्रयाग प्रशस्ति", "लौरिया नंदनगढ़"],
+                correctText: "रुम्मिंदेई स्तंभ लेख (Rummindei Pillar Inscription)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लुंबिनी (बुद्ध जन्मस्थान) जाने पर अशोक ने वहाँ कर (Tax) घटाकर 1/8 कर दिया था जिसका उल्लेख रुम्मिंदेई लेख में है।"
+            },
+            {
+                q: "अशोक के गुहालेख (Cave Inscriptions) बिहार में किस पहाड़ी पर स्थित हैं जो आजीविकों को दान दी गई थीं?",
+                options: ["बराबर की पहाड़ियाँ (Barabar Hills - गया के पास नागार्जुनी)", "कैमूर की पहाड़ियाँ", "राजगीर की पहाड़ियाँ", "मंदार पर्वत"],
+                correctText: "बराबर की पहाड़ियाँ (Barabar Hills - गया के पास नागार्जुनी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गया के पास बराबर गुफाओं में अशोक ने आजीविक संप्रदाय के संतों के लिए गुफाएँ बनवाई थीं।"
+            },
+            {
+                q: "मौर्य प्रशासन में 'तीर्थ' (Tirth) किसे कहा जाता था?",
+                options: ["सर्वोच्च अधिकारियों या मंत्रियों को (जो संख्या में 18 थे)", "धार्मिक स्थलों को", "राजकीय कोषागार को", "सैन्य छावनियों को"],
+                correctText: "सर्वोच्च अधिकारियों या मंत्रियों को (जो संख्या में 18 थे)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कौटिल्य के अर्थशास्त्र में मौर्य प्रशासन के 18 प्रमुख अधिकारियों को 'तीर्थ' या महामात्र कहा गया है।"
+            },
+            {
+                q: "मौर्य प्रशासन में 'समाहर्ता' (Samahartri) का मुख्य कार्य क्या था?",
+                options: ["राजस्व संग्रह करना और आय-व्यय का ब्यौरा रखना (Tax Collection & Budgeting)", "न्याय करना", "सेना का नेतृत्व करना", "गुप्तचर विभाग संभालना"],
+                correctText: "राजस्व संग्रह करना और आय-व्यय का ब्यौरा रखना (Tax Collection & Budgeting)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समाहर्ता राजस्व विभाग का सर्वोच्च अधिकारी था, जबकि सन्निधातृ कोषाध्यक्ष होता था।"
+            },
+            {
+                q: "मौर्य काल में 'रज्जुक' (Rajjukas) कौन अधिकारी थे?",
+                options: ["न्यायिक और भू-सर्वेक्षण अधिकारी (Judicial & Land Measurement officials)", "गुप्तचर", "राजकीय चिकित्सक", "सेनापति"],
+                correctText: "न्यायिक और भू-सर्वेक्षण अधिकारी (Judicial & Land Measurement officials)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अशोक के शासनकाल में रज्जुक नामक अधिकारी ग्रामीण क्षेत्रों में न्याय और भूमि पैमाइश का कार्य करते थे।"
+            },
+            {
+                q: "मौर्य काल में प्रचलित 'पण' (Pana) क्या था?",
+                options: ["एक प्रकार का सिक्का या मुद्रा (Silver Coin)", "एक प्रकार का कर", "एक वस्त्र", "एक माप तौल"],
+                correctText: "एक प्रकार का सिक्का या मुद्रा (Silver Coin)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मौर्य काल में पण एक प्रमुख चांदी का सिक्का था जो आर्थिक लेन-देन में प्रयोग होता था।"
+            },
+            {
+                q: "मेगस्थनीज की 'इंडिका' के अनुसार मौर्य समाज कुल कितने जातियों (वर्गों) में विभाजित था?",
+                options: ["सात जातियाँ (दार्शनिक, किसान, अहीर, कारीगर, सैनिक, निरीक्षक, सभासद)", "चार जातियाँ", "पाँच जातियाँ", "अनेक जातियाँ"],
+                correctText: "सात जातियाँ (दार्शनिक, किसान, अहीर, कारीगर, सैनिक, निरीक्षक, सभासद)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारतीय समाज की व्यवस्था से अनजान मेगस्थनीज ने व्यवसाय के आधार पर मौर्य समाज को 7 वर्गों में बाँटा था।"
+            },
+            {
+                q: "मौर्य काल में गुप्तचरों को क्या कहा जाता था?",
+                options: ["गूढ़पुरुष (Gudhapuruṣa - संस्था और संचार)", "अमात्य", "अर्थपाल", "दूत"],
+                correctText: "गूढ़पुरुष (Gudhapuruṣa - संस्था और संचार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुप्तचर विभाग के अधिकारियों को गूढ़पुरुष कहा जाता था जो संस्था (एक जगह रहने वाले) और संचार (घुमंतू) रूप में कार्य करते थे।"
+            },
+            {
+                q: "मौर्य राजवंश का अंतिम शासक कौन था जिसकी हत्या उसके सेनापति पुष्यमित्र शुंग ने कर दी थी?",
+                options: ["बृहद्रथ (Brihadratha)", "दशरथ", "संप्रति", "कुणाल"],
+                correctText: "बृहद्रथ (Brihadratha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 185 ई.पू. में अंतिम मौर्य सम्राट बृहद्रथ की हत्या उसके सेनापति पुष्यमित्र शुंग ने कर दी और शुंग वंश की स्थापना की।"
+            },
+            {
+                q: "सारनाथ से प्राप्त प्रसिद्ध 'सिंह स्तंभ' (Lion Capital) का निर्माण किसने करवाया था?",
+                options: ["सम्राट अशोक", "चंद्रगुप्त मौर्य", "कनिष्क", "समुद्रगुप्त"],
+                correctText: "सम्राट अशोक",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सारनाथ का सिंह स्तंभ भारत का राष्ट्रीय प्रतीक है जिसे अशोक ने बनवाया था।"
+            },
+            {
+                q: "कौटिल्य के अर्थशास्त्र में कितने अधिकरणों (Chapters/Sections) में विभाजित है?",
+                options: ["15 अधिकरण", "10 अधिकरण", "18 अधिकरण", "8 अधिकरण"],
+                correctText: "15 अधिकरण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कौटिल्य का अर्थशास्त्र 15 अधिकरणों और 180 प्रकरणों में विभाजित एक राजनीतिक ग्रंथ है।"
+            },
+
+            // --- मौर्योत्तर काल (शुंग, सातवाहन, चेदि व विदेशी आक्रमण) (76-90) ---
+            {
+                q: "मौर्य वंश के पतन के बाद मगध में 'शुंग वंश' की स्थापना किसने की थी?",
+                options: ["पुष्यमित्र शुंग (Pushyamitra Shunga)", "अग्निमित्र", "देवभूति", "भागभद्र"],
+                correctText: "पुष्यमित्र शुंग (Pushyamitra Shunga)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अंतिम मौर्य सम्राट बृहद्रथ को मारकर उसके सेनापति पुष्यमित्र शुंग ने 185 ई.पू. में शुंग वंश की नींव रखी।"
+            },
+            {
+                q: "पुष्यमित्र शुंग ने अपने पुरोहित पतंजलि के मार्गदर्शन में कौन से दो महत्वपूर्ण यज्ञ संपन्न करवाए थे?",
+                options: ["अश्वमेध यज्ञ (Ashvamedha Yajna)", "राजसूय यज्ञ", "वाजपेयी यज्ञ", "वाजपेय और गोमेध"],
+                correctText: "अश्वमेध यज्ञ (Ashvamedha Yajna)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पुष्यमित्र शुंग ने वैदिक धर्म का पुनरुत्थान किया और दो अश्वमेध यज्ञ कराए जिनके पुरोहित महर्षि पतंजलि थे।"
+            },
+            {
+                q: "प्रसिद्ध ऐतिहासिक ग्रंथ 'मालविकाग्निमित्रम्' के रचयिता कौन हैं और इसमें किस वंश का नाटक है?",
+                options: ["कालिदास (शुंग वंश के राजकुमार अग्निमित्र और मालविका की प्रेम कहानी)", "बाणभट्ट", "भास", "विशाखदत्त"],
+                correctText: "कालिदास (शुंग वंश के राजकुमार अग्निमित्र और मालविका की प्रेम कहानी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कालिदास का नाटक मालविकाग्निमित्रम् शुंगकालीन राजनीति और प्रेम कथा पर आधारित है।"
+            },
+            {
+                q: "दक्षिण भारत में मौर्य साम्राज्य के पतन के बाद किस शक्तिशाली राजवंश ने अपनी सत्ता स्थापित की?",
+                options: ["आंध्र सातवाहन राजवंश (Satavahana Dynasty)", "वाकाटक वंश", "पल्लव वंश", "चोल वंश"],
+                correctText: "आंध्र सातवाहन राजवंश (Satavahana Dynasty)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवाहन वंश के संस्थापक सिमुक थे, जिन्होंने दक्कन (महाराष्ट्र, आंध्र प्रदेश) में शासन किया।"
+            },
+            {
+                q: "सातवाहन राजाओं की आधिकारिक और प्रशासनिक भाषा क्या थी?",
+                options: ["प्राकृत भाषा (और लिपि ब्राह्मी थी)", "संस्कृत", "तमिल", "तेलुगु"],
+                correctText: "प्राकृत भाषा (और लिपि ब्राह्मी थी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवाहन शासक प्राकृत भाषा और ब्राह्मी लिपि के संरक्षक थे।"
+            },
+            {
+                q: "सातवाहन काल में किस प्रकार के सिक्के सबसे अधिक मात्रा में जारी किए गए थे?",
+                options: ["सीसे के सिक्के (Lead coins) तथा पोटिन व तांबे के सिक्के", "शुद्ध सोने के सिक्के", "चाँदी के सिक्के", "लोहे के सिक्के"],
+                correctText: "सीसे के सिक्के (Lead coins) तथा पोटिन व तांबे के सिक्के",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सातवाहन वंश अपनी अर्थव्यवस्था में सीसे (Lead) के सिक्के ढालने के लिए विशेष रूप से प्रसिद्ध है।"
+            },
+            {
+                q: "कलिंग में चेदि राजवंश (Mahameghavahana Dynasty) का सबसे महान प्रतापी राजा कौन था?",
+                options: ["खारवेल (Kharavela - हाथीगुंफा अभिलेख)", "नंदराज", "करिकाल", "सतकर्णी"],
+                correctText: "खारवेल (Kharavela - हाथीगुंफा अभिलेख)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चेदि वंश का राजा खारवेल जैन धर्म का संरक्षक था और उसका हाथीगुंफा अभिलेख प्रसिद्ध है।"
+            },
+            {
+                q: "भारत पर आक्रमण करने वाले विदेशी राजवंशों का सही ऐतिहासिक क्रम क्या है?",
+                options: ["हिंद-यूनानी (इंडो-ग्रीक) -> शक -> पहलव -> कुषाण", "शक -> कुषाण -> ग्रीक -> पहलव", "कुषाण -> शक -> ग्रीक -> पहलव", "पहलव -> ग्रीक -> शक -> कुषाण"],
+                correctText: "हिंद-यूनानी (इंडो-ग्रीक) -> शक -> पहलव -> कुषाण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मौर्योत्तर काल में भारत पर उत्तर-पश्चिम से इंडो-ग्रीक, शक (सिथियन), पहलव (पार्थियन) और अंत में कुषाणों ने आक्रमण किया।"
+            },
+            {
+                q: "सबसे प्रसिद्ध इंडो-ग्रीक (हिंद-यूनानी) शासक कौन था जिसने बौद्ध धर्म अपना लिया और उसके प्रश्न 'मिलिंदपन्हो' में संकलित हैं?",
+                options: ["मिनांडर / मिलिंद (Menander)", "डेमेट्रियस", "एंटीयालकिस", "यूथेडिमस"],
+                correctText: "मिनांडर / मिलिंद (Menander)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राजा मिनांडर (मिलिंद) ने बौद्ध भिक्षु नागसेन से बौद्ध धर्म की दीक्षा ली, जिसका संकलन 'मिलिंदपन्हो' (मिलिंद के प्रश्न) में है।"
+            },
+            {
+                q: "भारत में सबसे पहले स्वर्ण सिक्के (Gold coins) किस विदेशी राजवंश ने जारी किए थे?",
+                options: ["हिंद-यूनानी (Indo-Greek) शासकों ने", "कुषाणों ने", "शकों ने", "गुप्तों ने"],
+                correctText: "हिंद-यूनानी (Indo-Greek) शासकों ने",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में बड़े पैमाने पर सोने के सिक्के जारी करने की शुरुआत इंडो-ग्रीक राजाओं ने की थी।"
+            },
+            {
+                q: "शक संवत (Saka Era) की शुरुआत किस कुषाण शासक ने 78 ईस्वी में की थी?",
+                options: ["कनिष्क (Kanishka)", "कविष्क", "विमा कडफिसेस", "कुजुळ कडफिसेस"],
+                correctText: "कनिष्क (Kanishka)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुषाण वंश का सबसे महान सम्राट कनिष्क था जिसने 78 ईस्वी में शक संवत चलाया जो आज भारत का राष्ट्रीय पंचांग है।"
+            },
+            {
+                q: "कनिष्क की राजधानी कहाँ थी और उसने किस धर्म को संरक्षण दिया था?",
+                options: ["पुरुषपुर (पेशेवर) - बौद्ध धर्म (महायान शाखा)", "मथुरा - जैन धर्म", "पाटलिपुत्र - भागवत धर्म", "तक्षशिला - शैव धर्म"],
+                correctText: "पुरुषपुर (पेशेवर) - बौद्ध धर्म (महायान शाखा)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कनिष्क की पहली राजधानी पुरुषपुर (पेशेवर) और दूसरी राजधानी मथुरा थी; वह बौद्ध धर्म के महायान का संरक्षक था।"
+            },
+            {
+                q: "चरक और नागार्जुन जैसे महान विद्वान किसके दरबार की शोभा बढ़ाते थे?",
+                options: ["सम्राट कनिष्क के दरबार की", "चंद्रगुप्त मौर्य", "अशोक", "समुद्रगुप्त"],
+                correctText: "सम्राट कनिष्क के दरबार की",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कनिष्क के दरबार में चिकित्सक चरक, दार्शनिक नागार्जुन, पार्श्व और कवि अश्वघोष निवास करते थे।"
+            },
+            {
+                q: "कुषाण वंश के शासकों ने किस प्रकार के स्वर्ण सिक्के चलाए जो अपनी शुद्धता के लिए प्रसिद्ध हैं?",
+                options: ["अत्यधिक शुद्ध सोने के सिक्के (Pure Gold Coins)", "तांबे के सिक्के", "चाँदी के सिक्के", "कांस्य सिक्के"],
+                correctText: "अत्यधिक शुद्ध सोने के सिक्के (Pure Gold Coins)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुषाण राजाओं (विशेषकर विमा कडफिसेस और कनिष्क) ने बहुत ही शुद्ध सोने के सिक्के चलाए।"
+            },
+            {
+                q: "गांधार कला (Gandhara Art) और मथुरा कला का सर्वाधिक विकास किस काल में हुआ था?",
+                options: ["कुषाण काल (Kushan Period)", "मौर्य काल", "गुप्त काल", "शुंग काल"],
+                correctText: "कुषाण काल (Kushan Period)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुषाण काल में गंधार शैली (यूनानी-भारतीय प्रभाव) और मथुरा कला शैली का अभूतपूर्व विकास हुआ।"
+            },
+
+            // --- गुप्त साम्राज्य (प्रशासन, समाज, अर्थव्यवस्था व धर्म) (91-100) ---
+            {
+                q: "गुप्त वंश की स्थापना किसने की थी और गुप्त संवत (Gupta Era 319-320 AD) किसने चलाया था?",
+                options: ["स्थापना: श्रीगुप्त ने, जबकि गुप्त संवत की शुरुआत चंद्रगुप्त प्रथम ने की", "समुद्रगुप्त", "श्रीगुप्त ने गुप्त संवत चलाया", "घటోत्कच"],
+                correctText: "स्थापना: श्रीगुप्त ने, जबकि गुप्त संवत की शुरुआत चंद्रगुप्त प्रथम ने की",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुप्त वंश के संस्थापक श्रीगुप्त थे, किंतु वास्तविक संस्थापक चंद्रगुप्त प्रथम थे जिन्होंने 319 ईस्वी में गुप्त संवत चलाया।"
+            },
+            {
+                q: "भारत का नेपोलियन (Napoleon of India) इतिहासकार विसेंट स्मिथ ने किस गुप्त शासक को कहा है?",
+                options: ["समुद्रगुप्त (Samudragupta)", "चंद्रगुप्त द्वितीय", "स्कंदगुप्त", "श्रीगुप्त"],
+                correctText: "समुद्रगुप्त (Samudragupta)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अपने महान सैन्य विजय अभियानों के कारण समुद्रगुप्त को विसेंट स्मिथ ने 'भारत का नेपोलियन' कहा है।"
+            },
+            {
+                q: "किस गुप्त शासक ने 'विक्रमादित्य' की उपाधि धारण की थी और उसके दरबार में नवरत्न रहते थे?",
+                options: ["चंद्रगुप्त द्वितीय (विक्रमादित्य)", "समुद्रगुप्त", "कुमारगुप्त", "स्कंदगुप्त"],
+                correctText: "चंद्रगुप्त द्वितीय (विक्रमादित्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चंद्रगुप्त द्वितीय ने शकों को हराकर 'विक्रमादित्य' उपाधि ली और कालिदास जैसे नवरत्न उनके दरबार में थे।"
+            },
+            {
+                q: "प्रसिद्ध नालंदा विश्वविद्यालय की स्थापना किस गुप्त शासक के शासनकाल में हुई थी?",
+                options: ["कुमारगुप्त प्रथम (महेन्द्रदित्य)", "स्कंदगुप्त", "समुद्रगुप्त", "बुधगुप्त"],
+                correctText: "कुमारगुप्त प्रथम (महेन्द्रदित्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कुमारगुप्त प्रथम (उपाधि: महेन्द्रदित्य) ने बौद्ध शिक्षा के महान केंद्र नालंदा विश्वविद्यालय की नींव रखी थी।"
+            },
+            {
+                q: "किस गुप्त सम्राट के शासनकाल में हूणों (Hunas) का भारत पर पहला आक्रमण हुआ था?",
+                options: ["स्कंदगुप्त (Skandagupta)", "कुमारगुप्त प्रथम", "चंद्रगुप्त द्वितीय", "समुद्रगुप्त"],
+                correctText: "स्कंदगुप्त (Skandagupta)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्कंदगुप्त ने हूणों को बुरी तरह परास्त किया था, जिसकी जानकारी जूनागढ़ अभिलेख से मिलती है।"
+            },
+            {
+                q: "गुप्तकालीन प्रशासन में प्रांत को क्या कहा जाता था और उसके प्रमुख अधिकारी को क्या कहते थे?",
+                options: ["प्रांत को 'देश' या 'भुक्ति' कहा जाता था और प्रमुख 'उपरिक' कहलाता था", "विषय और विषयपति", "ग्राम और ग्रामिक", "कुल और कुलप"],
+                correctText: "प्रांत को 'देश' या 'भुक्ति' कहा जाता था और प्रमुख 'उपरिक' कहलाता था",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुप्त प्रशासन विकेंद्रीकृत था जहाँ देश/भुक्ति (प्रांत) के नीचे विषय (जिला) होते थे जिनके प्रमुख 'विषयपति' होते थे।"
+            },
+            {
+                q: "गुप्त काल में सोने के सिक्कों को क्या कहा जाता था?",
+                options: ["दीनार (Dinar)", "सुवर्ण", "रूप्याक", "पण"],
+                correctText: "दीनार (Dinar)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुप्त अभिलेखों में सोने के सिक्कों को 'दीनार' कहा गया है, जबकि चाँदी के सिक्कों को 'रूप्याक' कहा जाता था।"
+            },
+            {
+                q: "गुप्त काल को भारतीय इतिहास का 'स्वर्ण युग' (Golden Age) क्यों कहा जाता है?",
+                options: ["कला, साहित्य, विज्ञान (आर्यभट्ट/वाराहमिहर) और आर्थिक समृद्धि के अभूतपूर्व विकास के कारण", "केवल युद्ध जीतने के कारण", "सोने की खानें मिलने के कारण", "मंदिर न बनाने के कारण"],
+                correctText: "कला, साहित्य, विज्ञान (आर्यभट्ट/वाराहमिहर) और आर्थिक समृद्धि के अभूतपूर्व विकास के कारण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मंदिर वास्तुकला, कालिदास के नाटक, आर्यभट्ट के गणित और शांति-समृद्धि के कारण गुप्त काल को स्वर्णयुग कहा जाता है।"
+            },
+            {
+                q: "गुप्त काल के महान खगोलशास्त्री और गणितज्ञ कौन थे जिन्होंने शून्य और दशमलव प्रणाली का प्रसार किया?",
+                options: ["आर्यभट्ट (Aryabhatta - रचना: आर्यभट्टीय)", "वरुण", "ब्रह्मगुप्त", "धन्वंतरि"],
+                correctText: "आर्यभट्ट (Aryabhatta - रचना: आर्यभट्टीय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आर्यभट्ट ने पृथ्वी के अपनी धुरी पर घूमने और सूर्यग्रहण-चंद्रग्रहण का वैज्ञानिक कारण बताया था।"
+            },
+            {
+                q: "गुप्त राजवंश की राजभाषा (Official Language) क्या थी?",
+                options: ["संस्कृत (Sanskrit)", "प्राकृत", "पाली", "अपभ्रंश"],
+                correctText: "संस्कृत (Sanskrit)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुप्त राजाओं ने राजकाज और साहित्य में संस्कृत भाषा को राजकीय संरक्षण दिया जिससे संस्कृत का स्वर्णकाल आया।"
+            }
+        ];
+
+        let quizDataHistory4 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataHistory4 = rawQuizDataHistory4.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataHistory4;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test4_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test4_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने प्राचीन इतिहास टेस्ट 4 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Ancient History Test 4 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* धार्मिक आंदोलन, मौर्य, मौर्योत्तर व गुप्त साम्राज्य\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/test4.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test4_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
+             </div>
             </div>
 
             <!-- 2. भूगोल (Geography) -->
