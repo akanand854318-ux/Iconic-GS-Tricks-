@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern History - Mock Test 12 (उत्तरवर्ती मुगल व यूरोपीय आगमन) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">आधुनिक भारत - मॉक टेस्ट 12 (उत्तरवर्ती मुगल, राज्य व यूरोपीय कंपनियाँ)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Modern History Test 12)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Modern History - Test 12 (उत्तरवर्ती मुगल व यूरोपीय आगमन)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // आधुनिक भारत - मॉक टेस्ट 12 (उत्तरवर्ती मुगल, स्वायत्त राज्य, यूरोपीय आगमन व आर्थिक नीतियाँ) - 100 प्रश्न
+        const rawQuizDataModern12 = [
+            // --- उत्तरवर्ती मुगल साम्राज्य (1-18) ---
+            {
+                q: "औरंगजेब की मृत्यु के बाद 1707 ई. में मुगल गद्दी पर कौन बैठा था जिसे 'शाहबेखबर' कहा गया?",
+                options: ["बहादुर शाह प्रथम (मुअज्जम)", "जहाँदार शाह", "फर्रुख्सियर", "मोहम्मद शाह रंगीला"],
+                correctText: "बहादुर शाह प्रथम (मुअज्जम)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• औरंगजेब की मृत्यु (1707) के बाद उसका पुत्र मुअज्जम 'बहादुर शाह प्रथम' (शाहआलम प्रथम) के नाम से गद्दी पर बैठा, जिसे इतिहासकार खाफी खान ने 'शाहबेखबर' कहा।"
+            },
+            {
+                q: "किस उत्तरवर्ती मुगल शासक को 'लंपट मूर्ख' कहा जाता था?",
+                options: ["जहाँदार शाह", "फर्रुख्सियर", "मोहम्मद शाह", "अहमद शाह"],
+                correctText: "जहाँदार शाह",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जुल्फिकार खान की मदद से गद्दी पर बैठने वाले जहाँदार शाह को उसकी विलासी प्रवृत्ति के कारण 'लंपट मूर्ख' कहा गया।"
+            },
+            {
+                q: "किस मुगल सम्राट को 'घृणित कायर' (Coward) कहा जाता था?",
+                options: ["फर्रुख्सियर", "जहाँदार शाह", "रफी-उद-दजात", "शाह आलम द्वितीय"],
+                correctText: "फर्रुख्सियर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सैयद बंधुओं (king makers) के सहयोग से गद्दी पाने वाले फर्रुख्सियर को 'घृणित कायर' कहा जाता है।"
+            },
+            {
+                q: "किस ब्रिटिश राजदूत ने 1717 में फर्रुख्सियर से शाही फरमान प्राप्त किया था जिसे अंग्रेजों का 'मैग्नाकार्टा' कहा जाता है?",
+                options: ["जॉन सरमन", "कैप्टन हॉकिंस", "थॉमस रो", "स्ट्रेन्ज मास्टर"],
+                correctText: "जॉन सरमन",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1717 में जॉन सरमन के नेतृत्व में आए शिष्टमंडल से फर्रुख्सियर ने बंगाल में करमुक्त व्यापार का फरमान दिया था।"
+            },
+            {
+                q: "किस मुगल बादशाह के शासनकाल में नादिर शाह (ईरान का नेपोलियन) ने 1739 ई. में दिल्ली पर आक्रमण किया था और मयूर सिंहासन लूट कर ले गया?",
+                options: ["मोहम्मद शाह 'रंगीला'", "अहमद शाह", "आलमगीर द्वितीय", "शाह आलम द्वितीय"],
+                correctText: "मोहम्मद शाह 'रंगीला'",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मोहम्मद शाह रंगीला के समय 1739 में नादिर शाह ने करनाल के युद्ध में मुगलों को हराकर कोहिनूर हीरा और तख्त-ए-ताऊस लूट लिया था।"
+            },
+            {
+                q: "पानीपत का तीसरा युद्ध (1761 ई.) किस मुगल बादशाह के समय लड़ा गया था?",
+                options: ["शाह आलम द्वितीय", "अहमद शाह", "आलमगीर द्वितीय", "अकबर द्वितीय"],
+                correctText: "शाह आलम द्वितीय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अहमद शाह अब्दाली और मराठों के बीच पानीपत का तीसरा युद्ध शाह आलम द्वितीय के शासनकाल में हुआ था।"
+            },
+            {
+                q: "बक्सर के युद्ध (1764 ई.) और प्लासी के युद्ध (1757 ई.) के समय क्रमशः मुगल बादशाह कौन थे?",
+                options: ["प्लासी के समय सिराज/आलमगीर और बक्सर के समय शाह आलम द्वितीय", "केवल बहादुर शाह द्वितीय", "फर्रुख्सियर", "मोहम्मद शाह"],
+                correctText: "प्लासी के समय सिराज/आलमगीर और बक्सर के समय शाह आलम द्वितीय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1757 में आलमगीर द्वितीय और 1764 के बक्सर युद्ध में शाह आलम द्वितीय मुगल सम्राट थे।"
+            },
+            {
+                q: "अंतिम मुगल सम्राट 'बहादुर शाह द्वितीय' (बहादुर शाह जफर) को 1857 की क्रांति के बाद अंग्रेजों ने कहाँ निर्वासित कर दिया था?",
+                options: ["रंगून (मयांमार)", "अंडमान निकोबार", "काबुल", "लंदन"],
+                correctText: "रंगून (मयांमार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1857 के विद्रोह के बाद अंग्रेजों ने अंतिम मुगल बादशाह बहादुर शाह जफर को रंगून जेल भेज दिया जहाँ 1862 में उनकी मृत्यु हुई।"
+            },
+            {
+                q: "सैयद बंधुओं (अब्दुल्ला खान और हुसैन अली खान) को इतिहास में किस रूप में जाना जाता है?",
+                options: ["किंग मेकर्स (नृपनिर्माता)", "महामंत्री", "प्रधान सेनापति", "मुख्य काजी"],
+                correctText: "किंग मेकर्स (नृपनिर्माता)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सैयद बंधुओं ने कई मुगलों को गद्दी पर बैठाया और हटाया, इसलिए उन्हें किंगमेकर्स कहा जाता है।"
+            },
+            {
+                q: "किस मुगल बादशाह के शासनकाल में हैदराबाद राज्य की स्वतंत्र नींव चिनकिलिच खान (निजाम-उल-मुल्क) ने रखी थी?",
+                options: ["मोहम्मद शाह रंगीला", "फर्रुख्सियर", "बहादुर शाह", "अहमद शाह"],
+                correctText: "मोहम्मद शाह रंगीला",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मोहम्मद शाह के काल में 1724 में निजाम-उल-मुल्क ने हैदराबाद की स्थापना की।"
+            },
+            // --- 18वीं शताब्दी के स्वायत्त राज्य - बंगाल, मैसूर, सिख, मराठा (19-50) ---
+            {
+                q: "बंगाल में स्वतंत्र राज्य की नींव किसने डाली थी और मुर्शिदाबाद को राजधानी बनाया था?",
+                options: ["मुर्शिद कुली खान", "अलीवर्दी खान", "सुजाउद्दीन", "मीर जाफर"],
+                correctText: "मुर्शिद कुली खान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मुर्शिद कुली खान ने बंगाल को स्वतंत्र किया और ढाका से राजधानी मुर्शिदाबाद स्थानांतरित की।"
+            },
+            {
+                q: "प्लासी का युद्ध 23 जून 1757 को बंगाल के नवाब सिराजुद्दौला और किसके बीच लड़ा गया था?",
+                options: ["रॉबर्ट क्लाइव (अंग्रेज सेनापति)", "हेक्टर मुनरो", "वारेन हेस्टिंग्स", "लॉर्ड वेलेडज़ी"],
+                correctText: "रॉबर्ट क्लाइव (अंग्रेज सेनापति)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्लासी के युद्ध में सिराजुद्दौला के सेनापति मीर जाफर की गद्दारी के कारण क्लाइव की जीत हुई।"
+            },
+            {
+                q: "बक्सर का युद्ध 22 अक्टूबर 1764 को किसके बीच लड़ा गया था?",
+                options: ["हेक्टर मुनरो (अंग्रेज) और मीर कासिम, शुजाउद्दोला व शाह आलम द्वितीय की संयुक्त सेना", "क्लाइव और सिराजुद्दौला", "डूपले और क्लाइव", "मराठा और अंग्रेज"],
+                correctText: "हेक्टर मुनरो (अंग्रेज) और मीर कासिम, शुजाउद्दोला व शाह आलम द्वितीय की संयुक्त सेना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बक्सर के निर्णायक युद्ध में अंग्रेजों ने बंगाल, अवध और मुगल सम्राट की संयुक्त सेना को हराया।"
+            },
+            {
+                q: "मैसूर राज्य में 'वड़ियार वंश' के पतन के बाद शक्ति किसके हाथ में आई थी?",
+                options: ["हैदर अली", "टीपूं सुल्तान", "चिक कृष्णराज", "नंदराज"],
+                correctText: "हैदर अली",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• एक साधारण सैनिक से अपनी योग्यता के बल पर हैदर अली ने 1761 में मैसूर की सत्ता संभाली।"
+            },
+            {
+                q: "प्रसिद्ध 'श्रीरंगपट्टनम की संधि' किस आंग्ल-मैसूर युद्ध के बाद हुई थी?",
+                options: ["तृतीय आंग्ल-मैसूर युद्ध (1792 ई.)", "प्रथम युद्ध", "द्वितीय युद्ध", "चतुर्थ युद्ध"],
+                correctText: "तृतीय आंग्ल-मैसूर युद्ध (1792 ई.)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लॉर्ड कार्नवालिस और टीपू सुल्तान के बीच हुई श्रीरंगपट्टनम की संधि से तीसरा मैसूर युद्ध समाप्त हुआ।"
+            },
+            {
+                q: "टीपू सुल्तान की मृत्यु किस वर्ष चौथे आंग्ल-मैसूर युद्ध के दौरान श्रीरंगपट्टनम की रक्षा करते हुए हुई?",
+                options: ["1799 ई.", "1792 ई.", "1784 ई.", "1769 ई."],
+                correctText: "1799 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 4 मई 1799 को अंग्रेजों (वेलेजली) के खिलाफ लड़ते हुए टीपू सुल्तान वीरगति को प्राप्त हुए।"
+            },
+            {
+                q: "सिखों के किस मिस्ल से संबंधित 'महाराजा रणजीत सिंह' थे?",
+                options: ["सुकरचकिया मिस्ल", "अहलूवालिया मिस्ल", "भंगी मिस्ल", "डल्लेवालिया मिस्ल"],
+                correctText: "सुकरचकिया मिस्ल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाराजा रणजीत सिंह सुकरचकिया मिस्ल के महान मुखिया महासिंह के पुत्र थे।"
+            },
+            {
+                q: "अमृतसर की प्रसिद्ध संधि (1809 ई.) महाराजा रणजीत सिंह और किसके बीच हुई थी?",
+                options: ["चार्ल्स मेटकॉफ (अंग्रेज अधिकारी)", "लॉर्ड वेलेजली", "लॉर्ड डलहौजी", "वारेन हेस्टिंग्स"],
+                correctText: "चार्ल्स मेटकॉफ (अंग्रेज अधिकारी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1809 की अमृतसर संधि के तहत सतलुज नदी को अंग्रेजों और रणजीत सिंह के बीच सीमा मान लिया गया।"
+            },
+            {
+                q: "प्रथम आंग्ल-सिख युद्ध किस वर्ष लड़ा गया था?",
+                options: ["1845-46 ई.", "1848-49 ई.", "1761 ई.", "1799 ई."],
+                correctText: "1845-46 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिखों और अंग्रेजों के बीच प्रथम युद्ध 1845-46 में हुआ जो लाहौर की संधि से समाप्त हुआ।"
+            },
+            {
+                q: "द्वितीय आंग्ल-सिख युद्ध (1848-49) के बाद पंजाब का विलय ब्रिटिश साम्राज्य में किसने किया था?",
+                options: ["लॉर्ड डलहौजी", "लॉर्ड हार्डिंग", "लॉर्ड विलियम बेंटिक", "लॉर्ड कैनिंग"],
+                correctText: "लॉर्ड डलहौजी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डलहौजी ने 1849 में पंजाब का विलय कर लिया और कोहिनूर हीरा महारानी विक्टोरिया को भेज दिया।"
+            },
+            {
+                q: "मराठा साम्राज्य के संस्थापक छत्रपति शिवाजी के बाद पेशवाओं के काल में वास्तविक शक्ति किसके हाथों में आ गई थी?",
+                options: ["पेशवा (प्रधानमंत्री)", "सेनापति", "अमात्य", "राजमाता"],
+                correctText: "पेशवा (प्रधानमंत्री)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बालाजी विश्वनाथ के समय से पेशवा मराठा साम्राज्य के सर्वेसर्वा बन गए।"
+            },
+            {
+                q: "प्रथम आंग्ल-मराठा युद्ध (1775-1782) किस संधि के साथ समाप्त हुआ था?",
+                options: ["सालबाई की संधि (1782)", "पुरंदर की संधि", "बड़गांव की संधि", "वसई की संधि"],
+                correctText: "सालबाई की संधि (1782)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महादजी सिंधिया की मध्यस्थता में अंग्रेजों और मराठों के बीच 'सालबाई की संधि' हुई थी।"
+            },
+            {
+                q: "सहायक संधि (Subsidiary Alliance) स्वीकार करने वाली पहली मराठा रियासत कौन सी थी जिसने 'वसई की संधि' (1802) की?",
+                options: ["पेशवा बाजीराव द्वितीय", "सिंधिया", "भोंसले", "गायकवाड़"],
+                correctText: "पेशवा बाजीराव द्वितीय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जसवंत सिंह होलकर से हारकर पेशवा बाजीराव द्वितीय ने अंग्रेजों से वसई की सहायक संधि की।"
+            },
+            {
+                q: "तृतीय आंग्ल-मराठा युद्ध (1817-1819) के बाद किस पेशवा का पद समाप्त कर दिया गया था?",
+                options: ["बाजीराव द्वितीय", "बाजीव विश्वनाथ", "माधवराव द्वितीय", "नाना साहब"],
+                correctText: "बाजीराव द्वितीय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• तीसरे आंग्ल-मराठा युद्ध में मराठों के पतन के बाद पेशवा बाजीराव द्वितीय को कानपुर के पास बिटूर पेंशनभोगी बनाकर भेज दिया गया।"
+            },
+            // --- यूरोपीय वाणिज्यिक कंपनियों का आगमन और कर्नाटक युद्ध (51-70) ---
+            {
+                q: "भारत में सबसे पहले आने वाले और सबसे अंत में जाने वाले यूरोपीय कौन थे?",
+                options: ["पुर्तगाली", "डच", "अंग्रेज", "फ्रांसीसी"],
+                correctText: "पुर्तगाली",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1498 में वास्कोडिगामा के आने से पुर्तगाली पहले आए और 1961 में गोवा से गए।"
+            },
+            {
+                q: "वास्कोडिगामा ने भारत के किस बंदरगाह पर 17 मई 1498 को पहुँचकर नए समुद्री मार्ग की खोज की थी?",
+                options: ["कालीकट (कप्पड बंदरगाह)", "गोवा", "कोच्चि", "सूरत"],
+                correctText: "कालीकट (कप्पड बंदरगाह)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कालीकट के राजा जमोरिन ने वास्कोडिगामा का स्वागत किया था।"
+            },
+            {
+                q: "भारत में पुर्तगाली साम्राज्य का वास्तविक संस्थापक किसे माना जाता है?",
+                options: ["अल्बुकर्क (अल्फोनसो डी अल्बुकर्क)", "फ्रांसिस्को डी अलमीडा", "वास्कोडिगामा", "निनो डी कुन्हा"],
+                correctText: "अल्बुकर्क (अल्फोनसो डी अल्बुकर्क)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1510 में बीजापुर के सुल्तान से गोवा छीनने वाले अल्बुकर्क को वास्तविक संस्थापक कहते हैं।"
+            },
+            {
+                q: "डच ईस्ट इंडिया कंपनी की स्थापना किस वर्ष हुई थी?",
+                options: ["1602 ई.", "1600 ई.", "1664 ई.", "1498 ई."],
+                correctText: "1602 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नीदरलैंड (हॉलैंड) की यूनाइटेड ईस्ट इंडिया कंपनी की स्थापना 1602 में हुई थी।"
+            },
+            {
+                q: "ब्रिटिश ईस्ट इंडिया कंपनी की स्थापना की अधिकृत घोषणा किस वर्ष हुई थी?",
+                options: ["31 दिसंबर 1600 ई.", "1602 ई.", "1599 ई.", "1608 ई."],
+                correctText: "31 दिसंबर 1600 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महारानी एलिजाबेथ प्रथम ने 31 दिसंबर 1600 को कंपनी को चार्टर (व्यापारिक अधिकार) प्रदान किया था।"
+            },
+            {
+                q: "फ्रांसीसी ईस्ट इंडिया कंपनी की स्थापना किस फ्रांसीसी मंत्री के प्रयासों से 1664 ई. में हुई थी?",
+                options: ["कोल्बर्ट (Colbert)", "लुई चौदहवें", "डूपले", "कार्टीयर"],
+                correctText: "कोल्बर्ट (Colbert)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सम्राट लुई 14वें के मंत्री कोल्बर्ट के प्रयासों से 1664 में 'कंपagnie des Indes Orientales' बनी थी।"
+            },
+            {
+                q: "प्रथम कर्नाटक युद्ध (1746-1748) किस संधि के साथ समाप्त हुआ था?",
+                options: ["एक्स-ला-शपेल की संधि (1748)", "पांडिचेरी की संधि", "पेरिस की संधि", "सालबाई की संधि"],
+                correctText: "एक्स-ला-शपेल की संधि (1748)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऑस्ट्रिया के उत्तराधिकार युद्ध के समाप्त होने पर एक्स-ला-शपेल संधि से पहला कर्नाटक युद्ध थमा।"
+            },
+            {
+                q: "द्वितीय कर्नाटक युद्ध (1749-1754) का अंत किस संधि से हुआ था?",
+                options: ["पांडिचेरी की संधि (1755)", "एक्स-ला-शपेल", "पेरिस की संधि", "सूरत की संधि"],
+                correctText: "पांडिचेरी की संधि (1755)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फ्रांसीसी गवर्नर गोडेहू और अंग्रेजों के बीच पांडिचेरी की संधि से दूसरा कर्नाटक युद्ध रुका।"
+            },
+            {
+                q: "तृतीय कर्नाटक युद्ध (1758-1763) का निर्णायक युद्ध 'वांडीवाश का युद्ध' (1760) किस-किस के बीच लड़ा गया था?",
+                options: ["अंग्रेज और फ्रांसीसी (आयरकूट बनाम लाली)", "डच और अंग्रेज", "पुर्तगाली और अंग्रेज", "मराठा और अंग्रेज"],
+                correctText: "अंग्रेज और फ्रांसीसी (आयरकूट बनाम लाली)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वांडीवाश के युद्ध में अंग्रेजों ने फ्रांसीसियों की ताकत हमेशा के लिए कुचल दी।"
+            },
+            {
+                q: "डेनिश (डेनमार्क) ईस्ट इंडिया कंपनी ने भारत में अपनी पहली फैक्ट्री 1620 में कहाँ स्थापित की थी?",
+                options: ["ट्रैवानकोरे (तंजौर के पास त्राणक्यूबर)", "सूरत", "मछलीपट्टनम", "बालासोर"],
+                correctText: "ट्रैवानकोरे (तंजौर के पास त्राणक्यूबर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डेनिश कंपनी ने 1620 में त्राणक्यूबर में अपनी पहली फैक्ट्री डाली थी, बाद में वे अपनी संपत्ति अंग्रेजों को बेचकर चले गए।"
+            },
+            // --- बंगाल पर अंग्रेजों का अधिकार और आर्थिक नीतियाँ (71-100) ---
+            {
+                q: "बंगाल में 'द्वैध शासन प्रणाली' (Double Government) की शुरुआत किसने की थी?",
+                options: ["रॉबर्ट क्लाइव (1765)", "वारेन हेस्टिंग्स", "लॉर्ड कॉर्नवालिस", "डब्‍ल्यू बेंटिक"],
+                correctText: "रॉबर्ट क्लाइव (1765)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बक्सर युद्ध के बाद क्लाइव ने बंगाल में दीवानी अधिकार अंग्रेजों को और फौजदारी नवाब को देकर द्वैध शासन चलाया।"
+            },
+            {
+                q: "बंगाल के द्वैध शासन का अंत किस गवर्नर जनरल ने 1772 ई. में किया था?",
+                options: ["वारेन हेस्टिंग्स", "रॉबर्ट क्लाइव", "कार्नवालिस", "वेलेजली"],
+                correctText: "वारेन हेस्टिंग्स",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वारेन हेस्टिंग्स ने 1772 में दोहरी शासन प्रणाली को समाप्त कर कंपनी को सीधे बंगाल का प्रशासक बनाया।"
+            },
+            {
+                q: "भारत में अंग्रेजी राज की 'स्थाई बंदोबस्त' (Permanent Settlement / जमींदारी व्यवस्था) प्रणाली किसने लागू की थी?",
+                options: ["लॉर्ड कार्नवालिस (1793)", "टॉमस मुनरो", "मक्केंजी", "वारेन हेस्टिंग्स"],
+                correctText: "लॉर्ड कार्नवालिस (1793)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कार्नवालिस ने 1793 में बंगाल, बिहार और उड़ीसा में जमींदारी / इस्तमरारी बंदोबस्त लागू किया था।"
+            },
+            {
+                q: "स्थाई बंदोबस्त के तहत भू-राजस्व का कितना हिस्सा अंग्रेजों को देना पड़ता था और जमींदार के पास कितना रहता था?",
+                options: ["10/11 भाग अंग्रेजों को, 1/11 भाग जमींदार के पास", "आधा-आधा", "3/4 भाग", "1/4 भाग"],
+                correctText: "10/11 भाग अंग्रेजों को, 1/11 भाग जमींदार के पास",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• स्थाई बंदोबस्त में कुल वसूल का 11/10 भाग कंपनी का हिस्सा था और 1/11 भाग जमींदारों की मजदूरी थी।"
+            },
+            {
+                q: "भारत के किस क्षेत्र में 'रैयतवाड़ी व्यवस्था' (Ryotwari Settlement) मुख्य रूप से लागू की गई थी?",
+                options: ["मद्रास और बंबई प्रेसीडेंसी (दक्षिण भारत)", "बंगाल और बिहार", "उत्तर प्रदेश और पंजाब", "राजस्थान"],
+                correctText: "मद्रास और बंबई प्रेसीडेंसी (दक्षिण भारत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• थॉमस मुनरो और रीड द्वारा रैयतवाड़ी व्यवस्था मद्रास, बंबई और असम में लागू हुई थी जिसमें किसान सीधे मालिक थे।"
+            },
+            {
+                q: "रैयतवाड़ी व्यवस्था में भू-राजस्व सीधे किसके साथ तय किया जाता था?",
+                options: ["रैयत (किसानों) के साथ सीधे", "जमींदारों के साथ", "गाँव के मुखिया के साथ", "राजा के साथ"],
+                correctText: "रैयत (किसानों) के साथ सीधे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रैयतवाड़ी में बिचौलिए (जमींदार) को हटाकर सरकार सीधे किसान से लगान वसूलती थी।"
+            },
+            {
+                q: "भारत में 'महालवाड़ी व्यवस्था' (Mahalwari Settlement) का जनक किसे माना जाता है?",
+                options: ["होल्ट मैकेंजी (Holt Mackenzie)", "थॉमस मुनरो", "लॉर्ड कार्नवालिस", "जॉन शोर"],
+                correctText: "होल्ट मैकेंजी (Holt Mackenzie)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर प्रदेश, मध्य भारत और पंजाब में महाल (गाँव या गाँवों का समूह) आधारित 'महालवाड़ी' व्यवस्था मैकेंजी ने बनाई थी।"
+            },
+            {
+                q: "महालवाड़ी व्यवस्था में भू-राजस्व की इकाई क्या थी?",
+                options: ["महाल (पूरा गाँव या गाँवों का समूह)", "व्यक्तिगत किसान", "जमींदार की पूरी जागीर", "एक बीघा खेत"],
+                correctText: "महाल (पूरा गाँव या गाँवों का समूह)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महालवाड़ी में पूरे गाँव (महाल) पर सामूहिक रूप से लगान तय किया जाता था जिसे मुखिया जमा करता था।"
+            },
+            {
+                q: "ब्रिटिश भारत के कुल भू-भाग पर तीनों व्यवस्थाओं का प्रतिशत क्रमशः क्या था (स्थाई : रैयतवाड़ी : महालवाड़ी)?",
+                options: ["लगभग 19% : 51% : 30%", "50% : 30% : 20%", "33% : 33% : 33%", "10% : 80% : 10%"],
+                correctText: "लगभग 19% : 51% : 30%",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रैयतवाड़ी सबसे बड़े क्षेत्र (51%), महालवाड़ी 30% और स्थाई बंदोबस्त 19% भू-भाग पर लागू थी।"
+            },
+            {
+                q: "दादाभाई नौरोजी ने अपनी किस प्रसिद्ध पुस्तक में अंग्रेजों द्वारा भारत के धन की निकासी (Drain of Wealth) का सिद्धांत प्रतिपादित किया था?",
+                options: ["Poverty and Un-British Rule in India", "Economic History of India", "Unhappy India", "Hind Swaraj"],
+                correctText: "Poverty and Un-British Rule in India",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'ग्रैंड ओल्ड मैन ऑफ इंडिया' दादाभाई नौरोजी ने ड्रेन थ्योरी देकर बताया कैसे अंग्रेज भारत का धन ब्रिटेन ले जा रहे हैं।"
+            },
+            {
+                q: "ब्रिटिश आर्थिक नीतियों का भारतीय हस्तशिल्प और उद्योगों पर क्या प्रभाव पड़ा?",
+                options: ["भारतीय उद्योगों का पतन और विऔद्योगीकरण (De-industrialisation)", "कुटीर उद्योगों का विकास", "व्यापार में वृद्धि", "किसानों की समृद्धि"],
+                correctText: "भारतीय उद्योगों का पतन और विऔद्योगीकरण (De-industrialisation)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मशीन निर्मित सस्ती अंग्रेजी वस्तुओं के आने से भारत के पारंपरिक हस्तशिल्प और बुनकर तबाह हो गए।"
+            },
+            {
+                q: "भारत में रेलवे बिछाने का मुख्य ब्रिटिश उद्देश्य क्या था?",
+                options: ["कच्चे माल को बंदरगाहों तक पहुँचाना और सेना का तेजी से आना-जाना", "भारतीय यात्रियों को सुविधा देना", "भारत का विकास करना", "तीर्थयात्रा आसान करना"],
+                correctText: "कच्चे माल को बंदरगाहों तक पहुँचाना और सेना का तेजी से आना-जाना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डलहौजी के काल में चली रेलवे का मुख्य मकसद आर्थिक शोषण और साम्राज्य की सुरक्षा था।"
+            },
+            {
+                q: "भारत में पहली बार पैसेंजर ट्रेन कब और कहाँ से कहाँ तक चली थी?",
+                options: ["16 अप्रैल 1853 को बंबई से ठाणे के बीच", "1854 में कलकत्ता", "1856 में मद्रास", "1857 में दिल्ली"],
+                correctText: "16 अप्रैल 1853 को बंबई से ठाणे के बीच",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 34 किमी की दूरी तय करने वाली पहली ट्रेन 1853 में बंबई से ठाणे के बीच चली थी।"
+            },
+            {
+                q: "भारत में अंग्रेजों द्वारा शुरू की गई भू-राजस्व प्रणालियों में सबसे अधिक किसानों का शोषण किस व्यवस्था में हुआ था?",
+                options: ["लगभग सभी में (विशेषकर स्थाई बंदोबस्त और रैयतवाड़ी में भारी कर)", "केवल महालवाड़ी", "किसी में नहीं", "जमींदारी समाप्त होने के बाद"],
+                correctText: "लगभग सभी में (विशेषकर स्थाई बंदोबस्त और रैयतवाड़ी में भारी कर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अत्यधिक ऊँची लगान दरों के कारण भारतीय किसान कर्ज के जाल में फंसकर साहूकारों के गुलाम बन गए थे।"
+            },
+            {
+                q: "प्लासी का युद्ध कब लड़ा गया था?",
+                options: ["23 जून 1757 ई.", "1764 ई.", "1526 ई.", "1857 ई."],
+                correctText: "23 जून 1757 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 23 जून 1757 को प्लासी का ऐतिहासिक युद्ध हुआ जिसने भारत में ब्रिटिश साम्राज्य की नींव रखी।"
+            },
+            {
+                q: "सिराजुद्दौला के बाद अंग्रेजों ने बंगाल का नवाब किसे बनाया था?",
+                options: ["मीर जाफर", "मीर कासिम", "नजमउद्दौला", "अलीवर्दी खान"],
+                correctText: "मीर जाफर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्लासी के युद्ध के बाद अंग्रेजों ने मीर जाफर को बंगाल की गद्दी पर बैठाया था।"
+            },
+            {
+                q: "सुगौली की संधि (1816) किनके बीच हुई थी?",
+                options: ["ब्रिटिश ईस्ट इंडिया कंपनी और नेपाल", "मराठा और अंग्रेज", "सिख और अंग्रेज", "मैसूर और अंग्रेज"],
+                correctText: "ब्रिटिश ईस्ट इंडिया कंपनी और नेपाल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आंग्ल-नेपाल युद्ध (गोरखा युद्ध) के पश्चात 1816 में सुगौली की प्रसिद्ध संधि हुई थी।"
+            },
+            {
+                q: "भारत में ब्रिटिश साम्राज्य का सर्वाधिक विस्तार किस गवर्नर जनरल के काल में हुआ था?",
+                options: ["लॉर्ड डलहौजी (राज्य हड़प नीति / डॉक्ट्रिन ऑफ लैप्स)", "वेलेजली", "कार्नवालिस", "हॉस्टिंग्स"],
+                correctText: "लॉर्ड डलहौजी (राज्य हड़प नीति / डॉक्ट्रिन ऑफ लैप्स)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डलहौजी की हड़प नीति (सतारा, नागपुर, झाँसी का विलय) से ब्रिटिश साम्राज्य का तेजी से विस्तार हुआ।"
+            },
+            {
+                q: "विलय की नीति (Doctrine / हड़प नीति) के तहत सबसे पहले किस राज्य को अंग्रेजी साम्राज्य में मिलाया गया था?",
+                options: ["सतारा (1848)", "झाँसी", "नागपुर", "अवध"],
+                correctText: "सतारा (1848)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1848 में सबसे पहले सतारा रियासत को डॉक्ट्रिन ऑफ लैप्स के तहत हड़पा गया था।"
+            },
+            {
+                q: "आधुनिक भारत के इतिहास में 'उत्तरवर्ती मुगल काल' से लेकर 'ब्रिटिश आर्थिक नीतियों' तक के अध्ययन का मुख्य निष्कर्ष क्या है?",
+                options: ["भारतीय राजनीतिक अस्थिरता का लाभ उठाकर अंग्रेजों ने आर्थिक और राजनीतिक रूप से भारत को गुलाम बनाया", "भारत का तेजी से औद्योगिक विकास हुआ", "मुगलों का पुनरुत्थान हुआ", "कोई प्रभाव नहीं पड़ा"],
+                correctText: "भारतीय राजनीतिक अस्थिरता का लाभ उठाकर अंग्रेजों ने आर्थिक और राजनीतिक रूप से भारत को गुलाम बनाया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 18वीं सदी के राजनीतिक बिखराव और यूरोपीय कंपनियों की व्यावसायिक प्रतिस्पर्धा ने अंततः भारत में ब्रिटिश उपनिवेशवाद को जन्म दिया।"
+            }
+        ];
+
+        let quizDataModern12 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataModern12 = rawQuizDataModern12.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataModern12;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test12_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test12_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने आधुनिक भारत टेस्ट 12 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Modern History Test 12 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* उत्तरवर्ती मुगल, स्वायत्त राज्य, यूरोपीय आगमन व आर्थिक नीतियाँ\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/test12.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test12_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
