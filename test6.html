@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval History - Mock Test 6 (पूर्व मध्यकाल, राजपूत राजवंश, चोल व सल्तनत पूर्व काल) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">मध्यकालीन इतिहास - मॉक टेस्ट 6 (राजपूत काल, चोल, महमूद गजनवी व गौरी)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Medieval History Test 6)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Medieval History - Test 6 (पूर्व मध्यकाल, राजपूत राजवंश व चोल साम्राज्य)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // मध्यकालीन इतिहास - मॉक टेस्ट 6 (पाल, सेन, प्रतिहार, चंदेल, चौहान, चोल व सल्तनत पूर्व आक्रमण) - 100 प्रश्न
+        const rawQuizDataHistory6 = [
+            // --- पाल वंश, सेन वंश एवं कश्मीर के राजवंश (1-15) ---
+            {
+                q: "पाल वंश (Pal Dynasty) के संस्थापक कौन थे?",
+                options: ["गोपाल (Gopal)", "धर्मपाल", "देवपाल", "महिपाल प्रथम"],
+                correctText: "गोपाल (Gopal)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_0](start_span)[span_0](end_span)<br>• 750 ई. में बंगाल के अशांतकाल के बाद जनता द्वारा गोपाल को राजा चुना गया, जिन्होंने पाल वंश की स्थापना की।"
+            },
+            {
+                q: "प्रसिद्ध विक्रमशिला विश्वविद्यालय (Vikramshila University) की स्थापना किस पाल शासक ने की थी?",
+                options: ["धर्मपाल (Dharmapala)", "गोपाल", "देवपाल", "रामपाल"],
+                correctText: "धर्मपाल (Dharmapala)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_1](start_span)[span_1](end_span)<br>• पाल राजा धर्मपाल ने भागलपुर (बिहार) में बौद्ध शिक्षा के लिए विक्रमशिला विश्वविद्यालय की स्थापना की थी।"
+            },
+            {
+                q: "किस पाल शासक के शासनकाल में जावा के शैलेंद्रवंशी राजा बालपत्रदेव ने नालंदा में बौद्ध विहार बनवाने के लिए अनुरोध किया और देवपाल ने पाँच गाँव दान दिए?",
+                options: ["देवपाल (Devapala)", "धर्मपाल", "गोपाल", "विग्रहपाल"],
+                correctText: "देवपाल (Devapala)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_2](start_span)[span_2](end_span)<br>• देवपाल पाल वंश का एक शक्तिशाली शासक था, जिसके दरबार में बौद्ध विद्वान वज्रदत्त थे।"
+            },
+            {
+                q: "बंगाल में 'सेन वंश' (Sena Dynasty) की स्थापना किसने की थी?",
+                options: ["सामंत सेन (Samanta Sena)", "विजय सेन", "बल्लाल सेन", "लक्ष्मण सेन"],
+                correctText: "सामंत सेन (Samanta Sena)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_3](start_span)[span_3](end_span)<br>• सेन वंश के संस्थापक सामंत सेन थे, लेकिन इस वंश को वास्तविक प्रसिद्धि विजय सेन और बल्लाल सेन से मिली।"
+            },
+            {
+                q: "प्रसिद्ध ग्रंथ 'गीतागोविन्द' के रचयिता जयदेव किस सेन शासक के दरबारी कवि थे?",
+                options: ["लक्ष्मण सेन (Lakshmana Sena)", "बल्लाल सेन", "विजय सेन", "सामंत सेन"],
+                correctText: "लक्ष्मण सेन (Lakshmana Sena)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_4](start_span)[span_4](end_span)<br>• लक्ष्मण सेन के दरबार में 'गीतगोविन्द' के रचयिता जयदेव और 'पवनदूतो' के लेखक धोयी रहते थे।"
+            },
+            {
+                q: "कश्मीर के इतिहास का सबसे प्रामाणिक ग्रंथ 'राजतरंगिणी' (Rajatarangini) के रचयिता कौन हैं?",
+                options: ["कल्हण (Kalhana)", "बिल्हण", "बाणभट्ट", "सौमदेव"],
+                correctText: "कल्हण (Kalhana)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_5](start_span)[span_5](end_span)<br>• कल्हण द्वारा रचित राजतरंगिणी में कश्मीर के राजवंशों का इतिहास संस्कृत श्लोकों में वर्णित है।"
+            },
+            {
+                q: "कश्मीर के किस शासक को 'कश्मीर का अकबर' कहा जाता है जो धार्मिक सहिष्णुता के लिए प्रसिद्ध था?",
+                options: ["ज़ैनुल आबदीन (Zain-ul-Abidin)", "ललितादित्य मुक्तापीड़", "अवन्तिवर्मन", "शंकरवर्मन"],
+                correctText: "ज़ैनुल आबदीन (Zain-ul-Abidin)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_6](start_span)[span_6](end_span)<br>• सुल्तान ज़ैनुल आबदीन ने गोहत्या पर प्रतिबंध हटाया, जजिया कर हटाया और कला-साहित्य को बढ़ावा दिया।"
+            },
+            {
+                q: "कश्मीर में प्रसिद्ध मार्तंड सूर्य मंदिर (Martand Sun Temple) का निर्माण किसने करवाया था?",
+                options: ["ललितादित्य मुक्तापीड़ (Lalitaditya Muktapida)", "अवन्तिवर्मन", "ज़ैनुल आबदीन", "दिद्दा"],
+                correctText: "ललितादित्य मुक्तापीड़ (Lalitaditya Muktapida)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_7](start_span)[span_7](end_span)<br>• कारकोट वंश के सबसे महान राजा ललितादित्य ने आठवीं शताब्दी में मार्तंड सूर्य मंदिर बनवाया था।"
+            },
+
+            // --- गुर्जर-प्रतिहार, चंदेल, गहड़वाल एवं परमार वंश (16-40) ---
+            {
+                q: "गुर्जर-प्रतिहार वंश (Gurjara-Pratihara) का सबसे महान और प्रतापी शासक कौन था जिसने 'मिहिरभोज' नाम से शासन किया?",
+                options: ["मिहिरभोज प्रथम (Mihir Bhoja)", "नागभट्ट प्रथम", "वत्सराज", "महेंद्रपाल प्रथम"],
+                correctText: "मिहिरभोज प्रथम (Mihir Bhoja)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_8](start_span)[span_8](end_span)<br>• प्रतिहार सम्राट मिहिरभोज विष्णु भक्त थे और उन्होंने 'आदिवराह' व 'प्रभास' की उपाधि धारण की थी।"
+            },
+            {
+                q: "बुंदेलखंड (जेजाकभुक्ति) के चंदेल वंश की स्थापना किसने की थी?",
+                options: ["नन्नुक (Nannuka)", "धंगदेव", "विद्याधर", "परमर्दिदेव"],
+                correctText: "नन्नुक (Nannuka)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_9](start_span)[span_9](end_span)<br>• चंदेल वंश के संस्थापक नन्नुक थे, जिनकी राजधानी खजुराहो और महोबा थी।"
+            },
+            {
+                q: "खजुराहो के प्रसिद्ध विश्व प्रसिद्ध मंदिरों (कंदरिया महादेव मंदिर आदि) का निर्माण किस राजवंश के राजाओं ने करवाया था?",
+                options: ["चंदेल वंश के राजाओं द्वारा (विशेषकर धंगदेव और यशोवर्मन)", "परमार वंश", "गुर्जर-प्रतिहार", "चौहान वंश"],
+                correctText: "चंदेल वंश के राजाओं द्वारा (विशेषकर धंगदेव और यशोवर्मन)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_10](start_span)[span_10](end_span)<br>• चंदेल राजाओं ने 10वीं-11वीं शताब्दी में खजुराहो में नागर शैली के अद्भुत जैन व हिंदू मंदिर बनवाए।"
+            },
+            {
+                q: "कन्नौज के गहड़वाल वंश (Gahadvala Dynasty) के संस्थापक कौन थे?",
+                options: ["चंद्रदेव (Chandradeva)", "गोविन्दचंद्र", "जयचन्द", "विजयचन्द्र"],
+                correctText: "चंद्रदेव (Chandradeva)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_11](start_span)[span_11](end_span)<br>• गहड़वाल वंश की नींव चंद्रदेव ने डाली थी, और इस वंश का सबसे प्रसिद्ध शासक जयचन्द था।"
+            },
+            {
+                q: "मालवा के परमार वंश (Paramara Dynasty) के सबसे महान और विद्वान राजा कौन थे?",
+                options: ["राजा भोज (Raja Bhoj)", "उदयादित्य", "सिंधुराज", "उपेंद्र कृष्णराज"],
+                correctText: "राजा भोज (Raja Bhoj)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_12](start_span)[span_12](end_span)<br>• परमार राजा भोज एक महान लेखक, वैज्ञानिक, वास्तुकार और योद्धा थे जिन्होंने धार को अपनी राजधानी बनाया।"
+            },
+            {
+                q: "गुजरात के चालुक्य (सोलंकी) वंश के किस शासक ने 1025 ई. में महमूद गजनवी द्वारा सोमनाथ मंदिर पर आक्रमण के समय शासन किया था?",
+                options: ["भीम प्रथम (Bhima I)", "मूलायुक्त प्रथम", "सिद्धराज जयसिंह", "करणदेव"],
+                correctText: "भीम प्रथम (Bhima I)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_13](start_span)[span_13](end_span)<br>• जब महमूद गजनवी ने सोमनाथ मंदिर लूटा, तब गुजरात के सोलंकी राजा भीम प्रथम थे।"
+            },
+            {
+                q: "दिलवाड़ा के प्रसिद्ध जैन मंदिर (माउंट आबू, राजस्थान) का निर्माण सोलंकी काल में किसने करवाया था?",
+                options: ["विमल शाह (Vimal Shah - मंत्री)", "तेजपाल और वास्तुपाल", "भीम प्रथम", "सिद्धराज जयसिंह"],
+                correctText: "विमल शाह (Vimal Shah - मंत्री)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_14](start_span)[span_14](end_span)<br>• संगमरमर से बने माउंट आबू के दिलवाड़ा जैन मंदिर का निर्माण चालुक्य/सोलंकी मंत्री विमल शाह ने करवाया था।"
+            },
+            {
+                q: "शांकंभरी (अजमेर) के चौहान वंश के संस्थापक कौन थे?",
+                options: ["वासुदेव चौहान (Vasudeva Chahamana)", "अजयराज द्वितीय", "विग्रहराज चतुर्थ", "पृथ्वीराज तृतीय"],
+                correctText: "वासुदेव चौहान (Vasudeva Chahamana)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_15](start_span)[span_15](end_span)<br>• छठी सदी में वासुदेव ने सांभर झील के पास चौहान वंश की स्थापना की थी।"
+            },
+            {
+                q: "प्रसिद्ध नाटक 'हरिकेली' के रचयिता और अजमेर में संस्कृत कॉलेज बनवाने वाले चौहान राजा कौन थे?",
+                options: ["विग्रहराज चतुर्थ / बीसलदेव (Vigraharaja IV)", "अर्णोराज", "पृथ्वीराज तृतीय", "सोमेश्वर"],
+                correctText: "विग्रहराज चतुर्थ / बीसलदेव (Vigraharaja IV)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_16](start_span)[span_16](end_span)<br>• विग्रहराज चतुर्थ एक महान कवि और योद्धा थे जिन्हें 'बीसलदेव' भी कहा जाता है।"
+            },
+            {
+                q: "दिल्ली नगर (ढिल्लिका) की स्थापना किस राजवंश के राजाओं ने की थी?",
+                options: ["तोमर वंश (Tomara dynasty - राजा अनंगपाल)", "चौहान वंश", "गहड़वाल वंश", "प्रतिहार वंश"],
+                correctText: "तोमर वंश (Tomara dynasty - राजा अनंगपाल)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_17](start_span)[span_17](end_span)<br>• 8वीं शताब्दी में तोमर राजा अनंगपाल ने ढिल्लिका (दिल्ली) बसाई थी।"
+            },
+
+            // --- राष्ट्रकूट एवं उत्तरवर्ती चालुक्य (कल्याणी) (41-55) ---
+            {
+                q: "राष्ट्रकूट राजवंश (Rashtrakuta Dynasty) के संस्थापक कौन थे?",
+                options: ["दंतिदुर्ग (Dantidurga)", "कृष्ण प्रथम", "ध्रुव", "अमोघवर्ष प्रथम"],
+                correctText: "दंतिदुर्ग (Dantidurga)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_18](start_span)[span_18](end_span)<br>• 753 ई. में दंतिदुर्ग ने चालुक्यों को हराकर मान्यखेत को अपनी राजधानी बनाकर राष्ट्रकूट वंश की स्थापना की।"
+            },
+            {
+                q: "राष्ट्रकूट राजा अमोघवर्ष प्रथम द्वारा कन्नड़ भाषा में लिखा गया प्राचीनतम ग्रंथ कौन सा है?",
+                options: ["कविराजमार्ग (Kavirajamarga)", "प्रश्नोत्तर रत्नमाला", "विक्रमांकदेव", "अमोघवृत्ति"],
+                correctText: "कविराजमार्ग (Kavirajamarga)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_19](start_span)[span_19](end_span)<br>• अमोघवर्ष कला-साहित्य के प्रेमी थे और उन्होंने कन्नड़ में 'कविराजमार्ग' लिखा।"
+            },
+            {
+                q: "कल्याणी के चालुक्य वंश के प्रसिद्ध सम्राट विक्रमादित्य षष्ठ ने किस संवत की शुरुआत की थी?",
+                options: ["चालुक्य-विक्रम संवत (1076 ई.)", "शक संवत", "गुप्त संवत", "हिजरी संवत"],
+                correctText: "चालुक्य-विक्रम संवत (1076 ई.)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_20](start_span)[span_20](end_span)<br>• विक्रमादित्य षष्ठ ने अपने राज्यारोहण के उपलक्ष्य में चालुक्य-विक्रम संवत चलाया था।"
+            },
+
+            // --- चोल साम्राज्य (शासन, स्थानीय स्वशासन, अर्थव्यवस्था व संस्कृति) (56-80) ---
+            {
+                q: "पतन के बाद चोल साम्राज्य का महान पुनरुत्थान (Imperial Cholas) किसने किया और तंजावुर को राजधानी बनाया?",
+                options: ["विजयालय चोल (Vijayalaya Chola)", "राजराज प्रथम", "राजेंद्र प्रथम", "आदित्य प्रथम"],
+                correctText: "विजयालय चोल (Vijayalaya Chola)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_21](start_span)[span_21](end_span)<br>• 9वीं शताब्दी में विजयालय ने पल्लवों के अधीन रहते हुए चोल साम्राज्य की पुनर्रचना की और 'निशुंभसूदनी' मंदिर बनवाया।"
+            },
+            {
+                q: "चोल वंश का कौन सा शासक 'मदीनाई कोंड' और 'राजराजेश्वर (बृहदेश्वर) मंदिर' बनवाने के लिए प्रसिद्ध है?",
+                options: ["राजराज प्रथम (Rajaraja I)", "राजेंद्र प्रथम", "कुलतुंग प्रथम", "परान्तक प्रथम"],
+                correctText: "राजराज प्रथम (Rajaraja I)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_22](start_span)[span_22](end_span)<br>• राजराज प्रथम ने तंजावुर में प्रसिद्ध भव्य राजराजेश्वर (बृहदेश्वर) शिव मंदिर का निर्माण करवाया था।"
+            },
+            {
+                q: "किस चोल राजा ने बंगाल के पाल शासक महिपाल को हराकर 'गंगैकोंडचोल' की उपाधि धारण की और नई राजधानी बसाई?",
+                options: ["राजेंद्र प्रथम (Rajendra I)", "राजराज प्रथम", "राजराज द्वितीय", "विक्रम चोल"],
+                correctText: "राजेंद्र प्रथम (Rajendra I)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_23](start_span)[span_23](end_span)<br>• राजेंद्र प्रथम ने उत्तर भारत में गंगा तक अभियान किया और बंगाल की खाड़ी को 'चोल झील' में बदल दिया।"
+            },
+            {
+                q: "चोल प्रशासन की सबसे बड़ी अनूठी विशेषता क्या थी जो 'उत्तरमेरूर अभिलेख' से ज्ञात होती है?",
+                options: ["स्थानीय स्वायत्त शासन / ग्राम पंचायत चुनाव (Local Self-Government / Village Assembly)", "केन्द्रीय सैन्य शासन", "सामंती तानाशाही", "धार्मिक कर"],
+                correctText: "स्थानीय स्वायत्त शासन / ग्राम पंचायत चुनाव (Local Self-Government / Village Assembly)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_24](start_span)[span_24](end_span)<br>• उत्तरमेरूर के शिलालेखों से चोल काल में ग्राम सभाओं के चुनाव (कुदवोले प्रणाली) की विस्तृत जानकारी मिलती है।"
+            },
+            {
+                q: "चोल प्रशासन में प्रांत को क्या कहा जाता था?",
+                options: ["मंडलम (Mandalam)", "वलनाडु", "नाटु", "कुर्रम"],
+                correctText: "मंडलम (Mandalam)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_25](start_span)[span_25](end_span)<br>• चोल साम्राज्य कई मंडलम (प्रान्तों) में बंटा था, जिनके नीचे वलनाडु, नाटु और ग्राम होते थे।"
+            },
+            {
+                q: "चोल काल में सोने के सिक्कों को क्या कहा जाता था?",
+                options: ["कंजू / कलंजु (Kalanju)", "दीनार", "पण", "रूप्याक"],
+                correctText: "कंजू / कलंजु (Kalanju)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_26](start_span)[span_26](end_span)<br>• चोल अर्थव्यवस्था में सोने के सिक्के 'कलंजु' कहलाते थे।"
+            },
+            {
+                q: "चोल काल में कांस्य की प्रसिद्ध मूर्तियाँ (বিশেষ করে नटराज मूर्ति) किस कला के तहत बनाई जाती थीं?",
+                options: ["लुटे-मोम तकनीक (Lost-wax casting / Cire perdue technique)", "पत्थर तराशकर", "लोहे को पीटकर", "लकड़ी पर नक्काशी"],
+                correctText: "लुटे-मोम तकनीक (Lost-wax casting / Cire perdue technique)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_27](start_span)[span_27](end_span)<br>• चोल कांस्य मूर्तियाँ (विशेषकर नटराज शिव) विश्वभर में अपनी धातु कला के लिए प्रसिद्ध हैं।"
+            },
+            {
+                q: "चोल राजवंश का अंतिम शासक कौन था?",
+                options: ["राजेंद्र तृतीय (Rajendra III)", "अधिराजेंद्र", "कुलतुंग तृतीय", "विक्रम चोल"],
+                correctText: "राजेंद्र तृतीय (Rajendra III)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_28](start_span)[span_28](end_span)<br>• 13वीं सदी के अंत में पांड्यों और होयस्लों के आक्रमण से चोल साम्राज्य का पतन हो गया।"
+            },
+
+            // --- समकालीन अन्य राज्य: पांड्य, होयसल, काकतीय, यादव (81-90) ---
+            {
+                q: "मदुरै के पांड्य राजवंश की राजधानी कहाँ थी और मार्को पोलो ने यहाँ की यात्रा कब की थी?",
+                options: ["मदुरै - मार्को पोलो ने 13वीं सदी के अंत में यात्रा की", "कांचीपुरम", "तंजावुर", "वंची"],
+                correctText: "मदुरै - मार्को पोलो ने 13वीं सदी के अंत में यात्रा की",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_29](start_span)[span_29](end_span)<br>• विदेशी यात्री मार्को पोलो ने पांड्य राज्य (मदुरै) की समृद्ध व्यापारिक स्थिति का वर्णन किया है।"
+            },
+            {
+                q: "द्वारसमुद्र (हेलेबिड) के 'होयसल वंश' (Hoysala Dynasty) के संस्थापक या प्रसिद्ध राजा कौन थे?",
+                options: ["विष्णुवर्धन (Vishnuvardhana)", "वीर बल्लाल तृतीय", "नृपतुंग", "सोमेश्वर"],
+                correctText: "विष्णुवर्धन (Vishnuvardhana)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_30](start_span)[span_30](end_span)<br>• कर्नाटक के द्वारसमुद्र में होयसल वंश ने शासन किया और प्रसिद्ध होयसलेश्वरा मंदिर बनवाया।"
+            },
+            {
+                q: "वारंगल के 'काकतीय वंश' (Kakatiya Dynasty) की राजधानी क्या थी और वहाँ की प्रसिद्ध रानी कौन थीं?",
+                options: ["ओरुग्गुल (वारंगल) - प्रसिद्ध शासक रानी रुद्रमादेवी", "देवगिरि", "द्वारसमुद्र", "मदुरै"],
+                correctText: "ओरुग्गुल (वारंगल) - प्रसिद्ध शासक रानी रुद्रमादेवी",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_31](start_span)[span_31](end_span)<br>• काकतीय वंश की महान रानी रुद्रमादेवी ने वारंगल क्षेत्र पर सफलतापूर्वक शासन किया था।"
+            },
+            {
+                q: "देवगिरि के 'यादव वंश' (Yadava Dynasty) के संस्थापक कौन थे और इनकी राजधानी क्या थी?",
+                options: ["भिल्लम पंचम (Bhillama V) - राजधानी देवगिरि (आधुनिक दौलताबाद)", "सिंघण", "रामचंद्र", "सुभाष"],
+                correctText: "भिल्लम पंचम (Bhillama V) - राजधानी देवगिरि (आधुनिक दौलताबाद)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_32](start_span)[span_32](end_span)<br>• महाराष्ट्र के देवगिरि के यादवों ने दक्षिण-पश्चिम में शक्तिशाली राज्य बनाया, जिसे बाद में अलाउद्दीन खिलजी ने जीता।"
+            },
+
+            // --- दिल्ली सल्तनत पूर्व राजनीतिक स्थिति: अरब, तुर्क, गजनवी व गौरी (91-100) ---
+            {
+                q: "भारत पर पहला सफल मुस्लिम (अरब) आक्रमण किसके नेतृत्व में किस वर्ष हुआ था?",
+                options: ["मोहम्मद बिन कासिम (Muhammad bin Qasim) द्वारा 712 ई. में (सिंध पर)", "महमूद गजनवी द्वारा 1000 ई.", "मोहम्मद गौरी द्वारा 1191 ई.", "कुतुबुद्दीन ऐबक द्वारा"],
+                correctText: "मोहम्मद बिन कासिम (Muhammad bin Qasim) द्वारा 712 ई. में (सिंध पर)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_33](start_span)[span_33](end_span)<br>• 712 ई. में अरब सेनापति मोहम्मद बिन कासिम ने सिंध के राजा दाहिर को हराकर सिंध और मुल्तान पर अधिकार किया।"
+            },
+            {
+                q: "महमूद गजनवी (Mahmud of Ghazni) ने भारत पर कुल कितने आक्रमण किए थे?",
+                options: ["17 बार (1000 ई. से 1027 ई. के बीच)", "12 बार", "5 बार", "20 बार"],
+                correctText: "17 बार (1000 ई. से 1027 ई. के बीच)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_34](start_span)[span_34](end_span)<br>• गजनवी ने भारत की संपत्ति लूटने और साम्राज्य विस्तार के लिए 17 बार आक्रमण किए, जिसमें 1025 ई. का सोमनाथ मंदिर आक्रमण सबसे प्रसिद्ध है।"
+            },
+            {
+                q: "प्रसिद्ध ऐतिहासिक ग्रंथ 'किताब-उल-हिंद' (Tarikh-i-Hind) के लेखक कौन हैं जो महमूद गजनवी के साथ भारत आए थे?",
+                options: ["अलबरूनी (Al-Biruni)", "ফিরदौसी", "उतबी", "बैहाकी"],
+                correctText: "अलबरूनी (Al-Biruni)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_35](start_span)[span_35](end_span)<br>• अलबरूनी महान विद्वान थे जिन्होंने अरबी भाषा में 'किताब-उल-हिंद' लिखकर भारतीय समाज, विज्ञान और संस्कृति का वर्णन किया।"
+            },
+            {
+                q: "'शाहनामा' (Shahnameh) के रचयिता कवि फिरदौसी किसके दरबार में रहते थे?",
+                options: ["महमूद गजनवी के दरबार में", "मोहम्मद गौरी", "सुल्तान महमूद", "कुतुबुद्दीन ऐबक"],
+                correctText: "महमूद गजनवी के दरबार में",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_36](start_span)[span_36](end_span)<br>• फिरदौसी को 'पूर्व का होमर' कहा जाता है जो गजनवी के दरबारी कवि थे।"
+            },
+            {
+                q: "मोहम्मद गौरी (Mu'izz al-Din Muhammad Ghori) ने भारत में मुस्लिम साम्राज्य की वास्तविक नींव किस युद्ध के बाद डाली?",
+                options: ["तराइन का द्वितीय युद्ध (1192 ई.)", "तराइन का प्रथम युद्ध (1191 ई.)", "चंदावर का युद्ध (1194 ई.)", "पानीपत का युद्ध"],
+                correctText: "तराइन का द्वितीय युद्ध (1192 ई.)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_37](start_span)[span_37](end_span)<br>• 1192 में तराइन के दूसरे युद्ध में गौरी ने पृथ्वीराज चौहान को पराजित कर भारत में मुस्लिम सत्ता का मार्ग प्रशस्त किया।"
+            },
+            {
+                q: "तराइन के प्रथम युद्ध (1191 ई.) में मोहम्मद गौरी को किसने हराया था?",
+                options: ["पृथ्वीराज चौहान (पृथ्वीराज तृतीय)", "जयचन्द", "भीम द्वितीय", "महिपाल"],
+                correctText: "पृथ्वीराज चौहान (पृथ्वीराज तृतीय)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_38](start_span)[span_38](end_span)<br>• 1191 के तराइन के पहले युद्ध में पृथ्वीराज चौहान ने गौरी को बुरी तरह हराया था।"
+            },
+            {
+                q: "चंदावर का युद्ध (1194 ई.) मोहम्मद गौरी और किस राजा के बीच लड़ा गया था जिसमें राजा मारा गया?",
+                options: ["जयचन्द (गहड़वाल वंश का राजा)", "पृथ्वीराज चौहान", "लक्ष्मन सेन", "भीम द्वितीय"],
+                correctText: "जयचन्द (गहड़वाल वंश का राजा)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_39](start_span)[span_39](end_span)<br>• 1194 में चंदावर के युद्ध में गौरी ने कन्नौज के राजा जयचन्द को परास्त किया।"
+            },
+            {
+                q: "मोहम्मद गौरी का वह कौन सा गुलाम और सेनापति था जिसने नालंदा और विक्रमशिला विश्वविद्यालयों को नष्ट किया था?",
+                options: ["बख्तियार खिलजी (Bakhtiyar Khilji)", "कुतुबुद्दीन ऐबक", "इल्तुतमिश", "याल्दोज़"],
+                correctText: "बख्तियार खिलजी (Bakhtiyar Khilji)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_40](start_span)[span_40](end_span)<br>• बख्तियार खिलजी ने बंगाल और बिहार अभियान के दौरान नालंदा तथा विक्रमशिला विश्वविद्यालयों में आग लगवा दी थी।"
+            },
+            {
+                q: "1206 ई. में मोहम्मद गौरी की मृत्यु के बाद उसके किस वफादार तुर्क गुलाम ने भारत में 'दिल्ली सल्तनत' (गुलाम वंश) की स्थापना की?",
+                options: ["कुतुबुद्दीन ऐबक (Qutb-ud-din Aibak)", "इल्तुतमिश", "बलबन", "आराम शाह"],
+                correctText: "कुतुबुद्दीन ऐबक (Qutb-ud-din Aibak)",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_41](start_span)[span_41](end_span)<br>• गौरी की मृत्यु के पश्चात उसके मुख्य तुर्क कमांडर कुतुबुद्दीन ऐबक ने 1206 में लाहौर/दिल्ली में गुलाम वंश (माम्लुक वंश) की नींव रखी।"
+            },
+            {
+                q: "पूर्व मध्यकालीन भारतीय इतिहास में 'सामंतवाद' (Feudalism) के अत्यधिक विकास का परिणाम क्या हुआ?",
+                options: ["केंद्रीय सत्ता कमजोर हुई और विदेशी आक्रमणकारियों के सामने देश की राजनीतिक विखंडता बढ़ी", "देश आर्थिक रूप से मजबूत हुआ", "व्यापार में अभूतपूर्व वृद्धि हुई", "नौसेना अत्यंत शक्तिशाली हो गई"],
+                correctText: "केंद्रीय सत्ता कमजोर हुई और विदेशी आक्रमणकारियों के सामने देश की राजनीतिक विखंडता बढ़ी",
+                exp: "<b>विस्तृत व्याख्या:</b>[span_42](start_span)[span_42](end_span)<br>• सामंती व्यवस्था और आपसी फूट के कारण भारत के छोटे-छोटे राज्य तुर्क आक्रमणकारियों का एकजुट होकर सामना नहीं कर सके।"
+            }
+        ];
+
+        let quizDataHistory6 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataHistory6 = rawQuizDataHistory6.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataHistory6;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test6_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test6_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने मध्यकालीन इतिहास टेस्ट 6 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Medieval History Test 6 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* पूर्व मध्यकाल, राजपूत राजवंश, चोल व सल्तनत पूर्व काल\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/test6.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test6_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
