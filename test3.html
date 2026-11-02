@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient History - Mock Test 3 (प्राचीन भारत के स्रोत, पाषाण काल, सिंधु घाटी व वैदिक सभ्यता) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">प्राचीन भारतीय इतिहास - मॉक टेस्ट 3 (स्रोत, पाषाण, सिंधु व वैदिक सभ्यता)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (History Test 3)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Ancient History - Test 3 (स्रोत, पाषाण, सिंधु व वैदिक काल)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // प्राचीन भारतीय इतिहास - मॉक टेस्ट 3 (स्रोत, पाषाण काल, सिंधु घाटी व वैदिक संस्कृति) - 100 प्रश्न
+        const rawQuizDataHistory3 = [
+            // --- प्राचीन भारतीय इतिहास के स्रोत (1-25) ---
+            {
+                q: "प्राचीन भारतीय इतिहास के अध्ययन के स्रोतों को मुख्य रूप से कितने भागों में विभाजित किया गया है?",
+                options: ["दो भागों में (साहित्यिक और पुरातात्विक स्रोत)", "तीन भागों में", "चार भागों में", "केवल एक भाग में"],
+                correctText: "दो भागों में (साहित्यिक और पुरातात्विक स्रोत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्राचीन भारतीय इतिहास के स्रोतों को मुख्य रूप से साहित्यिक स्रोत (Literary Sources) और पुरातात्विक स्रोत (Archaeological Sources) में बाँटा गया है।"
+            },
+            {
+                q: "वेद, ब्राह्मण ग्रंथ, आरण्यक और उपनिषद किस प्रकार के साहित्यिक स्रोतों के अंतर्गत आते हैं?",
+                options: ["ब्राह्मण साहित्य (Brahmanical Literature)", "ब्राह्मणोत्तर साहित्य", "लौकिक साहित्य", "विदेशी विवरण"],
+                correctText: "ब्राह्मण साहित्य (Brahmanical Literature)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वैदिक वांग्मय जैसे वेद, ब्राह्मण, आरण्यक और उपनिषद ब्राह्मण साहित्य के मुख्य अंग हैं।"
+            },
+            {
+                q: "बौद्ध और जैन साहित्य किस श्रेणी के साहित्यिक स्रोतों के अंतर्गत गिने जाते हैं?",
+                options: ["ब्राह्मणोत्तर साहित्य (Non-Brahmanical / Brahmanotara Literature)", "ब्राह्मण साहित्य", "लौकिक साहित्य", "संगम साहित्य"],
+                correctText: "ब्राह्मणोत्तर साहित्य (Non-Brahmanical / Brahmanotara Literature)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बौद्ध ग्रंथ (जैसे त्रिपिटक, जातक) तथा जैन ग्रंथ (जैसे आगम) ब्राह्मणोत्तर या धार्मिकतर साहित्य कहलाते हैं।"
+            },
+            {
+                q: "कौटिल्य की प्रसिद्ध रचना 'अर्थशास्त्र' किस विषय से संबंधित पुस्तक है?",
+                options: ["राजनीति और प्रशासन (Political Administration & Statecraft)", "चिकित्सा शास्त्र", "खगोल विज्ञान", "नाटक और कविता"],
+                correctText: "राजनीति और प्रशासन (Political Administration & Statecraft)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कौटिल्य (चाणक्य) द्वारा रचित अर्थशास्त्र मौर्यकालीन प्रशासन और राजनीति पर आधारित एक महान ग्रंथ है।"
+            },
+            {
+                q: "कल्हण द्वारा रचित 'राजतरंगिणी' में मुख्य रूप से किस क्षेत्र के इतिहास का वर्णन मिलता है?",
+                options: ["कश्मीर का इतिहास (History of Kashmir)", "मगाध का इतिहास", "सिंध का इतिहास", "राजपूतों का इतिहास"],
+                correctText: "कश्मीर का इतिहास (History of Kashmir)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कल्हण की राजतरंगिणी संस्कृत में रचित ऐतिहासिक घटनाओं का ग्रंथ है जिसमें विशेष रूप से कश्मीर के राजाओं का इतिहास है।"
+            },
+            {
+                q: "बानभट्ट द्वारा रचित 'हर्षचरित' में किस सम्राट की जीवन गाथा का वर्णन है?",
+                options: ["सम्राट हर्षवर्धन (Emperor Harsha)", "सम्राट अशोक", "समुद्रगुप्त", "चंद्रगुप्त मौर्य"],
+                correctText: "सम्राट हर्षवर्धन (Emperor Harsha)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बानभट्ट राजा हर्षवर्धन के दरबारी कवि थे जिन्होंने हर्षचरित और कादंबरी की रचना की।"
+            },
+            {
+                q: "प्राचीन भारतीय इतिहास के अध्ययन में यूनानी लेखक मेगस्थनीज की प्रसिद्ध पुस्तक का क्या नाम है?",
+                options: ["इंडिका (Indica)", "ज्योग्राफी", "हिस्टोरिका", "नेचुरल हिस्ट्री"],
+                correctText: "इंडिका (Indica)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मेगस्थनीज चंद्रगुप्त मौर्य के दरबार में राजदूत था, उसने 'इंडिका' में मौर्यकालीन समाज और प्रशासन का वर्णन किया है।"
+            },
+            {
+                q: "चीनी यात्री फाह्यान (Fa-hien) किस गुप्त शासक के शासनकाल में भारत आया था?",
+                options: ["चंद्रगुप्त द्वितीय (विक्रमादित्य)", "समगुप्त", "स्कंदगुप्त", "श्रीगुप्त"],
+                correctText: "चंद्रगुप्त द्वितीय (विक्रमादित्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फाह्यान बौद्ध धर्म के अध्ययन हेतु चंद्रगुप्त द्वितीय (विक्रमादित्य) के काल में भारत आया था।"
+            },
+            {
+                q: "ह्वेनसांग (Hiuen Tsang) किसके शासनकाल में भारत आया था और उसने किस विश्वविद्यालय में शिक्षा ग्रहण की थी?",
+                options: ["हर्षवर्धन के शासनकाल में (नालंदा विश्वविद्यालय)", "चंद्रगुप्त मौर्य (तक्षशिला)", "अशोक (विक्रमशिला)", "कनिष्क (वल्लभी)"],
+                correctText: "ह्वेनसांग के शासनकाल में (नालंदा विश्वविद्यालय)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ह्वेनसांग हर्षवर्धन के काल में भारत आया और नालंदा विश्वविद्यालय में बौद्ध ग्रंथों का अध्ययन किया।"
+            },
+            {
+                q: "प्रसिद्ध अरबी यात्री अलबरूनी (Al-Biruni) भारत किसके साथ आया था और उसकी प्रसिद्ध पुस्तक कौन सी है?",
+                options: ["महमूद गजनवी के साथ (पुस्तक: किताब-उल-हिंद / तहकीक-ए-हिंद)", "मोहम्मद गोरी के साथ (पुस्तक: रहला)", "बाबर के साथ", "अकबर के साथ"],
+                correctText: "महमूद गजनवी के साथ (पुस्तक: किताब-उल-हिंद / तहकीक-ए-हिंद)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अलबरूनी महमूद गजनवी के साथ भारत आया था और उसने 'किताब-उल-हिंद' लिखी।"
+            },
+            {
+                q: "इब्नबतूता (Ibn Battuta), जो मोरक्को का यात्री था, किसके शासनकाल में भारत आया और उसने कौन सी पुस्तक लिखी?",
+                options: ["मुहम्मद बिन तुगलक के शासनकाल में (पुस्तक: रहला / Rihla)", "अलाउद्दीन खिलजी", "इल्तुतमिश", "सिकंदर लोदी"],
+                correctText: "मुहम्मद बिन तुगलक के शासनकाल में (पुस्तक: रहला / Rihla)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इब्नबतूता 14वीं शताब्दी में मुहम्मद बिन तुगलक के समय भारत आया था और उसकी यात्रा वृत्तांत 'रहला' में विस्तृत जानकारी मिलती है।"
+            },
+            {
+                q: "अशोक के शिलालेखों को सर्वप्रथम किसने और किस वर्ष पढ़ा था?",
+                options: ["जेम्स प्रिंसेप (James Prinsep) ने 1837 में", "अलेक्जेंडर कनिंघम ने 1850 में", "जॉन मार्शल ने 1921 में", "दयाराम साहनी ने 1922 में"],
+                correctText: "जेम्स प्रिंसेप (James Prinsep) ने 1837 में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जेम्स प्रिंसेप ने सबसे पहले 1837 में अशोक के ब्राह्मी लिपि वाले अभिलेखों को पढ़ने में सफलता प्राप्त की थी।"
+            },
+            {
+                q: "समुद्रगुप्त की विजयों का विस्तृत विवरण उसके किस दरबारी कवि द्वारा रचित अभिलेख में मिलता है?",
+                options: ["हरिषेण रचित 'प्रयाग प्रशस्ति' (Allahabad Pillar Inscription)", "कालिदास रचित अभिलेख", "बाणभट्ट का अभिलेख", "रवि कीर्ति रचित ऐहोल अभिलेख"],
+                correctText: "हरिषेण रचित 'प्रयाग प्रशस्ति' (Allahabad Pillar Inscription)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्रगुप्त के संधि विग्रह अधिकृत हरिषेण द्वारा रचित प्रयाग प्रशस्ति से उसके सैन्य अभियानों की जानकारी मिलती है।"
+            },
+            {
+                q: "हाथीगुंफा अभिलेख (Hathigumpha Inscription) किस प्राचीन शासक की उपलब्धियों से संबंधित है?",
+                options: ["कलिंगराज खारवेल (Kharavela of Kalinga)", "गौतमीपुत्र सातकर्णी", "पुष्यमित्र शुंग", "सम्राट कनिष्क"],
+                correctText: "कलिंगराज खारवेल (Kharavela of Kalinga)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उदयगिरि (उड़ीसा) से प्राप्त हाथीगुंफा अभिलेख चेदि वंश के राजा खारवेल का प्रसिद्ध प्राकृत अभिलेख है।"
+            },
+            {
+                q: "जूनागढ़ (गिरनार) अभिलेख किस शक शासक से संबंधित है जो संस्कृत भाषा में जारी पहला लंबा अभिलेख है?",
+                options: ["रुद्रदामन प्रथम (Rudradaman I)", "नहपान", "मोगा", "चष्टन"],
+                correctText: "रुद्रदामन प्रथम (Rudradaman I)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रुद्रदामन प्रथम का जूनागढ़ अभिलेख (संस्कृत भाषा में) सुदर्शन झील के जीर्णोद्धार की जानकारी देता है।"
+            },
+            {
+                q: "प्राचीन भारत में सिक्कों के अध्ययन को क्या कहा जाता है?",
+                options: ["मुद्राशास्त्र (Numismatics)", "पुरातत्वशास्त्र (Archaeology)", "महापाषाण अध्ययन", "अभिलेखशास्त्र (Epigraphy)"],
+                correctText: "मुद्राशास्त्र (Numismatics)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिक्कों और मुद्राओं के वैज्ञानिक अध्ययन को मुद्राशास्त्र (Numismatics) कहा जाता है।"
+            },
+            {
+                q: "प्राचीन भारत में सबसे पहले सोने के सिक्के (Gold Coins) किस वंश के शासकों द्वारा जारी किए गए थे?",
+                options: ["हिंद-यवन (Indo-Greek) शासकों द्वारा", "गुप्त वंश", "मौर्य वंश", "कुषाण वंश"],
+                correctText: "हिंद-यवन (Indo-Greek) शासकों द्वारा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत में सर्वप्रथम हिंद-यवन (बाैक्ट्रियन ग्रीक) शासकों ने स्वर्ण सिक्के चलाए, जबकि सबसे अधिक शुद्ध सोने के सिक्के कुषाणों ने चलाए।"
+            },
+            {
+                q: "गुप्त शासक समुद्रगुप्त को किस प्रकार के सिक्कों पर वीणा बजाते हुए दिखाया गया है?",
+                options: ["संगीत प्रेमी प्रकार / वीणा वादक प्रकार के स्वर्ण सिक्के", "अश्वमेध प्रकार के सिक्के", "व्याघ्र हनन प्रकार", "गरुड़ प्रकार"],
+                correctText: "संगीत प्रेमी प्रकार / वीणा वादक प्रकार के स्वर्ण सिक्के",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• समुद्रगुप्त के सिक्कों पर उसके संगीतज्ञ होने का प्रमाण मिलता है जहाँ उसे वीणा बजाते दर्शाया गया है।"
+            },
+            {
+                q: "प्राचीन भारतीय इतिहास में 'आहत सिक्के' (Punch-marked Coins) किस धातु के बने होते थे और इन्हें क्या कहा जाता था?",
+                options: ["चाँदी और तांबे के बने होते थे जिन्हें साहित्य में 'कार्षापण' कहा गया", "केवल सोने के", "लोहे के", "सोने और पारे के"],
+                correctText: "चाँदी और तांबे के बने होते थे जिन्हें साहित्य में 'कार्षापण' कहा गया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आहत या पंचमार्क सिक्के प्राचीनतम सिक्के हैं जो मुख्य रूप से चाँदी के होते थे।"
+            },
+            {
+                q: "अभिलेखों के अध्ययन को क्या कहा जाता है?",
+                options: ["इपोग्राफी (Epigraphy)", "न्यूमिमैटिक्स", "पैलियोलॉज़ी", "स्ट्रैटोग्राफी"],
+                correctText: "इपोग्राफी (Epigraphy)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शिलालेखों एवं अभिलेखों के अध्ययन को इपोग्राफी (Epigraphy) कहा जाता है।"
+            },
+            {
+                q: "ऋग्वेद में उल्लिखित नदियों में सबसे पवित्र नदी किसे माना गया है?",
+                options: ["सरस्वती नदी (जिसे 'नदितमा' कहा गया)", "गंगा नदी", "सिंधु नदी", "यमुना नदी"],
+                correctText: "सरस्वती नदी (जिसे 'नदितमा' कहा गया)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद में सरस्वती नदी को सबसे पवित्र नदी माना गया है और इसे 'नदितमा' (नदियों में श्रेष्ठ) कहा गया है।"
+            },
+            {
+                q: "बौद्ध धर्म के किस ग्रंथ में महात्मा बुद्ध के पूर्वजन्मों की कथाएँ (रोचक कहानियाँ) संकलित हैं?",
+                options: ["जातक कथाएँ (Jatakas)", "सुत्तपिटक", "विनयपिटक", "अभिधम्मपिटक"],
+                correctText: "जातक कथाएँ (Jatakas)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जातक कथाओं में बुद्ध के पूर्वजन्मों की 500 से अधिक कहानियाँ हैं जो प्राचीन सामाजिक-आर्थिक स्थिति दर्शाती हैं।"
+            },
+            {
+                q: "जैन धर्म के धार्मिक ग्रंथों को सामान्यतः क्या कहा जाता है?",
+                options: ["आगम (Agamas)", "त्रिपिटक", "अंग", "उपनिषद"],
+                correctText: "आगम (Agamas)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जैन साहित्य को 'आगम' कहा जाता है जिसमें 12 अंग, 12 उपांग आदि शामिल हैं।"
+            },
+            {
+                q: "मेगस्थनीज की पुस्तक 'इंडिका' मूल रूप से किस भाषा में थी और वर्तमान में यह किस रूप में उपलब्ध है?",
+                options: ["मूल रूप से यूनानी में थी, जो अब केवल अन्य लेखकों के उद्धरणों (Fragments) के रूप में मिलती है", "संस्कृत में पूर्ण सुरक्षित", "प्राकृत में", "लैटिन में"],
+                correctText: "मूल रूप से यूनानी में थी, जो अब केवल अन्य लेखकों के उद्धरणों (Fragments) के रूप में मिलती है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मेगस्थनीज की मूल इंडिका नष्ट हो चुकी है, परंतु बाद के यूनानी इतिहासकारों के उद्धरणों से इसके अंश मिलते हैं।"
+            },
+            {
+                q: "अशोक के किस अभिलेख में कलिंग युद्ध और उसके हृदय परिवर्तन का स्पष्ट वर्णन मिलता है?",
+                options: ["13वाँ शिलालेख (Thirteenth Rock Edict)", "11वाँ शिलालेख", "रूम्मिंदेई स्तंभ लेख", "भाब्रू शिलालेख"],
+                correctText: "13वाँ शिलालेख (Thirteenth Rock Edict)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अशोक के 13वें शिलालेख में कलिंग विजय और युद्ध जनित भारी तबाही के बाद बौद्ध धर्म अपनाने का वर्णन है।"
+            },
+
+            // --- प्रागैतिहासिक काल, ताम्रपाषाण व महापाषाण (26-45) ---
+            {
+                q: "मानव इतिहास के उस काल को क्या कहते हैं जिसके लिए कोई लिखित साक्ष्य उपलब्ध नहीं है?",
+                options: ["प्रागैतिहासिक काल (Prehistoric Period)", "आद्य ऐतिहासिक काल", "ऐतिहासिक काल", "मध्यकाल"],
+                correctText: "प्रागैतिहासिक काल (Prehistoric Period)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जिस काल के कोई लिखित साक्ष्य नहीं मिलते और पुरातात्विक साक्ष्यों पर निर्भर रहना पड़े, उसे प्रागैतिहासिक काल कहते हैं (जैसे पाषाण काल)।"
+            },
+            {
+                q: "पाषाण काल को सामान्यतः कितने भागों में विभाजित किया गया है?",
+                options: ["तीन भागों में (पुरापाषाण, मध्यपाषाण और नवपाषाण काल)", "दो भागों में", "चार भागों में", "पाँच भागों में"],
+                correctText: "तीन भागों में (पुरापाषाण, मध्यपाषाण और नवपाषाण काल)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पाषाण युग को पुरापाषाण (Paleolithic), मध्यपाषाण (Mesolithic) और नवपाषाण (Neolithic) काल में बाँटा गया है।"
+            },
+            {
+                q: "आग की खोज (Discovery of Fire) मानव ने किस काल में की थी?",
+                options: ["पुरापाषाण काल (Paleolithic Period)", "मध्यपाषाण काल", "नवपाषाण काल", "ताम्रपाषाण काल"],
+                correctText: "पुरापाषाण काल (Paleolithic Period)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आग की खोज पुरापाषाण काल में हुई थी, किंतु इसका नियमित प्रयोग नवपाषाण काल में शुरू हुआ।"
+            },
+            {
+                q: "पहिए का आविष्कार (Invention of Wheel) और कृषि की शुरुआत किस काल की मुख्य विशेषता है?",
+                options: ["नवपाषाण काल (Neolithic Period)", "पुरापाषाण काल", "मध्यपाषाण काल", "महापाषाण काल"],
+                correctText: "नवपाषाण काल (Neolithic Period)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नवपाषाण काल में मानव ने कृषि करना सीखा, स्थायी बस्तियाँ बसाईं और पहिए का आविष्कार किया।"
+            },
+            {
+                q: "मध्यपाषाण काल (Mesolithic Period) के प्रमुख उपकरण (Tools) किस नाम से जाने जाते हैं?",
+                options: ["माइक्रोलिथ / लघु पाषाण उपकरण (Microliths)", "मैथोलिथ", "कुल्हाड़ी", "हैंडऐक्स"],
+                correctText: "माइक्रोलिथ / लघु पाषाण उपकरण (Microliths)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्यपाषाण काल के औजार बहुत छोटे होते थे जिन्हें 'माइक्रोलिथ' (सूक्ष्म पाषाण उपकरण) कहा जाता है।"
+            },
+            {
+                q: "भारत में मानव कंकाल का सबसे पहला प्रमाण किस घाटी से मिला है?",
+                options: ["नर्मदा घाटी (हाथनोरा, सीहोर)", "सोरन घाटी", "बेलन घाटी", "गंगा घाटी"],
+                correctText: "नर्मदा घाटी (हाथनोरा, सीहोर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मध्य प्रदेश के हाथनोरा (नर्मदा घाटी) से अरुण सोनकिया द्वारा प्राचीनतम मानव जीवाश्म (Homo erectus) खोजा गया।"
+            },
+            {
+                q: "भारतीय पुरातत्व का जनक (Father of Indian Archaeology) किसे कहा जाता है?",
+                options: ["अलेक्जेंडर कनिंघम (Alexander Cunningham)", "जॉन मार्शल", "मार्टीमर व्हीलर", "रॉबर्ट ब्रूस फुट"],
+                correctText: "अलेक्जेंडर कनिंघम (Alexander Cunningham)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सर अलेक्जेंडर कनिंघम को भारतीय पुरातत्व सर्वेक्षण (ASI) का जनक माना जाता है।"
+            },
+            {
+                q: "रॉबर्ट ब्रूस फुट (Robert Bruce Foote) जिन्होंने भारत में पहला पाषाण उपकरण खोजा था, वे मूलतः क्या थे?",
+                options: ["भूवैज्ञानिक और पुरातत्वविद् (Geologist & Archaeologist)", "इतिहासकार", "सैनिक अधिकारी", "राजदूत"],
+                correctText: "भूवैज्ञानिक और पुरातत्वविद् (Geologist & Archaeologist)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1863 में पल्लवरम (मद्रास) से पहला पाषाण हस्तकुठार (Handaxe) खोजने वाले रॉबर्ट ब्रूस फुट भूवैज्ञानिक थे।"
+            },
+            {
+                q: "गेरू रंग के मृदभांड (OCP - Ochre Coloured Pottery) संस्कृति का संबंध मुख्य रूप से किस काल से है?",
+                options: ["ताम्रपाषाणिक काल (Chalcolithic Period)", "पुरापाषाण काल", "मौर्य काल", "गुप्त काल"],
+                correctText: "ताम्रपाषाणिक काल (Chalcolithic Period)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ताम्रपाषाण काल में तांबे का प्रयोग शुरू हुआ और ओसीपी (गेरूवर्णी मृदभांड) संस्कृति का विकास हुआ।"
+            },
+            {
+                q: "महापाषाण संस्कृति (Megalithic Culture) मुख्य रूप से किससे संबंधित है?",
+                options: ["मृतकों के दफनाने के स्थान पर बड़े-बड़े पत्थरों को रखना (Burial monuments)", "बड़े महलों का निर्माण", "पहाड़ी किले", "विशाल मंदिर"],
+                correctText: "मृतकों के दफनाने के स्थान पर बड़े-बड़े पत्थरों को रखना (Burial monuments)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दक्षिण भारत में महापाषाण (Megaliths) काल में कब्रों के चारों ओर बड़े पत्थर रखे जाते थे।"
+            },
+            {
+                q: "भीमबेटका (मध्य प्रदेश) किस लिए प्रसिद्ध है?",
+                options: ["प्रागैतिहासिक पाषाण शैलचित्रों (Rock Paintings) के लिए", "बौद्ध स्तूप के लिए", "सिंधु घाटी बंदरगाह के लिए", "अशोक स्तंभ के लिए"],
+                correctText: "प्रागैतिहासिक पाषाण शैलचित्रों (Rock Paintings) के लिए",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• रायसेन (भीमबेटका) प्रागैतिहासिक शैल कला और गुफा चित्रों के लिए यूनेस्को विश्व धरोहर स्थल है।"
+            },
+            {
+                q: "भारत में कृषि का प्राचीनतम साक्ष्य (7000 ई.पू. के लगभग) कहाँ से प्राप्त हुआ है?",
+                options: ["मेहरगढ़ (Mehrgarh - पाकिस्तान)", "कोलडिहवा", "चिरांद", "बुर्जहोम"],
+                correctText: "मेहरगढ़ (Mehrgarh - पाकिस्तान)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बलूचिस्तान स्थित मेहरगढ़ से जौ और गेहूँ की खेती के प्राचीनतम साक्ष्य मिले हैं।"
+            },
+            {
+                q: "धान (चावल) की खेती का प्राचीनतम साक्ष्य भारतीय उपमहाद्वीप में किस स्थान से मिला है?",
+                options: ["कोल्हवा (Koldihwa - उत्तर प्रदेश)", "मेहरगढ़", "हस्तिनापुर", "लोथल"],
+                correctText: "कोल्हवा (Koldihwa - उत्तर प्रदेश)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर प्रदेश के बेलन घाटी स्थित कोल्हवा से चावल (धान) की खेती का प्राचीनतम साक्ष्य मिला है।"
+            },
+            {
+                q: "बुर्जहोम (कश्मीर) नवपाषाणिक स्थल की प्रमुख विशेषता क्या थी?",
+                options: ["गर्त आवास (Pit-dwellings / गड्ढे वाले घर) और मालिक के साथ कुत्ते को दफनाना", "विशाल मंदिर", "ईंट के पक्के मकान", "तांबे की भट्टियाँ"],
+                correctText: "गर्त आवास (Pit-dwellings / गड्ढे वाले घर) और मालिक के साथ कुत्ते को दफनाना",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बुर्जहोम में लोग जमीन के अंदर गर्त (गड्ढे) बनाकर रहते थे और यहाँ मालिक की कब्र में कुत्ते दफनाए जाने के साक्ष्य मिले हैं।"
+            },
+            {
+                q: "चिरांद (बिहार) का नवपाषाणिक स्थल किस विशेषता के लिए प्रसिद्ध है?",
+                options: ["प्रचुर मात्रा में हड्डी के उपकरण (Bone Tools)", "तांबे के हथियार", "सोने के सिक्के", "बंदरगाह"],
+                correctText: "प्रचुर मात्रा में हड्डी के उपकरण (Bone Tools)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सारण (बिहार) स्थित चिरांद नवपाषाण स्थल से हिरण के सींगों और हड्डियों से बने उपकरण मिले हैं।"
+            },
+            {
+                q: "भारतीय उपमहाद्वीप में पाषाण काल से लेकर हड़प्पा सभ्यता तक के सांस्कृतिक अवशेष किस घाटी में क्रमिक रूप से मिलते हैं?",
+                options: ["बेलन घाटी (Belan Valley - उत्तर प्रदेश)", "सिंधु घाटी", "गंगा घाटी", "नर्मदा घाटी"],
+                correctText: "बेलन घाटी (Belan Valley - उत्तर प्रदेश)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मिर्जापुर के पास बेलन घाटी एकमात्र ऐसी घाटी है जहाँ पुरापाषाण, मध्यपाषाण और नवपाषाण अवशेष एक साथ मिलते हैं।"
+            },
+            {
+                q: "ताम्रपाषाण काल में महाराष्ट्र की सबसे प्रमुख संस्कृति कौन सी थी?",
+                options: ["जोरवे संस्कृति (Jorwe Culture)", "आहार संस्कृति", "कायथा संस्कृति", "प्रभात संस्कृति"],
+                correctText: "जोरवे संस्कृति (Jorwe Culture)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• महाराष्ट्र में ताम्रपाषाण काल की प्रमुख संस्कृति जोरवे संस्कृति थी (दामाबाद और इनामगाँव इसके बड़े केंद्र थे)।"
+            },
+            {
+                q: "इनामगाँव (महाराष्ट्र) किस प्रकार की ताम्रपाषाणिक बस्ती का उदाहरण है?",
+                options: ["एक बड़ी ग्रामीण बस्ती जिसमें किलेबंदी और मुखिया का घर था", "एक नगरीय बंदरगाह", "एक धार्मिक केंद्र", "एक खानाबदोश शिविर"],
+                correctText: "एक बड़ी ग्रामीण बस्ती जिसमें किलेबंदी और मुखिया का घर था",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• इनामगाँव जोरवे संस्कृति का बड़ा स्थल है जहाँ बड़े पैमाने पर कृषि और किलेबंदी के साक्ष्य मिले हैं।"
+            },
+            {
+                q: "आहार संस्कृति (Ahar Culture) का संबंध मुख्य रूप से किस राज्य से है?",
+                options: ["राजस्थान (बनास घाटी)", "मध्य प्रदेश", "महाराष्ट्र", "गुजरात"],
+                correctText: "राजस्थान (बनास घाटी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बनास घाटी में विकसित आहार संस्कृति को 'बनास संस्कृति' भी कहते हैं (यहाँ तांबे गलाने के साक्ष्य मिले हैं)।"
+            },
+            {
+                q: "पाषाण काल के बाद धातु का प्रयोग शुरू हुआ, सबसे पहले किस धातु की खोज की गई थी?",
+                options: ["तांबा (Copper)", "लोहा", "सोना", "टिन"],
+                correctText: "तांबा (Copper)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मानव द्वारा सबसे पहले उपयोग की जाने वाली धातु तांबा थी।"
+            },
+
+            // --- हड़प्पा सभ्यता / सिंधु घाटी सभ्यता (46-70) ---
+            {
+                q: "सिंधु घाटी सभ्यता (Indus Valley Civilization) की खोज किस वर्ष और किसके निर्देशन में हुई थी?",
+                options: ["वर्ष 1921 में दयाराम साहनी द्वारा (हड़प्पा की खोज)", "1922 में रखालदास बनर्जी", "1901 में कनिघम", "1930 में जॉन मार्शल"],
+                correctText: "वर्ष 1921 में दयाराम साहनी द्वारा (हड़प्पा की खोज)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दयाराम साहनी ने 1921 में रावी नदी के तट पर हड़प्पा स्थल की खोज की थी।"
+            },
+            {
+                q: "सिंधु घाटी सभ्यता का काल-निर्धारण (Radiocarbon C-14 पद्धति के अनुसार) सर्वमान्य रूप से क्या माना जाता है?",
+                options: ["2500 ई.पू. से 1750 ई.पू.", "3500 ई.पू. से 2500 ई.पू.", "1500 ई.पू. से 600 ई.पू.", "1000 ई.पू. से 500 ई.पू."],
+                correctText: "2500 ई.पू. से 1750 ई.पू.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• डीपी अग्रवाल एवं सी-14 डेटिंग पद्धति के अनुसार सिंधु सभ्यता का परिपक्व काल 2500 ई.पू. से 1750 ई.पू. है।"
+            },
+            {
+                q: "हड़प्पा सभ्यता की सबसे विशिष्ट विशेषता क्या थी?",
+                options: ["उन्नत नगर नियोजन और जल निकास प्रणाली (Town planning & Drainage system)", "विशाल मंदिर", "लोहे के हथियार", "घुमंतू जीवन"],
+                correctText: "उन्नत नगर नियोजन और जल निकास प्रणाली (Town planning & Drainage system)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्रिड पद्धति पर आधारित पक्की ईंटों के मकान और ढकी हुई नालियों की जल निकास प्रणाली इसकी पहचान थी।"
+            },
+            {
+                q: "मोहनजोदड़ो (Mohenjo-daro) का शाब्दिक अर्थ क्या है?",
+                options: ["मृतकों का टीला (Mound of the Dead)", "पवित्र नगर", "व्यापारिक केंद्र", "देवताओं की भूमि"],
+                correctText: "मृतकों का टीला (Mound of the Dead)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिंधी भाषा में मोहनजोदड़ो का अर्थ 'मृतकों का टीला' होता है (खोज: रखालदास बनर्जी, 1922)।"
+            },
+            {
+                q: "मोहनजोदड़ो से प्राप्त सबसे बड़ी इमारत या संरचना कौन सी है?",
+                options: ["विशाल अन्नगार / ग्रेary (Great Granary)", "विशाल स्नागार (Great Bath)", "सभा भवन", "गोदीवाला"],
+                correctText: "विशाल अन्नगार / ग्रेary (Great Granary)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मोहनजोदड़ो का विशाल अन्नगार (अनाज रखने का गोदाम) वहाँ की सबसे बड़ी इमारत थी।"
+            },
+            {
+                q: "मोहनजोदड़ो से प्राप्त 'विशाल स्नागार' (Great Bath) का प्रयोग किस उद्देश्य से होता था?",
+                options: ["धार्मिक या अनुष्ठानिक स्नान (Ritual bathing) के लिए", "तैरने की प्रतियोगिता के लिए", "कृषि सिंचाई के लिए", "मछली पालन के लिए"],
+                correctText: "धार्मिक या अनुष्ठानिक स्नान (Ritual bathing) के लिए",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जॉन मार्शल ने इसे 'विश्व का एक आश्चर्य' कहा, जिसका प्रयोग विशेष अवसरों पर सार्वजनिक स्नान हेतु होता था।"
+            },
+            {
+                q: "लोथल (Lotahl) प्राचीन सिंधु सभ्यता का क्या था?",
+                options: ["एक प्रमुख बंदरगाह / गोदीवाला (Dockyard)", "राजधानी", "धार्मिक केंद्र", "कृषि फार्म"],
+                correctText: "एक प्रमुख बंदरगाह / गोदीवाला (Dockyard)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुजरात के भोगवा नदी के तट पर स्थित लोथल सिंधु सभ्यता का प्रमुख पतन (Port City) था।"
+            },
+            {
+                q: "कालीबंगा (Kalibangan) का शाब्दिक अर्थ क्या है और यह किस राज्य में स्थित है?",
+                options: ["काले रंग की चूड़ियाँ (Rajasthan में स्थित)", "मिट्टी के बर्तन (गुजरात)", "जुता हुआ खेत (हरियाणा)", "तांबे की खान (मध्य प्रदेश)"],
+                correctText: "काले रंग की चूड़ियाँ (Rajasthan में स्थित)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राजस्थान के हनुमानगढ़ जिले में घग्गर नदी के तट पर स्थित कालीबंगा का अर्थ 'काले रंग की चूड़ियाँ' है।"
+            },
+            {
+                q: "कालीबंगा से प्राप्त archaeological साक्ष्यों में सबसे महत्वपूर्ण क्या है?",
+                options: ["जुते हुए खेत के साक्ष्य (Ploughed field surface) और अग्निकुंड", "विशाल बंदरगाह", "नर्तकी की कांस्य मूर्ति", "पशुपतिनाथ की मुहर"],
+                correctText: "जुते हुए खेत के साक्ष्य (Ploughed field surface) और अग्निकुंड",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कालीबंगा से प्राक्कैपिटल और हड़प्पा कालीन जुते हुए खेत तथा हवन कुंड (अग्निकुंड) मिले हैं।"
+            },
+            {
+                q: "धौलावीरा (Dholavira) हड़प्पा स्थल की सबसे अनूठी विशेषता क्या है?",
+                options: ["नगर का तीन भागों में विभाजन (विशाल जल संरक्षण प्रणाली)", "बिना दुर्ग का एकमात्र शहर", "घोड़े के अवशेष", "धान की खेती"],
+                correctText: "नगर का तीन भागों में विभाजन (विशाल जल संरक्षण प्रणाली)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुजरात के कच्छ में स्थित धौलावीरा तीन भागों (किला, मध्यम नगर, निचला नगर) में बँटा था और जल प्रबंधन अद्भुत था।"
+            },
+            {
+                q: "सिंधु घाटी सभ्यता की लिपि (Script) किस प्रकार की थी?",
+                options: ["भावचित्रात्मक / चित्राक्षर लिपि (Pictographic script - दाईं से बाईं ओर लिखी जाती थी)", "ब्राह्मी लिपि", "खरोष्ठी लिपि", "देवनागरी लिपि"],
+                correctText: "भावचित्रात्मक / चित्राक्षर लिपि (Pictographic script - दाईं से बाईं ओर लिखी जाती थी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिंधु लिपि को 'बौस्ट्रोफेडन' (पहले दाईं से बाईं, फिर बाईं से दाईं) शैली में लिखा जाता था, जो अभी तक पढ़ी नहीं जा सकी है।"
+            },
+            {
+                q: "मोहनजोदड़ो से प्राप्त 'पशुपति शिव' की मुहर पर किन पशुओं का अंकन मिलता है?",
+                options: ["हाथी, बाघ, गेंडा, भैंसा और दो हिरण", "केवल शेर और गाय", "घोड़ा और ऊंट", "कुत्ता और बिल्ली"],
+                correctText: "हाथी, बाघ, गेंडा, भैंसा और दो हिरण",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• योगी की मुद्रा में बैठे पशुपतिनाथ के चारों ओर हाथी, बाघ, गैंडा, भैंसा तथा पैरों के पास दो हिरण हैं।"
+            },
+            {
+                q: "हड़प्पा सभ्यता के लोग किस धातु से अपरिचित थे?",
+                options: ["लोहा (Iron)", "तांबा", "कांस्य", "सोना"],
+                correctText: "लोहा (Iron)",
+                exp: "<b>विस्तृत सभ्यता:</b><br>• सिंधु सभ्यता एक कांस्य युगीन (Bronze Age) सभ्यता थी; उन्हें लोहे का ज्ञान नहीं था (लोहे की खोज उत्तर वैदिक काल में हुई)।"
+            },
+            {
+                q: "हड़प्पा सभ्यता का सबसे पूर्वी स्थल कौन सा था?",
+                options: ["आलमगीरपुर (उत्तर प्रदेश - हिंडन नदी)", "सुत्कांगेडोर (बलूचिस्तान)", "दैमाबाद (महाराष्ट्र)", "मंडू (जम्मू)"],
+                correctText: "आलमगीरपुर (उत्तर प्रदेश - हिंडन नदी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर सीमा: मांडा (जम्मू), दक्षिण: दैमाबाद (महाराष्ट्र), पूर्व: आलमगीरपुर (यूपी), पश्चिम: सुत्कांगेडोर (बलूचिस्तान)।"
+            },
+            {
+                q: "चन्हूचड़ो (Chanhudaro) एकमात्र ऐसा हड़प्पा स्थल था जो...",
+                options: ["बिना दुर्ग (Unfortified) का शहर था जहाँ मनके बनाने का कारखाना था", "समुद्र के किनारे था", "जहाँ चावल की खेती होती थी", "जहाँ घोड़े के अवशेष मिले थे"],
+                correctText: "बिना दुर्ग (Unfortified) का शहर था जहाँ मनके बनाने का कारखाना था",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• चन्हूचड़ो से मनके (Beads) बनाने का कारखाना और वक्राकार ईंटें मिली हैं, और यह बिना गढ़ (Citadel) का शहर था।"
+            },
+            {
+                q: "सिंधु घाटी सभ्यता के लोग किसकी पूजा प्रमुख रूप से करते थे?",
+                options: ["पशुपति शिव और मातृदेवी (Mother Goddess)", "केवल विष्णु की", "केवल सूर्य की", "केवल इंद्र की"],
+                correctText: "पशुपति शिव और मातृदेवी (Mother Goddess)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मातृदेवी (प्रकृति) की मृण्मूर्तियाँ और पशुपति शिव की पूजा के साक्ष्य सिंधु समाज में मिलते हैं।"
+            },
+            {
+                q: "बनवाली (Haryana) से किस प्रकार के साक्ष्य प्राप्त हुए हैं?",
+                options: ["मिट्टी का बना खिलौना हल (Terracotta Plough) और अच्छे किस्म का जौ", "विशाल गोदीवाला", "नर्तकी की मूर्ति", "कांसे की रथ"],
+                correctText: "मिट्टी का बना खिलौना हल (Terracotta Plough) और अच्छे किस्म का जौ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बनवाली से टेराकोटा (पक्की मिट्टी) का हल तथा उन्नत किस्म के जौ के दाने मिले हैं।"
+            },
+            {
+                q: "सुरकोतड़ा (Surkotada) स्थल से किस जानवर की हड्डियों के अवशेष पाए जाने के लिए प्रसिद्ध है?",
+                options: ["घोड़े की अस्थियाँ (Horse bones)", "हाथी के दांत", "ऊंट के अवशेष", "शेर की खाल"],
+                correctText: "घोड़े की अस्थियाँ (Horse bones)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुजरात के सुरकोतड़ा से घोड़े की हड्डियों के अवशेष मिलने के साक्ष्य मिले हैं जो इतिहासकारों के बीच चर्चा का विषय रहे।"
+            },
+            {
+                q: "हड़प्पा सभ्यता के पतन का सबसे प्रमुख और सर्वमान्य कारण किसे माना जाता है?",
+                options: ["नदियों द्वारा बाढ़ आना और जलवायु परिवर्तन (Floods & Climate Change)", "आर्यन आक्रमण", "महामारी", "भूकंप"],
+                correctText: "नदियों द्वारा बाढ़ आना और जलवायु परिवर्तन (Floods & Climate Change)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मार्शल और सर्रेल ने बाढ़ को, जबकि अन्य ने पारिस्थितिक असंतुलन व जलवायु परिवर्तन को पतन का मुख्य कारण माना है।"
+            },
+            {
+                q: "हड़प्पा सभ्यता की मुद्रा (Seal) पर सबसे अधिक किस पशु का अंकन मिलता है?",
+                options: ["एकसिंगी पशु / यूनिकॉर्न (Unicorn)", "गाय", "घोड़ा", "शेर"],
+                correctText: "एकसिंगी पशु / यूनिकॉर्न (Unicorn)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हड़प्पा की मुहरों पर एक सींग वाला जानवर (यूनिकॉर्न) सबसे अधिक बार चित्रित किया गया है।"
+            },
+
+            // --- वैदिक संस्कृति (ऋग्वैदिक व उत्तर वैदिक काल) (71-100) ---
+            {
+                q: "वैदिक सभ्यता का काल-विभाजन सामान्यतः कितने भागों में किया गया है?",
+                options: ["दो भागों में (ऋग्वैदिक काल 1500-1000 ई.पू. और उत्तर वैदिक काल 1000-600 ई.पू.)", "तीन भागों में", "चार भागों में", "पाँच भागों में"],
+                correctText: "दो भागों में (ऋग्वैदिक काल 1500-1000 ई.पू. और उत्तर वैदिक काल 1000-600 ई.पू.)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• वैदिक काल को ऋग्वैदिक (1500-1000 ई.पू.) और उत्तर वैदिक काल (1000-600 ई.पू.) में बाँटा गया है।"
+            },
+            {
+                q: "आर्यों का मूल निवास स्थान मध्य एशिया (Central Asia) मानने वाले प्रसिद्ध विद्वान कौन थे?",
+                options: ["मैक्समूलर (Max Muller)", "बाल गंगाधर तिलक", "दयानंद सरस्वती", "डॉ. सम्पूर्णानंद"],
+                correctText: "मैक्समूलर (Max Muller)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मैक्समूलर का मध्य एशिया का सिद्धांत सर्वाधिक मान्य है। तिलक ने आर्कटिक (उत्तरी ध्रुव) बताया था।"
+            },
+            {
+                q: "ऋग्वैदिक काल की सबसे महत्वपूर्ण और नदी सूक्त में वर्णित प्रमुख नदी कौन सी थी?",
+                options: ["सिंधु नदी (Indus River)", "गंगा नदी", "सरस्वती नदी", "यमुना नदी"],
+                correctText: "सिंधु नदी (Indus River)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद में सिंधु नदी का सबसे अधिक बार उल्लेख है और इसे सबसे महत्वपूर्ण नदी माना गया है।"
+            },
+            {
+                q: "ऋग्वेद में कुल कितने मंडल और कितने सूक्त हैं?",
+                options: ["10 मंडल और 1028 सूक्त", "8 मंडल और 1000 सूक्त", "12 मंडल और 1050 सूक्त", "6 मंडल और 500 सूक्त"],
+                correctText: "10 मंडल और 1028 सूक्त",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद सबसे प्राचीन वेद है जिसमें 10 मंडल और 1028 (11 बालखिल्य सहित) सूक्त हैं।"
+            },
+            {
+                q: "गायत्री मंत्र (Gayatri Mantra) ऋग्वेद के किस मंडल में और किस देवता को समर्पित है?",
+                options: ["तीसरे मंडल में (देवता: सविता / सूर्य)", "सातवें मंडल में", "नवें मंडल में", "दसवें मंडल में"],
+                correctText: "तीसरे मंडल में (देवता: सविता / सूर्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विश्वामित्र द्वारा रचित गायत्री मंत्र ऋग्वेद के तीसरे मंडल में है जो सूर्य देवता (सविता) को समर्पित है।"
+            },
+            {
+                q: "ऋग्वेद के किस मंडल में 'चतुर्वरण समाज' (ब्राह्मण, क्षत्रिय, वैश्य, शूद्र) का उल्लेख पहली बार मिलता है?",
+                options: ["दसवें मंडल के पुरुष सूक्त में (Purusha Sukta)", "पहले मंडल में", "सातवें मंडल में", "आठवें मंडल में"],
+                correctText: "दसवें मंडल के पुरुष सूक्त में (Purusha Sukta)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद के 10वें मंडल के पुरुष सूक्त में विराट पुरुष के अंगों से चार वर्णों की उत्पत्ति का वर्णन है।"
+            },
+            {
+                q: "ऋग्वैदिक समाज की सबसे छोटी और मूलभूत इकाई (Basic unit) कौन सी थी?",
+                options: ["कुल या परिवार (Kula / Family)", "ग्राम", "विश", "जन"],
+                correctText: "कुल या परिवार (Kula / Family)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वैदिक समाज पितृसत्तात्मक था और सबसे छोटी इकाई कुल (परिवार) थी जिसका मुखिया 'कुलप' होता था।"
+            },
+            {
+                q: "ऋग्वैदिक काल में जनता की गतिविधियों को नियंत्रित करने वाली दो प्रमुख संस्थाएँ कौन सी थीं?",
+                options: ["सभा और समिति (Sabha and Samiti)", "लोकसभा और राज्यसभा", "परिषद और पंचायत", "गण और संघ"],
+                correctText: "सभा और समिति (Sabha and Samiti)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सभा (कुलीन लोगों की संस्था) और समिति (आम जनता की केंद्रीय सभा) राजा पर नियंत्रण रखती थीं।"
+            },
+            {
+                q: "ऋग्वैदिक आर्यों का मुख्य व्यवसाय क्या था?",
+                options: ["पशुपालन और कृषि (Cattle rearing & Agriculture)", "व्यापार और वाणिज्य", "समुद्री नौवहन", "धातु कर्म"],
+                correctText: "पशुपालन और कृषि (Cattle rearing & Agriculture)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वैदिक आर्यों का मुख्य व्यवसाय पशुपालन (विशेषकर गाय पालना) था, कृषि गौण रूप से थी।"
+            },
+            {
+                q: "ऋग्वेद में 'अघन्या' (Aghanya - वध न करने योग्य) शब्द किसके लिए प्रयोग किया गया है?",
+                options: ["गाय (Cow)", "घोड़ा", "स्त्री", "ब्राह्मण"],
+                correctText: "गाय (Cow)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद में गाय को 'अघन्या' (न मारने योग्य) कहा गया है और इसकी हत्या पर मृत्युदंड या देश निकाला था।"
+            },
+            {
+                q: "ऋग्वैदिक काल के सबसे प्रमुख देवता कौन थे जिन्हें 'युद्ध का देवता' (God of War) कहा गया है?",
+                options: ["इंद्र (Indra - जिन्हें पुरंदर भी कहा गया)", "अग्नि", "वरुण", "सोम"],
+                correctText: "इंद्र (Indra - जिन्हें पुरंदर भी कहा गया)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद में इंद्र के लिए 250 सूक्त हैं और उन्हें किलों को तोड़ने वाला 'पुरंदर' कहा गया है।"
+            },
+            {
+                q: "उत्तर वैदिक काल (1000-600 ई.पू.) की सबसे महत्वपूर्ण विशेषता क्या थी?",
+                options: ["लोहे की खोज (Iron discovery) और पक्की कृषि बस्तियों का विकास", "तांबे का प्रयोग", "सिंधु सभ्यता का उदय", "बौद्ध धर्म का पतन"],
+                correctText: "लोहे की खोज (Iron discovery) और पक्की कृषि बस्तियों का विकास",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• लगभग 1000 ई.पू. कर्नाटक के धारवाड़ और अंतरवेदी क्षेत्र में लोहे (कृष्ण अयस) की खोज हुई जिससे समाज बदल गया।"
+            },
+            {
+                q: "उत्तर वैदिक काल में आर्यों का मुख्य भौगोलिक विस्तार किस क्षेत्र की ओर हो गया था?",
+                options: ["कुरु और पांचाल क्षेत्र (गंगा-यमुना दोआब)", "सिंधु घाटी", "नर्मदा घाटी", "दक्षिण भारत"],
+                correctText: "कुरु और पांचाल क्षेत्र (गंगा-यमुना दोआब)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर वैदिक काल में आर्य सप्तसैंधव क्षेत्र को छोड़कर गंगा-यमुना दोआब (कुरु और पांचाल) में बस गए।"
+            },
+            {
+                q: "उत्तर वैदिक ग्रंथ में किस वेद को 'औषधि और जादू-टोने' (Magical charms and spells) का वेद कहा गया है?",
+                options: ["अथर्ववेद (Atharvaveda)", "सामवेद", "यजुर्वेद", "ऋग्वेद"],
+                correctText: "अथर्ववेद (Atharvaveda)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अथर्ववेद में रोग निवारण, जादू-टोना, तंत्र-मंत्र और लोक विश्वासों का वर्णन है।"
+            },
+            {
+                q: "सामवेद (Samaveda) का संबंध मुख्य रूप से किससे है?",
+                options: ["संगीत और गान से (Book of Chants / Music)", "यज्ञ अनुष्ठान", "युद्ध कौशल", "आयुर्वेद"],
+                correctText: "संगीत और गान से (Book of Chants / Music)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सामवेद भारतीय संगीत का जनक माना जाता है जिसमें यज्ञ के समय गाए जाने वाले मंत्र हैं।"
+            },
+            {
+                q: "यजुर्वेद (Yajurveda) की मुख्य विशेषता क्या है?",
+                options: ["यज्ञ के नियमों और कर्मकांडों का संकलन (Rituals & Sacrificial formulae)", "जादू-टोना", "दार्शनिक उपनिषद", "सूक्त संग्रह"],
+                correctText: "यज्ञ के नियमों और कर्मकांडों का संकलन (Rituals & Sacrificial formulae)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• यजुर्वेद एकमात्र ऐसा वेद है जो गद्य और पद्य दोनों में है और इसमें यज्ञीय कर्मकांड हैं।"
+            },
+            {
+                q: "उत्तर वैदिक काल में वर्ण व्यवस्था का आधार क्या बन गया था?",
+                options: ["जन्म (Birth) के आधार पर (कर्म के बजाय जन्म)", "कर्म और योग्यता के आधार पर", "धन के आधार पर", "युद्ध कौशल पर"],
+                correctText: "जन्म (Birth) के आधार पर (कर्म के बजाय जन्म)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वैदिक काल में वर्ण कर्म आधारित था, परंतु उत्तर वैदिक काल में यह कठोर होकर जन्म आधारित हो गया।"
+            },
+            {
+                q: "उत्तर वैदिक काल में राजा के राज्याभिषेक के समय कौन सा प्रमुख यज्ञ किया जाता था?",
+                options: ["राजसूय यज्ञ (Rajasuya Yajna)", "अश्वमेध यज्ञ", "वाजपेयी यज्ञ", "अग्निहोत्र यज्ञ"],
+                correctText: "राजसूय यज्ञ (Rajasuya Yajna)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• राजसूय यज्ञ से राजा को दिव्य शक्ति मिलने का विश्वास था (अश्वमेध साम्राज्य विस्तार और वाजपेय रथ दौड़ के लिए था)।"
+            },
+            {
+                q: "उपनिषदों (Upanishads) की कुल संख्या कितनी मानी जाती है और इन्हें क्या कहा जाता है?",
+                options: ["कुल 108 उपनिषद हैं जिन्हें 'वेदांत' (Vedanta) भी कहा जाता है", "4 उपनिषद", "18 उपनिषद", "1000 उपनिषद"],
+                correctText: "कुल 108 उपनिषद हैं जिन्हें 'वेदांत' (Vedanta) भी कहा जाता है",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उपनिषद वैदिक साहित्य के अंतिम भाग हैं, इसलिए इन्हें 'वेदांत' कहते हैं और इनकी कुल संख्या 108 है।"
+            },
+            {
+                q: "भारत का राष्ट्रीय आदर्श वाक्य 'सत्यमेव जयते' (Satyameva Jayate) किस उपनिषद से लिया गया है?",
+                options: ["मुंडकोपनिषद (Mundaka Upanishad)", "कठोपनिषद", "छंदोग्य उपनिषद", "ईशोपनिषद"],
+                correctText: "मुंडकोपनिषद (Mundaka Upanishad)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• भारत का राष्ट्रीय प्रतीक वाक्य 'सत्यमेव जयते' मुंडकोपनिषद से लिया गया है।"
+            },
+            {
+                q: "यम और नचिकेता का प्रसिद्ध संवाद किस उपनिषद में वर्णित है?",
+                options: ["कठोपनिषद (Kathopanishad)", "केनोपनिषद", "प्रश्नोपनिषद", "बृहदारण्यक उपनिषद"],
+                correctText: "कठोपनिषद (Kathopanishad)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कठोपनिषद में महर्षि वाजश्रवस के पुत्र नचिकेता और यमराज के बीच संवाद का दार्शनिक वर्णन है।"
+            },
+            {
+                q: "उत्तर वैदिक काल में प्रजापति (ब्रह्मा) को किस स्थान पर सर्वोच्च देवता मान लिया गया था?",
+                options: ["इंद्र और अग्नि के स्थान पर", "शिव के स्थान पर", "विष्णु के स्थान पर", "सूर्य के स्थान पर"],
+                correctText: "इंद्र और अग्नि के स्थान पर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वैदिक काल के प्रमुख देवता इंद्र व अग्नि का महत्व कम हो गया और प्रजापति (सृजन के देवता) सर्वोच्च बन गए।"
+            },
+            {
+                q: "वैदिक काल में 'निष्कल' या 'निष्का' (Nishka) शब्द प्रारंभ में किस आभूषण के लिए प्रयोग होता था, जो बाद में क्या बन गया?",
+                options: ["गले का स्वर्ण आभूषण, जो बाद में एक सिक्का/मुद्रा बन गया", "लोहे का हथियार", "तांबे की थाली", "चाँदी का कड़ा"],
+                correctText: "गले का स्वर्ण आभूषण, जो बाद में एक सिक्का/मुद्रा बन गया",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'निष्क' प्रारंभिक वैदिक काल में गले का स्वर्ण हार था, जो उत्तर वैदिक काल में विनिमय का साधन (सिक्का) बन गया।"
+            },
+            {
+                q: "वैदिक साहित्य में 'गोत्र' (Gotra) शब्द का सर्वप्रथम प्रयोग किस काल में और किस अर्थ में हुआ?",
+                options: ["ऋग्वैदिक काल में 'गोष्ठ' (गायों के बाड़े) के रूप में, बाद में एक ही मूल पुरुष से उत्पन्न कुल", "विवाह संस्था", "राजकीय घराना", "ग्राम पंचायत"],
+                correctText: "ऋग्वैदिक काल में 'गोष्ठ' (गायों के बाड़े) के रूप में, बाद में एक ही मूल पुरुष से उत्पन्न कुल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'गोत्र' का शाब्दिक अर्थ वह स्थान जहाँ पूरे कुल का गोधन पाला जाता था; उत्तर वैदिक काल में यह वंश पहचान बन गया।"
+            },
+            {
+                q: "आर्यों की भाषा क्या थी और उनका समाज किस प्रकार का था?",
+                options: ["संस्कृत भाषा और पितृसत्तात्मक समाज (Patriarchal Society)", "प्राकृत भाषा और मातृसत्तात्मक", "द्रविड़ भाषा और साम्यवादी", "पाली भाषा और राजतंत्र"],
+                correctText: "संस्कृत भाषा और पितृसत्तात्मक समाज (Patriarchal Society)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• आर्यों की भाषा संस्कृत थी और उनका संपूर्ण सामाजिक ढांचा पितृसत्तात्मक था।"
+            },
+            {
+                q: "ऋग्वेद के किस मंडल को 'सोम मंडल' (Soma Mandala) कहा जाता है जिसमें सभी 114 मंत्र सोम देवता को समर्पित हैं?",
+                options: ["नवाँ मंडल (9th Mandala)", "आठवाँ मंडल", "सातवाँ मंडल", "दसवाँ मंडल"],
+                correctText: "नवाँ मंडल (9th Mandala)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वेद का 9वाँ मंडल पूरी तरह से वनस्पति और पेय देवता 'सोम' को समर्पित है।"
+            },
+            {
+                q: "वैदिक काल में 'भागदुध' (Bhagadugha) नामक अधिकारी का क्या कार्य था?",
+                options: ["कर (Tax / भाग) एकत्र करने वाला अधिकारी", "सेनापति", "न्यायाधीश", "दरवाजा रक्षक"],
+                correctText: "कर (Tax / भाग) एकत्र करने वाला अधिकारी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• उत्तर वैदिक काल में राजा को कर देने वाले अधिकारी को 'भागदुध' कहा जाता था।"
+            },
+            {
+                q: "ऋग्वैदिक काल में आर्यों का मुख्य आहार क्या था?",
+                options: ["दूध और इसके उत्पाद (दही, घी, मक्खन) तथा जौ (यव)", "मांस और मदिरा", "चावल और दाल", "गेहूं की रोटी"],
+                correctText: "दूध और इसके उत्पाद (दही, घी, मक्खन) तथा जौ (यव)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ऋग्वैदिक आर्य दूध और दूध से बने पदार्थों का सेवन करते थे और अनाज में 'यव' (जौ) प्रमुख था।"
+            },
+            {
+                q: "प्राचीन भारतीय इतिहास में 'शतपथ ब्राह्मण' किस वेद से संबंधित ब्राह्मण ग्रंथ है?",
+                options: ["यजुर्वेद से संबंधित (शुक्ल यजुर्वेद)", "ऋग्वेद", "सामवेद", "अथर्ववेद"],
+                correctText: "यजुर्वेद से संबंधित (शुक्ल यजुर्वेद)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शतपथ ब्राह्मण यजुर्वेद का सबसे बड़ा और महत्वपूर्ण ब्राह्मण ग्रंथ है जिसमें कृषि और जलप्लाव का आख्यान है।"
+            },
+            {
+                q: "ऋग्वैदिक नदियों में 'परुष्णी' (Parushni) नदी का आधुनिक नाम क्या है, जिसके तट पर 'दशराज युद्ध' (Battle of Ten Kings) लड़ा गया था?",
+                options: ["रावी नदी (Ravi River)", "चिनाब नदी", "झेलम नदी", "सतलज नदी"],
+                correctText: "रावी नदी (Ravi River)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• परुष्णी नदी का वर्तमान नाम रावी है, जिसके तट पर भरत कबीले के राजा सुदास ने 10 राजाओं के संघ को हराया था (दशराज युद्ध)।"
+            }
+        ];
+
+        let quizDataHistory3 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataHistory3 = rawQuizDataHistory3.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange(); // लोड होते ही जिला ड्रॉपडाउन भरना
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataHistory3;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test3_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test3_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने प्राचीन इतिहास टेस्ट 3 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Ancient History Test 3 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* स्रोत, पाषाण काल, सिंधु घाटी व वैदिक संस्कृति\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/test3.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test3_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
