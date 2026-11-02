@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medieval History - Mock Test 10 (मुगल काल और प्रशासन) - Iconic GS Tricks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .option-card { transition: all 0.2s ease; }
+        .option-card:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-10">
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">Iconic GS Tricks</h1>
+                <p class="text-xs text-amber-300">मध्यकालीन इतिहास - मॉक टेस्ट 10 (मुगल काल, सूरवंश व प्रशासन)</p>
+            </div>
+            <a href="index.html" class="bg-indigo-800 hover:bg-indigo-700 text-xs px-3 py-1.5 rounded-lg border border-indigo-600 flex items-center">
+                <i class="fa-solid fa-house mr-1"></i> होमपेज
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-xl mx-auto p-4">
+
+        <!-- 1. Registration Screen -->
+        <div id="reg-screen" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mt-4">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">परीक्षार्थी पंजीकरण (Medieval History Test 10)</h2>
+                <p class="text-xs text-slate-500 mt-1">100 प्रश्न | समय: 60 मिनट | UPSC, BPSC, SSC, Railway Special</p>
+            </div>
+
+            <form id="reg-form" onsubmit="startQuiz(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">छात्र / छात्रा का पूरा नाम *</label>
+                    <input type="text" id="std-name" required placeholder="अपना पूरा नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">राज्य (State) *</label>
+                    <select id="std-state" required onchange="handleStateChange()" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                        <option value="बिहार" selected>बिहार (Bihar)</option>
+                        <option value="उत्तर प्रदेश">उत्तर प्रदेश (Uttar Pradesh)</option>
+                        <option value="झारखंड">झारखंड (Jharkhand)</option>
+                        <option value="पश्चिम बंगाल">पश्चिम बंगाल (West Bengal)</option>
+                        <option value="मध्य प्रदेश">मध्य प्रदेश (Madhya Pradesh)</option>
+                        <option value="दिल्ली">दिल्ली (Delhi)</option>
+                        <option value="राजस्थान">राजस्थान (Rajasthan)</option>
+                        <option value="अन्य">अन्य राज्य (Other State)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">जिला (District) *</label>
+                    <select id="std-district" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">गाँव / शहर *</label>
+                    <input type="text" id="std-city" required placeholder="गाँव या शहर का नाम दर्ज करें" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50/50">
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 text-sm rounded-xl shadow-md transition active:scale-95">
+                    <i class="fa-solid fa-play mr-2"></i> टेस्ट शुरू करें (100 Questions)
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. Quiz Screen -->
+        <div id="quiz-screen" class="hidden space-y-4 mt-2">
+            <div id="analysis-banner" class="hidden bg-amber-50 border border-amber-300 p-3 rounded-xl flex justify-between items-center text-xs font-bold text-amber-900">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-amber-600"></i> टेस्ट विश्लेषण मोड (Review Mode)</span>
+                <button type="button" onclick="showScoreSummary()" class="bg-amber-600 text-white px-3 py-1 rounded-lg text-[11px] hover:bg-amber-700">
+                    स्कोरकार्ड देखें
+                </button>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm flex justify-between items-center">
+                <span id="q-counter" class="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full">प्रश्न 1 / 100</span>
+                <button type="button" onclick="togglePalette()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-lg border border-indigo-200 flex items-center gap-1 transition">
+                    <i class="fa-solid fa-border-all text-indigo-600"></i> प्रश्न ग्रिड (1-100)
+                </button>
+                <span id="timer" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 60:00</span>
+            </div>
+
+            <div id="palette-box" class="hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <h4 class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-ol text-indigo-600"></i> किसी भी प्रश्न पर सीधे जाएं:
+                    </h4>
+                    <button type="button" onclick="togglePalette()" class="text-slate-400 hover:text-slate-600 text-xs font-bold"><i class="fa-solid fa-xmark"></i> बंद करें</button>
+                </div>
+                <div id="palette-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 max-h-48 overflow-y-auto pt-2 pr-1"></div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <h3 id="question-text" class="font-bold text-slate-900 text-base leading-relaxed">प्रश्न लोड हो रहा है...</h3>
+                <div id="options-container" class="space-y-2.5"></div>
+                <div id="explanation-box" class="hidden bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs leading-relaxed text-amber-900 shadow-inner">
+                    <div class="font-bold mb-1.5 flex items-center text-amber-800 text-sm">
+                        <i class="fa-solid fa-lightbulb mr-2 text-amber-600"></i> उत्तर की व्याख्या (Explanation):
+                    </div>
+                    <div id="explanation-text" class="text-slate-800 space-y-1">--</div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center gap-3">
+                <button type="button" id="prev-btn" onclick="prevQuestion()" class="flex-1 bg-slate-200 text-slate-700 font-bold py-2.5 text-xs rounded-xl hover:bg-slate-300 disabled:opacity-40 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> पिछला
+                </button>
+                <button type="button" id="next-btn" onclick="nextQuestion()" class="flex-1 bg-indigo-600 text-white font-bold py-2.5 text-xs rounded-xl hover:bg-indigo-700 shadow-sm transition">
+                    अगला <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+            </div>
+
+            <button type="button" id="submit-btn" onclick="submitQuiz()" class="hidden w-full bg-emerald-600 text-white font-bold py-3 text-sm rounded-xl hover:bg-emerald-700 shadow-md transition mt-4">
+                <i class="fa-solid fa-check-double mr-1"></i> टेस्ट समाप्त करें (Submit Test)
+            </button>
+        </div>
+
+        <!-- 3. Result Scorecard Screen -->
+        <div id="result-screen" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center mt-4 space-y-5">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900">ऑल इंडिया मॉक टेस्ट परिणाम</h2>
+                <p class="text-xs text-slate-500 mt-1">Medieval History - Test 10 (मुगल काल और प्रशासन)</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl">
+                    <p class="text-xs text-indigo-600 font-bold">आपकी ऑल इंडिया रैंक</p>
+                    <p id="res-rank" class="text-lg font-extrabold text-indigo-900 mt-0.5">#-- / 1,500</p>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-xl">
+                    <p class="text-xs text-emerald-600 font-bold">आपका प्राप्तांक (Score)</p>
+                    <p id="res-score" class="text-lg font-extrabold text-emerald-900 mt-0.5">0 / 100</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-emerald-700 font-bold">सही</p>
+                    <p id="stat-correct" class="text-sm font-extrabold text-emerald-800">0</p>
+                </div>
+                <div class="bg-rose-50 border border-rose-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-rose-700 font-bold">गलत</p>
+                    <p id="stat-wrong" class="text-sm font-extrabold text-rose-800">0</p>
+                </div>
+                <div class="bg-slate-100 border border-slate-200 p-2 rounded-xl">
+                    <p class="text-[10px] text-slate-600 font-bold">छूटे</p>
+                    <p id="stat-unattempted" class="text-sm font-extrabold text-slate-700">0</p>
+                </div>
+            </div>
+
+            <div id="cutoff-box" class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs font-bold text-amber-800">
+                कट-ऑफ (Cut-off): 70% (70 Marks)
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl text-left border border-slate-200 text-xs space-y-1.5">
+                <p class="font-bold text-slate-800 mb-2 border-b pb-1"><i class="fa-solid fa-id-card text-indigo-600 mr-1"></i> परीक्षार्थी विवरण:</p>
+                <p><span class="text-slate-500">नाम:</span> <strong id="info-name" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">राज्य:</span> <strong id="info-state" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">जिला:</span> <strong id="info-district" class="text-slate-800">--</strong></p>
+                <p><span class="text-slate-500">गाँव/शहर:</span> <strong id="info-city" class="text-slate-800">--</strong></p>
+            </div>
+
+            <!-- Action Buttons with WhatsApp Share -->
+            <div class="space-y-2">
+                <button type="button" onclick="shareOnWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-base"></i> स्कोर दोस्तों के साथ शेयर करें (WhatsApp)
+                </button>
+
+                <button type="button" onclick="startDetailedAnalysis()" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 text-xs rounded-xl shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass font-bold"></i> विस्तृत प्रश्न उत्तर विश्लेषण (Slide View)
+                </button>
+
+                <div class="flex gap-2">
+                    <button type="button" onclick="resetTest()" class="flex-1 bg-indigo-600 text-white font-bold py-3 text-xs rounded-xl hover:bg-indigo-700 shadow-md">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> पुनः प्रयास करें
+                    </button>
+                    <a href="index.html" class="flex-1 bg-slate-700 text-white font-bold py-3 text-xs rounded-xl hover:bg-slate-800 shadow-md text-center flex items-center justify-center">
+                        <i class="fa-solid fa-list mr-1"></i> सभी टेस्ट देखें
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // मध्यकालीन इतिहास - मॉक टेस्ट 10 (मुगल काल और प्रशासन) - 100 प्रश्न
+        const rawQuizDataHistory10 = [
+            // --- बाबर और हुमायूँ (1-15) ---
+            {
+                q: "भारत में 'मुगल साम्राज्य' की स्थापना 1526 ई. में किसने की थी?",
+                options: ["जहीरुद्दीन मुहम्मद बाबर", "नसीरुद्दीन हुमायूँ", "अकबर महान", "शेरशाह सूरी"],
+                correctText: "जहीरुद्दीन मुहम्मद बाबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बाबर ने 21 अप्रैल 1526 को पानीपत के प्रथम युद्ध में इब्राहिम लोदी को हराकर भारत में मुगल वंश की नींव रखी थी।"
+            },
+            {
+                q: "पानीपत का प्रथम युद्ध किस वर्ष लड़ा गया था?",
+                options: ["1526 ई.", "1527 ई.", "1528 ई.", "1556 ई."],
+                correctText: "1526 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पानीपत का पहला युद्ध 21 अप्रैल 1526 को बाबर और इब्राहिम लोदी के बीच हुआ था।"
+            },
+            {
+                q: "बाबर ने अपनी आत्मकथा 'तुजुक-ए-बाबरी' (बाबरनामा) किस भाषा में लिखी थी?",
+                options: ["तुर्की भाषा", "फारसी भाषा", "अरबी भाषा", "उर्दू भाषा"],
+                correctText: "तुर्की भाषा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बाबर की मातृभाषा तुर्की थी और उसने अपनी आत्मकथा तुर्की में ही लिखी थी।"
+            },
+            {
+                q: "खानवा का युद्ध (1527 ई.) बाबर और किसके बीच लड़ा गया था?",
+                options: ["राणा सांगा", "मेदिनी राय", "इब्राहिम लोदी", "محمود لودی"],
+                correctText: "राणा सांगा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1527 के खानवा युद्ध में बाबर ने राणा सांगा को पराजित किया और 'गाजी' की उपाधि धारण की।"
+            },
+            {
+                q: "चंदेरी का युद्ध (1528 ई.) बाबर ने किसके विरुद्ध लड़ा था?",
+                options: ["मेदिनी राय", "राणा सांगा", "محمود لودی", "शेर खान"],
+                correctText: "मेदिनी राय",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1528 ई. में चंदेरी के युद्ध में बाबर ने राजपूत शासक मेदिनी राय को हराया था।"
+            },
+            {
+                q: "घाघरा का युद्ध (1529 ई.) बाबर ने किसके खिलाफ लड़ा था?",
+                options: ["महमूद लोदी (अफगान सेना)", "मेदिनी राय", "राणा सांगा", "बहादुर शाह"],
+                correctText: "महमूद लोदी (अफगान सेना)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• घाघरा का युद्ध बाबर और अफगानों (महमूद लोदी) के बीच लड़ा गया जो जल और थल दोनों पर हुआ था।"
+            },
+            {
+                q: "बाबर की मृत्यु 1530 ई. में कहाँ हुई थी और उसका मकबरा कहाँ है?",
+                options: ["आगरा में मृत्यु, मकबरा काबुल में", "दिल्ली में मृत्यु, दिल्ली में मकबरा", "लाहौर में", "सिकंदरा में"],
+                correctText: "आगरा में मृत्यु, मकबरा काबुल में",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बाबर की मृत्यु 1530 में आगरा में हुई, पहले उसे आराम बाग में दफनाया गया, फिर इच्छाusar काबुल में दफनाया गया।"
+            },
+            {
+                q: "नसीरुद्दीन हुमायूँ गद्दी पर कब बैठा था?",
+                options: ["1530 ई.", "1526 ई.", "1540 ई.", "1555 ई."],
+                correctText: "1530 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बाबर की मृत्यु के बाद 1530 ई. में हुमायूँ दिल्ली की गद्दी पर बैठा था।"
+            },
+            {
+                q: "चौसा का युद्ध (1539 ई.) हुमायूँ और किसके बीच हुआ था जिसमें हुमायूँ की हार हुई?",
+                options: ["शेरशाह सूरी (शेर खान)", "बहादुर शाह", "सिकंदर लोदी", "राणा सांगा"],
+                correctText: "शेरशाह सूरी (शेर खान)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1539 के चौसा युद्ध में शेर खान ने हुमायूँ को हराया, जहाँ निजाम भिस्ती ने हुमायूँ की जान बचाई थी।"
+            },
+            {
+                q: "कन्नौज / बिलग्राम का युद्ध किस वर्ष लड़ा गया था जिसके बाद हुमायूँ को भारत छोड़कर भागना पड़ा?",
+                options: ["1540 ई.", "1539 ई.", "1555 ई.", "1556 ई."],
+                correctText: "1540 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1540 ई. में कन्नौज (बिलग्राम) के युद्ध में शेरशाह ने हुमायूँ को पूर्णतः पराजित कर द्वितीय अफगान साम्राज्य बनाया।"
+            },
+            {
+                q: "हुमायूँनामा की रचना किसने की थी?",
+                options: ["गुल्बदन बेगम", "मुमताज महल", "नूरजहाँ", "जहाँआरा"],
+                correctText: "गुल्बदन बेगम",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हुमायूँ की बहन गुल्बदन बेगम ने फारसी भाषा में 'हुमायूँनामा' लिखा था।"
+            },
+            {
+                q: "दीनपनाह भवन में स्थित पुस्तकालय की सीढ़ियों से गिरकर किस मुगल सम्राट की मृत्यु हुई थी?",
+                options: ["हुमायूँ", "बाबर", "अकबर", "जहाँगीर"],
+                correctText: "हुमायूँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1556 ई. में दीनपनाह पुस्तकालय की सीढ़ियों से गिरने के कारण हुमायूँ की मृत्यु हो गई थी।"
+            },
+            {
+                q: "हुमायूँ ने पुनः किस वर्ष सरहिंद का युद्ध जीतकर दिल्ली की सत्ता प्राप्त की थी?",
+                options: ["1555 ई.", "1556 ई.", "1545 ई.", "1540 ई."],
+                correctText: "1555 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1555 में सरहिंद के युद्ध में सिकंदर सूर को हराकर हुमायूँ दोबारा मुगल सम्राट बना।"
+            },
+            {
+                q: "किस इतिहासकार ने हुमायूँ के बारे में लिखा था कि 'वह जीवन भर लुढ़कता रहा और लुढ़कते-लुढ़कते उसकी जान चली गई'?",
+                options: ["लेनपूल", "अबुल फजल", "बदायूंनी", "बरनी"],
+                correctText: "लेनपूल",
+                exp: "<b>विस्तृतहत व्याख्या:</b><br>• इतिहासकार लेनपूल ने हुमायूँ के अस्थिर जीवनकाल को लेकर यह प्रसिद्ध टिप्पणी की थी।"
+            },
+            {
+                q: "दीनपनाह शहर की नींव किसने रखी थी?",
+                options: ["हुमायूँ", "बाबर", "शेरशाह", "अकबर"],
+                correctText: "हुमायूँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हुमायूँ ने दिल्ली में यमुना के किनारे 'दीनपनाह' नामक नए नगर की नींव डाली थी।"
+            },
+
+            // --- शेरशाह सूरी और सूरवंश (16-25) ---
+            {
+                q: "सूर वंश (द्वितीय अफगान साम्राज्य) की स्थापना किसने की थी?",
+                options: ["शेरशाह सूरी (फरीद खान)", "इस्लाम शाह", "सिकंदर सूर", "आदिल शाह"],
+                correctText: "शेरशाह सूरी (फरीद खान)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• फरीद खान (शेरशाह सूरी) ने 1540 में मुगलों को हराकर दिल्ली में सूर वंश की स्थापना की थी।"
+            },
+            {
+                q: "शेरशाह सूरी के बचपन का वास्तविक नाम क्या था?",
+                options: ["फरीद खान", "अली गुरशास्प", "फतेह खान", "हसन खान"],
+                correctText: "फरीद खान",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेरशाह का बचपन का नाम फरीद खान था, जिसे एक शेर मारने पर 'शेरखान' की उपाधि मिली थी।"
+            },
+            {
+                q: "प्रसिद्ध 'ग्रैंड ट्रंक रोड' (जी.टी. रोड) और सड़क के किनारे 'सराय' बनवाने का श्रेय किसे जाता है?",
+                options: ["शेरशाह सूरी", "अकबर", "अशोक", "कुतुबुद्दीन ऐबक"],
+                correctText: "शेरशाह सूरी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेरशाह ने सोनारगाँव से पेशावर तक सड़क बनवाई और विश्राम हेतु सरायें बनवाईं।"
+            },
+            {
+                q: "शेरशाह सूरी ने अर्थव्यवस्था में सुधार हेतु कौन सा प्रसिद्ध चांदी का सिक्का चलवाया था?",
+                options: ["रुपया (178 ग्रेन)", "जीतल", "टंका", "मोहर्"],
+                correctText: "रुपया (178 ग्रेन)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेरशाह ने 178 ग्रेन का शुद्ध चांदी का 'रुपया' और तांबे का 'दाम' चलाया था जो आधुनिक रुपये का आधार बना।"
+            },
+            {
+                q: "शेरशाह सूरी की मृत्यु किस अभियान के दौरान तोप का गोला फटने से हुई थी?",
+                options: ["कालिंजर अभियान (1545 ई.)", "मारवाड़ अभियान", "रायसेन अभियान", "चूनागढ़ अभियान"],
+                correctText: "कालिंजर अभियान (1545 ई.)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1545 में बुंदेलखंड के कालिंजर किले को जीतते समय उक्का नामक आग्नेयास्त्र (तोप) फटने से शेरशाह की मृत्यु हुई।"
+            },
+            {
+                q: "शेरशाह सूरी का मकबरा कहाँ स्थित है?",
+                options: ["सासाराम, बिहार", "दिल्ली", "आगरा", "सिकंदरा"],
+                correctText: "सासाराम, बिहार",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कृत्रिम झील के बीच में बना शेरशाह सूरी का भव्य मकबरा सासाराम (बिहार) में स्थित है।"
+            },
+            {
+                q: "भूमि पैमाइश के लिए शेरशाह ने किस जरीब (दंडी) और किस प्रणाली का उपयोग किया था?",
+                options: ["सिकंदरी गज और सन की डंडी / पट्टा व कूबूलियत प्रथा", "बीघा प्रणाली", "दशला प्रणाली", "इक्ता प्रथा"],
+                correctText: "सिकंदरी गज और सन की डंडी / पट्टा व कूबूलियत प्रथा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• किसानों को 'पट्टा' देने और उनसे 'कूबूलियत' पत्र लेने की प्रथा शेरशाह ने शुरू की थी।"
+            },
+            {
+                q: "शेरशाह के केंद्रीय प्रशासन में सेना विभाग के प्रमुख को क्या कहा जाता था?",
+                options: ["दीवान-ए-अर्ज", "दीवान-ए-विजारत", "दीवान-ए-इन्शा", "दीवान-ए-रसालत"],
+                correctText: "दीवान-ए-अर्ज",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेरशाह की सेना का संगठन बहुत मजबूत था और सेना विभाग 'दीवान-ए-अर्ज' के अंतर्गत था।"
+            },
+            {
+                q: "मलिका-ए-दौरान या न्याय व्यवस्था में शेरशाह का क्या दृष्टिकोण था?",
+                options: ["न्याय के मामले में राजा और प्रजा में कोई भेद नहीं", "अमीरों को छूट", "कठोर तानाशाही", "धार्मिक पक्षपात"],
+                correctText: "न्याय के मामले में राजा और प्रजा में कोई भेद नहीं",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेरशाह न्याय प्रियता के लिए प्रसिद्ध था, उसके राज में निर्बल को भी न्याय मिलता था।"
+            },
+            {
+                q: "सूर वंश का अंतिम शासक कौन था जिसे हुमायूँ ने 1555 में हराया?",
+                options: ["सिकंदर सूर", "आदिल शाह सूरी", "इस्लाम शाह", "ফিরোজ شاہ"],
+                correctText: "सिकंदर सूर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सिकंदर सूर सूर वंश का अंतिम प्रमुख शासक था जिसे सरhind युद्ध में पराजय मिली।"
+            },
+
+            // --- अकबर महान (26-45) ---
+            {
+                q: "अकबर का जन्म 1542 ई. में अमरकोट के किस राजा के महल में हुआ था?",
+                options: ["राजा वीरसाल (अमरकोट)", "राजा मानसिंह", "उदयसिंह", "मालदेव"],
+                correctText: "राजा वीरसाल (अमरकोट)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हुमायूँ के निष्कासन काल में अमरकोट के राजा वीरसाल के महल में 1542 में अकबर का जन्म हुआ था।"
+            },
+            {
+                q: "पानीपत का द्वितीय युद्ध 5 नवंबर 1556 को किसके बीच लड़ा गया था?",
+                options: ["अकबर (संरक्षक बैरम खान) और हेमू (हेमचंद्र विक्रमादित्य)", "अकबर और राणा प्रताप", "बाबर और इब्राहिम", "हुमायूँ और शेरशाह"],
+                correctText: "अकबर (संरक्षक बैरम खान) और हेमू (हेमचंद्र विक्रमादित्य)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• पानीपत के दूसरे युद्ध में बैरम खान के नेतृत्व में मुगल सेना ने आदिल शाह के जनरल हेमू को हराया था।"
+            },
+            {
+                q: "अकबर ने दास प्रथा का अंत किस वर्ष किया था?",
+                options: ["1562 ई.", "1564 ई.", "1575 ई.", "1582 ई."],
+                correctText: "1562 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अकबर ने 1562 में दास प्रथा, 1563 में तीर्थ यात्रा कर और 1564 में जजिया कर समाप्त किया था।"
+            },
+            {
+                q: "अकबर ने किस वर्ष 'तीर्थयात्रा कर' समाप्त किया था?",
+                options: ["1563 ई.", "1562 ई.", "1564 ई.", "1579 ई."],
+                correctText: "1563 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• हिंदुओं पर लगने वाले तीर्थ कर को अकबर ने 1563 में हटाया था।"
+            },
+            {
+                q: "अकबर ने किस वर्ष घृणित 'जजिया कर' को समाप्त किया था?",
+                options: ["1564 ई.", "1562 ई.", "1579 ई.", "1582 ई."],
+                correctText: "1564 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अकबर ने धार्मिक सहिष्णुता दिखाते हुए 1564 में जजिया कर पूरी तरह समाप्त कर दिया था।"
+            },
+            {
+                q: "फतेहपुर सीकरी शहर की स्थापना किस मुगल सम्राट ने की थी?",
+                options: ["अकबर", "शाहजहाँ", "जहाँगीर", "बाबर"],
+                correctText: "अकबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुजरात विजय के उपलक्ष्य में अकबर ने Fatehpur Sikri बसाया और बुलंद दरवाजा बनवाया।"
+            },
+            {
+                q: "अकबर द्वारा निर्मित 'बुलंद दरवाजा' किस विजय की स्मृति में बनवाया गया था?",
+                options: ["गुजरात विजय (1572-73)", "मेवाड़ विजय", "कंदहार विजय", "असीरगढ़ विजय"],
+                correctText: "गुजरात विजय (1572-73)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• गुजरात जीतने के बाद फतेहपुर सीकरी में अकबर ने बुलंद दरवाजा बनवाया था।"
+            },
+            {
+                q: "इबादतखाना (धर्म चर्चा गृह) की स्थापना अकबर ने किस वर्ष की थी?",
+                options: ["1575 ई.", "1579 ई.", "1582 ई.", "1564 ई."],
+                correctText: "1575 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1575 में फतेहपुर सीकरी में 'इबादतखाना' बना जहाँ सभी धर्मों के गुरुओं में चर्चा होती थी।"
+            },
+            {
+                q: "अकबर द्वारा 'मजहर' (Mahzar) की घोषणा किस वर्ष की गई थी जिसके तहत धार्मिक मामलों में अंतिम निर्णय सम्राट का हो गया?",
+                options: ["1579 ई.", "1575 ई.", "1582 ई.", "1564 ई."],
+                correctText: "1579 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेख मुबारक द्वारा तैयार मजहर पत्र पर 1579 में हस्ताक्षर हुए जिससे अकबर 'इमाम-ए-आदिल' बना।"
+            },
+            {
+                q: "दीन-ए-इलाही (तौहीद-ए-इलाही) धर्म की स्थापना अकबर ने किस वर्ष की थी?",
+                options: ["1582 ई.", "1579 ई.", "1575 ई.", "1566 ई."],
+                correctText: "1582 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सभी धर्मों के सार को मिलाकर अकबर ने 1582 में दीन-ए-इलाही की शुरुआत की थी।"
+            },
+            {
+                q: "दीन-ए-इलाही स्वीकार करने वाला एकमात्र हिंदू दरबारी कौन था?",
+                options: ["बीरबल (महेश दास)", "टोडरमल", "मानसिंह", "तानसेन"],
+                correctText: "बीरबल (महेश दास)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बीरबल (महेश दास) पहले और एकमात्र हिंदू थे जिन्होंने दीन-ए-इलाही धर्म अपनाया था।"
+            },
+            {
+                q: "अकबर के दरबार के प्रसिद्ध संगीतकार तानसेन का मूल नाम क्या था?",
+                options: ["रामधनु पांडे", "महेश दास", "मूलशंकर", "फैज़ी"],
+                correctText: "रामधनु पांडे",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ग्वालियर के संगीत सम्राट तानसेन का वास्तविक नाम रामतनु (रामधनु) पांडे था।"
+            },
+            {
+                q: "अकबर के वित्त मंत्री टोडरमल ने भू-राजस्व की कौन सी प्रसिद्ध प्रणाली लागू की थी?",
+                options: ["दशला प्रणाली (टोडरमल बंदोबस्त)", "इक्ता प्रणाली", "मसाहत", "जब्ती प्रणाली"],
+                correctText: "दशला प्रणाली (टोडरमल बंदोबस्त)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1580 में टोडरमल ने पिछले 10 साल के औसत उत्पादन के आधार पर 'दशला प्रणाली' लागू की।"
+            },
+            {
+                q: "हल्दीघाटी का युद्ध 18 जून 1576 को अकबर की सेना और किसके बीच लड़ा गया था?",
+                options: ["महाराणा प्रताप", "राणा सांगा", "राव चंद्रसेन", "उदयसिंह"],
+                correctText: "महाराणा प्रताप",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मानसिंह और आबुल फजल के नेतृत्व में मुगल सेना ने हल्दीघाटी में महाराणा प्रताप से युद्ध किया था।"
+            },
+            {
+                q: "अकबर के नवरत्नों में से 'अबुल फजल' ने किस प्रसिद्ध ग्रंथ की रचना की थी?",
+                options: ["अकबरनामा / आईने अकबरी", "तारीख-ए-अकबरी", "मुंतखाब-उत-तवारीख", "तुजुक-ए-जहाँगीरी"],
+                correctText: "अकबरनामा / आईने अकबरी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अबुल फजल ने फारसी भाषा में अकबर का इतिहास 'अकबरनामा' तीन खंडों में लिखा था।"
+            },
+
+            // --- जहाँगीर, शाहजहाँ और औरंगजेब (46-70) ---
+            {
+                q: "अकबर के बाद 1605 ई. में मुगल गद्दी पर कौन बैठा था?",
+                options: ["जहाँगीर (सलीम)", "शाहजहाँ (खुर्रम)", "दारा शिकोह", "खुसरो"],
+                correctText: "जहाँगीर (सलीम)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अकबर के पुत्र सलीम ने 'नूरुद्दीन मुहम्मद जहाँगीर' की उपाधि के साथ 1605 में सत्ता संभाली।"
+            },
+            {
+                q: "जहाँगीर ने न्याय के लिए अपने महल के बाहर कौन सी जंजीर लगवाई थी?",
+                options: ["सोने की न्याय की जंजीर (घंटियों वाली)", "लोहे की जंजीर", "चांदी की जंजीर", "पीतल की जंजीर"],
+                correctText: "सोने की न्याय की जंजीर (घंटियों वाली)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जहाँगीर ने आगरा के किले में 60 घंटियों वाली शुद्ध सोने की 'न्याय की जंजीर' लगवाई थी।"
+            },
+            {
+                q: "जहाँगीर ने किस सिख गुरु को खुसरो की मदद करने के आरोप में फांसी दे दी थी?",
+                options: ["गुरु अर्जुन देव जी (पाँचवें गुरु)", "गुरु तेग बहादुर जी", "गुरु हरगोबिंद जी", "गुरु नानक देव जी"],
+                correctText: "गुरु अर्जुन देव जी (पाँचवें गुरु)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• विद्रोही राजकुमार खुसरो को आशीर्वाद देने के कारण जहाँगीर ने 1606 में गुरु अर्जुन देव को शहीद कर दिया था।"
+            },
+            {
+                q: "जहाँगीर की मुख्य पत्नी मेहरुन्निसा को उसने कौन सी उपाधि दी थी?",
+                options: ["नूरजहाँ (संसार की ज्योति)", "मुमताज महल", "मरियम-उज़-जमानी", "नूरमहल"],
+                correctText: "नूरजहाँ (संसार की ज्योति)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शेर अफगान की विधवा मेहरुन्निसा से विवाह कर जहाँगीर ने उसे 'नूरजहाँ' नाम दिया था।"
+            },
+            {
+                q: "किस मुगल सम्राट के शासनकाल को 'चित्रकला का स्वर्णकाल' कहा जाता है?",
+                options: ["जहाँगीर", "शाहजहाँ", "अकबर", "हुमायूँ"],
+                correctText: "जहाँगीर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जहाँगीर को चित्रकला की बहुत गहरी समझ थी, इसलिए उसके काल को चित्रकला का स्वर्णकाल कहते हैं।"
+            },
+            {
+                q: "जहाँगीर के दरबार में आने वाले पहले अंग्रेज व्यापारी / राजदूत कौन थे?",
+                options: ["कैप्टन हॉकिंस और सर थॉमस रो", "रल्फ फिच", "पीटर मुंडी", "मनुची"],
+                correctText: "कैप्टन हॉकिंस और सर थॉमस रो",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जेम्स प्रथम के दूत के रूप में हॉकिंस (1608) और थॉमस रो (1615) जहाँगीर के दरबार में आए थे।"
+            },
+            {
+                q: "जहाँगीर का मकबरा कहाँ स्थित है?",
+                options: ["शाहदरा, लाहौर", "आगरा", "दिल्ली", "सिकंदरा"],
+                correctText: "शाहदरा, लाहौर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जहाँगीर की मृत्यु 1627 में हुई और उसका मकबरा लाहौर (पाकिस्तान) के शाहदरा में रावी नदी के तट पर है।"
+            },
+            {
+                q: "शाहजहाँ (खुर्रम) मुगल सम्राट कब बना था?",
+                options: ["1628 ई.", "1627 ई.", "1605 ई.", "1658 ई."],
+                correctText: "1628 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• नूरजहाँ के षड्यंत्रों को मात देकर खुर्रम ने 1628 में 'शाहजहाँ' की उपाधि के साथ सिंहासन संभाला।"
+            },
+            {
+                q: "किस मुगल सम्राट के शासनकाल को 'स्थापत्य कला का स्वर्णकाल' (Golden Age of Architecture) कहा जाता है?",
+                options: ["शाहजहाँ", "अकबर", "जहाँगीर", "औरंगजेब"],
+                correctText: "शाहजहाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ताजमहल, लाल किला, जामा मस्जिद जैसी अद्भुत इमारतों के कारण शाहजहाँ के काल को स्थापत्य का स्वर्णकाल कहते हैं।"
+            },
+            {
+                q: "मुमताज महल की याद में आगरा में 'ताजमहल' का निर्माण किसने करवाया था?",
+                options: ["शाहजहाँ", "औरंगजेब", "दरा शिकोह", "जहाँगीर"],
+                correctText: "शाहजहाँ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• शाहजहाँ ने अपनी प्रिय पत्नी अर्जुमंद बानो बेगम (मुमताज महल) की याद में ताजमहल बनवाया था।"
+            },
+            {
+                q: "ताजमहल का मुख्य वास्तुकार (Architect) कौन था?",
+                options: ["उस्ताद अहमद लाहौरी और उस्ताद ईसा", "मीर बख्शी", "बेकाद खान", "कोहिनूर"],
+                correctText: "उस्ताद अहमद लाहौरी और उस्ताद ईसा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• ताजमहल की रूपरेखा और निर्माण उस्ताद अहमद लाहौरी की देखरेख में हुआ था।"
+            },
+            {
+                q: "शाहजहाँ के पुत्रों के बीच उत्तराधिकार का प्रसिद्ध युद्ध (जैसे धर्मू और सामूगढ़ का युद्ध) किस वर्ष लड़ा गया?",
+                options: ["1658 ई.", "1657 ई.", "1660 ई.", "1679 ई."],
+                correctText: "1658 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1658 में औरंगजेब और दारा शिकोह के बीच उत्तराधिकार के लिए सामूगढ़ और धर्मू के युद्ध हुए थे।"
+            },
+            {
+                q: "औरंगजेब ने अपने पिता शाहजहाँ को किस किले में आजीवन नजरबंद (कैद) रखा था?",
+                options: ["आगरा का किला", "लाहौर का किला", "दौलताबाद का किला", "ग्वालियर का किला"],
+                correctText: "आगरा का किला",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• सत्ता हथियाने के बाद औरंगजेब ने शाहजहाँ को आगरा के किले में नजरबंद कर दिया था जहाँ 1666 में उनकी मृत्यु हुई।"
+            },
+            {
+                q: "मुगल सम्राट 'औरंगजेब' को किस अन्य नाम से भी जाना जाता है जो उसकी कट्टरता दर्शाता है?",
+                options: ["जिंदा पीर (आलमगीर)", "शांतिमय बादशाह", "रंगीला", "काफिर"],
+                correctText: "जिंदा पीर (आलमगीर)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• औरंगजेब बहुत सादा जीवन जीता था और कट्टर सुन्नी था, इसलिए उसे 'जिंदा पीर' या 'आलमगीर' कहा गया।"
+            },
+            {
+                q: "औरंगजेब ने किस वर्ष हिंदुओं पर पुनः 'जजिया कर' लगा दिया था?",
+                options: ["1679 ई.", "1658 ई.", "1665 ई.", "1690 ई."],
+                correctText: "1679 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1679 में औरंगजेब ने अकबर द्वारा हटाए गए जजिया कर को दोबारा पूरे साम्राज्य में लागू कर दिया था।"
+            },
+            {
+                q: "औरंगजेब ने किस सिख गुरु को इस्लाम न स्वीकारने पर 1675 में चांदनी चौक, दिल्ली में शहीद करवा दिया था?",
+                options: ["गुरु तेग बहादुर जी (नौवें गुरु)", "गुरु गोबिंद सिंह जी", "गुरु हरकृष्ण जी", "गुरु अर्जुन देव जी"],
+                correctText: "गुरु तेग बहादुर जी (नौवें गुरु)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धार्मिक स्वतंत्रता की रक्षा हेतु 1675 में सिखों के नौवें गुरु तेग बहादुर को औरंगजेब ने शहीद किया था।"
+            },
+            {
+                q: "बीबी का मकबरा (दुकान-ए-मकबरा / दक्षिण का ताजमहल) का निर्माण औरंगजेब ने कहाँ करवाया था?",
+                options: ["औरंगाबाद (महाराष्ट्र)", "आगरा", "बीजापुर", "गोलकुंडा"],
+                correctText: "औरंगाबाद (महाराष्ट्र)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• औरंगजेब ने अपनी पत्नी राबिया-उद-दौरानी (दिलरा बानो बेगम) की याद में औरंगाबाद में बीबी का मकबरा बनवाया।"
+            },
+            {
+                q: "औरंगजेब द्वारा संगीत पर प्रतिबंध लगाने के बाद कौन सा वाद्य यंत्र बजाना उसने स्वयं बंद कर दिया था?",
+                options: ["वीणा (औरंगजेब खुद कुशल वीणा वादक था)", "सितार", "तबल", "बांसुरी"],
+                correctText: "वीणा (औरंगजेब खुद कुशल वीणा वादक था)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• औरंगजेब ने दरबार में संगीत पर रोक लगाई, हालांकि वह स्वयं अच्छा वीणा वादक था।"
+            },
+            {
+                q: "औरंगजेब की मृत्यु किस वर्ष हुई थी?",
+                options: ["1707 ई.", "1705 ई.", "1712 ई.", "1690 ई."],
+                correctText: "1707 ई.",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अहमदनगर में 1707 ईस्वी में औरंगजेब की मृत्यु हुई, जिसके बाद मुगल साम्राज्य का पतन शुरू हुआ।"
+            },
+            {
+                q: "औरंगजेब का मकबरा कहाँ स्थित है?",
+                options: ["खुल्दाबाद (दौलताबाद, महाराष्ट्र)", "आगरा", "लाहौर", "दिल्ली"],
+                correctText: "खुल्दाबाद (दौलताबाद, महाराष्ट्र)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अन्य मुगलों के विपरीत औरंगजेब की अंतिम इच्छा अनुसार उसका मकबरा अत्यंत सादा खुला हुआ खुल्दाबाद में है।"
+            },
+
+            // --- औरंगजेब के समय विद्रोह और मुगल प्रशासन / मनसबदारी (71-100) ---
+            {
+                q: "औरंगजेब के शासनकाल में सबसे पहला जाट विद्रोह किसके नेतृत्व में हुआ था?",
+                options: ["गोकुला और राजाराम", "चूड़ामन", "बंदा सिंह बहादुर", "गोकुल"],
+                correctText: "गोकुला और राजाराम",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मथुरा के पास किसानों और जाटों ने गोकुला के नेतृत्व में 1669 में औरंगजेब की नीतियों के खिलाफ विद्रोह किया था।"
+            },
+            {
+                q: "औरंगजेब के समय सतनामी विद्रोह (1672 ई.) मुख्य रूप से किस क्षेत्र में हुआ था?",
+                options: ["नारनौल (हरियाणा / मेवात क्षेत्र)", "पंजाब", "राजपूताना", "बंगाल"],
+                correctText: "नारनौल (हरियाणा / मेवात क्षेत्र)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• धार्मिक और आर्थिक उत्पीड़न के कारण नारनौल में सतनामियों ने बगावत कर दी थी।"
+            },
+            {
+                q: "सिखों के दसवें गुरु 'गुरु गोबिंद सिंह' ने मुगलों से संघर्ष के लिए 1699 ई. में किस संस्था की स्थापना की थी?",
+                options: ["खालसा पंथ", "अमृतसर", "गुरुमुखी", "अकाल तख्त"],
+                correctText: "खालसा पंथ",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बैसाखी के दिन 1699 में आनंदपुर साहिब में गुरु गोबिंद सिंह ने खालसा पंथ की स्थापना की थी।"
+            },
+            {
+                q: "मुगल प्रशासन में 'मनसबदारी प्रथा' की शुरुआत किसने की थी?",
+                options: ["अकबर", "बाबर", "जहाँगीर", "शाहजहाँ"],
+                correctText: "अकबर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अकबर ने मंगोल सेना व्यवस्था से प्रेरणा लेकर 1567 में 'मनसबदारी प्रणाली' शुरू की थी।"
+            },
+            {
+                q: "मनसबदारी व्यवस्था में 'जात' और 'सवार' पद किस व्यवस्था से जुड़े थे?",
+                options: ["मनसबदारी प्रथा", "इक्ता प्रथा", "दशला प्रणाली", "जब्ती प्रणाली"],
+                correctText: "मनसबदारी प्रथा",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मनसबदार की व्यक्तिगत स्थिति 'जात' से और उसके पास घोड़ों की संख्या 'सवार' से तय होती थी।"
+            },
+            {
+                q: "मुगल केंद्रीय प्रशासन में 'मीर बख्शी' किस विभाग का प्रमुख होता था?",
+                options: ["सैन्य विभाग एवं खुफिया / मीर बख्शी वेतन और सेना संगठन देखता था", "राजस्व विभाग", "न्याय विभाग", "धार्मिक विभाग"],
+                correctText: "सैन्य विभाग एवं खुफिया / मीर बख्शी वेतन और सेना संगठन देखता था",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मीर बख्शी सैन्य विभाग का प्रमुख तथा मनसबदारों के घोड़ों की दाग-हुलिया की जाँच करता था।"
+            },
+            {
+                q: "मुगल काल में 'दीवान' या 'वजीर' किस विभाग का सर्वोच्च अधिकारी होता था?",
+                options: ["राजस्व एवं वित्त विभाग (Financial Department)", "सैन्य विभाग", "गृह विभाग", "विदेश विभाग"],
+                correctText: "राजस्व एवं वित्त विभाग (Financial Department)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• दीवान (या दीवान-ए-अला) साम्राज्य की आय-व्यय और कर प्रणाली का सर्वोच्च अधिकारी था।"
+            },
+            {
+                q: "मुगल काल में मुख्य काज़ी (काज़ी-उल-कुजात) का संबंध किससे था?",
+                options: ["न्याय विभाग (Judiciary)", "सेना", "व्यापार", "कृषि"],
+                correctText: "न्याय विभाग (Judiciary)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• काज़ी-उल-कुजात साम्राज्य का सर्वोच्च न्यायाधीश होता था जो शरियत के अनुसार न्याय करता था।"
+            },
+            {
+                q: "मुगल साम्राज्य में प्रांतों को क्या कहा जाता था?",
+                options: ["सूबा (या प्रांत)", "शिक", "सरकार", "परगना"],
+                correctText: "सूबा (या प्रांत)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• अकबर के समय साम्राज्य सूबों में बंटा था (शुरुआत में 12, बाद में बढ़कर 15 और औरंगजेब के समय 21 हो गए थे)।"
+            },
+            {
+                q: "सूबे के प्रशासनिक प्रमुख को क्या कहा जाता था?",
+                options: ["सूबेदार (या निज़ाम / सिपाहसालार)", "फौजदार", "अमिल", "शिकदार"],
+                correctText: "सूबेदार (या निज़ाम / सिपाहसालार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• प्रत्येक सूबे का प्रमुख अधिकारी सूबेदार या निज़ाम कहलाता था।"
+            },
+            {
+                q: "सूबे के नीचे प्रशासनिक इकाई 'सरकार' (जिला) का मुख्य सैन्य अधिकारी कौन होता था?",
+                options: ["फौजदार", "अमिलगुजार", "वित्ती", "कोतवाल"],
+                correctText: "फौजदार",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 'सरकार' (जिला) स्तर पर शांति और सुरक्षा बनाए रखने वाला मुख्य अधिकारी फौजदार होता था।"
+            },
+            {
+                q: "सरकार के नीचे प्रशासनिक इकाई 'परगना' का मुख्य राजस्व अधिकारी क्या कहलाता था?",
+                options: ["अमिल (या अमलगुजार)", "कारकून", "शिकदार", "कानूनगो"],
+                correctText: "अमिल (या अमलगुजार)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• परगने में लगान वसूली का मुख्य अधिकारी अमिल होता था।"
+            },
+            {
+                q: "मुगल काल में नगरों का मुख्य प्रशासनिक और पुलिस अधिकारी कौन होता था?",
+                options: ["कोतवाल", "फौजदार", "मुहतसिब", "काज़ी"],
+                correctText: "कोतवाल",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• कोतवाल नगर की शांति, सुरक्षा, तौल निरीक्षण और अपराध नियंत्रण का जिम्मा संभालता था।"
+            },
+            {
+                q: "मुगल काल में आने वाला विदेशी यात्री 'फ्लावा' या 'मनुची' किस देश का निवासी था?",
+                options: ["निकोलो मनुची - इटली का यात्री", "फ्रांस", "ब्रिटेन", "पुर्तगाल"],
+                correctText: "निकोलो मनुची - इटली का यात्री",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मनुची एक इतालवी चिकित्सक और यात्री था जिसने दारा शिकोह की सेना में नौकरी की थी और 'स्टोरिओ डू मोगोर' लिखा।"
+            },
+            {
+                q: "प्रसिद्ध फ्रांसीसी यात्री 'फ्रांस्वा बर्नियर' (Francois Bernier) किसके शासनकाल में भारत आया था और चिकित्सक था?",
+                options: ["शाहजहाँ और औरंगजेब", "अकबर", "जहाँगीर", "बाबर"],
+                correctText: "शाहजहाँ और औरंगजेब",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• बर्नियर एक फ्रांसीसी चिकित्सक था जो दारा शिकोह और बाद में औरंगजेब के दरबार से जुड़ा रहा।"
+            },
+            {
+                q: "टैवरनियर (Jean-Baptiste Tavernier) जो भारत आया था, वह पेशे से क्या था?",
+                options: ["फ्रांसीसी जौहरी (जवाहरात का व्यापारी)", "चित्रकार", "पादरी", "सैनिक"],
+                correctText: "फ्रांसीसी जौहरी (जवाहरात का व्यापारी)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• टैवरनियर फ्रांस का एक प्रसिद्ध जौहरी था जिसने मयूर सिंहासन और कोहिनूर हीरे का आँखों देखा हाल लिखा।"
+            },
+            {
+                q: "सर टॉमस रो ने किस मुगल सम्राट से अंग्रेजों के लिए व्यापारिक फैक्ट्री खोलने की अनुमति प्राप्त की थी?",
+                options: ["जहाँगीर", "अकबर", "शाहजहाँ", "औरंगजेब"],
+                correctText: "जहाँगीर",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• 1615 में अजमेर में जहाँगीर से मिलकर थॉमस रो ने सूरत में फैक्ट्री खोलने की शाही अनुमति ली थी।"
+            },
+            {
+                q: "मुगल काल में सबसे अधिक हिंदू मनसबदार किस सम्राट के काल में थे?",
+                options: ["औरंगजेब के काल में (लगभग 33%)", "अकबर के काल में", "शाहजहाँ के काल में", "जहाँगीर के काल में"],
+                correctText: "औरंगजेब के काल में (लगभग 33%)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• मराठों और दक्षिण के राजाओं को शामिल करने के कारण औरंगजेब के समय हिंदू मनसबदारों का प्रतिशत सबसे अधिक (33%) था।"
+            },
+            {
+                q: "मुगलकालीन भू-राजस्व व्यवस्था में 'जब्ती प्रणाली' (Zabt System) का वास्तविक प्रवर्तक किसे माना जाता है?",
+                options: ["टोडरमल (अकबर का मंत्री)", "शेरशाह सूरी", "मुर्शिद कुली खान", "मलिक अंबर"],
+                correctText: "टोडरमल (अकबर का मंत्री)",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• जब्ती प्रणाली भू-पैमाइश और नकद लगान निर्धारण की वैज्ञानिक पद्धति थी जिसे टोडरमल ने परवान चढ़ाया।"
+            },
+            {
+                q: "मुगल साम्राज्य के पतन का प्रमुख कारण क्या था?",
+                options: ["औरंगजेब की दक्षिण नीति, धार्मिक असहिष्णुता और अयोग्य उत्तराधिकारी", "केवल अंग्रेजों का आक्रमण", "विदेशी व्यापार की कमी", "सिक्कों का बंद होना"],
+                correctText: "औरंगजेब की दक्षिण नीति, धार्मिक असहिष्णुता और अयोग्य उत्तराधिकारी",
+                exp: "<b>विस्तृत व्याख्या:</b><br>• औरंगजेब की लंबी दक्षिण विजयों (25 साल) और कट्टर नीतियों ने मुगल साम्राज्य की नींव हिला दी थी।"
+            }
+        ];
+
+        let quizDataHistory10 = [];
+
+        function prepareShuffledQuizData() {
+            quizDataHistory10 = rawQuizDataHistory10.map(item => {
+                let options = [...item.options];
+                let correctText = item.correctText;
+                for (let i = options.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+                let correctIdx = options.indexOf(correctText);
+                return {
+                    q: item.q,
+                    options: options,
+                    ans: correctIdx,
+                    exp: item.exp
+                };
+            });
+        }
+
+        const biharDistricts = [
+            "अररिया", "अरवल", "औरंगाबाद", "बांका", "बेगुसराय", "भागलपुर", "भोजपुर", 
+            "बक्सर", "दरभंगा", "पूर्वी चंपारण", "गया", "गोपालगंज", "जमुई", "जहानाबाद", 
+            "कैमूर", "कटिहार", "खगड़िया", "किशनगंज", "लखीसराय", "मधेपुरा", "मधुबनी", 
+            "मुंगेर", "मुजफ्फरपुर", "नालंदा", "नवादा", "पटना", "पूर्णिया", "रोहतास", 
+            "सहरसा", "समस्तीपुर", "सारण", "शेखपुरा", "शिवहर", "सीतामढ़ी", "सीवान", 
+            "सुपौल", "वैशाली", "पश्चिम चंपारण"
+        ];
+
+        let currentQ = 0;
+        let userAnswers = {};
+        let studentInfo = {};
+        let timerInterval;
+        let timeLeft = 3600;
+        let isSubmitted = false;
+        let currentScoreData = {};
+
+        function handleStateChange() {
+            const stateSelect = document.getElementById('std-state').value;
+            const districtSelect = document.getElementById('std-district');
+            districtSelect.innerHTML = '';
+
+            if (stateSelect === 'बिहार') {
+                biharDistricts.forEach((dist, index) => {
+                    let opt = document.createElement('option');
+                    opt.value = dist;
+                    opt.innerText = dist;
+                    if (index === 0) opt.selected = true;
+                    districtSelect.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = "अन्य / मुख्य जिला";
+                opt.innerText = "अन्य / मुख्य जिला";
+                opt.selected = true;
+                districtSelect.appendChild(opt);
+            }
+        }
+
+        window.onload = function() {
+            handleStateChange();
+            prepareShuffledQuizData();
+            checkSavedResult();
+        };
+
+        function getActiveQuizData() {
+            return quizDataHistory10;
+        }
+
+        function checkSavedResult() {
+            let savedData = localStorage.getItem('test10_saved_result');
+            if (savedData) {
+                let parsedData = JSON.parse(savedData);
+                isSubmitted = true;
+                userAnswers = parsedData.userAnswers || {};
+                studentInfo = parsedData.studentInfo || {};
+                currentScoreData = parsedData.scoreData || {};
+
+                displayResultScreen(parsedData.scoreData);
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            let data = getActiveQuizData();
+            if (data.length === 0) {
+                alert("प्रश्न उपलब्ध नहीं हैं।");
+                return;
+            }
+
+            studentInfo = {
+                name: document.getElementById('std-name').value,
+                state: document.getElementById('std-state').value,
+                district: document.getElementById('std-district').value,
+                city: document.getElementById('std-city').value
+            };
+
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if(isSubmitted) return;
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('timer').innerHTML = `<i class="fa-regular fa-clock mr-1"></i> ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function togglePalette() {
+            const pBox = document.getElementById('palette-box');
+            pBox.classList.toggle('hidden');
+            if(!pBox.classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function renderPalette() {
+            const grid = document.getElementById('palette-grid');
+            let data = getActiveQuizData();
+            let html = '';
+            
+            data.forEach((q, idx) => {
+                let statusClass = 'bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300';
+                
+                if (isSubmitted) {
+                    if (userAnswers[idx] === undefined) {
+                        statusClass = 'bg-slate-200 text-slate-700 border-slate-300';
+                    } else if (userAnswers[idx] === q.ans) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    } else {
+                        statusClass = 'bg-rose-500 text-white font-bold border-rose-600';
+                    }
+                } else {
+                    if (userAnswers[idx] !== undefined) {
+                        statusClass = 'bg-emerald-500 text-white font-bold border-emerald-600';
+                    }
+                }
+                
+                if (idx === currentQ) {
+                    statusClass += ' ring-2 ring-indigo-500 font-extrabold scale-105';
+                }
+
+                html += `
+                    <button type="button" onclick="goToQuestion(${idx})" class="py-1.5 rounded-lg border text-xs ${statusClass}">
+                        ${idx + 1}
+                    </button>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        function goToQuestion(idx) {
+            currentQ = idx;
+            loadQuestion();
+            document.getElementById('palette-box').classList.add('hidden');
+        }
+
+        function loadQuestion() {
+            let data = getActiveQuizData();
+            let q = data[currentQ];
+            document.getElementById('q-counter').innerText = `प्रश्न ${currentQ + 1} / ${data.length}`;
+            document.getElementById('question-text').innerText = `${currentQ + 1}. ${q.q}`;
+
+            let optHTML = '';
+            let hasAnswered = userAnswers[currentQ] !== undefined;
+
+            q.options.forEach((opt, idx) => {
+                let bgClass = 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100';
+                let iconHTML = '<i class="fa-regular fa-circle text-slate-400"></i>';
+
+                if (isSubmitted) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                } else if (hasAnswered) {
+                    if (idx === q.ans) {
+                        bgClass = 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-check text-emerald-600"></i>';
+                    } else if (userAnswers[currentQ] === idx) {
+                        bgClass = 'bg-rose-100 border-rose-500 text-rose-900 font-bold';
+                        iconHTML = '<i class="fa-solid fa-circle-xmark text-rose-600"></i>';
+                    }
+                }
+
+                optHTML += `
+                    <button type="button" onclick="selectOption(${idx})" ${(hasAnswered || isSubmitted) ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border text-sm option-card flex items-center justify-between ${bgClass}">
+                        <span>${opt}</span>
+                        ${iconHTML}
+                    </button>
+                `;
+            });
+
+            document.getElementById('options-container').innerHTML = optHTML;
+            document.getElementById('prev-btn').disabled = (currentQ === 0);
+            
+            let expBox = document.getElementById('explanation-box');
+            if (hasAnswered || isSubmitted) {
+                let expMsg = q.exp ? q.exp : `सही उत्तर: '${q.options[q.ans]}'`;
+                document.getElementById('explanation-text').innerHTML = expMsg;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            let nextBtn = document.getElementById('next-btn');
+            let submitBtn = document.getElementById('submit-btn');
+
+            if (!isSubmitted) {
+                if (currentQ === data.length - 1) {
+                    nextBtn.classList.add('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    nextBtn.classList.remove('hidden');
+                    submitBtn.classList.add('hidden');
+                }
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+
+            if(!document.getElementById('palette-box').classList.contains('hidden')) {
+                renderPalette();
+            }
+        }
+
+        function selectOption(optIndex) {
+            if(isSubmitted) return;
+            userAnswers[currentQ] = optIndex;
+            loadQuestion();
+        }
+
+        function nextQuestion() {
+            let data = getActiveQuizData();
+            if (currentQ < data.length - 1) {
+                currentQ++;
+                loadQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                loadQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            
+            let score = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let unattemptedCount = 0;
+            let data = getActiveQuizData();
+
+            data.forEach((q, idx) => {
+                let userAns = userAnswers[idx];
+                if (userAns === undefined) {
+                    unattemptedCount++;
+                } else if (userAns === q.ans) {
+                    score++;
+                    correctCount++;
+                } else {
+                    wrongCount++;
+                }
+            });
+
+            let randomRank = Math.floor(Math.random() * 50) + 5;
+            currentScoreData = {
+                score: score,
+                totalQs: data.length,
+                correct: correctCount,
+                wrong: wrongCount,
+                unattempted: unattemptedCount,
+                rank: randomRank
+            };
+
+            let testSaveObject = {
+                isSubmitted: true,
+                userAnswers: userAnswers,
+                studentInfo: studentInfo,
+                scoreData: currentScoreData
+            };
+            localStorage.setItem('test10_saved_result', JSON.stringify(testSaveObject));
+
+            displayResultScreen(currentScoreData);
+        }
+
+        function displayResultScreen(scoreData) {
+            document.getElementById('reg-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            document.getElementById('res-score').innerText = `${scoreData.score} / ${scoreData.totalQs}`;
+            document.getElementById('stat-correct').innerText = scoreData.correct;
+            document.getElementById('stat-wrong').innerText = scoreData.wrong;
+            document.getElementById('stat-unattempted').innerText = scoreData.unattempted;
+            document.getElementById('res-rank').innerText = `#${scoreData.rank} / 1,500`;
+
+            document.getElementById('info-name').innerText = studentInfo.name || '--';
+            document.getElementById('info-state').innerText = studentInfo.state || '--';
+            document.getElementById('info-district').innerText = studentInfo.district || '--';
+            document.getElementById('info-city').innerText = studentInfo.city || '--';
+
+            let percentage = (scoreData.score / scoreData.totalQs) * 100;
+            let cutoffBox = document.getElementById('cutoff-box');
+            if (percentage >= 70) {
+                cutoffBox.className = "bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs font-bold text-emerald-800";
+                cutoffBox.innerHTML = "🎉 बधाई हो! आपने मुगल काल टेस्ट 10 का कट-ऑफ क्लियर कर लिया है (Passed)";
+            } else {
+                cutoffBox.className = "bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs font-bold text-rose-800";
+                cutoffBox.innerHTML = "⚠️ आप कट-ऑफ से पीछे रह गए। पुनः प्रयास करें।";
+            }
+        }
+
+        function shareOnWhatsApp() {
+            let name = studentInfo.name || 'छात्र';
+            let score = currentScoreData.score !== undefined ? currentScoreData.score : 0;
+            let total = currentScoreData.totalQs || 100;
+            let rank = currentScoreData.rank || '--';
+
+            let shareMessage = `🎯 *Iconic GS Tricks - Medieval History Test 10 Result*\n\n` +
+                               `👤 *परीक्षार्थी:* ${name}\n` +
+                               `📚 *विषय:* मुगल काल, शेरशाह सूरी व शासन व्यवस्था\n` +
+                               `📊 *प्राप्तांक:* ${score} / ${total}\n` +
+                               `🏆 *ऑल इंडिया रैंक:* #${rank}\n\n` +
+                               `आप भी अपना टेस्ट दें और रैंक देखें 👇\n` +
+                               `https://akanand854318-ux.github.io/test10.html`;
+
+            let waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        function startDetailedAnalysis() {
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('analysis-banner').classList.remove('hidden');
+            document.getElementById('timer').classList.add('hidden');
+
+            currentQ = 0;
+            loadQuestion();
+        }
+
+        function showScoreSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+        }
+
+        function resetTest() {
+            localStorage.removeItem('test10_saved_result');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
